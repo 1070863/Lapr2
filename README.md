@@ -4,26 +4,13 @@ Este repositório tem o código de base do projeto de LAPR2 2013/2014, correspon
 
 ### Instruções para criar o repositório do grupo em LAPR2 ###
 
-* Fazer fork deste projeto (Actions->More->Fork)
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* Um elemento do grupo faz fork deste projeto (Actions->More->Fork)
+* Escolher as opções "Private repository" e "Issues"
+* Nome do repositório: LAPR2_2014_GXX em que XX representa o número do grupo (ex: LAPR2_2014_G03)
+* Convidar os restantes elementos do grupo, o Orientador (ver tabela dos grupos) e AMM@isep.ipp.pt. Atribuir permissões de escrita, ficando apenas o criador com permissões de administração.
 
-### How do I get set up? ###
+### Contacto ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Angelo Martins (amm@isep.ipp.pt)
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+(c) ISEP, 2014
