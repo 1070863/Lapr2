@@ -5,6 +5,8 @@
 
 package eventoscientificos;
 
+import ui.MenuUI;
+
 
 
 /**

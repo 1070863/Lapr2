@@ -3,9 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eventoscientificos;
+package controller;
 
 
+import eventoscientificos.Artigo;
+import eventoscientificos.Autor;
+import eventoscientificos.Empresa;
+import eventoscientificos.Evento;
+import eventoscientificos.Submissao;
+import eventoscientificos.Topico;
 import java.util.List;
 
 /**

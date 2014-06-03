@@ -1,5 +1,7 @@
-package eventoscientificos;
+package ui;
 
+import controller.CriarEventoCientificoController;
+import eventoscientificos.Empresa;
 import utils.*;
 
 /**

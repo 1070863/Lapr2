@@ -1,6 +1,9 @@
-package eventoscientificos;
+package ui;
 
 
+import controller.RegistarUtilizadorController;
+import eventoscientificos.Empresa;
+import eventoscientificos.Utilizador;
 import utils.*;
 
 
