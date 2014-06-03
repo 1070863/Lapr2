@@ -1,4 +1,8 @@
-package eventoscientificos;
+package controller;
+
+import eventoscientificos.Empresa;
+import eventoscientificos.Evento;
+import eventoscientificos.Utilizador;
 
 /**
  *

@@ -1,6 +1,12 @@
-package eventoscientificos;
+package controller;
 
 
+import eventoscientificos.CP;
+import eventoscientificos.Empresa;
+import eventoscientificos.Evento;
+import eventoscientificos.Revisor;
+import eventoscientificos.Topico;
+import eventoscientificos.Utilizador;
 import java.util.List;
 
 /**

@@ -1,6 +1,7 @@
-package eventoscientificos;
+package ui;
 
 
+import eventoscientificos.Empresa;
 import java.io.IOException;
 import utils.*;
 
