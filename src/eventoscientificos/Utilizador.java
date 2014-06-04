@@ -6,8 +6,6 @@ import utils.Utils;
  *
  * @author Nuno Silva
  */
-
-
 public final class Utilizador {
 
     private String m_strNome;

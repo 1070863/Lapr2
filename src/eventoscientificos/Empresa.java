@@ -10,29 +10,41 @@ import java.util.*;
 
 public class Empresa
 {
+    private List<Utilizador> m_listaUtilizadores;
     private List<Evento> m_listaEventos;
-    private RegistaUtilizador m_registaUtilizador;
 
     public Empresa()
     {
-        m_registaUtilizador= new RegistaUtilizador();
+        m_listaUtilizadores = new ArrayList<Utilizador>();
         m_listaEventos = new ArrayList<Evento>();
 
-        //fillInData();
+        fillInData();
     }
 
     public Utilizador novoUtilizador()
     {
-        return m_registaUtilizador.novoUtilizador();
+        return new Utilizador();
     }
     
     public boolean registaUtilizador(Utilizador u)
     {
-      return   m_registaUtilizador.registaUtilizador(u);
-       
+        if( u.valida() && validaUtilizador(u) )
+            return addUtilizador(u);
+        else
+            return false;
     }
     
- 
+    // alterada na iteração 2
+    private boolean validaUtilizador(Utilizador u)
+    {
+        for(Utilizador uExistente : m_listaUtilizadores)
+        {
+            if( uExistente.mesmoQueUtilizador(u) )
+                return false;
+        }  
+        return true;
+    }
+    
     public Evento novoEvento()
     {
         return new Evento();
@@ -51,7 +63,34 @@ public class Empresa
         return true;
     }
 
-   
+    public Utilizador getUtilizador(String strId)
+    {
+        for(Utilizador u:this.m_listaUtilizadores)
+        {
+            String s1 = u.getUsername();
+            if(s1.equalsIgnoreCase(strId))
+                return u;
+        }  
+        return null;
+    }
+    
+    public Utilizador getUtilizadorEmail(String strEmail)
+    {
+        for(Utilizador u:this.m_listaUtilizadores)
+        {
+            String s1 = u.getEmail();
+            if(s1.equalsIgnoreCase(strEmail))
+                return u;
+        }
+    
+        return null;
+    }
+    
+    private boolean addUtilizador(Utilizador u)
+    {
+        return m_listaUtilizadores.add(u);
+    }
+
     private boolean addEvento(Evento e)
     {
         return m_listaEventos.add(e);
@@ -61,7 +100,7 @@ public class Empresa
     {
         List<Evento> leOrganizador = new ArrayList<Evento>();
 
-        Utilizador u = m_registaUtilizador.getUtilizador(strId);
+        Utilizador u = getUtilizador(strId);
         
         if(u != null )
         {
@@ -100,7 +139,7 @@ public class Empresa
         
         return le;
     }
-/*
+
     private void fillInData() 
     {
         int max_users = 50;
@@ -113,7 +152,7 @@ public class Empresa
             String ds = "Utilizador " + users; 
             
             Utilizador u = new Utilizador(id,"12345",ds,id +"@xxx.pt");
-            this.m_registaUtilizador.addUtilizador(u);
+            this.m_listaUtilizadores.add(u);
             
             // System.out.println( u );
         }
@@ -147,5 +186,5 @@ public class Empresa
             sub.setArtigo(art);
             e1.addSubmissao(sub);
         }
-    }*/
+    }
 }
