@@ -11,11 +11,11 @@ import java.util.*;
 public class Empresa
 {
     private RegistoEventos m_registoEventos;
-    private RegistaUtilizador m_registaUtilizador;
+    private RegistoUtilizador m_registoUtilizador;
 
     public Empresa()
     {
-        m_registaUtilizador= new RegistaUtilizador();
+        m_registoUtilizador= new RegistoUtilizador();
         m_registoEventos = new RegistoEventos();
 
         //fillInData();
@@ -29,12 +29,12 @@ public class Empresa
         this.m_registoEventos = m_registoEventos;
     }
 
-    public RegistaUtilizador getM_registaUtilizador() {
-        return m_registaUtilizador;
+    public RegistoUtilizador getM_registaUtilizador() {
+        return m_registoUtilizador;
     }
 
-    public void setM_registaUtilizador(RegistaUtilizador m_registaUtilizador) {
-        this.m_registaUtilizador = m_registaUtilizador;
+    public void setM_registaUtilizador(RegistoUtilizador m_registaUtilizador) {
+        this.m_registoUtilizador = m_registaUtilizador;
     }
  
 /*
@@ -50,7 +50,7 @@ public class Empresa
             String ds = "Utilizador " + users; 
             
             Utilizador u = new Utilizador(id,"12345",ds,id +"@xxx.pt");
-            this.m_registaUtilizador.addUtilizador(u);
+            this.m_registoUtilizador.addUtilizador(u);
             
             // System.out.println( u );
         }

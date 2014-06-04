@@ -14,14 +14,14 @@ import java.util.List;
  *utilizadores a sua lista 
  * @author Pereira
  */
-public class RegistaUtilizador {
+public class RegistoUtilizador {
 
     private List<Utilizador> m_listaUtilizadores;
 
     /**
      * Cria uma lista de Utilizadores
      */
-    public RegistaUtilizador() {
+    public RegistoUtilizador() {
         this.m_listaUtilizadores = new ArrayList<Utilizador>();
     }
 /**
