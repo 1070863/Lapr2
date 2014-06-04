@@ -24,6 +24,7 @@ public class Evento {
     private List<Submissao> m_listaSubmissoes;
     private CP m_cp;
     private List<Topico> m_listaTopicos;
+    private EventoState state;
 
     public Evento() {
         m_local = new Local();
@@ -162,4 +163,13 @@ public class Evento {
     private boolean validaGlobalTopico(Topico t) {
         return true;
     }
+    
+    public EventoState getState() {
+        return state;
+    }
+
+    public void setState(EventoState state) {
+        this.state = state;
+    }
+
 }
