@@ -33,7 +33,7 @@ public class SubmeterArtigoController
 
     public List<Evento> iniciarSubmissao()
     {
-        return this.m_empresa.getListaEventosPodeSubmeter();
+        return this.m_empresa.getM_registoEventos().getListaEventosPodeSubmeter();
     }
 
     public void selectEvento(Evento e)
@@ -67,7 +67,7 @@ public class SubmeterArtigoController
     
     public Autor novoAutor(String strNome, String strAfiliacao, String strEmail)
     {
-        return this.m_artigo.novoAutor(strNome, strAfiliacao,strEmail,this.m_empresa.getUtilizadorEmail(strEmail));
+        return this.m_artigo.novoAutor(strNome, strAfiliacao,strEmail,this.m_empresa.getM_registaUtilizador().getUtilizadorEmail(strEmail));
     }
 
     public boolean addAutor(Autor autor)

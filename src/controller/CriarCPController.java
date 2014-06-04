@@ -27,7 +27,7 @@ public class CriarCPController
 
     public List<Evento> getEventosOrganizador(String strId)
     {
-        return m_empresa.getEventosOrganizador(strId);
+        return m_empresa.getM_registoEventos().getEventosOrganizador(strId);
     }
     
     public List<Topico> getTopicosEvento()
@@ -47,7 +47,7 @@ public class CriarCPController
     
     public Revisor addMembroCP(String strId)
     {
-        Utilizador u = m_empresa.getUtilizador(strId);
+        Utilizador u = m_empresa.getM_registaUtilizador().getUtilizador(strId);
         
         if( u!=null)
             return m_cp.addMembroCP( strId, u );

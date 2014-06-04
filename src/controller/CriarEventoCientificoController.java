@@ -21,7 +21,7 @@ public class CriarEventoCientificoController
 
     public void novoEvento()
     {
-        m_evento = m_empresa.novoEvento();
+        m_evento = m_empresa.getM_registoEventos().novoEvento();
     }
 
     public String getEventoString()
@@ -62,7 +62,7 @@ public class CriarEventoCientificoController
 
     public boolean addOrganizador(String strId)
     {
-        Utilizador u = m_empresa.getUtilizador(strId);
+        Utilizador u = m_empresa.getM_registaUtilizador().getUtilizador(strId);
         
         if( u!=null)
             return m_evento.addOrganizador( strId, u );
@@ -72,7 +72,7 @@ public class CriarEventoCientificoController
     
     public boolean registaEvento()
     {
-        return m_empresa.registaEvento(m_evento);
+        return m_empresa.getM_registoEventos().registaEvento(m_evento);
     }
 }
 

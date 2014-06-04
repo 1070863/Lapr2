@@ -21,7 +21,7 @@ public class RegistarUtilizadorController
 
     public void novoUtilizador()
     {
-        m_utilizador = m_empresa.novoUtilizador();
+        m_utilizador = m_empresa.getM_registaUtilizador().novoUtilizador();
     }
 
     public Utilizador setDados(String strUsername, String strPassword, String strNome, String strEmail)
@@ -31,7 +31,7 @@ public class RegistarUtilizadorController
         m_utilizador.setNome(strNome);
         m_utilizador.setEmail(strEmail);
         
-        if( m_empresa.registaUtilizador(m_utilizador) )
+        if( m_empresa.getM_registaUtilizador().registaUtilizador(m_utilizador) )
             return m_utilizador;
         else
             return null;

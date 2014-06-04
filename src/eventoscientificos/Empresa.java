@@ -10,96 +10,33 @@ import java.util.*;
 
 public class Empresa
 {
-    private List<Evento> m_listaEventos;
+    private RegistoEventos m_registoEventos;
     private RegistaUtilizador m_registaUtilizador;
 
     public Empresa()
     {
         m_registaUtilizador= new RegistaUtilizador();
-        m_listaEventos = new ArrayList<Evento>();
+        m_registoEventos = new RegistoEventos();
 
         //fillInData();
     }
+    
+    public RegistoEventos getM_registoEventos() {
+        return m_registoEventos;
+    }
 
-    public Utilizador novoUtilizador()
-    {
-        return m_registaUtilizador.novoUtilizador();
+    public void setM_registoEventos(RegistoEventos m_registoEventos) {
+        this.m_registoEventos = m_registoEventos;
     }
-    
-    public boolean registaUtilizador(Utilizador u)
-    {
-      return   m_registaUtilizador.registaUtilizador(u);
-       
+
+    public RegistaUtilizador getM_registaUtilizador() {
+        return m_registaUtilizador;
     }
-    
+
+    public void setM_registaUtilizador(RegistaUtilizador m_registaUtilizador) {
+        this.m_registaUtilizador = m_registaUtilizador;
+    }
  
-    public Evento novoEvento()
-    {
-        return new Evento();
-    }
-
-    public boolean registaEvento(Evento e)
-    {
-        if( e.valida() && validaEvento(e) )
-            return addEvento(e);
-        else
-            return false;
-    }
-    
-    private boolean validaEvento(Evento e)
-    {
-        return true;
-    }
-
-   
-    private boolean addEvento(Evento e)
-    {
-        return m_listaEventos.add(e);
-    }
-    
-    public List<Evento> getEventosOrganizador(String strId)
-    {
-        List<Evento> leOrganizador = new ArrayList<Evento>();
-
-        Utilizador u = m_registaUtilizador.getUtilizador(strId);
-        
-        if(u != null )
-        {
-            for( Iterator<Evento> it = m_listaEventos.listIterator(); it.hasNext(); )
-            {
-                Evento e = it.next();
-                List<Organizador> lOrg = e.getListaOrganizadores();
-             
-                boolean bRet = false;
-                for(Organizador org:lOrg)
-                {
-                    if (org.getUtilizador().equals(u))
-                    {
-                        bRet = true;
-                        break;
-                    }
-                }
-                if( bRet )
-                    leOrganizador.add(e);
-            }
-        }
-        return leOrganizador;
-    }
-    
-    public List<Evento> getListaEventosPodeSubmeter()
-    {
-        List<Evento> le = new ArrayList<Evento>();
-        
-        for(Evento e:m_listaEventos)
-        {
-            if (e.aceitaSubmissoes())
-            {
-                le.add(e);
-            }
-        }
-        
-        return le;
-    }
 /*
     private void fillInData() 
     {
@@ -148,4 +85,5 @@ public class Empresa
             e1.addSubmissao(sub);
         }
     }*/
+
 }
