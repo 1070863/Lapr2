@@ -1,36 +1,27 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package eventoscientificos;
 
 import ui.MenuUI;
-
-
+import ui.Run;
 
 /**
+ * Classe main do projeto de LAPR2
  *
- * @author Nuno Silva
+ * @author Grupo66 LAPR2
  */
-
 public class Main {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args)
-    {
-        try
-        {
+    public static void main(String[] args) {
+        try {
+            new Run();
             Empresa empresa = new Empresa();
 
             MenuUI uiMenu = new MenuUI(empresa);
 
             uiMenu.run();
-        }
-        catch( Exception e )
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
