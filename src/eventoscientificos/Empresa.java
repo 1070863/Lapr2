@@ -16,7 +16,7 @@ public class Empresa
     public Empresa()
     {
         m_registoUtilizador= new RegistoUtilizador();
-        m_registoEventos = new RegistoEventos();
+        m_registoEventos = new RegistoEventos(this);
 
         //fillInData();
     }

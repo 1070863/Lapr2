@@ -11,6 +11,11 @@ public class RegistoEventos {
     private List<Evento> m_listaEventos;
     private Empresa m_empresa;
 
+    public RegistoEventos(Empresa empresa) {
+        this.m_listaEventos = new ArrayList<>();
+        this.m_empresa = empresa;
+    }
+
     public Evento novoEvento() {
         return new Evento();
     }
@@ -32,7 +37,7 @@ public class RegistoEventos {
     }
 
     public List<Evento> getEventosOrganizador(String strId) {
-        List<Evento> leOrganizador = new ArrayList<Evento>();
+        List<Evento> leOrganizador = new ArrayList<>();
 
         Utilizador u = m_empresa.getM_registaUtilizador().getUtilizador(strId);
 
@@ -57,7 +62,7 @@ public class RegistoEventos {
     }
 
     public List<Evento> getListaEventosPodeSubmeter() {
-        List<Evento> le = new ArrayList<Evento>();
+        List<Evento> le = new ArrayList<>();
 
         for (Evento e : m_listaEventos) {
             if (e.aceitaSubmissoes()) {

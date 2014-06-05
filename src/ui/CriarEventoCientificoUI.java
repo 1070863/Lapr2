@@ -31,6 +31,7 @@ public class CriarEventoCientificoUI
         introduzDataFim();
         introduzDataLimiteSubmissão();
         adicionaOrganizadores();
+        introduzDataLimiteRevisao();
         
         apresentaEvento();
         
@@ -89,6 +90,11 @@ public class CriarEventoCientificoUI
 
         m_controllerCEC.setDataLimiteSubmissão(strDataLimiteSubmissão);
     }
+    
+        private void introduzDataLimiteRevisao() {
+        String strDataLimiteRevisao = Utils.readLineFromConsole("Introduza Data Limite de Revisão: ");
+
+        m_controllerCEC.setDataLimiteRevisao(strDataLimiteRevisao);    }
 
     private void adicionaOrganizadores()
     {

@@ -25,6 +25,7 @@ public class Evento {
     private CP m_cp;
     private List<Topico> m_listaTopicos;
     private EventoState state;
+    private String dataLimiteRevisao;
 
     public Evento() {
         m_local = new Local();
@@ -67,6 +68,14 @@ public class Evento {
     // adicionada na iteração 2
     public void setDataLimiteSubmissão(String strDataLimiteSubmissão) {
         this.m_strDataLimiteSubmissão = strDataLimiteSubmissão;
+    }
+    
+        public String getDataLimiteRevisao() {
+        return dataLimiteRevisao;
+    }
+
+    public void setDataLimiteRevisao(String dataLimiteRevisao) {
+        this.dataLimiteRevisao = dataLimiteRevisao;
     }
 
     public void setLocal(String strLocal) {

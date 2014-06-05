@@ -59,6 +59,10 @@ public class CriarEventoCientificoController
     {
         m_evento.setDataLimiteSubmissão(strDataLimiteSubmissão);
     }
+    
+        public void setDataLimiteRevisao(String strDataLimiteRevisao) {
+        m_evento.setDataLimiteRevisao(strDataLimiteRevisao);
+    }
 
     public boolean addOrganizador(String strId)
     {
