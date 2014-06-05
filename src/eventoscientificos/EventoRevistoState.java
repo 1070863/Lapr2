@@ -46,6 +46,10 @@ public class EventoRevistoState implements EventoState{
         return false;
     }
 
+    /**
+     * Faz o set do estado decidido
+     * @return boolean
+     */
     public boolean setDecidido() {
         if (valida()) {
             m_e.setState(new EventoDecididoState(m_e));

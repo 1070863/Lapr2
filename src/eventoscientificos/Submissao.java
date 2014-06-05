@@ -12,6 +12,8 @@ package eventoscientificos;
 public class Submissao {
 
     private Artigo m_artigo;
+    
+    
 
     public Submissao() {
 
@@ -39,6 +41,6 @@ public class Submissao {
 
     @Override
     public String toString() {
-        return "Submissão:\n";
+        return "Submissão:\n"+m_artigo.toString();
     }
 }

@@ -25,6 +25,10 @@ public class EventoTopicosCriadosState implements EventoState {
         return false;
     }
 
+    /**
+     * Valida se o evento tem todas as condições para mudar para o estado CP definida
+     * @return false
+     */
     public boolean valida() {
         if(m_e.getCP().getListaRevisores().size()>0)
             return true;
@@ -36,6 +40,10 @@ public class EventoTopicosCriadosState implements EventoState {
      return false;
     }
 
+    /**
+     * Faz o set do estado CP definida
+     * @return boolean
+     */
     public boolean setCPDefinida() {
         if (valida()) {
             m_e.setState(new EventoCPDefinidaState(m_e));

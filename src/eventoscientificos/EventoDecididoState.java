@@ -13,44 +13,84 @@ package eventoscientificos;
 public class EventoDecididoState implements EventoState{
     Evento m_e;
 
+    /**
+     * Cria uma instância de EventoDecididoState
+     * @param m_e 
+     */
     public EventoDecididoState(Evento m_e) {
         this.m_e = m_e;
     }
     
+    /**
+     * Faz o set do estado criado 
+     * @return false
+     */
     public boolean SetCriado() {
         return false;
     }
 
+    /**
+     * Faz o set do estado registado
+     * @return false
+     */
     public boolean SetRegistado() {
         return false;
     }
 
-
+/**
+     * Valida se o evento tem todas as condições para passar para o estado notificado 
+     * @return boolean
+     */
     public boolean valida() {
         // validação específica do estado CP Definida
         return true;
     }
 
+    /**
+     * Faz o set do estado topicos definidos 
+     * @return false
+     */
     public boolean setTopicosDefinidos() {
 return false;
     }
 
+    /**
+     * Faz o set do estado CD definida
+     * @return false
+     */
     public boolean setCPDefinida() {
         return false;
     }
-
+    
+    
+/**
+     * Faz o set do estado distribuido
+     * @return false
+     */
     public boolean setDistribuido() {
         return false;
     }
 
+    /**
+     * Faz o set do estado revisto
+     * @return false
+     */
     public boolean setRevisto() {
         return false;
     }
 
+    /**
+     * Faz o set do estado decidido
+     * @return false
+     */
     public boolean setDecidido() {
         return false;
     }
 
+    /**
+     * Faz o set do estado notificado
+     * @return boolean
+     */
     public boolean setNotificado() {
         if (valida()) {
             m_e.setState(new EventoNotificadoState(m_e));
@@ -60,6 +100,10 @@ return false;
         }
     }
 
+    /**
+     * Faz o set do estado camera ready
+     * @return false
+     */
     public boolean setCameraReady() {
 return false;
     }

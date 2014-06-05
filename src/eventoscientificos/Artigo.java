@@ -174,7 +174,15 @@ public class Artigo {
 
     @Override
     public String toString() {
-        return this.m_strTitulo + "+ ...";
+        String aux= "Artigo: "+this.m_strTitulo + "\nResumo: "+this.m_strResumo+"\nAutores:\n";
+        for (Autor autor : m_listaAutores) {
+            aux+=autor.toString()+"\n";
+        }
+        aux+="Autor correspondente: "+this.m_autorCorrespondente+"\nTópicos do artigo:\n";
+        for (Topico topico : m_listaTopicos) {
+            aux+=topico.toString()+"\n";
+        }
+        return aux+="Ficheiro: "+this.m_strFicheiro;
     }
 
     /**
