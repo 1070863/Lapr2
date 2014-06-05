@@ -36,8 +36,8 @@ public class Empresa
     public void setM_registaUtilizador(RegistoUtilizador m_registaUtilizador) {
         this.m_registoUtilizador = m_registaUtilizador;
     }
- 
-/*
+    
+ /*
     private void fillInData() 
     {
         int max_users = 50;

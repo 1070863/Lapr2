@@ -54,8 +54,8 @@ public class RegistoUtilizador {
  * @return 
  */
     public boolean registaUtilizador(Utilizador u) {
-        u = new Utilizador();
-        if (u.valida() && validaUtilizador(u)) {
+    //if (u.valida() && validaUtilizador(u))
+        if ( validaUtilizador(u)) {
             return addUtilizador(u);
         } else {
             return false;
@@ -70,6 +70,20 @@ public class RegistoUtilizador {
     public Utilizador getUtilizador(String strId) {
         for (Utilizador u : this.m_listaUtilizadores) {
             String s1 = u.getUsername();
+            if (s1.equalsIgnoreCase(strId)) {
+                return u;
+            }
+        }
+        return null;
+    }
+    /**
+     * 
+     * @param strId
+     * @return 
+     */
+    public Utilizador setUtilizador(String strId) {
+        for (Utilizador u : this.m_listaUtilizadores) {
+            String s1 = strId;
             if (s1.equalsIgnoreCase(strId)) {
                 return u;
             }
@@ -93,6 +107,22 @@ public class RegistoUtilizador {
 
         return null;
     }
+    /**
+     * 
+     * @param strEmail
+     * @return 
+     */
+     public Utilizador setUtilizadorEmail(String strEmail) {
+        for (Utilizador u : this.m_listaUtilizadores) {
+            String s1 = strEmail;
+            if (s1.equalsIgnoreCase(strEmail)) {
+                return u;
+            }
+        }
+
+        return null;
+    }
+    
 /**
  * adiciona um utilizador á lista
  * @param u

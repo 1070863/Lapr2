@@ -31,7 +31,7 @@ public class RegistarUtilizadorController
         m_utilizador.setNome(strNome);
         m_utilizador.setEmail(strEmail);
         
-        if( m_empresa.getM_registaUtilizador().registaUtilizador(m_utilizador) )
+        if( (m_empresa.getM_registaUtilizador()).registaUtilizador(m_utilizador) )
             return m_utilizador;
         else
             return null;
