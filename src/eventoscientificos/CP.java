@@ -50,8 +50,8 @@ public class CP {
      */
     public boolean validaMembroCP(Revisor r) {
         for (Revisor rev : this.m_listaRevisores) {
-            if (rev.getUtilizador().getUsername().equalsIgnoreCase(r.getUtilizador().getUsername())
-                    && rev.getUtilizador().getEmail().equalsIgnoreCase(r.getUtilizador().getEmail())) {
+            if (rev.getUtilizador().getEmail().equals(r.getUtilizador().getEmail()) 
+                    || rev.getUtilizador().getUsername().equals(r.getUtilizador().getUsername())) {
                 return true;
             }
         }
