@@ -26,8 +26,10 @@ public class EventoTopicosCriadosState implements EventoState {
     }
 
     public boolean valida() {
-        // validação específica do estado CP Definida
-        return true;
+        if(m_e.getCP().getListaRevisores().size()>0)
+            return true;
+        else
+            return false;
     }
 
     public boolean setTopicosDefinidos() {
@@ -44,7 +46,7 @@ public class EventoTopicosCriadosState implements EventoState {
     }
 
     public boolean setDistribuido() {
-return false;
+        return false;
     }
 
     public boolean setRevisto() {

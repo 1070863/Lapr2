@@ -26,7 +26,10 @@ public class EventoRegistadoState implements EventoState{
     }
 
     public boolean valida() {
-        return true;
+        if(m_e.getTopicos().size()>0)
+           return true;
+        else
+            return false;
     }
 
     public boolean setTopicosDefinidos() {
