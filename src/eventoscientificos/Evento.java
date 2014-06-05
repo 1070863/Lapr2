@@ -79,7 +79,7 @@ public class Evento {
     }
 
     public void setLocal(String strLocal) {
-        this.m_local.setLocal(strLocal);
+        this.m_local.setM_strLocal(strLocal);;
     }
 
     public List<Organizador> getListaOrganizadores() {
