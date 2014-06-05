@@ -31,7 +31,8 @@ public class EventoCriadoState implements EventoState{
     }
 
     public boolean valida() {
-        return true;
+        return !(m_e.getM_strTitulo().isEmpty() || m_e.getM_strDescricao().isEmpty()||m_e.getM_local()==null
+                || m_e.getListaOrganizadores()==null);
     }
 
     public boolean setTopicosDefinidos() {
