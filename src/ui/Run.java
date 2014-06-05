@@ -1,5 +1,6 @@
 package ui;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
@@ -78,24 +79,38 @@ public class Run extends JFrame {
             dispose();
         }
     }
+//MENU ADMINISTRADOR
 
     /**
      * Cria item do menu Administrador com a opção Criar Eventos
      *
      * @return item Criar Eventos para adicionar ao Menu
      */
-    private JMenuItem menuAdministrador() {
+    private JMenu menuAdministrador() {
+        JMenu menu = new JMenu("Administrador");
+        menu.setMnemonic(KeyEvent.VK_A);
+        menu.add(criarItemCriarEventos());
+
+        return menu;
+    }
+
+    /**
+     * Cria item do menu Administrador com a opção Criar Eventos
+     *
+     * @return item Criar Eventos para adicionar ao Menu
+     */
+    private JMenuItem criarItemCriarEventos() {
         JMenuItem item = new JMenuItem("Criar Eventos", KeyEvent.VK_C);
         item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
             }
         }
         );
         return item;
     }
+//MENU ORGANIZADOR
 
     /**
      * Cria o menu organizador que irá ser composto por 5 sub-menus.
@@ -204,13 +219,27 @@ public class Run extends JFrame {
         );
         return item;
     }
+//MENU REVISOR
+
+    /**
+     * Cria o menu Revisor com a opção Submeter Revisão
+     *
+     * @return menu Revisor para adicionar ao Menu
+     */
+    private JMenu menuRevisor() {
+        JMenu menu = new JMenu("Revisor");
+        menu.setMnemonic(KeyEvent.VK_R);
+        menu.add(criarItemSubmeterRevisão());
+
+        return menu;
+    }
 
     /**
      * Cria item do menu Revisor com a opção Submeter Revisão.
      *
      * @return item Submeter Revisão para adicionar ao Menu
      */
-    private JMenuItem menuRevisor() {
+    private JMenuItem criarItemSubmeterRevisão() {
         JMenuItem item = new JMenuItem("Submeter Revisão", KeyEvent.VK_S);
         item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
         item.addActionListener(new ActionListener() {
@@ -262,8 +291,8 @@ public class Run extends JFrame {
      * @return item Submeter Artigo para adicionar ao Menu
      */
     private JMenuItem criarSubMenuSubmeterArtigo() {
-        JMenuItem item = new JMenuItem("Registar Utilizador", KeyEvent.VK_R);
-        item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_MASK));
+        JMenuItem item = new JMenuItem("Submeter Artigo", KeyEvent.VK_S);
+        item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
