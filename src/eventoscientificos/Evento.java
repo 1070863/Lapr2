@@ -172,4 +172,25 @@ public class Evento {
         this.state = state;
     }
 
+    public String getM_strTitulo() {
+        return m_strTitulo;
+    }
+
+    public String getM_strDescricao() {
+        return m_strDescricao;
+    }
+
+    public Local getM_local() {
+        return m_local;
+    }
+
+    public String getM_strDataInicio() {
+        return m_strDataInicio;
+    }
+
+    public String getM_strDataFim() {
+        return m_strDataFim;
+    }
+
+
 }

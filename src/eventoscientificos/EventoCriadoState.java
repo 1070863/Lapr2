@@ -31,7 +31,6 @@ public class EventoCriadoState implements EventoState{
     }
 
     public boolean valida() {
-        // validação específica do estado CP Definida
         return true;
     }
 
