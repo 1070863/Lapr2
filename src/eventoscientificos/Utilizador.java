@@ -16,10 +16,7 @@ public final class Utilizador {
     private String m_strEmail;
 
     public Utilizador() {
-        this.m_strNome="SEM NOME";
-        this.m_strUsername= "SEM USERNAME";
-        this.m_strPassword= "SEM PASSWORD";
-        this.m_strEmail="SEMAIL@mail.pt";
+   
     }
 
     public Utilizador(String username, String pwd, String nome, String email) {

@@ -54,8 +54,8 @@ public class RegistoUtilizador {
  * @return 
  */
     public boolean registaUtilizador(Utilizador u) {
-    //if (u.valida() && validaUtilizador(u))
-        if ( validaUtilizador(u)) {
+    if (u.valida() && validaUtilizador(u)){
+       // if ( validaUtilizador(u)) {
             return addUtilizador(u);
         } else {
             return false;
