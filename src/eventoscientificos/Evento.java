@@ -26,6 +26,7 @@ public class Evento {
     private List<Topico> m_listaTopicos;
     private EventoState state;
     private String dataLimiteRevisao;
+    private SubmissaoCriadaState submissaoState;
 
     public Evento() {
         m_local = new Local();
@@ -127,7 +128,9 @@ public class Evento {
 
     public boolean addSubmissao(Submissao submissao) {
         if (validaSubmissao(submissao)) {
+            submissaoState.SetArtigosParaRevisaoSubmetidos();
             return this.m_listaSubmissoes.add(submissao);
+            
         } else {
             return false;
         }
