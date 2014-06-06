@@ -13,12 +13,12 @@ public class Submissao {
 
     private Artigo m_artigo;
     
-    
+    private SubmissaoState state;
 
     public Submissao() {
-
+        
+        this.setState(new SubmissaoCriadaState(this));
     }
-
     public Artigo novoArtigo() {
         return new Artigo();
     }
@@ -43,4 +43,8 @@ public class Submissao {
     public String toString() {
         return "Submissão:\n"+m_artigo.toString();
     }
+     public void setState(SubmissaoState state) {
+        this.state = state;
+    }
+    
 }
