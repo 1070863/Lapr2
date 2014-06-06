@@ -48,7 +48,7 @@ public class RegistoEventos {
 
                 boolean bRet = false;
                 for (Organizador org : lOrg) {
-                    if (org.getUtilizador().equals(u)) {
+                    if (org.getM_utilizador().equals(u)) {
                         bRet = true;
                         break;
                     }

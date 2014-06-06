@@ -181,7 +181,7 @@ public class ArtigoTest {
     }
 
     /**
-     * Test of valida method, of class Artigo.
+     * Test of validaEmail method, of class Artigo.
      */
     @Test
     public void testValida() {
@@ -215,8 +215,8 @@ public class ArtigoTest {
     public void testEquals() {
         System.out.println("equals");
         Utilizador myUt = new Utilizador();
-        myUt.setUsername("expert@isep.ipp.pt");
-        myUt.setEmail("expert@isep.ipp.pt");
+        myUt.setM_strUsername("expert@isep.ipp.pt");
+        myUt.setM_strEmail("expert@isep.ipp.pt");
         Autor act = new Autor();
         act.setUtilizador(myUt);
         

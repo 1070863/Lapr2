@@ -1,50 +1,72 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package eventoscientificos;
 
-
-
 /**
+ * Classe responsável pela criação e gestão de um Organizador criando.
  *
- * @author Nuno Silva
+ * @author Grupo 66 LPR2
  */
+public class Organizador {
 
-public class Organizador
-{
+    /**
+     * Atributos de instância.
+     */
     private final String m_strNome;
     private Utilizador m_utilizador;
 
-    public Organizador(String strId, Utilizador u )
-    {
-        m_strNome = u.getNome();
-        this.setUtilizador(u);
+    /**
+     * Cria objeto do tipo Organizador quando todos os atributos são passados
+     * por parâmetros.
+     *
+     * @param strId email ou username do Utilizador
+     * @param u objeto do tipo do Utilizador
+     */
+    public Organizador(String strId, Utilizador u) {
+        this.m_strNome = u.getM_strNome();
+        this.m_utilizador = u;
     }
 
-    private void setUtilizador(Utilizador u)
-    {
-        m_utilizador = u;
+    /**
+     * Cria objeto do tipo Utilizador por omissão de atributos nos parâmetros.
+     */
+    public Organizador() {
+        this.m_strNome = "sem nome";
+        this.m_utilizador = null;
     }
-    
-    public boolean valida()
-    {
-        return true;
-    }
-    
-    public String getNome()
-    {
-        return m_strNome;
-    }
-    
-    public Utilizador getUtilizador()
-    {
+
+    /**
+     * Procura objeto do tipo Utilizador.
+     *
+     * @return objeto do tipo Utilizador
+     */
+    public Utilizador getM_utilizador() {
         return m_utilizador;
     }
 
+    /**
+     * Define o Utilizador.
+     *
+     * @param m_utilizador objeto do tipo Utilizador
+     */
+    public void setM_utilizador(Utilizador m_utilizador) {
+        this.m_utilizador = m_utilizador;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public boolean valida() {
+        return true;//FALTA TRATAR
+    }
+    /**
+     * Reecrita do método to String herdado da classe Object e que devolve uma
+     * String com texto informativo do Organizador.
+     *
+     * @return informação do Organizador
+     */
     @Override
-    public String toString()
-    {
+    public String toString() {
         return m_utilizador.toString();
     }
+
 }

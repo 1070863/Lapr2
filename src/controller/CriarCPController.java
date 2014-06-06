@@ -110,7 +110,7 @@ public class CriarCPController {
      */
     public void setListaTopicosRevisor(Revisor r, List<Topico> listaTopicosRevisor) {
         if (this.m_cp.getListaRevisores().contains(r)) {
-            r.setListaTopicos(listaTopicosRevisor);
+            r.setM_listaTopicos(listaTopicosRevisor);
         }
     }
 }

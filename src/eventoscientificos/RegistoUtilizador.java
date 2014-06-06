@@ -10,8 +10,8 @@ import java.util.List;
 
 /**
  *Esta classe tem como principal objetivo gerir Utilizadores. 
- * Tem uma lista de Utilizadores e alguns métodos que lhe permite validar os dados e adicionar 
- *utilizadores a sua lista 
+ * Tem uma lista de Utilizadores e alguns métodos que lhe permite validaEmailr os dados e adicionar 
+utilizadores a sua lista 
  * @author Pereira
  */
 public class RegistoUtilizador {
@@ -40,21 +40,21 @@ public class RegistoUtilizador {
     private boolean validaUtilizador(Utilizador u) {
 
         for (Utilizador uExistente : m_listaUtilizadores) {
-            if (uExistente.mesmoQueUtilizador(u)) {
+            if (uExistente.equals(u)) {
                 return false;
             }
         }
         return true;
     }
 /**
- * Cria um novo utilizador e valida os atributos do utilizador e verifica se existe na lista
- * Se os atributos estiverem corretos e não existir o utilizador na lista 
- * adiciona utilizador á lista
+ * Cria um novo utilizador e validaEmail os atributos do utilizador e verifica se existe na lista
+ Se os atributos estiverem corretos e não existir o utilizador na lista 
+ adiciona utilizador á lista
  * @param u
  * @return 
  */
     public boolean registaUtilizador(Utilizador u) {
-    if (u.valida() && validaUtilizador(u)){
+    if (u.validaEmail() && validaUtilizador(u)){
        // if ( validaUtilizador(u)) {
             return addUtilizador(u);
         } else {
@@ -69,7 +69,7 @@ public class RegistoUtilizador {
  */
     public Utilizador getUtilizador(String strId) {
         for (Utilizador u : this.m_listaUtilizadores) {
-            String s1 = u.getUsername();
+            String s1 = u.getM_strUsername();
             if (s1.equalsIgnoreCase(strId)) {
                 return u;
             }
@@ -99,7 +99,7 @@ public class RegistoUtilizador {
  */
     public Utilizador getUtilizadorEmail(String strEmail) {
         for (Utilizador u : this.m_listaUtilizadores) {
-            String s1 = u.getEmail();
+            String s1 = u.getM_strEmail();
             if (s1.equalsIgnoreCase(strEmail)) {
                 return u;
             }

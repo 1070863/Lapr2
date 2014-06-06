@@ -3,97 +3,133 @@ package eventoscientificos;
 import utils.Utils;
 
 /**
+ * Classe que cria e gere a informação de um Utilizador.,
  *
- * @author Nuno Silva
+ * @author Grupo66 LAPR2
  */
-
-
 public final class Utilizador {
 
+    /**
+     * Atributos de instância do Utilizador.
+     */
     private String m_strNome;
     private String m_strUsername;
     private String m_strPassword;
     private String m_strEmail;
 
+    /**
+     * Cria instância do tipo Utilizador quando são passados todos os
+     * parâmetros.
+     *
+     * @param m_strNome nome do Utilizador
+     * @param m_strUsername username do Utilizador
+     * @param m_strPassword password do Utilizador
+     * @param m_strEmail email do Utilizador
+     */
+    public Utilizador(String m_strNome, String m_strUsername, String m_strPassword, String m_strEmail) {
+        this.m_strNome = m_strNome;
+        this.m_strUsername = m_strUsername;
+        this.m_strPassword = m_strPassword;
+        this.m_strEmail = m_strEmail;
+    }
+
+    /**
+     * Cria instância do tipo Utilizdor por omissão de parâmetros.
+     */
     public Utilizador() {
-   
-    }
-
-    public Utilizador(String username, String pwd, String nome, String email) {
-        this.setUsername(username);
-        this.setPassword(pwd);
-        this.setNome(nome);
-        this.setEmail(email);
-    }
-
-    public final void setNome(String strNome) {
-        this.m_strNome = strNome;
+        this.m_strNome = "sem_nome";
+        this.m_strUsername = "sem_user";
+        this.m_strPassword = "sem_pasword";
+        this.m_strEmail = "sem_email";
     }
 
     /**
+     * Procura nome do Utilizador.
      *
-     * @param strUsername
-     * @return
+     * @return nome do Utilizador
      */
-    public final boolean setUsername(String strUsername) {
-        m_strUsername = strUsername;
-        // TODO
-        return true;
-    }
-
-    public final void setPassword(String strPassword) {
-        m_strPassword = strPassword;
+    public String getM_strNome() {
+        return this.m_strNome;
     }
 
     /**
+     * Define o nome do Utilizador.
      *
-     * @param strEmail
-     * @return
-     *
+     * @param m_strNome nome do utilizador
      */
-    public final void setEmail(String strEmail) {
-        this.m_strEmail = strEmail;
+    public void setM_strNome(String m_strNome) {
+        this.m_strNome = m_strNome;
     }
 
     /**
+     * Procura o username do Utilizador.
      *
-     * @return
+     * @return o username do Utilizador
      */
-    public boolean valida() {
-
-        return Utils.validaEmail(this.m_strEmail);
-
-    }
-
-    /**
-     *
-     * @param u
-     * @return
-     *
-     * método alterado na iteração 2
-     */
-    public boolean mesmoQueUtilizador(Utilizador u) {
-        if (getUsername().equals(u.getUsername())
-                || getEmail().equals(u.getEmail())) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    // método adicionado na iteração 2
-    public String getNome() {
-        return m_strNome;
-    }
-
-    public String getUsername() {
+    public String getM_strUsername() {
         return m_strUsername;
     }
 
-    public String getEmail() {
+    /**
+     * Define o username do Utilizador.
+     *
+     * @param m_strUsername username do Utilizador
+     */
+    public void setM_strUsername(String m_strUsername) {
+        this.m_strUsername = m_strUsername;
+    }
+
+    /**
+     * Procura a password do Utilizador.
+     *
+     * @return password do Utilizador
+     */
+    public String getM_strPassword() {
+        return m_strPassword;
+    }
+
+    /**
+     * Define a password do Utilizador.
+     *
+     * @param m_strPassword password do Utilizador
+     */
+    public void setM_strPassword(String m_strPassword) {
+        this.m_strPassword = m_strPassword;
+    }
+
+    /**
+     * Procrua o email do Utilizador.
+     *
+     * @return emaisl do Utilizador
+     */
+    public String getM_strEmail() {
         return m_strEmail;
     }
 
+    /**
+     * Define o email do Utilizador.
+     *
+     * @param m_strEmail email do Utilizador
+     */
+    public void setM_strEmail(String m_strEmail) {
+        this.m_strEmail = m_strEmail;
+    }
+
+    /**
+     * Valida se a estrutura do endereço é similar à de um endereço válido.
+     *
+     * @return verdadeiro se o email é válido e falso no caso contrário
+     */
+    public boolean validaEmail() {
+        return Utils.validaEmail(this.m_strEmail);
+    }
+
+    /**
+     * Reescrita do método toString herdado da classe Object com a informação do
+     * Utilizador.
+     *
+     * @return informação de um utilizador
+     */
     @Override
     public String toString() {
         String str = "Utilizador:\n";
@@ -106,12 +142,13 @@ public final class Utilizador {
     }
 
     /**
+     * Reescrita de método equals herdado da classe Object para validaEmailção do
+ utilizador.
      *
-     * @param obj
-     * @return
+     * @param obj objeto do tipo Utilizador
+     * @return verdadeiro se já existir um utilizador igual e falso se não
+     * existir
      *
-     * a forma de identificar um utilizador é através do seu endereço de e-mail
-     * ou username
      */
     @Override
     public boolean equals(Object obj) {
@@ -126,10 +163,10 @@ public final class Utilizador {
         }
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + (this.m_strUsername != null ? this.m_strUsername.hashCode() : 0);
-        return hash;
-    }
+//    @Override
+//    public int hashCode() {
+//        int hash = 3;
+//        hash = 37 * hash + (this.m_strUsername != null ? this.m_strUsername.hashCode() : 0);
+//        return hash;
+//    }
 }

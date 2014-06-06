@@ -56,17 +56,17 @@ public class CPTest {
 //    }
 
     /**
-     * Test of validaMembroCP method, of class CP.
+     * Test of validaEmailMembroCP method, of class CP.
      */
     @Test
     public void testValidaMembroCP() {
         System.out.println("validaMembroCP");
         Utilizador u = new Utilizador();
-        u.setEmail("coisas@teste");
-        u.setUsername("user");
+        u.setM_strEmail("coisas@teste");
+        u.setM_strUsername("user");
         Utilizador u1 = new Utilizador();
-        u1.setEmail("coisas777@teste");
-        u1.setUsername("user777");
+        u1.setM_strEmail("coisas777@teste");
+        u1.setM_strUsername("user777");
         Revisor r = new Revisor(u);
         
         Revisor r1 = new Revisor(u1);

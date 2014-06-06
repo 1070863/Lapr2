@@ -46,7 +46,7 @@ public class UtilizadorTest {
         System.out.println("setNome");
         String strNome = "Buck Rogers";
         Utilizador instance = new Utilizador();
-        instance.setNome(strNome);
+        instance.setM_strNome(strNome);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -59,7 +59,7 @@ public class UtilizadorTest {
         System.out.println("setUsername");
         String strUsername = "";
         Utilizador instance = new Utilizador();
-        instance.setUsername(strUsername);
+        instance.setM_strUsername(strUsername);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -72,7 +72,7 @@ public class UtilizadorTest {
         System.out.println("setPassword");
         String strPassword = "";
         Utilizador instance = new Utilizador();
-        instance.setPassword(strPassword);
+        instance.setM_strPassword(strPassword);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -80,45 +80,45 @@ public class UtilizadorTest {
     /**
      * Test of setEmail method, of class Utilizador.
      * 
-     * Devem ser feitas as validações de negócio aquando do registo de alterações dos dados
-     * email tem de ser sempre em minúsculas, não acentuado, sem espaços no meio e conter @
+     * Devem ser feitas as validaEmailções de negócio aquando do registo de alterações dos dados
+ email tem de ser sempre em minúsculas, não acentuado, sem espaços no meio e conter @
      */
     @Test
     public void testSetEmail() {
         System.out.println("setEmail");
         String strEmail = " BucKR@NASA.gov ";
         Utilizador instance = new Utilizador();
-        instance.setEmail(strEmail);
+        instance.setM_strEmail(strEmail);
         String expResult = " BucKR@NASA.gov ";
-        String result = instance.getEmail();
+        String result = instance.getM_strEmail();
         assertEquals(expResult, result);
     }
     
     /**
-     * Test of valida method, of class Utilizador.
+     * Test of validaEmail method, of class Utilizador.
      */
     @Test
     public void testValida() {
         System.out.println("valida");
         Utilizador instance = new Utilizador();
         String strEmail = "buckr@nasa.gov";
-        instance.setEmail(strEmail);
+        instance.setM_strEmail(strEmail);
         boolean expResult = true;
-        boolean result = instance.valida();
+        boolean result = instance.validaEmail();
         assertEquals(expResult, result);
     }
     
     /**
-     * Test of valida method, of class Utilizador.
+     * Test of validaEmail method, of class Utilizador.
      */
     @Test
     public void testValidaNot() {
         System.out.println("valida - false");
         Utilizador instance = new Utilizador();
         String strEmail = " BucKR@NASA.gov ";
-        instance.setEmail(strEmail);
+        instance.setM_strEmail(strEmail);
         boolean expResult = false;
-        boolean result = instance.valida();
+        boolean result = instance.validaEmail();
         assertEquals(expResult, result);
     }
 
@@ -131,7 +131,7 @@ public class UtilizadorTest {
         Utilizador u = null;
         Utilizador instance = new Utilizador();
         boolean expResult = false;
-        boolean result = instance.mesmoQueUtilizador(u);
+        boolean result = instance.equals(u);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -145,7 +145,7 @@ public class UtilizadorTest {
         System.out.println("getNome");
         Utilizador instance = new Utilizador("buckr", "xyz", "Buck Rogers", "buckr@nasa.gov");
         String expResult = "Buck Rogers";
-        String result = instance.getNome();
+        String result = instance.getM_strNome();
         assertEquals(expResult, result);
     }
 
@@ -157,7 +157,7 @@ public class UtilizadorTest {
         System.out.println("getUsername");
         Utilizador instance = new Utilizador();
         String expResult = "";
-        String result = instance.getUsername();
+        String result = instance.getM_strUsername();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -171,7 +171,7 @@ public class UtilizadorTest {
         System.out.println("getEmail");
         Utilizador instance = new Utilizador();
         String expResult = "";
-        String result = instance.getEmail();
+        String result = instance.getM_strEmail();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
