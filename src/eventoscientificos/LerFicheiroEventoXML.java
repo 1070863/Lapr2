@@ -62,53 +62,73 @@ public class LerFicheiroEventoXML {
                     NodeList anoEventoList = eventoElement.getElementsByTagName("year");
                     Element anoEventoElement = (Element) anoEventoList.item(0);
                     NodeList textoAnoList = anoEventoElement.getChildNodes();
-                    String ano = ((Node) textoAnoList.item(0)).getNodeValue().trim();
+                    String ano = "";
+                    if(anoEventoElement.getChildNodes().getLength()>0)
+                        ano = ((Node) textoAnoList.item(0)).getNodeValue().trim();
 
                     //Nome
                     NodeList nomeEventoList = eventoElement.getElementsByTagName("name");
                     Element nomeEventoElement = (Element) nomeEventoList.item(0);
                     NodeList textoNomeEventoList = nomeEventoElement.getChildNodes();
-                    String nome = ((Node) textoNomeEventoList.item(0)).getNodeValue().trim();
+                    //String nome = ((Node) textoNomeEventoList.item(0)).getNodeValue().trim();
                     this.empresa.getM_registoEventos().novoEvento();
+                    String nome="";
+                    if(nomeEventoElement.getChildNodes().getLength()>0)
+                    nome = ((Node) textoNomeEventoList.item(0)).getNodeValue().trim();
+                    evento.setTitulo(nome);
                     
                     //Local
                     NodeList localList = eventoElement.getElementsByTagName("host");
                     Element localElement = (Element) localList.item(0);
                     NodeList textLocalList = localElement.getChildNodes();
-                    String local = ((Node) textLocalList.item(0)).getNodeValue().trim();
-                    evento.setLocal(local);
+                    
+                    //String local = ((Node) textLocalList.item(0)).getNodeValue().trim();
+                    if(localElement.getChildNodes().getLength()>0)
+                        evento.setLocal(((Node) textLocalList.item(0)).getNodeValue().trim());
 
                     //Cidade
                     NodeList cityList = eventoElement.getElementsByTagName("city");
                     Element cityElement = (Element) cityList.item(0);                   
                     NodeList textCityList = cityElement.getChildNodes();
-                    String cidade = ((Node) textCityList.item(0)).getNodeValue().trim();
+                    
+                    String cidade = "";
+                    if(cityElement.getChildNodes().getLength()>0)
+                        cidade = ((Node) textCityList.item(0)).getNodeValue().trim();
                     
                     //Pais
                     NodeList paisList = eventoElement.getElementsByTagName("country");
                     Element paisElement = (Element) paisList.item(0);                   
                     NodeList textPaisList = paisElement.getChildNodes();                   
-                    String pais = ((Node) textPaisList.item(0)).getNodeValue().trim();
+                    String pais="";
+                    if(paisElement.getChildNodes().getLength()>0)
+                        pais = ((Node) textPaisList.item(0)).getNodeValue().trim();
 
                     //Data inicio
                     NodeList diList = eventoElement.getElementsByTagName("begin_date");
                     Element diElement = (Element) diList.item(0);                   
                     NodeList textDIList = diElement.getChildNodes();
-                    String di = ((Node) textDIList.item(0)).getNodeValue().trim();
+                    String di = "";
+                    if(diElement.getChildNodes().getLength()>0)
+                        di = ((Node) textDIList.item(0)).getNodeValue().trim();
                     evento.setDataInicio(di);
                     
                     //Data fim
                     NodeList dfList = eventoElement.getElementsByTagName("end_date");
                     Element dfElement = (Element) dfList.item(0);                   
-                    NodeList textDFList = dfElement.getChildNodes();                 
-                    String df = ((Node) textDFList.item(0)).getNodeValue().trim();
+                    NodeList textDFList = dfElement.getChildNodes();
+                    String df = "";
+                    if (dfElement.getChildNodes().getLength()>0)
+                        df = ((Node) textDFList.item(0)).getNodeValue().trim();
                     evento.setDataFim(df);
                     
                     //Webpage
                     NodeList webList = eventoElement.getElementsByTagName("web_page");
                     Element webElement = (Element) webList.item(0);                   
-                    NodeList textWebList = webElement.getChildNodes();                 
-                    String web = ((Node) textWebList.item(0)).getNodeValue().trim();
+                    NodeList textWebList = webElement.getChildNodes(); 
+                    System.out.println(webElement.getChildNodes().getLength());
+                    String web = "";
+                    if (webElement.getChildNodes().getLength()>0)
+                    web = ((Node) textWebList.item(0)).getNodeValue().trim();
                     
                     //Organizadores
                     NodeList organizerList = eventoElement.
@@ -133,7 +153,8 @@ public class LerFicheiroEventoXML {
 
                             NodeList textOrgList = organizerNameElement.getChildNodes();
 
-                            orgName[i]=((Node) textOrgList.item(0)).getNodeValue().trim();
+                            if(organizerNameElement.getChildNodes().getLength()>0)
+                                orgName[i]=((Node) textOrgList.item(0)).getNodeValue().trim();
                             
                             //Ler o email
                             NodeList organizerEmailList = organizerElement.
@@ -142,7 +163,8 @@ public class LerFicheiroEventoXML {
 
                             NodeList textOrgEmailList = organizerEmailElement.getChildNodes();
 
-                            orgEmail[i]=((Node) textOrgEmailList.item(0)).getNodeValue().trim();
+                            if(organizerEmailElement.getChildNodes().getLength()>0)
+                                orgEmail[i]=((Node) textOrgEmailList.item(0)).getNodeValue().trim();
                         }
                         
                         this.empresa.getM_registoEventos().registaEvento(evento);
@@ -150,6 +172,8 @@ public class LerFicheiroEventoXML {
                 }
 
             }
+            
+            
 
 //        } catch (SAXException e) {
 //            Exception x = e.getException();
@@ -158,5 +182,9 @@ public class LerFicheiroEventoXML {
 //        } catch (Throwable t) {
 //            t.printStackTrace();
 //        }
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
     }
 }

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<event_list>
+<event>
+    <year>2013</year>
+    <name>2013 Latin American Regional CDIO Meeting</name>
+    <host>Universidad de Chile</host>
+    <city>Santiago de Chile</city>
+    <country>Chile</country>
+    <begin_date>Monday, April 1, 2013</begin_date>
+    <end_date>Wednesday, April 3, 2013</end_date>
+    <web_page></web_page>
+    <organizer>
+    	<org_name>Ximena Vargas</org_name>
+    	<email>xvargas@ing.uchile.cl </email>
+    </organizer>
+    <organizer>
+    	<org_name>Pablo Poblete</org_name>
+    	<email>ppoblete@ing.uchile.cl</email>
+    </organizer>
+</event>
+<event>
+    <year>2013</year>
+    <name>2013 Asian Regional CDIO Meeting</name>
+    <host>Singapore Polytechnic</host>
+    <city>Singapore</city>
+    <country>Singapore</country>
+    <begin_date>Tuesday, March 26, 2013</begin_date>
+    <end_date>Thursday, March 28, 2013</end_date>
+    <web_page>http://esd.sp.edu.sg/CDIO2013/index.html</web_page>
+    <organizer>
+    	<org_name>Department of Educational Development, Singapore Polytechnic </org_name>
+    	<email>edu@sp.edu.sg</email>
+    </organizer>
+</event>
+<event>
+    <year>2013</year>
+    <name>2013 European Regional CDIO Meeting</name>
+    <host>Aarhus University School of Engineering</host>
+    <city> Aarhus </city>
+    <country>Denmark</country>
+    <begin_date>Thursday, January 17, 2013</begin_date>
+    <end_date>Friday, January 18, 2013</end_date>
+    <web_page>http://www.iha.dk/CDIO-JAN-2013-Aarhus-12191.aspx</web_page>
+    <organizer>
+    	<org_name>Jorgen Bundgaard Nielsen</org_name>
+    	<email>cdio-aarhus@iha.dk</email>
+    </organizer>
+    <organizer>
+    	<org_name>Bjorn Borg</org_name>
+    	<email>bborg@iha.dk</email>
+    </organizer>
+</event>
+<event>
+    <year>2012</year>
+    <name>8th International CDIO Conference</name>
+    <host>Queensland University of Technology</host>
+    <city> Brisbane</city>
+    <country>Australia</country>
+    <begin_date>Sunday, July 1, 2012</begin_date>
+    <end_date>Wednesday, July 4, 2012</end_date>
+    <web_page>http://cdio2012.com/</web_page>
+    <organizer>
+    	<org_name>Duncan Campbell</org_name>
+    	<email>da.campbell@qut.edu.au</email>
+    </organizer>
+    <organizer>
+    	<org_name>Mick Dundee</org_name>
+    	<email>mick.dundee@qut.edu.au</email>
+    </organizer>
+    <organizer>
+    	<org_name>Walter Reilly</org_name>
+    	<email>wreilly@qut.edu.au</email>
+    </organizer>
+</event>
+</event_list>

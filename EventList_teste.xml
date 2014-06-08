@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<event_list>
+<event>
+    <year>2013</year>
+    <name>2013 Latin American Regional CDIO Meeting</name>
+    <host>Universidad de Chile</host>
+    <city>Santiago de Chile</city>
+    <country>Chile</country>
+    <begin_date>Monday, April 1, 2013</begin_date>
+    <end_date>Wednesday, April 3, 2013</end_date>
+    <web_page></web_page>
+    <organizer>
+    	<org_name>Ximena Vargas</org_name>
+    	<email>xvargas@ing.uchile.cl </email>
+    </organizer>
+    <organizer>
+    	<org_name>Pablo Poblete</org_name>
+    	<email>ppoblete@ing.uchile.cl</email>
+    </organizer>
+</event>
+</event_list>
