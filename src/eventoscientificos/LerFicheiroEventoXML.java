@@ -167,8 +167,9 @@ public class LerFicheiroEventoXML {
                                 orgEmail[i]=((Node) textOrgEmailList.item(0)).getNodeValue().trim();
                         }
                         
-                        this.empresa.getM_registoEventos().registaEvento(evento);
+                        
                     }
+                    this.empresa.getM_registoEventos().registaEvento(evento);
                 }
 
             }

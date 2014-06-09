@@ -12,6 +12,7 @@ import eventoscientificos.Empresa;
 import eventoscientificos.Evento;
 import eventoscientificos.Submissao;
 import eventoscientificos.Topico;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,10 +26,12 @@ public class SubmeterArtigoController
     private Evento m_evento;
     private Submissao m_submissao;
     private Artigo m_artigo;
+    private List<Evento> eventosPodeSub;
 
     public SubmeterArtigoController(Empresa empresa)
     {
         m_empresa = empresa;
+        eventosPodeSub= new ArrayList<>();
     }
 
     public List<Evento> iniciarSubmissao()
@@ -107,4 +110,13 @@ public class SubmeterArtigoController
         m_artigo.setListaTopicos(listaTopicosArtigo);
     }
 
-}
+    public String[] getListaEventosPodeSub(){
+        String[] listaEventos= new String[m_empresa.getM_registoEventos().getListaEventosPodeSubmeter().size()];
+        for (Evento evento : m_empresa.getM_registoEventos().getListaEventosPodeSubmeter()) {
+            listaEventos[m_empresa.getM_registoEventos().getListaEventosPodeSubmeter().indexOf(evento)]=
+                    evento.getM_strTitulo();
+        }
+        return listaEventos;
+        }
+    }
+

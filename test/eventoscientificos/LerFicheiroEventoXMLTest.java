@@ -33,7 +33,7 @@ public class LerFicheiroEventoXMLTest {
     public static void setUpClass() {
         empresa = new Empresa();
         empresa.getM_registaUtilizador().addUtilizador(empresa.getM_registaUtilizador().novoUtilizador());
-        //empresa.getM_registaUtilizador().setM_strUsername("Ximena Vargas");
+        
         empresa.getM_registaUtilizador().setUtilizador("Ximena Vargas");
         empresa.getM_registaUtilizador().setUtilizadorEmail("xvargas@ing.uchile.cl");
         
@@ -44,7 +44,7 @@ public class LerFicheiroEventoXMLTest {
         evento.setDataFim("Wednesday, April 3, 2013");
         
         
-        empresa.setM_registoEventos(new RegistoEventos(empresa));
+        //empresa.setM_registoEventos(new RegistoEventos(empresa));
         empresa.getM_registoEventos().registaEvento(evento);
     }
     
@@ -66,13 +66,13 @@ public class LerFicheiroEventoXMLTest {
     @Test
     public void testLerEventosXML() throws Exception {
         System.out.println("lerEventosXML");
-        Empresa expResult = new Empresa();
+        RegistoEventos expResult = empresa.getM_registoEventos();
         
-        
-        LerFicheiroEventoXML instance = new LerFicheiroEventoXML("EventList_teste.xml", expResult);
+        Empresa resultado = new Empresa();
+        LerFicheiroEventoXML instance = new LerFicheiroEventoXML("EventList_teste.xml", resultado);
         instance.lerEventosXML();
         
-        assertEquals(expResult.getM_registoEventos(), empresa.getM_registoEventos());
+        assertEquals(expResult, resultado.getM_registoEventos());
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }

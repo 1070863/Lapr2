@@ -7,6 +7,7 @@ package eventoscientificos;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Objects;
 
 /**
  *
@@ -204,5 +205,42 @@ public class Evento {
         return m_strDataFim;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Evento other = (Evento) obj;
+        if (!Objects.equals(this.m_strTitulo, other.m_strTitulo)) {
+            return false;
+        }
+        if (!Objects.equals(this.m_strDescricao, other.m_strDescricao)) {
+            return false;
+        }
+        if (!Objects.equals(this.m_local, other.m_local)) {
+            return false;
+        }
+        if (!Objects.equals(this.m_strDataInicio, other.m_strDataInicio)) {
+            return false;
+        }
+        if (!Objects.equals(this.m_strDataFim, other.m_strDataFim)) {
+            return false;
+        }
+        if (!Objects.equals(this.m_listaOrganizadores, other.m_listaOrganizadores)) {
+            return false;
+        }
+        return true;
+    }
+
+    
+    
 }
