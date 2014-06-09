@@ -73,4 +73,25 @@ public class RegistoEventos {
         return le;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final RegistoEventos other = (RegistoEventos) obj;
+        if (!Objects.equals(this.m_listaEventos, other.m_listaEventos)) {
+            return false;
+        }
+        return true;
+    }
+
 }
