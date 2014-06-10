@@ -37,8 +37,8 @@ public class MenuUI
 
             if( opcao.equals("1") )
             {
-                RegistarUtilizadorUI uiRU = new RegistarUtilizadorUI(m_empresa);
-                uiRU.run();
+//                RegistarUtilizadorUI uiRU = new RegistarUtilizadorUI(m_empresa);
+//                uiRU.run();
             }
 
             if( opcao.equals("2") )

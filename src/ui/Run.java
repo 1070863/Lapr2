@@ -284,7 +284,9 @@ public class Run extends JFrame {
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                RegistarUtilizadorUI ru = new RegistarUtilizadorUI(new java.awt.Frame(),  
+                        true, empresa);
+                ru.run();
             }
         }
         );
