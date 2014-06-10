@@ -3,260 +3,210 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package ui;
 
-
+import controller.RegistarUtilizadorController;
 import controller.SubmeterArtigoController;
-import eventoscientificos.Autor;
 import eventoscientificos.Empresa;
-import eventoscientificos.Evento;
-import eventoscientificos.Topico;
-import java.util.ArrayList;
-import java.util.List;
-import utils.Utils;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Paulo Maio <pam@isep.ipp.pt>
+ * @author Pedro
  */
-public class SubmeterArtigoUI
-{
-
-    private Empresa m_empresa;
-    private SubmeterArtigoController m_controllerSA;
-
-    public SubmeterArtigoUI(Empresa empresa)
-    {
-        m_empresa = empresa;
-        m_controllerSA = new SubmeterArtigoController(m_empresa);
-    }
-
-    // alterado na iteração 2
-    public void run()
-    {
-        List<Evento> le = m_controllerSA.iniciarSubmissao();
-
-        apresentaEventos(le);
-
-        Evento e = selecionaEvento(le);
-
-        if (e != null)
-        {
-            m_controllerSA.selectEvento(e);
-
-            String strTitulo = Utils.readLineFromConsole("Introduza o Título do Artigo: ");
-            String strResumo = Utils.readLineFromConsole("Introduza o Resumo do Artigo: ");
-
-            m_controllerSA.setDados(strTitulo, strResumo);
-
-            adicionarAutores();
-
-            List<Autor> la = m_controllerSA.getPossiveisAutoresCorrespondentes();
-
-            apresentaAutores(la);
-
-            Autor autor = selecionaAutor(la);
-
-            m_controllerSA.setCorrespondente(autor);
-
-            String strFicheiro = Utils.readLineFromConsole("Introduza o Ficheiro do Artigo: ");
-            m_controllerSA.setFicheiro(strFicheiro);
-
-            List<Topico> listaTopicosArtigo = selecionaTopicosArtigo();
-
-            m_controllerSA.setListaTopicosArtigo(listaTopicosArtigo);
-
-            String strQuestao = "Confirma a submissão do artigo com a seguinte informação: \n" + m_controllerSA.getInfoResumo() + "\n Opção (S/N):";
-            boolean bConfirma = confirma(strQuestao);
-
-            if (bConfirma)
-            {
-                if (m_controllerSA.registarSubmissao())
-                {
-                    System.out.println("Submissão concluida com sucesso.");
-                } else
-                {
-                    System.out.println("Submissão cancelada devido a erros.");
-                }
-
-            } else
-            {
-                System.out.println("Submissão de artigo cancelada.");
-            }
-
-            System.out.println("Terminado.");
-        } else
-        {
-            System.out.println("Submissão de artigo cancelada.");
-        }
-
-    }
-
-    private void apresentaEventos(List<Evento> le)
-    {
-        System.out.println("Eventos: ");
-
-        int index = 0;
-        for (Evento e : le)
-        {
-            index++;
-
-            System.out.println(index + ". " + e.toString());
-        }
-        System.out.println("");
-        System.out.println("0 - Cancelar");
-    }
-
-    private Evento selecionaEvento(List<Evento> le)
-    {
-        String opcao;
-        int nOpcao;
-        do
-        {
-            opcao = Utils.readLineFromConsole("Introduza opção: ");
-            nOpcao = new Integer(opcao);
-        } while (nOpcao < 0 || nOpcao > le.size());
-
-        if (nOpcao == 0)
-        {
-            return null;
-        } else
-        {
-            return le.get(nOpcao - 1);
-        }
-    }
-
-    private void adicionarAutores()
-    {
-        String strResposta;
-        do
-        {
-            String strNome = Utils.readLineFromConsole("Introduza Nome do Autor: ");
-            String strAfiliacao = Utils.readLineFromConsole("Introduza Afiliação do Autor: ");
-            String strEmail = Utils.readLineFromConsole("Introduza E-Mail do Autor: ");
-
-            //Autor autor = m_controllerSA.novoAutor(strNome, strAfiliacao);
-            Autor autor = m_controllerSA.novoAutor(strNome, strAfiliacao,strEmail);
-
-            String strQuestao = "Confirma os dados do Autor: \n" + autor.toString() + "\n Opção (S/N):";
-            boolean bConfirma = confirma(strQuestao);
-
-            if (bConfirma)
-            {
-                if (m_controllerSA.addAutor(autor))
-                {
-                    System.out.println("Autor adicionado.");
-                } else
-                {
-                    System.out.println("Autor não adicionado.");
-                }
-            } else
-            {
-                System.out.println("Autor não adicionado.");
-            }
-
-            strResposta = Utils.readLineFromConsole("Introduzir outro autor (S/N)? ");
-        } while (strResposta.equalsIgnoreCase("S"));
-    }
-
-    private Autor selecionaAutor(List<Autor> la)
-    {
-        String opcao;
-        int nOpcao;
-        do
-        {
-            opcao = Utils.readLineFromConsole("Introduza opção: ");
-            nOpcao = new Integer(opcao);
-        } while (nOpcao < 0 || nOpcao > la.size());
-
-        if (nOpcao == 0)
-        {
-            return null;
-        } else
-        {
-            return la.get(nOpcao - 1);
-        }
-    }
-
-    private void apresentaAutores(List<Autor> la)
-    {
-        System.out.println("Selecione Autor Correspondente: ");
-
-        int index = 0;
-        for (Autor a : la)
-        {
-            index++;
-
-            System.out.println(index + ". " + a.toString());
-        }
-        System.out.println("");
-        System.out.println("0 - Cancelar");
-    }
-
-    // adicionada na iteração 2
-    private List<Topico> selecionaTopicosArtigo()
-    {
-        List<Topico> listaTopicosEvento = this.m_controllerSA.getTopicosEvento();
-        
-        List<Topico> listaTopicosArtigo = new ArrayList<Topico>();
-
-        String strResposta;
-        do
-        {
-            apresentaTopicosEvento( listaTopicosEvento );
-
-            Topico t = selecionaTopico( listaTopicosEvento );
-
-            listaTopicosArtigo.add(t);
-
-            strResposta = Utils.readLineFromConsole("Introduzir outro tópico (S/N)? ");
-        }
-        while (strResposta.equalsIgnoreCase("S"));
-        
-        return listaTopicosArtigo;
-    }
-
-    // adicionada na iteração 2
-    private void apresentaTopicosEvento( List<Topico> listaTopicos )
-    {
-        int i = 0;
-        System.out.println("Topicos de Evento:");
-
-        for (Topico t : listaTopicos)
-        {
-            i++;
-            System.out.println(i + "." + t.toString());
-        }
-    }
-
-    // adicionada na iteração 2
-    private Topico selecionaTopico(List<Topico> le)
-    {
-        String opcao;
-        int nOpcao;
-        do
-        {
-            opcao = Utils.readLineFromConsole("Introduza opção: ");
-            nOpcao = new Integer(opcao);
-        } while (nOpcao < 0 || nOpcao > le.size());
-
-        if (nOpcao == 0)
-        {
-            return null;
-        } else
-        {
-            return le.get(nOpcao - 1);
-        }
-    }    
+public class SubmeterArtigoUI extends javax.swing.JDialog {
     
-    private boolean confirma(String questao)
-    {
-        String strConfirma;
-        do
-        {
-            strConfirma = Utils.readLineFromConsole(questao);
-        } while (!strConfirma.equalsIgnoreCase("s") && !strConfirma.equalsIgnoreCase("n"));
-
-        return strConfirma.equalsIgnoreCase("s");
+    private static Empresa empresa;
+    private SubmeterArtigoController submeterArtigoController;
+    private int iEvento = -1;
+    
+    public SubmeterArtigoUI(Empresa empresa){
+        this.empresa=empresa;
     }
+    
+    /**
+     * Creates new form SubmissaoArtigoUI
+     */
+    public SubmeterArtigoUI(java.awt.Frame parent, boolean modal, Empresa empresa) {
+        super(parent, modal);
+        this.empresa = empresa;
+        SubmeterArtigoController submeterArtigoController = new SubmeterArtigoController(empresa);
+        initComponents();
+        cmbEvento.addItem(submeterArtigoController.getListaEventosPodeSub());
+    }
+    
+    public void run(){
+        
+        pack();
+        setResizable(false);
+        setVisible(true);
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        cmbEvento = new javax.swing.JComboBox();
+        lblEvento = new javax.swing.JLabel();
+        btnSubmeter = new javax.swing.JButton();
+        lblTitulo = new javax.swing.JLabel();
+        lblTitulo1 = new javax.swing.JLabel();
+        txtTitulo = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtResumo = new javax.swing.JTextArea();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        cmbEvento.setToolTipText("");
+
+        lblEvento.setText("Evento:");
+
+        btnSubmeter.setText("Submeter artigo");
+        btnSubmeter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmeterActionPerformed(evt);
+            }
+        });
+
+        lblTitulo.setText("Titulo:");
+
+        lblTitulo1.setText("Resumo:");
+
+        txtResumo.setColumns(20);
+        txtResumo.setLineWrap(true);
+        txtResumo.setRows(5);
+        jScrollPane1.setViewportView(txtResumo);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSubmeter)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(lblEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblTitulo)
+                                    .addGap(41, 41, 41)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTitulo1)
+                                .addGap(29, 29, 29)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cmbEvento, 0, 269, Short.MAX_VALUE)
+                            .addComponent(txtTitulo)
+                            .addComponent(jScrollPane1))))
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEvento))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTitulo)
+                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitulo1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addComponent(btnSubmeter)
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSubmeterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmeterActionPerformed
+        // TODO add your handling code here:
+        iEvento = cmbEvento.getSelectedIndex();
+        if (iEvento != -1) {
+            if(txtTitulo.getText().trim()!="" && txtResumo.getText().trim()!=""){
+             
+                if(JOptionPane.showConfirmDialog(this, "Quer adicionar autores?", "Adicionar autores", 
+                        JOptionPane.YES_NO_OPTION)==0){
+                    
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "Tem que inserir um titulo e resumo do artigo!",
+                        "Dados inválidos!",JOptionPane.INFORMATION_MESSAGE);
+            }
+
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                           "Tem que seleccionar um evento primeiro");
+                }
+    }//GEN-LAST:event_btnSubmeterActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(SubmeterArtigoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(SubmeterArtigoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(SubmeterArtigoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(SubmeterArtigoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                SubmeterArtigoUI dialog = new SubmeterArtigoUI(new javax.swing.JFrame(), true, empresa);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
+    
+    
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSubmeter;
+    private javax.swing.JComboBox cmbEvento;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblEvento;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblTitulo1;
+    private javax.swing.JTextArea txtResumo;
+    private javax.swing.JTextField txtTitulo;
+    // End of variables declaration//GEN-END:variables
+
+    
 }

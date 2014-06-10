@@ -1,6 +1,8 @@
 package ui;
 
 
+import eventoscientificos.Empresa;
+import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
@@ -26,6 +28,8 @@ public class Run extends JFrame {
 
     private static final int JANELA_POSICAO_X = 50;
     private static final int JANELA_POSICAO_Y = 50;
+    
+    private Empresa empresa;
 
     /**
      * Construtor por omissão cria uma janela com os menus Eventos e Ajuda.
@@ -33,6 +37,8 @@ public class Run extends JFrame {
     public Run() {
 
         super("Gestão de Eventos Cíentificos");
+        
+        this.empresa = new Empresa();
 
         JMenuBar menuBar = new JMenuBar();
 
@@ -296,7 +302,8 @@ public class Run extends JFrame {
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                SubmeterArtigoUI submeterArtigo = new SubmeterArtigoUI(new java.awt.Frame(), true, empresa);
+                submeterArtigo.run();
             }
         }
         );
