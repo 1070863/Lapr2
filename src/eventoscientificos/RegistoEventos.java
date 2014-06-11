@@ -72,6 +72,20 @@ public class RegistoEventos {
 
         return le;
     }
+    
+    /**
+     * Procura um evento pelo ID
+     * @param eventoID
+     * @return Evento
+     */
+    public Evento getEvento(String eventoID){
+        for (Evento e : m_listaEventos) {
+            if (eventoID.equalsIgnoreCase(e.getM_strTitulo())) {
+                return e;
+            }
+        }
+        return null;
+    }
 
     @Override
     public int hashCode() {

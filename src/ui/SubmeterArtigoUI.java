@@ -29,11 +29,13 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
      * Creates new form SubmissaoArtigoUI
      */
     public SubmeterArtigoUI(java.awt.Frame parent, boolean modal, Empresa empresa) {
-        super(parent, modal);
+        super(parent,"Submeter artigo", modal);
         this.empresa = empresa;
         SubmeterArtigoController submeterArtigoController = new SubmeterArtigoController(empresa);
         initComponents();
-        cmbEvento.addItem(submeterArtigoController.getListaEventosPodeSub());
+        if(submeterArtigoController.getListaEventosPodeSub().length>0) 
+                cmbEvento.addItem(submeterArtigoController.getListaEventosPodeSub());
+        
     }
     
     public void run(){
