@@ -1,7 +1,6 @@
 package eventoscientificos;
 
 import ui.MenuUI;
-import ui.Run;
 
 /**
  * Classe main do projeto de LAPR2
@@ -11,19 +10,13 @@ import ui.Run;
 public class Main {
 
     /**
+     * Inicia o programa gerando uma janela do tipo JFrame com as opções
+     * disponíveis no sistema.
+     *
      * @param args the command line arguments
      */
-    public static void main(String[] args){
-        try {
-            new Run();
-            Empresa empresa = new Empresa();
-
-            MenuUI uiMenu = new MenuUI(empresa);
-
-            uiMenu.run();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public static void main(String[] args) {
+        Empresa empresa = new Empresa();
+        MenuUI uiMenu = new MenuUI(empresa);
     }
-
 }
