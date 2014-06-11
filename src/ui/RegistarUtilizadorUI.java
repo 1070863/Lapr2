@@ -36,7 +36,7 @@ public class RegistarUtilizadorUI extends javax.swing.JDialog {
     public void run()
     {
     pack();
-        setResizable(false);
+    setResizable(false);
     setVisible(true);
     
     }
@@ -90,45 +90,52 @@ public class RegistarUtilizadorUI extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLEmail)
-                    .addComponent(jLPassword)
-                    .addComponent(jLNome)
-                    .addComponent(jLUserName))
-                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextNome)
-                    .addComponent(jTextPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                    .addComponent(jTextUserName)
-                    .addComponent(jTexEmail))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLPassword)
+                            .addComponent(jLNome))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                            .addComponent(jTextNome)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLUserName)
+                            .addComponent(jLEmail))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextUserName)
+                            .addComponent(jTexEmail))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(199, Short.MAX_VALUE)
+                .addContainerGap(170, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(154, 154, 154))
+                .addGap(94, 94, 94))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLNome)
                     .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLPassword))
-                .addGap(37, 37, 37)
+                    .addComponent(jLPassword)
+                    .addComponent(jTextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLUserName))
-                .addGap(46, 46, 46)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTexEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLEmail))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(7, 7, 7))
         );
 
         pack();
@@ -150,11 +157,11 @@ public class RegistarUtilizadorUI extends javax.swing.JDialog {
                     
                                         if(m_registoUtilizadorController.ValidarUtilizador(m_registoUtilizadorController.setDados
                                             (jTextNome.getText(), jTextPassword.getText(), jTextUserName.getText(), jTexEmail.getText())))
-                                            JOptionPane.showMessageDialog(RegistarUtilizadorUI.this,m_registoUtilizadorController.getM_utilizador()
-                                                                                  , "Utilizador Adicionado", JOptionPane.INFORMATION_MESSAGE);
+                                            JOptionPane.showMessageDialog(RegistarUtilizadorUI.this, "Utilizador Adicionado\n"+m_registoUtilizadorController.getM_utilizador() 
+                                                                                  , "Registar Utilizador", JOptionPane.INFORMATION_MESSAGE);
                     
                     else
-                       JOptionPane.showConfirmDialog(RegistarUtilizadorUI.this,m_registoUtilizadorController.getM_utilizador(), "Utilizador já existente", JOptionPane.ERROR_MESSAGE);
+                       JOptionPane.showMessageDialog(RegistarUtilizadorUI.this,"Este utilizador já existe no sistema\n" + m_registoUtilizadorController.getM_utilizador(), "Registar Utilizador", JOptionPane.ERROR_MESSAGE);
           }
          else 
             JOptionPane.showMessageDialog(RegistarUtilizadorUI.this,m_registoUtilizadorController.getM_utilizador().getM_strEmail(),"E-mail incorreto",JOptionPane.ERROR_MESSAGE);    
