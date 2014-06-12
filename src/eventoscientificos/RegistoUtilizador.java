@@ -55,7 +55,6 @@ public class RegistoUtilizador {
  */
     public boolean registaUtilizador(Utilizador u) {
     if (u.validaEmail() && validaUtilizador(u)){
-       // if ( validaUtilizador(u)) {
             return addUtilizador(u);
         } else {
             return false;
@@ -70,7 +69,8 @@ public class RegistoUtilizador {
     public Utilizador getUtilizador(String strId) {
         for (Utilizador u : this.m_listaUtilizadores) {
             String s1 = u.getM_strUsername();
-            if (s1.equalsIgnoreCase(strId)) {
+            String s2= u.getM_strEmail();
+            if (s1.equalsIgnoreCase(strId) || s2.equalsIgnoreCase(strId)) {
                 return u;
             }
         }
