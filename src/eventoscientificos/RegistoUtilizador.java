@@ -26,7 +26,7 @@ public class RegistoUtilizador {
     }
 /**
  * Cria um novo utilizador invocando o construtor da classe Utilizador
- * @return 
+ * @return Utilizador por omissão
  */
     public Utilizador novoUtilizador() {
         return new Utilizador();
@@ -35,7 +35,7 @@ public class RegistoUtilizador {
  * Este método verifica se o utilizador passado por parametro existe na lista
  * caso exista retorna true
  * @param u
- * @return 
+ * @return boolean
  */
     private boolean validaUtilizador(Utilizador u) {
 
@@ -51,7 +51,7 @@ public class RegistoUtilizador {
  Se os atributos estiverem corretos e não existir o utilizador na lista 
  adiciona utilizador á lista
  * @param u
- * @return 
+ * @return boolean
  */
     public boolean registaUtilizador(Utilizador u) {
     if (u.validaEmail() && validaUtilizador(u)){
@@ -64,7 +64,7 @@ public class RegistoUtilizador {
  * Percorre a lista de utilizadores e caso encontro o utilizador devolve-o
  * senão devolve null
  * @param strId
- * @return 
+ * @return Utilizador
  */
     public Utilizador getUtilizador(String strId) {
         for (Utilizador u : this.m_listaUtilizadores) {
@@ -79,12 +79,13 @@ public class RegistoUtilizador {
     /**
      * 
      * @param strId
-     * @return 
+     * @return Utilizador
      */
     public Utilizador setUtilizador(String strId) {
         for (Utilizador u : this.m_listaUtilizadores) {
             String s1 = strId;
-            if (s1.equalsIgnoreCase(strId)) {
+            String s2= strId;
+            if (s1.equalsIgnoreCase(strId) || s2.equalsIgnoreCase(strId)) {
                 return u;
             }
         }
@@ -95,7 +96,7 @@ public class RegistoUtilizador {
  * Percorre a lista de utilizadores e caso encontre o e-mail de um utilizador devolve-o
  * senão devolve null
  * @param strEmail
- * @return 
+ * @return Utilizador
  */
     public Utilizador getUtilizadorEmail(String strEmail) {
         for (Utilizador u : this.m_listaUtilizadores) {
