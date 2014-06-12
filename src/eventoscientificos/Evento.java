@@ -28,6 +28,8 @@ public class Evento {
     private EventoState state;
     private String dataLimiteRevisao;
     private SubmissaoCriadaState submissaoState;
+    private int nMaxTopicos;
+    private String dataLimiteRegisto;
 
     public Evento() {
         m_local = new Local();
@@ -203,6 +205,34 @@ public class Evento {
 
     public String getM_strDataFim() {
         return m_strDataFim;
+    }
+    /**
+     * devolve numero máximo de tópicos por Artigo
+     * @return numero inteiro máximo de tópicos por Artigo
+     */
+    public int getnMaxTopicos() {
+        return nMaxTopicos;
+    }
+    /**
+     * modifica numero máximo de tópicos por Artigo
+     * @param nMaxTopicos numero inteiro
+     */
+    public void setnMaxTopicos(int nMaxTopicos) {
+        this.nMaxTopicos = nMaxTopicos;
+    }
+    /**
+     * devolve Data limite de registo
+     * @return String Data limite de registo
+     */
+    public String getDataLimiteRegisto() {
+        return dataLimiteRegisto;
+    }
+    /**
+     * modifica Data limite de registo
+     * @param dataLimiteRegisto String
+     */
+    public void setDataLimiteRegisto(String dataLimiteRegisto) {
+        this.dataLimiteRegisto = dataLimiteRegisto;
     }
 
     @Override

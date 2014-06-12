@@ -106,6 +106,8 @@ public class MenuUI extends JFrame {
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+               CriarEventoCientificoUI ce = new CriarEventoCientificoUI(new java.awt.Frame(),true, m_empresa);
+                ce.run();
             }
         }
         );
