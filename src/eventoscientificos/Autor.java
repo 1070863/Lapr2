@@ -51,6 +51,10 @@ public class Autor
     {
         return (m_Utilizador != null);
     }
+
+    public String getM_strNome() {
+        return m_strNome;
+    }
     
     @Override
     public String toString()

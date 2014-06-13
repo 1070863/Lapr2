@@ -12,6 +12,7 @@ import eventoscientificos.Empresa;
 import eventoscientificos.Evento;
 import eventoscientificos.Submissao;
 import eventoscientificos.Topico;
+import eventoscientificos.Utilizador;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +55,7 @@ public class SubmeterArtigoController
         } else
         {
             return null;
+            
         }
     }
 
@@ -117,6 +119,24 @@ public class SubmeterArtigoController
                     evento.getM_strTitulo();
         }
         return listaEventos;
+    }
+    
+    public String[] listaAutores(Empresa empresa){
+        String[] autores = new String[this.m_empresa.getM_registaUtilizador().getM_listaUtilizadores().size()];
+        for (Utilizador utilizador : this.m_empresa.getM_registaUtilizador().getM_listaUtilizadores()) {
+            autores[this.m_empresa.getM_registaUtilizador().
+                    getM_listaUtilizadores().indexOf(utilizador)]=utilizador.getM_strUsername();
         }
+        return autores;
+    }
+    
+    /**
+     * Recebe uma string com o nome do autor e obtém o Utilizador se existir
+     * @param autor
+     * @return Utilizador
+     */
+    public Utilizador obterAutor(String autor){
+        return m_empresa.getM_registaUtilizador().getUtilizador(autor);
+    }
     }
 

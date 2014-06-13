@@ -133,4 +133,8 @@ public class RegistoUtilizador {
         return m_listaUtilizadores.add(u);
     }
 
+    public List<Utilizador> getM_listaUtilizadores() {
+        return m_listaUtilizadores;
+    }
+
 }
