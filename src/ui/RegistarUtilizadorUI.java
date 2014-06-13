@@ -58,6 +58,7 @@ public class RegistarUtilizadorUI extends javax.swing.JDialog {
         jLEmail = new javax.swing.JLabel();
         jTexEmail = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registar Utilizador");
@@ -81,6 +82,13 @@ public class RegistarUtilizadorUI extends javax.swing.JDialog {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
             }
         });
 
@@ -109,10 +117,12 @@ public class RegistarUtilizadorUI extends javax.swing.JDialog {
                             .addComponent(jTextUserName)
                             .addComponent(jTexEmail))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(170, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(79, 79, 79)
                 .addComponent(jButton1)
-                .addGap(94, 94, 94))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addComponent(btnCancel)
+                .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,9 +143,11 @@ public class RegistarUtilizadorUI extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTexEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLEmail))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addGap(7, 7, 7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(btnCancel))
+                .addGap(12, 12, 12))
         );
 
         pack();
@@ -146,7 +158,10 @@ public class RegistarUtilizadorUI extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextPasswordActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     m_registoUtilizadorController.setDados(jTextNome.getText(), jTextPassword.getText(), 
+     if(!jTextNome.getText().isEmpty()&& !jTextPassword.getText().isEmpty() && 
+             !jTextUserName.getText().isEmpty() && !jTexEmail.getText().isEmpty())
+     {   
+        m_registoUtilizadorController.setDados(jTextNome.getText(), jTextPassword.getText(), 
              jTextUserName.getText(), jTexEmail.getText());
          if(m_registoUtilizadorController.getM_utilizador().validaEmail())
          {
@@ -157,20 +172,31 @@ public class RegistarUtilizadorUI extends javax.swing.JDialog {
                     
                                         if(m_registoUtilizadorController.ValidarUtilizador(m_registoUtilizadorController.setDados
                                             (jTextNome.getText(), jTextPassword.getText(), jTextUserName.getText(), jTexEmail.getText())))
+                                        {
                                             JOptionPane.showMessageDialog(RegistarUtilizadorUI.this, "Utilizador Adicionado\n"+m_registoUtilizadorController.getM_utilizador() 
                                                                                   , "Registar Utilizador", JOptionPane.INFORMATION_MESSAGE);
+                                        this.jTextNome.setText(""); this.jTextPassword.setText(""); this.jTextUserName.setText(""); this.jTexEmail.setText("");
+                                        }
                     
                     else
+                       {                     
                        JOptionPane.showMessageDialog(RegistarUtilizadorUI.this,"Este utilizador já existe no sistema\n" + m_registoUtilizadorController.getM_utilizador(), "Registar Utilizador", JOptionPane.ERROR_MESSAGE);
+                       this.jTextNome.setText(""); this.jTextPassword.setText(""); this.jTextUserName.setText(""); this.jTexEmail.setText("");}
           }
          else 
             JOptionPane.showMessageDialog(RegistarUtilizadorUI.this,m_registoUtilizadorController.getM_utilizador().getM_strEmail(),"E-mail incorreto",JOptionPane.ERROR_MESSAGE);    
-         
+     }
+     else   JOptionPane.showMessageDialog(RegistarUtilizadorUI.this,"Campos vazios\n" , "Registar Utilizador", JOptionPane.ERROR_MESSAGE);
                                     
          
          
          
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,6 +245,7 @@ public class RegistarUtilizadorUI extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLEmail;
     private javax.swing.JLabel jLNome;

@@ -53,15 +53,22 @@ public class CriarEventoCientificoController
     {
         m_evento.setDataFim(strDataFim);
     }
-    
-    // adicionado na iteração 2
+
     public void setDataLimiteSubmissão(String strDataLimiteSubmissão)
     {
         m_evento.setDataLimiteSubmissão(strDataLimiteSubmissão);
     }
     
-        public void setDataLimiteRevisao(String strDataLimiteRevisao) {
+    public void setDataLimiteRevisao(String strDataLimiteRevisao) {
         m_evento.setDataLimiteRevisao(strDataLimiteRevisao);
+    }
+        
+    public void setDataLimiteRegisto(String strDataLimiteRegisto) {
+        m_evento.setDataLimiteRegisto(strDataLimiteRegisto);
+    }
+
+    public void setNumeroMaximoTopicos(int nMaxTopicos) {
+        m_evento.setnMaxTopicos(nMaxTopicos);
     }
 
     public boolean addOrganizador(String strId)
@@ -77,6 +84,19 @@ public class CriarEventoCientificoController
     public boolean registaEvento()
     {
         return m_empresa.getM_registoEventos().registaEvento(m_evento);
+    }
+    
+    /**
+ * Valida o nome do evento
+ * @param ID nome do evento que tem de ser unico
+ * @return false se não existir, true se já existir um evento com este nome
+ */
+    public boolean validaEvento(String ID) {
+        if (m_empresa.getM_registoEventos().getEvento(ID) == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
 
