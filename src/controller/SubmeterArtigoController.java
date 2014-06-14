@@ -138,5 +138,7 @@ public class SubmeterArtigoController
     public Utilizador obterAutor(String autor){
         return m_empresa.getM_registaUtilizador().getUtilizador(autor);
     }
+    
+
     }
 

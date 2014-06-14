@@ -26,6 +26,10 @@ public class Autor
     {
         this.m_strNome = strNome;
     }
+
+    public void setM_Utilizador(Utilizador m_Utilizador) {
+        this.m_Utilizador = m_Utilizador;
+    }
     
     public void setAfiliacao(String strAfiliacao)
     {

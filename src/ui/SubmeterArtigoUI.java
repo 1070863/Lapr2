@@ -9,7 +9,11 @@ import controller.SubmeterArtigoController;
 import eventoscientificos.Autor;
 import eventoscientificos.Empresa;
 import eventoscientificos.Evento;
+import eventoscientificos.Topico;
 import eventoscientificos.Utilizador;
+import java.awt.Checkbox;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +22,8 @@ import javax.swing.JOptionPane;
  */
 public class SubmeterArtigoUI extends javax.swing.JDialog {
 
+    private static final int JANELA_POSICAO_X = 200, JANELA_POSICAO_Y = 200;
+     
     private static Empresa empresa;
     private SubmeterArtigoController submeterArtigoController;
     private int iEvento = -1;
@@ -52,6 +58,7 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
         if (utilizador != null) {
 
             utilizadorID = empresa.getM_registaUtilizador().getUtilizador(utilizador);
+            
 
             if (utilizadorID == null) {
                 JOptionPane.showMessageDialog(this, "Utilizador inexistente!", "Submeter artigo",
@@ -61,6 +68,7 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
 
                 pack();
                 setResizable(false);
+                setLocation(JANELA_POSICAO_X, JANELA_POSICAO_Y);
                 setVisible(true);
             }
         }
@@ -88,6 +96,7 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         lblAutorCorrespondente = new javax.swing.JLabel();
         cmbAutorCorr = new javax.swing.JComboBox();
+        btnSeleccionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Submeter artigo");
@@ -102,7 +111,7 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
         txtResumo.setRows(5);
         jScrollPane1.setViewportView(txtResumo);
 
-        btnSubmeter.setText("Submeter artigo");
+        btnSubmeter.setText("Iniciar submissão");
         btnSubmeter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmeterActionPerformed(evt);
@@ -158,12 +167,19 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
                 .addGroup(jPan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTitulo1)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSubmeter)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         lblAutorCorrespondente.setText("Autor correspondente");
+
+        btnSeleccionar.setText("Seleccionar");
+        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -174,8 +190,11 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblAutorCorrespondente)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(cmbAutorCorr, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap(411, Short.MAX_VALUE))
+                    .addComponent(cmbAutorCorr, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnSeleccionar))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,7 +202,9 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
                 .addComponent(lblAutorCorrespondente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbAutorCorr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 15, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSeleccionar)
+                .addGap(0, 32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -193,17 +214,18 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPan1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPan1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPan1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jPan1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -223,17 +245,20 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
 
                     String nomeAutor = JOptionPane.showInputDialog(this, "Nome do autor:",
                             "Inserir autores", JOptionPane.OK_CANCEL_OPTION);
-                    Utilizador autor = submeterArtigoController.obterAutor(nomeAutor);
+                    Utilizador utilizador = submeterArtigoController.obterAutor(nomeAutor);
                     String afiliacao = "";
-                    if (autor != null) {
+                    if (utilizador != null) {
                         afiliacao = JOptionPane.showInputDialog(this, "Afiliação:",
                                 "Inserir afiliação", JOptionPane.OK_CANCEL_OPTION);
                         submeterArtigoController.iniciarSubmissao();
                         submeterArtigoController.selectEvento(empresa.getM_registoEventos().
                                 getEvento((String) cmbEvento.getSelectedItem()));
 
+//                        submeterArtigoController.addAutor(submeterArtigoController.
+//                                novoAutor(autor.getM_strNome(), afiliacao));
                         submeterArtigoController.addAutor(submeterArtigoController.
-                                novoAutor(autor.getM_strNome(), afiliacao));
+                                novoAutor(utilizador.getM_strNome(), afiliacao, utilizador.getM_strEmail()));
+                        
 
                     } else {
                         JOptionPane.showMessageDialog(this, "O autor introduzido não faz parte da lista de utilizadores!",
@@ -250,12 +275,29 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Tem que inserir um titulo e resumo do artigo!",
                         "Dados inválidos!", JOptionPane.INFORMATION_MESSAGE);
             }
+            
+            for (Topico topico : submeterArtigoController.getTopicosEvento()) {
+                this.add(new Checkbox(topico.toString(), false));
+            }
 
         } else {
             JOptionPane.showMessageDialog(this,
                     "Tem que seleccionar um evento primeiro");
         }
     }//GEN-LAST:event_btnSubmeterActionPerformed
+
+    private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
+        if(cmbAutorCorr.getSelectedIndex()!=-1){
+            Autor autorCorrespondente = new Autor();
+            autorCorrespondente.setM_Utilizador(submeterArtigoController.
+                    obterAutor((String)cmbAutorCorr.getSelectedItem()));
+            
+            submeterArtigoController.setCorrespondente(autorCorrespondente);
+            String nomeFicheiro = JOptionPane.showInputDialog(this, "Insira o ficheiro:",
+                    "Submeter artigo", JOptionPane.INFORMATION_MESSAGE);
+            submeterArtigoController.setFicheiro(nomeFicheiro);
+        }
+    }//GEN-LAST:event_btnSeleccionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,6 +343,7 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSeleccionar;
     private javax.swing.JButton btnSubmeter;
     private javax.swing.JComboBox cmbAutorCorr;
     private javax.swing.JComboBox cmbEvento;
