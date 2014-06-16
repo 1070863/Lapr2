@@ -13,6 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+
 /**
  *
  * @author amartins
@@ -45,10 +46,11 @@ public class UtilizadorTest {
     public void testSetNome() {
         System.out.println("setNome");
         String strNome = "Buck Rogers";
-        Utilizador instance = new Utilizador();
+        Utilizador instance = new Utilizador(strNome,"1070863","1070863","1070863@isep.ipp.pt");
         instance.setM_strNome(strNome);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+         String result=instance.getM_strNome();
+         String expectResult= strNome;
+         assertSame(expectResult, result);
     }
 
     /**
@@ -57,11 +59,12 @@ public class UtilizadorTest {
     @Test
     public void testSetUsername() {
         System.out.println("setUsername");
-        String strUsername = "";
-        Utilizador instance = new Utilizador();
-        instance.setM_strUsername(strUsername);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String strUsername = "1070863";
+        Utilizador instance = new Utilizador("sergio",strUsername,"1070863","1070863@isep.ipp.pt");
+        instance.setM_strNome(strUsername);
+         String result=instance.getM_strUsername();
+         String expectResult= strUsername;
+         assertSame(expectResult, result);
     }
 
     /**
@@ -70,11 +73,12 @@ public class UtilizadorTest {
     @Test
     public void testSetPassword() {
         System.out.println("setPassword");
-        String strPassword = "";
-        Utilizador instance = new Utilizador();
-        instance.setM_strPassword(strPassword);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String strPassword = "1234";
+        Utilizador instance = new Utilizador("sergio","1070863",strPassword,"1070863@isep.ipp.pt");
+        instance.setM_strNome(strPassword);
+         String result=instance.getM_strPassword();
+         String expectResult= strPassword;
+         assertSame(expectResult, result);
     }
 
     /**
@@ -86,12 +90,12 @@ public class UtilizadorTest {
     @Test
     public void testSetEmail() {
         System.out.println("setEmail");
-        String strEmail = " BucKR@NASA.gov ";
-        Utilizador instance = new Utilizador();
-        instance.setM_strEmail(strEmail);
-        String expResult = " BucKR@NASA.gov ";
-        String result = instance.getM_strEmail();
-        assertEquals(expResult, result);
+        String strEmail = " BUCKR@NASA.PT ";
+        Utilizador instance = new Utilizador("sergio","1070863","1070863",strEmail);
+        instance.setM_strNome(strEmail);
+         String result=instance.getM_strEmail();
+         String expectResult= strEmail;
+         assertSame(expectResult, result);
     }
     
     /**
@@ -100,8 +104,8 @@ public class UtilizadorTest {
     @Test
     public void testValida() {
         System.out.println("valida");
-        Utilizador instance = new Utilizador();
         String strEmail = "buckr@nasa.gov";
+        Utilizador instance = new Utilizador("sergio","1070863","1070863",strEmail);
         instance.setM_strEmail(strEmail);
         boolean expResult = true;
         boolean result = instance.validaEmail();
@@ -122,20 +126,6 @@ public class UtilizadorTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of mesmoQueUtilizador method, of class Utilizador.
-     */
-    @Test
-    public void testMesmoQueUtilizador() {
-        System.out.println("mesmoQueUtilizador");
-        Utilizador u = null;
-        Utilizador instance = new Utilizador();
-        boolean expResult = false;
-        boolean result = instance.equals(u);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of getNome method, of class Utilizador.
@@ -143,10 +133,12 @@ public class UtilizadorTest {
     @Test
     public void testGetNome() {
         System.out.println("getNome");
-        Utilizador instance = new Utilizador("buckr", "xyz", "Buck Rogers", "buckr@nasa.gov");
-        String expResult = "Buck Rogers";
-        String result = instance.getM_strNome();
-        assertEquals(expResult, result);
+         String strNome = "Buck Rogers";
+        Utilizador instance = new Utilizador(strNome,"1070863","1070863","1070863@isep.ipp.pt");
+        instance.setM_strNome(strNome);
+         String result=instance.getM_strNome();
+         String expectResult= strNome;
+         assertEquals(expectResult, result);
     }
 
     /**
@@ -155,12 +147,12 @@ public class UtilizadorTest {
     @Test
     public void testGetUsername() {
         System.out.println("getUsername");
-        Utilizador instance = new Utilizador();
-        String expResult = "";
-        String result = instance.getM_strUsername();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String strUsername = "1070863";
+        Utilizador instance = new Utilizador("sergio","1070863",strUsername,"1070863@isep.ipp.pt");
+        instance.setM_strNome(strUsername);
+         String result=instance.getM_strUsername();
+         String expectResult= strUsername;
+         assertSame(expectResult, result);
     }
 
     /**
@@ -168,13 +160,15 @@ public class UtilizadorTest {
      */
     @Test
     public void testGetEmail() {
-        System.out.println("getEmail");
-        Utilizador instance = new Utilizador();
-        String expResult = "";
-        String result = instance.getM_strEmail();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+         System.out.println("setEmail");
+        String strEmail = " BUCKR@NASA.PT ";
+        Utilizador instance = new Utilizador("sergio","1070863","1070863",strEmail);
+        instance.setM_strNome(strEmail);
+         String result=instance.getM_strEmail();
+         String expectResult= strEmail;
+         assertEquals(expectResult, result);
+      
+
     }
 
     /**
@@ -183,12 +177,20 @@ public class UtilizadorTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        Utilizador instance = new Utilizador();
-        String expResult = "";
+        String m_strNome ="Sergio"; 
+        String m_strUsername= "1070863";
+        String m_strPassword="gstere";
+        String m_strEmail= "MAIL@MAIL.PT";
+        String str = "Utilizador:\n";
+        str += "\tNome: " + m_strNome + "\n";
+        str += "\tUsername: " + m_strUsername + "\n";
+        str += "\tPassword: " + m_strPassword + "\n";
+        str += "\tEmail: " + m_strEmail + "\n";
+        Utilizador instance = new Utilizador(m_strNome,m_strUsername,m_strPassword,m_strEmail);
+        String expResult = str;
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -197,7 +199,7 @@ public class UtilizadorTest {
     @Test
     public void testEquals() {
         System.out.println("equals - same username");
-        Object obj = new Utilizador("buckr","", "Buck Rogers", "buckr@gmail.com");;
+        Utilizador obj = new Utilizador("buckr","1234", "Buck Rogers", "buckr@nasa.gov");
         Utilizador instance = new Utilizador("buckr","1234", "Buck Rogers", "buckr@nasa.gov");
         boolean expResult = true;
         boolean result = instance.equals(obj);
@@ -210,8 +212,8 @@ public class UtilizadorTest {
     @Test
     public void testEqualsSameEmail() {
         System.out.println("equals - same email");
-        Object obj = new Utilizador("bucky","", "Buck", "buckr@nasa.gov");;
-        Utilizador instance = new Utilizador("buckr","1234", "Buck Rogers", "buckr@nasa.gov");
+        Utilizador obj = new Utilizador("bucky","", "Buck", "buckr@nasa.gov");
+        Utilizador instance = new Utilizador("bucky","", "Buck", "buckr@nasa.gov");
         boolean expResult = true;
         boolean result = instance.equals(obj);
         assertEquals(expResult, result);

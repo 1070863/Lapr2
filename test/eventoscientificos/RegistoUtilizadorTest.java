@@ -50,8 +50,6 @@ public class RegistoUtilizadorTest {
         boolean expResult = true;
         boolean result = instance.registaUtilizador(u);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -60,13 +58,13 @@ public class RegistoUtilizadorTest {
     @Test
     public void testGetUtilizador() {
         System.out.println("getUtilizador");
-        String strId = "SEM USERNAME";
+        String strId = "1070863";
+        Utilizador u = new Utilizador ("Sergio","1070863","1070863","MAIL@MAIL.PT");
         RegistoUtilizador instance = new RegistoUtilizador();
-        Utilizador expResult = instance.setUtilizador(strId);
+        instance.addUtilizador(u);
+        Utilizador expResult = u;
         Utilizador result = instance.getUtilizador(strId);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -76,12 +74,12 @@ public class RegistoUtilizadorTest {
     public void testGetUtilizadorEmail() {
         System.out.println("getUtilizadorEmail");
         String strEmail = "G66@mail.pt";
+        Utilizador u = new Utilizador ("Sergio","1070863","1070863",strEmail);
         RegistoUtilizador instance = new RegistoUtilizador();
-        Utilizador expResult = instance.setUtilizadorEmail(strEmail);
+        instance.addUtilizador(u);
+        Utilizador expResult =u;
         Utilizador result = instance.getUtilizadorEmail(strEmail);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -90,13 +88,11 @@ public class RegistoUtilizadorTest {
     @Test
     public void testAddUtilizador() {
         System.out.println("addUtilizador");
-        Utilizador u = new Utilizador();
+        Utilizador u = new Utilizador("Sergio","1070863","1070863","G66@mail.pt");
         RegistoUtilizador instance = new RegistoUtilizador();
         boolean expResult = true;
         boolean result = instance.addUtilizador(u);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-      // fail("The test case is a prototype.");
     }
     
 }
