@@ -46,5 +46,9 @@ public class Submissao {
      public void setState(SubmissaoState state) {
         this.state = state;
     }
+
+    public SubmissaoState getState() {
+        return state;
+    }
     
 }
