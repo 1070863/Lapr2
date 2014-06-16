@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package eventoscientificos;
 
 import org.junit.After;
@@ -18,22 +17,22 @@ import static org.junit.Assert.*;
  * @author Pereira
  */
 public class SubmissaoStateTest {
-    
+
     public SubmissaoStateTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -49,7 +48,7 @@ public class SubmissaoStateTest {
         boolean result = instance.SetCriada();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
+        // fail("The test case is a prototype.");
     }
 
     /**
@@ -165,6 +164,11 @@ public class SubmissaoStateTest {
         public boolean setNotificadoAceite() {
             return false;
         }
+
+        @Override
+        public boolean valida() {
+            return true;
+        }
     }
-    
+
 }

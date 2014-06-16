@@ -53,5 +53,10 @@ public class SubmissaoRejeitadaState implements SubmissaoState{
     public boolean setNotificadoAceite() {
         return false;
     }
+
+    @Override
+    public boolean valida() {
+        return true;
+    }
     
 }

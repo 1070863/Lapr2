@@ -50,8 +50,11 @@ public class SubmissaoNotificadaAceiteState implements SubmissaoState {
     public boolean setNotificadoAceite() {
         return false;
     }
-    
-    
+
+    @Override
+    public boolean valida() {
+        return true;
+    }
     
     
 }

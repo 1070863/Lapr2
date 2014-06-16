@@ -20,5 +20,6 @@ public interface SubmissaoState {
     public abstract boolean setRejeitada();
     public abstract boolean setAceite();
     public abstract boolean setNotificadoAceite();
+    public abstract boolean valida();
     
 }

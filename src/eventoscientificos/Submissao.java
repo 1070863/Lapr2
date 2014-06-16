@@ -36,7 +36,7 @@ public class Submissao {
     }
 
     public boolean valida() {
-        return true;
+        return this.state.valida();
     }
 
     @Override
