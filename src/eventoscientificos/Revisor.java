@@ -11,7 +11,7 @@ import java.util.List;
 public class Revisor {
 
     /**
-     * Atributos do Revisor
+     * Atributos de instância.
      */
     private String m_strNome;
     private Utilizador m_utilizador;
@@ -21,7 +21,7 @@ public class Revisor {
      * Construtor completo quando recebe por parêmtro o Utilizador que passa a
      * ser Revisor.
      *
-     * @param u
+     * @param u Objeto do tipo Utilizador
      */
     public Revisor(Utilizador u) {
         this.m_strNome = u.getM_strNome();
@@ -93,14 +93,14 @@ public class Revisor {
     }
 
     /**
-     * Reescrita da classe toString herdade da classe Object e que cria um
+     * Reescrita da classe toString herdada da classe Object e que cria um
      * String com a informação do Revisor e os seus tópicos de perícia.
      *
      * @return informação do Revisor
      */
     @Override
     public String toString() {
-        String strRevisor = m_utilizador.toString() + ": ";
+        String strRevisor = m_utilizador.getM_strNome() + ": ";
 
         String strTopicos = "";
         for (Topico t : m_listaTopicos) {
@@ -111,11 +111,21 @@ public class Revisor {
     }
 
     /**
-     * Valida a existência do utilizador instânciado.
+     * Reescrita do método equals, da classe Object, comparando dois objetos e
+     * verificando se são iguais.
      *
-     * @return verdade se existir e falso se não existir.
+     * @param obj objeto a verificar
+     * @return verdadeiro se o objeto for igual e falso no caso contrário
      */
-    public boolean valida() {
-        return (this.m_utilizador.validaEmail());
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj instanceof Revisor) {
+            Revisor aux = (Revisor) obj;
+            return this.m_utilizador.equals(aux.m_utilizador);
+        } else {
+            return false;
+        }
     }
 }
