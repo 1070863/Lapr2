@@ -141,7 +141,7 @@ public class MenuUI extends JFrame {
      * @return item Criar Tópicos para adicionar ao Menu
      */
     private JMenuItem criarSubMenuDefinirTopicos() {
-        JMenuItem item = new JMenuItem("Criar Tópicos de Evento", KeyEvent.VK_1);
+        JMenuItem item = new JMenuItem("Definir Tópicos de Evento", KeyEvent.VK_1);
         item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, InputEvent.CTRL_MASK));
         item.addActionListener(new ActionListener() {
             @Override
@@ -172,8 +172,13 @@ public class MenuUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String strId = JOptionPane.showInputDialog("Introduza o seu id:");
-                CriarCPUI uiCP = new CriarCPUI(m_empresa, MenuUI.this);
-                uiCP.run(strId);
+                if (m_empresa.getM_registaUtilizador().getUtilizador(strId) == null) {
+                    JOptionPane.showMessageDialog(null, "Não está Registado no sistema!!!", "Criar Comissão de Programa", ERROR_MESSAGE);
+                } else if (m_empresa.getM_registoEventos().getEventosOrganizador(strId).isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Não é Organizador de Eventos!!!", "Criar Comissão de Programa", ERROR_MESSAGE);
+                } else {
+                    CriarCPUI uiCCP= new CriarCPUI(MenuUI.this, true, m_empresa, strId);
+                }
             }
         }
         );
