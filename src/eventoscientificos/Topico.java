@@ -19,8 +19,9 @@ public class Topico {
         this.m_strCodigoACM = m_strCodigoACM;
     }
 
-    Topico() {
-
+    public Topico() {
+        this.m_strDescricao = null;
+        this.m_strCodigoACM = null;
     }
 
     public void setDescricao(String strDescricao) {
@@ -46,5 +47,16 @@ public class Topico {
 
     public String getM_strCodigoACM() {
         return m_strCodigoACM;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj instanceof Topico) {
+            Topico aux = (Topico) obj;
+            return this.m_strCodigoACM.equals(aux.m_strCodigoACM);
+        } else {
+            return false;
+        }
     }
 }

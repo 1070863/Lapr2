@@ -195,7 +195,8 @@ public class DefinirTopicosEventoUI extends javax.swing.JDialog {
                     jtfCodACM.setText("");
                     jtfCodACM.removeAll();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Tópico não adicionado!!!", "Adicionar Tópico", ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "O Tópico não foi adicionado.\n "
+                            + "Já consta no Evento", "Adicionar Tópico", ERROR_MESSAGE);
                     jtfCodACM.setText("");
                     jtfCodACM.removeAll();
                 }
