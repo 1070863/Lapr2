@@ -271,6 +271,10 @@ public class Evento {
         return true;
     }
 
+    public List<Topico> getM_listaTopicos() {
+        return m_listaTopicos;
+    }
+
     
     
 }
