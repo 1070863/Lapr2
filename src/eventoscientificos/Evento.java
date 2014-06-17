@@ -169,7 +169,7 @@ public class Evento {
 
     // adicionada na iteração 2
     public boolean validaTopico(Topico t) {
-        if (t.valida() && validaGlobalTopico(t)) {
+        if (validaGlobalTopico(t)) {
             return true;
         } else {
             return false;
