@@ -100,6 +100,10 @@ public class SubmeterArtigoController
         return this.m_submissao.getInfo() + this.m_artigo.getInfo();
     }
 
+    public Submissao getM_submissao() {
+        return m_submissao;
+    }
+
     public boolean registarSubmissao()
     {
         this.m_submissao.setArtigo(m_artigo);
@@ -137,6 +141,10 @@ public class SubmeterArtigoController
      */
     public Utilizador obterAutor(String autor){
         return m_empresa.getM_registaUtilizador().getUtilizador(autor);
+    }
+
+    public Artigo getM_artigo() {
+        return m_artigo;
     }
     
 

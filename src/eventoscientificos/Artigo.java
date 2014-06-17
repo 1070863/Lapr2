@@ -172,6 +172,10 @@ public class Artigo {
         return true;
     }
 
+    public String getM_strFicheiro() {
+        return m_strFicheiro;
+    }
+
     @Override
     public String toString() {
         String aux= "Artigo: "+this.m_strTitulo + "\nResumo: "+this.m_strResumo+"\nAutores:\n";
