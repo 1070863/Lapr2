@@ -5,6 +5,7 @@
  */
 package eventoscientificos;
 
+import states.SubmissaoState;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

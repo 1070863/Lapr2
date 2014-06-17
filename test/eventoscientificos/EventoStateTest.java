@@ -6,6 +6,16 @@
 
 package eventoscientificos;
 
+import states.EventoDecididoState;
+import states.EventoRevistoState;
+import states.EventoCriadoState;
+import states.EventoNotificadoState;
+import states.EventoRegistadoState;
+import states.EventoTopicosCriadosState;
+import states.EventoCPDefinidaState;
+import states.EventoCameraReadyState;
+import states.EventoDistribuidoState;
+import states.EventoState;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
