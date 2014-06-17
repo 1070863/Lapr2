@@ -7,6 +7,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import static java.awt.image.ImageObserver.ERROR;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,6 +15,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.KeyStroke;
 
 /**
@@ -106,7 +108,7 @@ public class MenuUI extends JFrame {
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               CriarEventoCientificoUI ce = new CriarEventoCientificoUI(new java.awt.Frame(),true, m_empresa);
+                CriarEventoCientificoUI ce = new CriarEventoCientificoUI(new java.awt.Frame(), true, m_empresa);
                 ce.run();
             }
         }
@@ -144,7 +146,14 @@ public class MenuUI extends JFrame {
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                String strId = JOptionPane.showInputDialog("Introduza o seu id:");
+                if (m_empresa.getM_registaUtilizador().getUtilizador(strId) == null) {
+                    JOptionPane.showMessageDialog(null, "Não está Registado no sistema!!!", "Definir Tópicos de Artigo", ERROR_MESSAGE);
+                } else if (m_empresa.getM_registoEventos().getEventosOrganizador(strId).isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Não é Organizador de Eventos!!!", "Definir Tópicos de Artigo", ERROR_MESSAGE);
+                } else {
+                    DefinirTopicosEventoUI defTEUI = new DefinirTopicosEventoUI(MenuUI.this, true, m_empresa, strId);
+                }
             }
         }
         );
@@ -162,7 +171,9 @@ public class MenuUI extends JFrame {
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                String strId = JOptionPane.showInputDialog("Introduza o seu id:");
+                CriarCPUI uiCP = new CriarCPUI(m_empresa, MenuUI.this);
+                uiCP.run(strId);
             }
         }
         );
