@@ -5,6 +5,9 @@
  */
 package eventoscientificos;
 
+import states.SubmissaoCriadaState;
+import states.SubmissaoState;
+
 /**
  *
  * @author Paulo Maio <pam@isep.ipp.pt>
