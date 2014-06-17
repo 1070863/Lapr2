@@ -116,6 +116,6 @@ public class Revisor {
      * @return verdade se existir e falso se não existir.
      */
     public boolean valida() {
-        return this.m_utilizador.validaEmail();
+        return (this.m_utilizador.validaEmail());
     }
 }

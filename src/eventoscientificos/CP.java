@@ -29,7 +29,7 @@ public class CP {
      * @param strId endereço de email ou username do revisor
      * @param u objeto do tipo utilizador a ser associado a Revisor
      * @return objeto do tipo Revisor se passar as validaEmailções e null se não
- passar
+     * passar
      */
     public Revisor addMembroCP(String strId, Utilizador u) {
         Revisor r = new Revisor(u);
@@ -45,17 +45,16 @@ public class CP {
      * Verifica se o revisor já existe na CP (Comissão de Programa)
      *
      * @param r objeto do tipo Revisor
-     * @return verdadeiro se o Revisor já existe na CP e falso se ele já não
-     * existe na CP (Comissão de Programa)
+     * @return verdadeiro se o Revisor já existe na CP e falso se ele não existe
+     * na CP (Comissão de Programa)
      */
     public boolean validaMembroCP(Revisor r) {
         for (Revisor rev : this.m_listaRevisores) {
-            if (rev.getM_utilizador().getM_strEmail().equals(r.getM_utilizador().getM_strEmail()) 
-                    || rev.getM_utilizador().getM_strUsername().equals(r.getM_utilizador().getM_strUsername())) {
-                return true;
+            if (rev.getM_utilizador().getM_strEmail().equals(r.getM_utilizador().getM_strEmail())) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     /**

@@ -7,7 +7,6 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import static java.awt.image.ImageObserver.ERROR;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -44,6 +43,7 @@ public class MenuUI extends JFrame {
         menuBar.add(menuAdministrador());
         menuBar.add(menuOrganizador());
         menuBar.add(menuRevisor());
+        menuBar.add(menuAutor());
         menuBar.add(menuUtilizador());
         menuBar.add(menuAjuda());
 
@@ -93,6 +93,7 @@ public class MenuUI extends JFrame {
         JMenu menu = new JMenu("Administrador");
         menu.setMnemonic(KeyEvent.VK_A);
         menu.add(criarItemCriarEventos());
+        menu.add(criarItemCarregarEventos());
 
         return menu;
     }
@@ -103,13 +104,31 @@ public class MenuUI extends JFrame {
      * @return item Criar Eventos para adicionar ao Menu
      */
     private JMenuItem criarItemCriarEventos() {
-        JMenuItem item = new JMenuItem("Criar Eventos", KeyEvent.VK_C);
-        item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
+        JMenuItem item = new JMenuItem("Criar Eventos", KeyEvent.VK_1);
+        item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, InputEvent.CTRL_MASK));
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 CriarEventoCientificoUI ce = new CriarEventoCientificoUI(new java.awt.Frame(), true, m_empresa);
                 ce.run();
+            }
+        }
+        );
+        return item;
+    }
+
+    /**
+     * Cria item do menu Administrador com a opção Carregar Eventos Automáticos.
+     *
+     * @return item Criar Eventos para adicionar ao Menu
+     */
+    private JMenuItem criarItemCarregarEventos() {
+        JMenuItem item = new JMenuItem("Carregar Eventos", KeyEvent.VK_2);
+        item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, InputEvent.CTRL_MASK));
+        item.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
             }
         }
         );
@@ -177,7 +196,7 @@ public class MenuUI extends JFrame {
                 } else if (m_empresa.getM_registoEventos().getEventosOrganizador(strId).isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Não é Organizador de Eventos!!!", "Criar Comissão de Programa", ERROR_MESSAGE);
                 } else {
-                    CriarCPUI uiCCP= new CriarCPUI(MenuUI.this, true, m_empresa, strId);
+                    CriarCPUI uiCCP = new CriarCPUI(MenuUI.this, true, m_empresa, strId);
                 }
             }
         }
@@ -276,14 +295,32 @@ public class MenuUI extends JFrame {
      *
      * @return menu Utilizador
      */
-    private JMenu menuUtilizador() {
-        JMenu menu = new JMenu("Utilizador");
+    private JMenu menuAutor() {
+        JMenu menu = new JMenu("Autor");
         menu.setMnemonic(KeyEvent.VK_U);
 
-        menu.add(criarSubMenuRegistaUtiliz());
         menu.add(criarSubMenuSubmeterArtigo());
+        menu.add(criarSubMenuRegistoEvento());
 
         return menu;
+    }
+
+    /**
+     * Cria item do menu Utilizador com a opção Registo no Evento.
+     *
+     * @return item Registo no Evento para adicionar ao Menu
+     */
+    private JMenuItem criarSubMenuRegistoEvento() {
+        JMenuItem item = new JMenuItem("Registo no Evento", KeyEvent.VK_R);
+        item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_MASK));
+        item.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        }
+        );
+        return item;
     }
 
     /**
@@ -323,6 +360,20 @@ public class MenuUI extends JFrame {
         }
         );
         return item;
+    }
+
+    /**
+     * Cria o menu Utilizador não registado.
+     *
+     * @return menu Utilizador não registado
+     */
+    private JMenu menuUtilizador() {
+        JMenu menu = new JMenu("Registo Utilizador");
+        menu.setMnemonic(KeyEvent.VK_R);
+
+        menu.add(criarSubMenuRegistaUtiliz());
+
+        return menu;
     }
 
     /**

@@ -6,7 +6,9 @@ import eventoscientificos.Evento;
 import eventoscientificos.Revisor;
 import eventoscientificos.Topico;
 import eventoscientificos.Utilizador;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 
 /**
  * Esta classe serve como controladora do fluxo entre a interface gráfica e a as
@@ -63,7 +65,6 @@ public class CriarCPController {
      */
     public void selectEvento(Evento e) {
         this.m_evento = e;
-
         this.m_cp = this.m_evento.novaCP();
     }
 
@@ -112,5 +113,25 @@ public class CriarCPController {
         if (this.m_cp.getListaRevisores().contains(r)) {
             r.setM_listaTopicos(listaTopicosRevisor);
         }
+    }
+
+    public DefaultListModel listaDeTopicos() {
+        ArrayList<String> topicos = new ArrayList();
+        DefaultListModel modelTopicos = new DefaultListModel();
+        for (Topico t : this.m_evento.getM_listaTopicos()) {
+            modelTopicos.addElement(t.getM_strCodigoACM() + " " + t.getM_strDescricao());
+        }
+        return modelTopicos;
+    }
+    
+    /**
+     * Quando terminado o caso de uso este método irá iniciar a validação do
+     * evento.
+     *
+     * @return verdadeiro ou falso em função da validação do evento e dos seus
+     * estados.
+     */
+    public boolean termina() {
+        return true;
     }
 }
