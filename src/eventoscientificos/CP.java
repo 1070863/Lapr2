@@ -11,7 +11,7 @@ import java.util.*;
 public class CP {
 
     /**
-     * Atributos de intância.
+     * Atributos de instância.
      */
     List<Revisor> m_listaRevisores;
 
@@ -34,7 +34,7 @@ public class CP {
     public Revisor addMembroCP(String strId, Utilizador u) {
         Revisor r = new Revisor(u);
 
-        if (r.valida() && validaMembroCP(r)) {
+        if (validaMembroCP(r)) {
             return r;
         } else {
             return null;
