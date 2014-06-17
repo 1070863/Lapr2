@@ -72,6 +72,16 @@ public class RegistoEventos {
 
         return le;
     }
+    public List<Evento> getListaEventosProntosNotificar ()
+    {
+     List<Evento> le = new ArrayList<>();
+
+        for (Evento e : m_listaEventos) {
+         //  if (e.aceitaNotificar()) 
+                le.add(e);
+            }
+            return le;
+    }
     
     public Evento getEvento(String eventoID){
         for (Evento e : m_listaEventos) {

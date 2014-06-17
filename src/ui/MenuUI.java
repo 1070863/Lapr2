@@ -251,7 +251,8 @@ public class MenuUI extends JFrame {
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+NotificarAutoresUI dialog = new NotificarAutoresUI(new javax.swing.JFrame(),true, m_empresa);
+dialog.run();
             }
         }
         );
