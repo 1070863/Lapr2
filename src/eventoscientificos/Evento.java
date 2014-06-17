@@ -73,8 +73,8 @@ public class Evento {
     public void setDataLimiteSubmissão(String strDataLimiteSubmissão) {
         this.m_strDataLimiteSubmissão = strDataLimiteSubmissão;
     }
-    
-        public String getDataLimiteRevisao() {
+
+    public String getDataLimiteRevisao() {
         return dataLimiteRevisao;
     }
 
@@ -133,7 +133,7 @@ public class Evento {
         if (validaSubmissao(submissao)) {
             submissaoState.SetArtigosParaRevisaoSubmetidos();
             return this.m_listaSubmissoes.add(submissao);
-            
+
         } else {
             return false;
         }
@@ -178,7 +178,7 @@ public class Evento {
     private boolean validaGlobalTopico(Topico t) {
         return true;
     }
-    
+
     public EventoState getState() {
         return state;
     }
@@ -206,29 +206,37 @@ public class Evento {
     public String getM_strDataFim() {
         return m_strDataFim;
     }
+
     /**
      * devolve numero máximo de tópicos por Artigo
+     *
      * @return numero inteiro máximo de tópicos por Artigo
      */
     public int getnMaxTopicos() {
         return nMaxTopicos;
     }
+
     /**
      * modifica numero máximo de tópicos por Artigo
+     *
      * @param nMaxTopicos numero inteiro
      */
     public void setnMaxTopicos(int nMaxTopicos) {
         this.nMaxTopicos = nMaxTopicos;
     }
+
     /**
      * devolve Data limite de registo
+     *
      * @return String Data limite de registo
      */
     public String getDataLimiteRegisto() {
         return dataLimiteRegisto;
     }
+
     /**
      * modifica Data limite de registo
+     *
      * @param dataLimiteRegisto String
      */
     public void setDataLimiteRegisto(String dataLimiteRegisto) {
@@ -275,6 +283,4 @@ public class Evento {
         return m_listaTopicos;
     }
 
-    
-    
 }
