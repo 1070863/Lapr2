@@ -10,6 +10,8 @@ public class RegistoEventos {
 
     private List<Evento> m_listaEventos;
     private Empresa m_empresa;
+    private List<MecanismoDistribuicao> m_listaMecanismoDistribuicao;
+    private MecanismoDistribuicao m_MecanismoDistribuicao;
 
     public RegistoEventos(Empresa empresa) {
         this.m_listaEventos = new ArrayList<>();
@@ -18,6 +20,22 @@ public class RegistoEventos {
 
     public Evento novoEvento() {
         return new Evento();
+    }
+
+    public List<MecanismoDistribuicao> getM_listaMecanismoDistribuicao() {
+        return m_listaMecanismoDistribuicao;
+    }
+
+    public void setM_listaMecanismoDistribuicao(List<MecanismoDistribuicao> m_listaMecanismoDistribuicao) {
+        this.m_listaMecanismoDistribuicao = m_listaMecanismoDistribuicao;
+    }
+
+    public MecanismoDistribuicao getMd() {
+        return m_MecanismoDistribuicao;
+    }
+
+    public void setMd(MecanismoDistribuicao md) {
+        this.m_MecanismoDistribuicao = md;
     }
 
     public boolean registaEvento(Evento e) {
@@ -47,6 +65,7 @@ public class RegistoEventos {
                 List<Organizador> lOrg = e.getListaOrganizadores();
 
                 boolean bRet = false;
+                if(!leOrganizador.contains(e)){
                 for (Organizador org : lOrg) {
                     if (org.getM_utilizador().equals(u)) {
                         bRet = true;
@@ -55,6 +74,7 @@ public class RegistoEventos {
                 }
                 if (bRet) {
                     leOrganizador.add(e);
+                }
                 }
             }
         }
@@ -65,8 +85,10 @@ public class RegistoEventos {
         List<Evento> le = new ArrayList<>();
 
         for (Evento e : m_listaEventos) {
-            if (e.aceitaSubmissoes()) {
-                le.add(e);
+            if(!le.contains(e)){
+                 if (e.aceitaSubmissoes()) {
+                     le.add(e);
+                }   
             }
         }
 

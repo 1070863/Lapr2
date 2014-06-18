@@ -4,7 +4,6 @@
  */
 package eventoscientificos;
 
-import states.SubmissaoCriadaState;
 import states.EventoState;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +32,7 @@ public class Evento {
     private String dataLimiteRevisao;
     private int nMaxTopicos;
     private String dataLimiteRegisto;
+    private ProcessoDistribuicao processoDistribuicao;
 
     public Evento() {
         m_local = new Local();
@@ -90,6 +90,20 @@ public class Evento {
         this.m_local.setM_strLocal(strLocal);;
     }
 
+
+    public ProcessoDistribuicao getProcessoDistribuicao() {
+        return processoDistribuicao;
+    }
+
+    public void setProcessoDistribuicao(ProcessoDistribuicao pd) {
+        this.processoDistribuicao = pd;
+    }
+    
+    public ProcessoDistribuicao novoProcessoDistribuicao() {
+        processoDistribuicao = new ProcessoDistribuicao();
+        return processoDistribuicao;
+    }
+        
     public List<Organizador> getListaOrganizadores() {
         List<Organizador> lOrg = new ArrayList<Organizador>();
 
@@ -157,6 +171,10 @@ public class Evento {
 
     public List<Topico> getTopicos() {
         return m_listaTopicos;
+    }
+
+    public void setM_listaTopicos(List<Topico> m_listaTopicos) {
+        this.m_listaTopicos = m_listaTopicos;
     }
 
     // adicionada na iteração 2
@@ -278,6 +296,9 @@ public class Evento {
             return false;
         }
         if (!Objects.equals(this.m_listaOrganizadores, other.m_listaOrganizadores)) {
+            return false;
+        }
+        if (!Objects.equals(this.m_cp, other.m_cp)) {
             return false;
         }
         return true;

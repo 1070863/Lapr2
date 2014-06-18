@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package eventoscientificos;
 
 import java.util.ArrayList;
@@ -21,14 +20,41 @@ import static org.junit.Assert.*;
  */
 public class RegistoEventosTest {
 
-    private Empresa empresa = new Empresa();
-    private RegistoEventos re = new RegistoEventos(empresa);
-    private Utilizador u = new Utilizador("username", "pwd", "nome", "email");
-    private RegistoUtilizador ru = new RegistoUtilizador();
-    private Evento e = new Evento("titulo1", "descricao1");
+    private static Empresa empresa;
+    private static RegistoEventos instance;
+    private static Utilizador utilizador;
+    private static Evento evento1, evento2;
+    private static MecanismoDistribuicao mecanismoDistribuicao;
+    private static List<MecanismoDistribuicao> listaMecanismos;
+    private static List<Evento> listaEventos;
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+        empresa = new Empresa();
+        instance = new RegistoEventos(empresa);
+        utilizador = new Utilizador("nome", "username", "pwd", "email@email.com");
+        evento1 = new Evento("titulo1", "descricao1");
+        evento2 = new Evento();
+        empresa.getM_registaUtilizador().addUtilizador(utilizador);
+        empresa.setM_registoEventos(instance);
+        evento1.addOrganizador("username", utilizador);
+        instance.registaEvento(evento1);
+        listaMecanismos = new ArrayList<>();
+        listaEventos = new ArrayList<>();
+        
+        
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
 
     @Before
     public void setUp() {
+    }
+
+    @After
+    public void tearDown() throws Exception {
     }
 
     /**
@@ -36,13 +62,10 @@ public class RegistoEventosTest {
      */
     @Test
     public void testRegistaEvento() {
-
         System.out.println("registaEvento");
-
         boolean expResult = true;
-        boolean result = re.registaEvento(new Evento("macaco", "Simio"));
+        boolean result = instance.registaEvento(evento1);
         assertEquals(expResult, result);
-
     }
 
     /**
@@ -51,16 +74,11 @@ public class RegistoEventosTest {
     @Test
     public void testGetEventosOrganizador() {
 
-        ru.addUtilizador(u);
-        empresa.setM_registaUtilizador(ru);
-        empresa.setM_registoEventos(re);
-        e.addOrganizador("username", u);
-        re.registaEvento(e);
         System.out.println("getEventosOrganizador");
         String strId = "username";
         List<Evento> expResult = new ArrayList<>();
-        expResult.add(e);
-        List<Evento> result = empresa.getM_registoEventos().getEventosOrganizador(strId);
+        expResult.add(evento1);
+        List<Evento> result = instance.getEventosOrganizador(strId);
         assertEquals(expResult, result);
     }
 
@@ -69,13 +87,57 @@ public class RegistoEventosTest {
      */
     @Test
     public void testGetListaEventosPodeSubmeter() {
-        re.registaEvento(e);
         System.out.println("getListaEventosPodeSubmeter");
         List<Evento> expResult = new ArrayList<>();
-        expResult.add(e);
-        List<Evento> result = re.getListaEventosPodeSubmeter();
+        expResult.add(evento1);
+        List<Evento> result = instance.getListaEventosPodeSubmeter();
         assertEquals(expResult, result);
     }
 
-}
+    /**
+     * Test of novoEvento method, of class RegistoEventos.
+     */
+    @Test
+    public void testNovoEvento() {
+        System.out.println("novoEvento");
+        Evento expResult = evento2;
+        Evento result = instance.novoEvento();
+        assertEquals(expResult, result);
+    }
 
+    /**
+     * Test of getM_listaMecanismoDistribuicao method, of class RegistoEventos.
+     */
+    @Test
+    public void testGetM_listaMecanismoDistribuicao() {
+        System.out.println("getM_listaMecanismoDistribuicao");
+        instance.setM_listaMecanismoDistribuicao(listaMecanismos);
+        List<MecanismoDistribuicao> expResult = listaMecanismos;
+        List<MecanismoDistribuicao> result = instance.getM_listaMecanismoDistribuicao();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getMd method, of class RegistoEventos.
+     */
+    @Test
+    public void testGetMd() {
+        System.out.println("getMd");
+        instance.setMd(mecanismoDistribuicao);
+        MecanismoDistribuicao expResult = mecanismoDistribuicao;
+        MecanismoDistribuicao result = instance.getMd();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getEvento method, of class RegistoEventos.
+     */
+    @Test
+    public void testGetEvento() {
+        System.out.println("getEvento");
+        String eventoID = "titulo1";
+        Evento expResult = evento1;
+        Evento result = instance.getEvento(eventoID);
+        assertEquals(expResult, result);
+    }
+}

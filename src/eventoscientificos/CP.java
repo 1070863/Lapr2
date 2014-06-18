@@ -102,4 +102,26 @@ public class CP {
         }
         return strCP;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CP other = (CP) obj;
+        if (!Objects.equals(this.m_listaRevisores, other.m_listaRevisores)) {
+            return false;
+        }
+        return true;
+    }
+    
 }

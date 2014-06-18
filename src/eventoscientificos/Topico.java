@@ -4,6 +4,8 @@
  */
 package eventoscientificos;
 
+import java.util.Objects;
+
 /**
  *
  * @author iazevedo
@@ -49,14 +51,29 @@ public class Topico {
         return m_strCodigoACM;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        } else if (obj instanceof Topico) {
-            Topico aux = (Topico) obj;
-            return this.m_strCodigoACM.equals(aux.m_strCodigoACM);
-        } else {
+        if (obj == null) {
             return false;
         }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Topico other = (Topico) obj;
+        if (!Objects.equals(this.m_strDescricao, other.m_strDescricao)) {
+            return false;
+        }
+        if (!Objects.equals(this.m_strCodigoACM, other.m_strCodigoACM)) {
+            return false;
+        }
+        return true;
     }
+
+
 }
