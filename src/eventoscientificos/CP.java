@@ -13,7 +13,7 @@ public class CP {
     /**
      * Atributos de instância.
      */
-    List<Revisor> m_listaRevisores;
+    private List<Revisor> m_listaRevisores;
 
     /**
      * Construtor responsável por instânciar lista de Revisores da CP (Comissão
@@ -21,6 +21,24 @@ public class CP {
      */
     public CP() {
         this.m_listaRevisores = new ArrayList();
+    }
+
+    /**
+     * Procura a lista de revisores.
+     *
+     * @return lista de revisores
+     */
+    public List<Revisor> getListaRevisores() {
+        return m_listaRevisores;
+    }
+
+    /**
+     * Define uma lista de revisores.
+     *
+     * @param m_listaRevisores lista de revisores
+     */
+    public void setM_listaRevisores(List<Revisor> m_listaRevisores) {
+        this.m_listaRevisores = m_listaRevisores;
     }
 
     /**
@@ -34,7 +52,7 @@ public class CP {
     public Revisor addMembroCP(String strId, Utilizador u) {
         Revisor r = new Revisor(u);
 
-        if (validaMembroCP(r)) {
+        if (!validaMembroCP(r)) {
             return r;
         } else {
             return null;
@@ -42,19 +60,19 @@ public class CP {
     }
 
     /**
-     * Verifica se o revisor já existe na CP (Comissão de Programa)
+     * Verifica a exitência do Revisor na CP (Comissão de Programa).
      *
      * @param r objeto do tipo Revisor
-     * @return verdadeiro se o Revisor já existe na CP e falso se ele não existe
-     * na CP (Comissão de Programa)
+     * @return verdadeiro se o Revisor já consta na lista da CP e falso se ele
+     * não existe na CP(Comissão de Programa)
      */
     public boolean validaMembroCP(Revisor r) {
         for (Revisor rev : this.m_listaRevisores) {
-            if (rev.getM_utilizador().getM_strEmail().equals(r.getM_utilizador().getM_strEmail())) {
-                return false;
+            if (rev.getM_utilizador().equals(r.getM_utilizador())) {
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     /**
@@ -77,20 +95,11 @@ public class CP {
     public String toString() {
         String strCP = "Membros de CP: ";
         for (ListIterator<Revisor> it = this.m_listaRevisores.listIterator(); it.hasNext();) {
-            strCP += it.next().toString();
+            strCP += it.next().getM_strNome();
             if (it.hasNext()) {
                 strCP += ", ";
             }
         }
         return strCP;
-    }
-
-    /**
-     * Procura a lista de revisores instânciada
-     *
-     * @return lista de revisores
-     */
-    public List<Revisor> getListaRevisores() {
-        return this.m_listaRevisores;
     }
 }
