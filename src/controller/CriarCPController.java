@@ -115,15 +115,20 @@ public class CriarCPController {
         }
     }
 
+    /**
+     * Cria uma lista com os tópicos do Evento e do tipo DefaultListModel para
+     * ser listada na UI.
+     *
+     * @return lista de tópicos de Evento
+     */
     public DefaultListModel listaDeTopicos() {
-        ArrayList<String> topicos = new ArrayList();
         DefaultListModel modelTopicos = new DefaultListModel();
         for (Topico t : this.m_evento.getM_listaTopicos()) {
             modelTopicos.addElement(t.getM_strCodigoACM() + " " + t.getM_strDescricao());
         }
         return modelTopicos;
     }
-    
+
     /**
      * Quando terminado o caso de uso este método irá iniciar a validação do
      * evento.
@@ -132,6 +137,6 @@ public class CriarCPController {
      * estados.
      */
     public boolean termina() {
-        return true;
+        return this.m_evento.getState().valida();
     }
 }
