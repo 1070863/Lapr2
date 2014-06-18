@@ -8,12 +8,7 @@ package ui;
 import controller.SubmeterArtigoController;
 import eventoscientificos.Autor;
 import eventoscientificos.Empresa;
-import eventoscientificos.Evento;
-import eventoscientificos.Topico;
 import eventoscientificos.Utilizador;
-import java.awt.Checkbox;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,7 +27,6 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
 
     public SubmeterArtigoUI(Empresa empresa) {
         this.empresa = empresa;
-
     }
 
     /**
@@ -92,6 +86,8 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
         lblEvento = new javax.swing.JLabel();
         txtTitulo = new javax.swing.JTextField();
         lblTitulo = new javax.swing.JLabel();
+        cmbTipo = new javax.swing.JComboBox();
+        lblTipo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lblAutorCorrespondente = new javax.swing.JLabel();
         cmbAutorCorr = new javax.swing.JComboBox();
@@ -126,30 +122,37 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
 
         lblTitulo.setText("Titulo:");
 
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Full Paper", "Short Paper", "Post Paper" }));
+
+        lblTipo.setText("Tipo artigo");
+
         javax.swing.GroupLayout jPan1Layout = new javax.swing.GroupLayout(jPan1);
         jPan1.setLayout(jPan1Layout);
         jPan1Layout.setHorizontalGroup(
             jPan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPan1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSubmeter)
+                .addGroup(jPan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPan1Layout.createSequentialGroup()
+                            .addComponent(lblTitulo)
+                            .addGap(41, 41, 41))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPan1Layout.createSequentialGroup()
+                            .addComponent(lblEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                     .addGroup(jPan1Layout.createSequentialGroup()
                         .addGroup(jPan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPan1Layout.createSequentialGroup()
-                                    .addComponent(lblTitulo)
-                                    .addGap(41, 41, 41))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPan1Layout.createSequentialGroup()
-                                    .addComponent(lblEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                            .addGroup(jPan1Layout.createSequentialGroup()
-                                .addComponent(lblTitulo1)
-                                .addGap(29, 29, 29)))
-                        .addGroup(jPan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cmbEvento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtTitulo)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblTitulo1)
+                            .addComponent(lblTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)))
+                .addGroup(jPan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPan1Layout.createSequentialGroup()
+                        .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSubmeter))
+                    .addComponent(cmbEvento, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtTitulo, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPan1Layout.setVerticalGroup(
@@ -168,7 +171,10 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
                     .addComponent(lblTitulo1)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSubmeter)
+                .addGroup(jPan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSubmeter)
+                    .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -229,7 +235,7 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,9 +243,9 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPan1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(32, 32, 32)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -249,10 +255,17 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         iEvento = cmbEvento.getSelectedIndex();
         if (iEvento != -1) {
-
+            //Adiciona os dados da submissão
             if (!(txtTitulo.getText().isEmpty() || txtResumo.getText().isEmpty())) {
 
-                while (JOptionPane.showConfirmDialog(this, "Adicionar autor?", "Adicionar autores",
+                submeterArtigoController.iniciarSubmissao();
+                submeterArtigoController.selectEvento(empresa.getM_registoEventos().
+                        getEvento((String) cmbEvento.getSelectedItem()));
+
+                submeterArtigoController.setDados(txtTitulo.getText(), txtResumo.getText());
+
+                while (JOptionPane.showConfirmDialog(this, "Adicionar autor?",
+                        "Adicionar autores",
                         JOptionPane.YES_NO_OPTION) == 0) {
 
                     String nomeAutor = JOptionPane.showInputDialog(this, "Nome do autor:",
@@ -262,13 +275,12 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
                     if (utilizador != null) {
                         afiliacao = JOptionPane.showInputDialog(this, "Afiliação:",
                                 "Inserir afiliação", JOptionPane.OK_CANCEL_OPTION);
-                        submeterArtigoController.iniciarSubmissao();
-                        submeterArtigoController.selectEvento(empresa.getM_registoEventos().
-                                getEvento((String) cmbEvento.getSelectedItem()));
 
                         submeterArtigoController.addAutor(submeterArtigoController.
                                 novoAutor(utilizador.getM_strNome(), afiliacao,
                                         utilizador.getM_strEmail()));
+                        submeterArtigoController.setTipoArtigo((String) cmbTipo.
+                                getSelectedItem());
 
                     } else {
                         JOptionPane.showMessageDialog(this, "O autor introduzido não faz parte da lista de utilizadores!",
@@ -302,7 +314,42 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
             String nomeFicheiro = JOptionPane.showInputDialog(this, "Insira o ficheiro:",
                     "Submeter artigo", JOptionPane.INFORMATION_MESSAGE);
             submeterArtigoController.setFicheiro(nomeFicheiro);
+
+            //Adiciona tópicos
+            while (JOptionPane.showConfirmDialog(this, "Adicionar um tópico?", "Submeter artigo",
+                    JOptionPane.YES_NO_OPTION) == 0) {
+                String tp = JOptionPane.showInputDialog(this, "Insira o tópico:",
+                        "Submeter artigo", JOptionPane.INFORMATION_MESSAGE);
+
+                if (submeterArtigoController.
+                        topicoExisteEvento(tp) == null) {
+                    JOptionPane.showMessageDialog(this, "Tópico não existe no evento!");
+                } else {
+                    submeterArtigoController.addTopico(submeterArtigoController.
+                            topicoExisteEvento(tp));
+                }
+            }
+
         }
+
+        if (submeterArtigoController.getTopicosArtigo() != null) {
+            submeterArtigoController.setListaTopicosArtigo(
+                    submeterArtigoController.getTopicosArtigo());
+        }
+
+        boolean sucesso = submeterArtigoController.registarSubmissao();
+        if(!sucesso){
+            JOptionPane.showMessageDialog(this,
+                "Artigo não submetido!",
+                "Submeter artigo", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this,
+                "Artigo submetido com sucesso!",
+                "Submeter artigo", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        dispose();
+
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -323,16 +370,21 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SubmeterArtigoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SubmeterArtigoUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SubmeterArtigoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SubmeterArtigoUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SubmeterArtigoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SubmeterArtigoUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SubmeterArtigoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SubmeterArtigoUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -358,11 +410,13 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
     private javax.swing.JButton btnSubmeter;
     private javax.swing.JComboBox cmbAutorCorr;
     private javax.swing.JComboBox cmbEvento;
+    private javax.swing.JComboBox cmbTipo;
     private javax.swing.JPanel jPan1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAutorCorrespondente;
     private javax.swing.JLabel lblEvento;
+    private javax.swing.JLabel lblTipo;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTitulo1;
     private javax.swing.JTextArea txtResumo;

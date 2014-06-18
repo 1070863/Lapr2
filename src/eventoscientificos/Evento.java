@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Objects;
+import states.EventoCriadoState;
+import states.SubmissaoArtigosParaRevisaoSubmetidosState;
 
 /**
  *
@@ -29,7 +31,6 @@ public class Evento {
     private List<Topico> m_listaTopicos;
     private EventoState state;
     private String dataLimiteRevisao;
-    private SubmissaoCriadaState submissaoState;
     private int nMaxTopicos;
     private String dataLimiteRegisto;
 
@@ -38,6 +39,7 @@ public class Evento {
         m_listaOrganizadores = new ArrayList<Organizador>();
         m_listaSubmissoes = new ArrayList<Submissao>();
         m_listaTopicos = new ArrayList<Topico>();
+        this.state = new EventoCriadoState(this);
     }
 
     public Evento(String titulo, String descricao) {
@@ -133,7 +135,7 @@ public class Evento {
 
     public boolean addSubmissao(Submissao submissao) {
         if (validaSubmissao(submissao)) {
-            submissaoState.SetArtigosParaRevisaoSubmetidos();
+            submissao.setState(new SubmissaoArtigosParaRevisaoSubmetidosState(submissao));
             return this.m_listaSubmissoes.add(submissao);
 
         } else {

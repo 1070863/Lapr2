@@ -19,9 +19,9 @@ public class Submissao {
     private SubmissaoState state;
 
     public Submissao() {
-        
         this.setState(new SubmissaoCriadaState(this));
     }
+    
     public Artigo novoArtigo() {
         return new Artigo();
     }

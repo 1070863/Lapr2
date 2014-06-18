@@ -28,11 +28,13 @@ public class SubmeterArtigoController
     private Submissao m_submissao;
     private Artigo m_artigo;
     private List<Evento> eventosPodeSub;
+    private List<Topico> topicosArtigo;
 
     public SubmeterArtigoController(Empresa empresa)
     {
         m_empresa = empresa;
         eventosPodeSub= new ArrayList<>();
+        topicosArtigo = new ArrayList<>();
     }
 
     public List<Evento> iniciarSubmissao()
@@ -72,12 +74,17 @@ public class SubmeterArtigoController
     
     public Autor novoAutor(String strNome, String strAfiliacao, String strEmail)
     {
-        return this.m_artigo.novoAutor(strNome, strAfiliacao,strEmail,this.m_empresa.getM_registaUtilizador().getUtilizadorEmail(strEmail));
+        return this.m_artigo.novoAutor(strNome, strAfiliacao,strEmail,
+                this.m_empresa.getM_registaUtilizador().getUtilizadorEmail(strEmail));
     }
 
     public boolean addAutor(Autor autor)
     {
         return this.m_artigo.addAutor(autor);
+    }
+
+    public List<Topico> getTopicosArtigo() {
+        return topicosArtigo;
     }
 
     public List<Autor> getPossiveisAutoresCorrespondentes()
@@ -116,6 +123,10 @@ public class SubmeterArtigoController
         m_artigo.setListaTopicos(listaTopicosArtigo);
     }
 
+    /**
+     * Obtém a lista de eventos que podem submeter artigos
+     * @return String[]
+     */
     public String[] getListaEventosPodeSub(){
         String[] listaEventos= new String[m_empresa.getM_registoEventos().getListaEventosPodeSubmeter().size()];
         for (Evento evento : m_empresa.getM_registoEventos().getListaEventosPodeSubmeter()) {
@@ -125,6 +136,11 @@ public class SubmeterArtigoController
         return listaEventos;
     }
     
+    /**
+     * Retorna a lista de autores
+     * @param empresa
+     * @return String[]
+     */
     public String[] listaAutores(Empresa empresa){
         String[] autores = new String[this.m_empresa.getM_registaUtilizador().getM_listaUtilizadores().size()];
         for (Utilizador utilizador : this.m_empresa.getM_registaUtilizador().getM_listaUtilizadores()) {
@@ -147,6 +163,33 @@ public class SubmeterArtigoController
         return m_artigo;
     }
     
+    public void setTipoArtigo(String tipo){
+        this.m_artigo.setTipo(tipo);
+    }
+    
+    /**
+     * Procura um tópico inserido e retorna o objeto tópico correspondente. Se não existir retorna null
+     * @param t
+     * @return Topico 
+     */
+    public Topico topicoExisteEvento(String t){
+        if(t!=null){
+            List<Topico> topico = new ArrayList<>();
+            topico = getTopicosEvento();
+            if (topico != null) {
+                for (Topico t_evento : topico) {
+                    if (t.equalsIgnoreCase(t_evento.getM_strCodigoACM())) {
+                        return t_evento;
+                    }
+                }
+        }
+        }
+        return null;
+    }
+    
+    public void addTopico(Topico topico){
+        this.topicosArtigo.add(topico);
+    }
 
     }
 

@@ -20,6 +20,15 @@ public class Artigo {
     private Autor m_autorCorrespondente;
     private String m_strFicheiro;
     private List<Topico> m_listaTopicos;
+    private String tipo;
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
     public Artigo() {
         m_listaAutores = new ArrayList<Autor>();
@@ -210,6 +219,10 @@ public class Artigo {
                 return false;
             }
         }
+    }
+
+    public List<Topico> getM_listaTopicos() {
+        return m_listaTopicos;
     }
 
     @Override
