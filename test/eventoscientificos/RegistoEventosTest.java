@@ -140,4 +140,16 @@ public class RegistoEventosTest {
         Evento result = instance.getEvento(eventoID);
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of criarListaMecanismoDistribuicaos method, of class RegistoEventos.
+     */
+    @Test
+    public void testCriarListaMecanismoDistribuicaos() {
+        System.out.println("criarListaMecanismoDistribuicaos");
+        List<MecanismoDistribuicao> expResult = new ArrayList<>();
+        expResult.add(new Mecanismo1());
+        List<MecanismoDistribuicao> result = instance.criarListaMecanismoDistribuicaos();
+        assertEquals(expResult, result);
+    }
 }

@@ -215,7 +215,8 @@ public class MenuUI extends JFrame {
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                DistribuirRevisoesUI dr = new DistribuirRevisoesUI(new java.awt.Frame(),true, m_empresa);
+                dr.run();
             }
         }
         );

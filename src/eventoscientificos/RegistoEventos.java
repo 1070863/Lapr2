@@ -54,6 +54,12 @@ public class RegistoEventos {
         return m_listaEventos.add(e);
     }
 
+    public List<MecanismoDistribuicao> criarListaMecanismoDistribuicaos() {
+        m_listaMecanismoDistribuicao = new ArrayList<>();
+        this.m_listaMecanismoDistribuicao.add(new Mecanismo1());
+        return m_listaMecanismoDistribuicao;
+    }
+
     public List<Evento> getEventosOrganizador(String strId) {
         List<Evento> leOrganizador = new ArrayList<>();
 
@@ -65,16 +71,16 @@ public class RegistoEventos {
                 List<Organizador> lOrg = e.getListaOrganizadores();
 
                 boolean bRet = false;
-                if(!leOrganizador.contains(e)){
-                for (Organizador org : lOrg) {
-                    if (org.getM_utilizador().equals(u)) {
-                        bRet = true;
-                        break;
+                if (!leOrganizador.contains(e)) {
+                    for (Organizador org : lOrg) {
+                        if (org.getM_utilizador().equals(u)) {
+                            bRet = true;
+                            break;
+                        }
                     }
-                }
-                if (bRet) {
-                    leOrganizador.add(e);
-                }
+                    if (bRet) {
+                        leOrganizador.add(e);
+                    }
                 }
             }
         }
@@ -85,27 +91,27 @@ public class RegistoEventos {
         List<Evento> le = new ArrayList<>();
 
         for (Evento e : m_listaEventos) {
-            if(!le.contains(e)){
-                 if (e.aceitaSubmissoes()) {
-                     le.add(e);
-                }   
+            if (!le.contains(e)) {
+                if (e.aceitaSubmissoes()) {
+                    le.add(e);
+                }
             }
         }
 
         return le;
     }
-    public List<Evento> getListaEventosProntosNotificar ()
-    {
-     List<Evento> le = new ArrayList<>();
+
+    public List<Evento> getListaEventosProntosNotificar() {
+        List<Evento> le = new ArrayList<>();
 
         for (Evento e : m_listaEventos) {
-         //  if (e.aceitaNotificar()) 
-                le.add(e);
-            }
-            return le;
+            //  if (e.aceitaNotificar()) 
+            le.add(e);
+        }
+        return le;
     }
-    
-    public Evento getEvento(String eventoID){
+
+    public Evento getEvento(String eventoID) {
         for (Evento e : m_listaEventos) {
             if (eventoID.equalsIgnoreCase(e.getM_strTitulo())) {
                 return e;
