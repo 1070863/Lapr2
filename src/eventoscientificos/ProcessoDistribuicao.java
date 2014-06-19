@@ -20,6 +20,8 @@ public class ProcessoDistribuicao {
     private CP m_cp;
     
     private Distribuicao m_distribuicao;
+    
+    
 
     public void setMecanismoDistribuicao(int m) {
         if (m == 1) {
