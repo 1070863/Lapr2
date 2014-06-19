@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package eventoscientificos;
 
 import states.EventoState;
@@ -33,6 +29,7 @@ public class Evento {
     private int nMaxTopicos;
     private String dataLimiteRegisto;
     private ProcessoDistribuicao processoDistribuicao;
+    private ValorRegistoNoEvento m_registoNoEvento;
 
     public Evento() {
         m_local = new Local();
@@ -55,6 +52,10 @@ public class Evento {
         m_cp = new CP();
 
         return m_cp;
+    }
+
+    public void definirValorRegisto() {
+        this.m_registoNoEvento = new ValorRegistoNoEvento();
     }
 
     public final void setTitulo(String strTitulo) {
@@ -90,7 +91,6 @@ public class Evento {
         this.m_local.setM_strLocal(strLocal);;
     }
 
-
     public ProcessoDistribuicao getProcessoDistribuicao() {
         return processoDistribuicao;
     }
@@ -98,12 +98,12 @@ public class Evento {
     public void setProcessoDistribuicao(ProcessoDistribuicao pd) {
         this.processoDistribuicao = pd;
     }
-    
+
     public ProcessoDistribuicao novoProcessoDistribuicao() {
         processoDistribuicao = new ProcessoDistribuicao();
         return processoDistribuicao;
     }
-        
+
     public List<Organizador> getListaOrganizadores() {
         List<Organizador> lOrg = new ArrayList<Organizador>();
 
@@ -263,6 +263,10 @@ public class Evento {
      */
     public void setDataLimiteRegisto(String dataLimiteRegisto) {
         this.dataLimiteRegisto = dataLimiteRegisto;
+    }
+
+    public ValorRegistoNoEvento getM_registoNoEvento() {
+        return m_registoNoEvento;
     }
 
     @Override
