@@ -196,7 +196,7 @@ public class MenuUI extends JFrame {
                 } else if (m_empresa.getM_registoEventos().getEventosOrganizador(strId).isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Não é Organizador de Eventos!!!", "Definir Valores de Registo", ERROR_MESSAGE);
                 } else {
-//                    DefinirValoresRegistoUI defVRUI = new DefinirValoresRegistoUI(MenuUI.this, true, m_empresa, strId);
+                    DefinirValoresRegistoUI defVRUI = new DefinirValoresRegistoUI(MenuUI.this, true, m_empresa, strId);
                 }
             }
         }
