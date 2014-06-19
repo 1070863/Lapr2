@@ -150,7 +150,7 @@ public class MenuUI extends JFrame {
         menu.add(criarSubMenuDistribRevs());
         menu.add(criarSubMenuDecidSArtigo());
         menu.add(criarSubMenuNotificaAutores());
-
+        menu.add(criarSubMenuDefinirValoresRegisto());
         return menu;
     }
 
@@ -172,6 +172,31 @@ public class MenuUI extends JFrame {
                     JOptionPane.showMessageDialog(null, "Não é Organizador de Eventos!!!", "Definir Tópicos de Artigo", ERROR_MESSAGE);
                 } else {
                     DefinirTopicosEventoUI defTEUI = new DefinirTopicosEventoUI(MenuUI.this, true, m_empresa, strId);
+                }
+            }
+        }
+        );
+        return item;
+    }
+
+    /**
+     * Cria item do menu Organizador com a opção Criar Tópicos.
+     *
+     * @return item Criar Tópicos para adicionar ao Menu
+     */
+    private JMenuItem criarSubMenuDefinirValoresRegisto() {
+        JMenuItem item = new JMenuItem("Definir Valores de Registo", KeyEvent.VK_6);
+        item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_6, InputEvent.CTRL_MASK));
+        item.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String strId = JOptionPane.showInputDialog("Introduza o seu id:");
+                if (m_empresa.getM_registaUtilizador().getUtilizador(strId) == null) {
+                    JOptionPane.showMessageDialog(null, "Não está Registado no sistema!!!", "Definir Valores de Registo", ERROR_MESSAGE);
+                } else if (m_empresa.getM_registoEventos().getEventosOrganizador(strId).isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Não é Organizador de Eventos!!!", "Definir Valores de Registo", ERROR_MESSAGE);
+                } else {
+                    DefinirValoresRegistoUI defVRUI = new DefinirValoresRegistoUI(MenuUI.this, true, m_empresa, strId);
                 }
             }
         }
@@ -215,7 +240,7 @@ public class MenuUI extends JFrame {
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DistribuirRevisoesUI dr = new DistribuirRevisoesUI(new java.awt.Frame(),true, m_empresa);
+                DistribuirRevisoesUI dr = new DistribuirRevisoesUI(new java.awt.Frame(), true, m_empresa);
                 dr.run();
             }
         }
@@ -252,8 +277,8 @@ public class MenuUI extends JFrame {
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-NotificarAutoresUI dialog = new NotificarAutoresUI(new javax.swing.JFrame(),true, m_empresa);
-dialog.run();
+                NotificarAutoresUI dialog = new NotificarAutoresUI(new javax.swing.JFrame(), true, m_empresa);
+                dialog.run();
             }
         }
         );
