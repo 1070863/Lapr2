@@ -54,8 +54,8 @@ public class Evento {
         return m_cp;
     }
 
-    public void definirValorRegisto() {
-        this.m_registoNoEvento = new ValorRegistoNoEvento();
+    public ValorRegistoNoEvento definirValorRegisto() {
+        return this.m_registoNoEvento = new ValorRegistoNoEvento();
     }
 
     public final void setTitulo(String strTitulo) {
