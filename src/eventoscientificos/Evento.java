@@ -33,6 +33,7 @@ public class Evento {
     private int nMaxTopicos;
     private String dataLimiteRegisto;
     private ProcessoDistribuicao processoDistribuicao;
+    private ValorRegistoNoEvento m_registoNoEvento;
 
     public Evento() {
         m_local = new Local();
@@ -49,6 +50,14 @@ public class Evento {
         m_listaTopicos = new ArrayList<Topico>();
         this.setTitulo(titulo);
         this.setDescricao(descricao);
+    }
+    
+    public ValorRegistoNoEvento definirValorRegisto() {
+        return this.m_registoNoEvento = new ValorRegistoNoEvento();
+     }
+    
+    public ValorRegistoNoEvento getM_registoNoEvento() {
+        return m_registoNoEvento;
     }
 
     public CP novaCP() {
