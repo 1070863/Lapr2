@@ -77,4 +77,17 @@ public class Distribuicao {
     public void setM_artigo(Artigo m_artigo) {
         this.m_artigo = m_artigo;
     }
+    
+    /**
+     * Recebe o username e procura na lista de revisores. Se o revisor existir retorna o revisor senão retorna null.
+     * @param revisor
+     * @return Revisor 
+     */
+    public Revisor getRevisor(String revisor){
+        for (Revisor rev : m_listaRevisores) {
+            if(rev.getM_utilizador().getM_strUsername().equals(revisor))
+                return rev;
+        }
+        return null;
+    }
 }
