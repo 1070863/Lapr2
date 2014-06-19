@@ -241,10 +241,10 @@ public class CriarCPUI extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int confirma = JOptionPane.showConfirmDialog(this,
-                "Terminar Definição de Tópicos de Evento?", "Confirmar", ConfirmationCallback.YES_NO_OPTION);
+                "Terminar a criação da CP?", "Confirmar", ConfirmationCallback.YES_NO_OPTION);
         if (confirma == 0) {
-            this.m_controllerCCP.termina();
             dispose();
+            this.m_controllerCCP.termina();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
