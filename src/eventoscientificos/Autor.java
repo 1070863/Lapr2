@@ -59,6 +59,9 @@ public class Autor
     public String getM_strNome() {
         return m_strNome;
     }
+    public String getM_strEMail() {
+        return m_strEMail;
+    }
     
     @Override
     public String toString()

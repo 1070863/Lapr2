@@ -67,6 +67,17 @@ public class Artigo {
         return this.m_strResumo;
     }
     
+    public Autor getAutor(String id)
+        {
+            
+            for (Autor autor : m_listaAutores) {
+                String str=autor.getM_strNome();
+                if (str.equalsIgnoreCase(id))
+                    return autor;
+            }
+            return null;
+        }
+    
     /**
      *
      * @param strNome

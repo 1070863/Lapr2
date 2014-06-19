@@ -15,12 +15,16 @@ import eventoscientificos.Evento;
 import eventoscientificos.NotificarAutores;
 import eventoscientificos.Utilizador;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 
 /**
  * @author Pereira
+ * interface gráfica UC8
  */
 public class NotificarAutoresUI extends javax.swing.JDialog {
      
@@ -31,6 +35,7 @@ public class NotificarAutoresUI extends javax.swing.JDialog {
     private int iEvento=-1;
     /**
      * Creates new form NotificarAutoresUI
+     * o construtor faz a inicialização da comboBox
      */
     public NotificarAutoresUI(java.awt.Frame parent, boolean modal, Empresa empresa ) {
         super(parent, modal);
@@ -41,14 +46,14 @@ public class NotificarAutoresUI extends javax.swing.JDialog {
         if (m_NotificarAutoresController.getListaEventosProntosNotificar().length > 0) {
             for (String eventoNome : m_NotificarAutoresController.getListaEventosProntosNotificar()) {
                 jCBoxEventos.addItem(eventoNome);
-                
-          
             }
         }
   
        
     }
-
+/**
+ * Torna visivel a janela e  faz também a autenticação do utilizador
+ */
      public void run()
      {
    String utilizador = JOptionPane.showInputDialog(this,
@@ -186,14 +191,25 @@ public class NotificarAutoresUI extends javax.swing.JDialog {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         NotificarAutoresUI.this.dispose();      // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActionPerformed
-
+/**
+ * Após selecionar o evento inicia a autenticação usando o controller para iniciar o processo de notificação
+ * @param evt 
+ */
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
     iEvento = jCBoxEventos.getSelectedIndex();
         if (iEvento != -1) {
             Evento e = new Evento();
             e = m_empresa.getM_registoEventos().getEvento((String) jCBoxEventos.getSelectedItem());
-                
-                       
+        try {
+            if(m_NotificarAutoresController.NotificarAutores(e))
+                JOptionPane.showMessageDialog(NotificarAutoresUI.this,"Foi criado o ficheiro para notificação");
+        } catch (TransformerException ex) {
+            Logger.getLogger(NotificarAutoresUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(NotificarAutoresUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(NotificarAutoresUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
                         }
                        
                         else JOptionPane.showMessageDialog(NotificarAutoresUI.this,"erro");

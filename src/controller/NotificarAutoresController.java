@@ -12,12 +12,17 @@ import eventoscientificos.Evento;
 import eventoscientificos.NotificarAutores;
 import eventoscientificos.Submissao;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import states.EventoDecididoState;
 /**
  *
  * @author Pereira
+ * Serve para fazer a ligação entre a NotificarAutores 
  */
 public class NotificarAutoresController {
     
@@ -33,8 +38,6 @@ public class NotificarAutoresController {
     }
  
 
-       
-       
         public List<Evento> iniciarSubmissao()
     {
         return this.m_empresa.getM_registoEventos().getListaEventosPodeSubmeter();
@@ -55,5 +58,11 @@ public class NotificarAutoresController {
         return listaEventos;
     }
          
+          public boolean NotificarAutores(Evento env) throws TransformerException, ParserConfigurationException, IOException
+          {
+            if(env.getState() instanceof EventoDecididoState) 
+            NotificarAutores(env);
+          return true;
+          }
 }
 

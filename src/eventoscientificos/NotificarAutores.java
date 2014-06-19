@@ -31,22 +31,37 @@ import states.*;
 /**
  *
  * @author Pereira
+ * Esta classe apenas tem 2 métodos um para escrever e criar um ficheiro xml onde consta as informações relativas á revisão
+ * e a sua decisão e outo que valida o estado da submissão
  */
 public class NotificarAutores  {
-
+  private Empresa empresa;
+    private RegistoEventos re;
+    private Utilizador u;
+    private  Organizador org;
+    private  Evento e;
+    private  Artigo a;
+    private Autor autor ;
+    private Submissao s;
   private Utilizador m_utilizador;
   private Artigo m_artigo;
   private Autor m_autor;
-  private Evento e;
   private EventoState e_state;
   private Submissao sub;
   private SubmissaoState sub_state;
   private String parafile;
 //  private String nameFile= m_artigo.getTitulo();
   
- public boolean NotificarAutores() throws  ParserConfigurationException, TransformerException, IOException{
-           
-    String root = "ListaSubmissões";
+  
+  
+  
+ public void NotificarAutores(Evento e) throws TransformerException, ParserConfigurationException, IOException {
+      
+   this.e=e;
+     
+        String root = "notification_list";
+        String folder="Submissao";
+        String coments="comments";
         DocumentBuilderFactory documentBuilderFactory =DocumentBuilderFactory.newInstance();
 
             DocumentBuilder documentBuilder =documentBuilderFactory.newDocumentBuilder();
@@ -54,118 +69,98 @@ public class NotificarAutores  {
             Document document = documentBuilder.newDocument();
 
         Element rootElement = document.createElement(root);
-
+       
+        Element folderElement= document.createElement(folder);
+        rootElement.appendChild(folderElement);
             document.appendChild(rootElement);
-//      for (int i = 1; i <= no; i++)
-//        System.out.print("Enter the element: ");
-//        String element = bf.readLine();
-           
-          String element ="Titulo";
-          
-          String data = m_artigo.getTitulo();
+
+        for (int i = 0; i < e.getListaSubmissoes().size(); i++) {
+            
+     if(valida())
+     {
+          String element ="paper_title";
+          String data = e.getListaSubmissoes().get(i).getArtigo().getTitulo();
           Element em = document.createElement(element);
           em.appendChild(document.createTextNode(data));
-          rootElement.appendChild(em);
+          folderElement.appendChild(em);
 
-          String element1 ="Tipo";
-          String data1 = "Artigo";
+          String element1 ="paper_type";
+          String data1 = e.getListaSubmissoes().get(i).getArtigo().getTipo();
           Element em1 = document.createElement(element1);
           em1.appendChild(document.createTextNode(data1));
-          rootElement.appendChild(em1);
+          folderElement.appendChild(em1);
           
-          String element2 ="Autor";
-          String data2 = m_autor.getM_strNome();
+          String element2 ="author_name";
+          String data2 = e.getListaSubmissoes().get(i).getArtigo().getAutor("Sergio").getM_strNome();
           Element em2 = document.createElement(element2);
           em2.appendChild(document.createTextNode(data2));
-          rootElement.appendChild(em2);
+          folderElement.appendChild(em2);
 
-          String element3 ="E-mailAutor";
-          String data3 = m_utilizador.getM_strEmail();
+          String element3 ="author_email";
+          String data3 = e.getListaSubmissoes().get(i).getArtigo().getAutor("Sergio").getM_strEMail();
           Element em3 = document.createElement(element3);
           em3.appendChild(document.createTextNode(data3));
-          rootElement.appendChild(em3);
+          folderElement.appendChild(em3);
           
-          String element4 ="Decisao";
+             if(sub.getState() instanceof SubmissaoNotificadaAceiteState)
+             {
+          String element4 ="decision";
           String data4 = "Aceite";
           Element em4 = document.createElement(element4);
           em4.appendChild(document.createTextNode(data4));
-          rootElement.appendChild(em4);
+          folderElement.appendChild(em4);}
+             else
+                  {
+          String element4 ="decision";
+          String data4 = "Rejeitado";
+          Element em4 = document.createElement(element4);
+          em4.appendChild(document.createTextNode(data4));
+          folderElement.appendChild(em4);}
+   
+        }
+    }
+        
+         Element comentsElement= document.createElement(coments);
+         folderElement.appendChild(comentsElement);
+        
+        for (int i = 0; i < e.getCP().getListaRevisores().size(); i++) {
+       int a=i;
+         
+  
+          String element5 ="review_number";
+          String data5 = String.valueOf(a);
+          Element em5 = document.createElement(element5);
+          em5.appendChild(document.createTextNode(data5));
+          comentsElement.appendChild(em5);
           
-          
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+          String element6 ="review_comments";
+          String data6 = " Comentarios do revisor";
+          Element em6 = document.createElement(element6);
+          em6.appendChild(document.createTextNode(data6));
+          comentsElement.appendChild(em6);
+      } 
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
 
-            StreamResult result =  new StreamResult(new StringWriter());
-
+           StreamResult result =  new StreamResult(new File("notificationlist.xml"));
+            
           //t.setParameter(OutputKeys.INDENT, "yes");
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             transformer.setOutputProperty("{http://xml.apache.org}indent-amount", "5");
             transformer.transform(source, result);
-
-             
-          //writing to file
-          FileOutputStream fop = null;
-          File file;
-          
-          try {
-
-           
-                   if(valida())
-                   {
-                file = new File("Submissao.xml");
-                fop = new FileOutputStream(file);
-                   
-                // if file doesnt exists, then create it
-                if (!file.exists()) {
-                    file.createNewFile();
-                }
-               
-                   }
-             
-                // get the content in bytes
-                String xmlString = result.getWriter().toString();
-                System.out.println(xmlString);
-                byte[] contentInBytes = xmlString.getBytes();
-
-                fop.write(contentInBytes);
-                fop.flush();
-                fop.close();
-               
                 System.out.println("Done");
-               
-               return true;
-          
-            } catch (IOException e) {
-                e.printStackTrace();
-                return false;
-            } finally {
-                try {
-                    if (fop != null) {
-                        fop.close();
-                        return false;
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    return false;
-                }
-                
-                
-              
+     
             }
-    
- }
-
+// testa se o estado de submissao é notificado aceite
           public boolean valida()
                 {
-                  /*  e=new Evento();
-                    sub= new Submissao();
-                 if(e.getState() instanceof EventoDecididoState)
-                     if(sub.getState() instanceof SubmissaoNotificadaAceiteState)
+                     if(sub.getState() instanceof SubmissaoNotificadaAceiteState || sub.getState() instanceof SubmissaoRejeitadaState  )
                          return true;
-                 return false;*/
-                    return false;
+                 return false;
+                
                 }
-        
+
  }
 
