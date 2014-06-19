@@ -40,11 +40,10 @@ public class EventoDistribuidoState implements EventoState {
     }
 
     /**
-     * Faz o set do estado valida
+     * Valida
      * @return false
      */
     public boolean valida() {
-        // validação específica do estado CP Definida
         return true;
     }
 

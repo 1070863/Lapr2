@@ -10,9 +10,12 @@ import eventoscientificos.Artigo;
 import eventoscientificos.Distribuicao;
 import eventoscientificos.Empresa;
 import eventoscientificos.Evento;
+import eventoscientificos.Submissao;
 import java.util.ArrayList;
 import java.util.List;
 import states.EventoDistribuidoState;
+import states.EventoRevistoState;
+import states.SubmissaoRevistaState;
 
 /**
  *
@@ -23,6 +26,7 @@ public class RevisaoArtigoController {
     private Evento evento;
     private Artigo artigo;
     private List<Artigo> artigos;
+    private Submissao submissao;
 
     /**
      * Constroi uma instância de RevisaoArtigoController
@@ -83,11 +87,36 @@ public class RevisaoArtigoController {
         }
     }
     
+    /**
+     * Selecciona submissão
+     * @param artigo 
+     */
+    public void seleccionaSubmissao(Artigo artigo){
+        this.submissao =  this.m_empresa.getM_registoEventos().
+                getEvento(evento.getM_strTitulo()).getSubmissao(artigo); 
+    }
+    
     public boolean registaRevisao(String confianca, String adequacao, String originalidade,
-            String qualidade, String recomendacao, String texto){
+            String qualidade, boolean recomendacao, String texto){
         if(this.m_empresa.getM_registoEventos().getEvento(this.evento.
-                getM_strTitulo()).valida()){
+                getM_strTitulo()).getSubmissao(artigo).valida()){
             
+             for (Distribuicao distribuicao : this.m_empresa.getM_registoEventos().getEvento(evento.getM_strTitulo()).
+                    getProcessoDistribuicao().getM_listaDistribuicao()) {
+                 if(distribuicao.getM_artigo().equals(this.artigo)){
+                     distribuicao.setConfianca(confianca);
+                     distribuicao.setAdequacao(adequacao);
+                     distribuicao.setOriginalidade(originalidade);
+                     distribuicao.setQualidade(qualidade);
+                     distribuicao.setRecomendacao(recomendacao);
+                     distribuicao.setTextoJustificativo(texto);
+                     this.m_empresa.getM_registoEventos().getEvento(evento.getM_strTitulo()).
+                             getSubmissao(artigo).setState(new SubmissaoRevistaState(submissao));
+                     this.m_empresa.getM_registoEventos().getEvento(evento.getM_strTitulo()).
+                             setState(new EventoRevistoState(evento));
+                     return true;
+                 }
+             }
                     
         }
         return false;
