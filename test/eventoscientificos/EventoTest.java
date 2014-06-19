@@ -324,5 +324,288 @@ public class EventoTest {
         List<Topico> result = instance.getM_listaTopicos();
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of setTitulo method, of class Evento.
+     */
+    @Test
+    public void testSetTitulo() {
+        System.out.println("setTitulo");
+        String strTitulo = "";
+        Evento instance = new Evento();
+        instance.setTitulo(strTitulo);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setDescricao method, of class Evento.
+     */
+    @Test
+    public void testSetDescricao() {
+        System.out.println("setDescricao");
+        String strDescricao = "";
+        Evento instance = new Evento();
+        instance.setDescricao(strDescricao);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setDataInicio method, of class Evento.
+     */
+    @Test
+    public void testSetDataInicio() {
+        System.out.println("setDataInicio");
+        String strDataInicio = "";
+        Evento instance = new Evento();
+        instance.setDataInicio(strDataInicio);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setDataFim method, of class Evento.
+     */
+    @Test
+    public void testSetDataFim() {
+        System.out.println("setDataFim");
+        String strDataFim = "";
+        Evento instance = new Evento();
+        instance.setDataFim(strDataFim);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setDataLimiteSubmissão method, of class Evento.
+     */
+    @Test
+    public void testSetDataLimiteSubmissão() {
+        System.out.println("setDataLimiteSubmiss\u00e3o");
+        String strDataLimiteSubmissão = "";
+        Evento instance = new Evento();
+        instance.setDataLimiteSubmissão(strDataLimiteSubmissão);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setDataLimiteRevisao method, of class Evento.
+     */
+    @Test
+    public void testSetDataLimiteRevisao() {
+        System.out.println("setDataLimiteRevisao");
+        String dataLimiteRevisao = "";
+        Evento instance = new Evento();
+        instance.setDataLimiteRevisao(dataLimiteRevisao);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setLocal method, of class Evento.
+     */
+    @Test
+    public void testSetLocal() {
+        System.out.println("setLocal");
+        String strLocal = "";
+        Evento instance = new Evento();
+        instance.setLocal(strLocal);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setProcessoDistribuicao method, of class Evento.
+     */
+    @Test
+    public void testSetProcessoDistribuicao() {
+        System.out.println("setProcessoDistribuicao");
+        ProcessoDistribuicao pd = null;
+        Evento instance = new Evento();
+        instance.setProcessoDistribuicao(pd);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getListaOrganizadores method, of class Evento.
+     */
+    @Test
+    public void testGetListaOrganizadores() {
+        System.out.println("getListaOrganizadores");
+        Evento instance = new Evento();
+        List<Organizador> expResult = null;
+        List<Organizador> result = instance.getListaOrganizadores();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of valida method, of class Evento.
+     */
+    @Test
+    public void testValida() {
+        System.out.println("valida");
+        Evento instance = new Evento();
+        boolean expResult = false;
+        boolean result = instance.valida();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setCP method, of class Evento.
+     */
+    @Test
+    public void testSetCP() {
+        System.out.println("setCP");
+        CP cp = null;
+        Evento instance = new Evento();
+        instance.setCP(cp);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of aceitaSubmissoes method, of class Evento.
+     */
+    @Test
+    public void testAceitaSubmissoes() {
+        System.out.println("aceitaSubmissoes");
+        Evento instance = new Evento();
+        boolean expResult = false;
+        boolean result = instance.aceitaSubmissoes();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of novaSubmissao method, of class Evento.
+     */
+    @Test
+    public void testNovaSubmissao() {
+        System.out.println("novaSubmissao");
+        Evento instance = new Evento();
+        Submissao expResult = null;
+        Submissao result = instance.novaSubmissao();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of addSubmissao method, of class Evento.
+     */
+    @Test
+    public void testAddSubmissao() {
+        System.out.println("addSubmissao");
+        Submissao submissao = null;
+        Evento instance = new Evento();
+        boolean expResult = false;
+        boolean result = instance.addSubmissao(submissao);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getListaSubmissoes method, of class Evento.
+     */
+    @Test
+    public void testGetListaSubmissoes() {
+        System.out.println("getListaSubmissoes");
+        Evento instance = new Evento();
+        List<Submissao> expResult = null;
+        List<Submissao> result = instance.getListaSubmissoes();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setM_listaTopicos method, of class Evento.
+     */
+    @Test
+    public void testSetM_listaTopicos() {
+        System.out.println("setM_listaTopicos");
+        List<Topico> m_listaTopicos = null;
+        Evento instance = new Evento();
+        instance.setM_listaTopicos(m_listaTopicos);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setState method, of class Evento.
+     */
+    @Test
+    public void testSetState() {
+        System.out.println("setState");
+        EventoState state = null;
+        Evento instance = new Evento();
+        instance.setState(state);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setnMaxTopicos method, of class Evento.
+     */
+    @Test
+    public void testSetnMaxTopicos() {
+        System.out.println("setnMaxTopicos");
+        int nMaxTopicos = 0;
+        Evento instance = new Evento();
+        instance.setnMaxTopicos(nMaxTopicos);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setDataLimiteRegisto method, of class Evento.
+     */
+    @Test
+    public void testSetDataLimiteRegisto() {
+        System.out.println("setDataLimiteRegisto");
+        String dataLimiteRegisto = "";
+        Evento instance = new Evento();
+        instance.setDataLimiteRegisto(dataLimiteRegisto);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of hashCode method, of class Evento.
+     */
+    @Test
+    public void testHashCode() {
+        System.out.println("hashCode");
+        Evento instance = new Evento();
+        int expResult = 0;
+        int result = instance.hashCode();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getSubmissao method, of class Evento.
+     */
+    @Test
+    public void testGetSubmissao() {
+        System.out.println("getSubmissao");
+        Artigo artigo = null;
+        Evento instance = new Evento();
+        Submissao expResult = null;
+        Submissao result = instance.getSubmissao(artigo);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }
