@@ -106,17 +106,34 @@ public class ValorRegistoNoEvento {
     /**
      * Define a fórmula1 como a formula de pagamento a ser usada.
      *
+     * @param m_evento objeto do tipo Evento
      */
-    public void setPagamentoRegFormual1() {
-        this.pagamentoReg = new Formula1();
+    public void setPagamentoRegFormual1(Evento m_evento) {
+        this.pagamentoReg = new Formula1(m_evento);
     }
 
     /**
      * Define a fórmula1 como a formula de pagamento a ser usada.
      *
+     * @param m_evento objeto do tipo Evento
      */
-    public void setPagamentoRegFormual2() {
-        this.pagamentoReg = new Formula2();
+    public void setPagamentoRegFormual2(Evento m_evento) {
+        this.pagamentoReg = new Formula2(m_evento);
+    }
+
+    /**
+     * Reescrita do método toString da classe Object devolvendo informação
+     * relativa à classe.
+     *
+     * @return infromação dos preços dos artigos e da fórmula aplicada
+     */
+    @Override
+    public String toString() {
+        return "Valores de Registo no Evento:\n"
+                + "\n Preço Full Paper: " + getPriceFP()
+                + "\n Preço Short Paper:  " + getPriceSP()
+                + "\n Preço Poster Paper: " + getPricePP()
+                + "\n Fórmula de Cálculo: " + getPagamentoReg().getClass().getSimpleName();
     }
 
 }
