@@ -6,12 +6,16 @@
 
 package eventoscientificos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
-public class Autor 
+public class Autor implements Serializable
 {
+    private static final long serialVersionUID = 1L;
+    
     private Utilizador m_Utilizador;
     private String m_strNome;
     private String m_strAfiliacao;

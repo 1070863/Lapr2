@@ -1,11 +1,14 @@
 package eventoscientificos;
 
+import java.io.Serializable;
+
 /**
  * Classe responsável pela criação e gestão de um Organizador criando.
  *
  * @author Grupo 66 LPR2
  */
-public class Organizador {
+public class Organizador implements Serializable {
+private static final long serialVersionUID = 1L;
 
     /**
      * Atributos de instância.

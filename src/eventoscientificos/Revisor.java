@@ -1,5 +1,6 @@
 package eventoscientificos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,8 @@ import java.util.List;
  *
  * @author Grupo66 LAPR2
  */
-public class Revisor {
+public class Revisor implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Atributos de instância.

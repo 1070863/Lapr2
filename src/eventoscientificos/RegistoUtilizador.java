@@ -5,6 +5,7 @@
  */
 package eventoscientificos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,8 @@ import java.util.List;
 utilizadores a sua lista 
  * @author Pereira
  */
-public class RegistoUtilizador {
+public class RegistoUtilizador implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private List<Utilizador> m_listaUtilizadores;
 

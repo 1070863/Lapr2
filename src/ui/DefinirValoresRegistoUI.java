@@ -1,6 +1,6 @@
 package ui;
 
-import eventoscientificos.PrecoInvalidoException;
+import excecoes.PrecoInvalidoException;
 import controller.DefinirValoresRegistoController;
 import eventoscientificos.Empresa;
 import eventoscientificos.Evento;

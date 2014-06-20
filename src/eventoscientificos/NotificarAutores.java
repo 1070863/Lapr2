@@ -6,12 +6,9 @@
 
 package eventoscientificos;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.StringWriter;
+import java.io.Serializable;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -34,7 +31,10 @@ import states.*;
  * Esta classe apenas tem 2 métodos um para escrever e criar um ficheiro xml onde consta as informações relativas á revisão
  * e a sua decisão e outro que valida o estado da submissão
  */
-public class NotificarAutores  {
+public class NotificarAutores implements Serializable  
+{
+    private static final long serialVersionUID = 1L;
+    
   private Empresa empresa;
     private RegistoEventos re;
     private Utilizador u;

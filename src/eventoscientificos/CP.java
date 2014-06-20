@@ -1,5 +1,6 @@
 package eventoscientificos;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -8,8 +9,10 @@ import java.util.*;
  *
  * @author Grupo 66 LPR2
  */
-public class CP {
+public class CP implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    
     /**
      * Atributos de instância.
      */
