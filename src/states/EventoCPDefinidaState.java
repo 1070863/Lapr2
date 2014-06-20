@@ -1,15 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package states;
 
 import eventoscientificos.Evento;
 
 /**
+ * Esta classe gere o estado de um evento validando se o mesmo reune condições
+ * para passar do estado CP Definida a Distribuido.
  *
- * @author Pedro
+ * @author GRUPO66 LAPR2
  */
 public class EventoCPDefinidaState implements EventoState {
 
@@ -18,7 +15,7 @@ public class EventoCPDefinidaState implements EventoState {
     /**
      * Construtor de uma instância de EventoCPDefinidaState
      *
-     * @param e
+     * @param e objeto do tipo Evento
      */
     public EventoCPDefinidaState(Evento e) {
         this.m_e = e;
@@ -27,25 +24,25 @@ public class EventoCPDefinidaState implements EventoState {
     /**
      * Faz o set do estado criado
      *
-     * @return false
+     * @return false valor booleano falso
      */
-    public boolean SetCriado() {
+    public boolean setCriado() {
         return false;
     }
 
     /**
      * Faz o set do estado registado
      *
-     * @return false
+     * @return false valor booleano falso
      */
-    public boolean SetRegistado() {
+    public boolean setRegistado() {
         return false;
     }
 
     /**
      * Méodo para validar o EventState
      *
-     * @return boolean
+     * @return boolean 
      */
     public boolean valida() {
         // validação específica do estado CP Definida
@@ -54,6 +51,7 @@ public class EventoCPDefinidaState implements EventoState {
 
     /**
      * Faz o set do estado topicos definidos
+     *
      * @return false
      */
     public boolean setTopicosDefinidos() {
@@ -61,7 +59,8 @@ public class EventoCPDefinidaState implements EventoState {
     }
 
     /**
-     * Faz o set do estado CP definida 
+     * Faz o set do estado CP definida
+     *
      * @return false
      */
     public boolean setCPDefinida() {
@@ -69,7 +68,8 @@ public class EventoCPDefinidaState implements EventoState {
     }
 
     /**
-     * Faz o set do estado distribuido 
+     * Faz o set do estado distribuido
+     *
      * @return boolean
      */
     public boolean setDistribuido() {
@@ -82,7 +82,8 @@ public class EventoCPDefinidaState implements EventoState {
     }
 
     /**
-     * Faz o set do estado revisto 
+     * Faz o set do estado revisto
+     *
      * @return false
      */
     public boolean setRevisto() {
@@ -91,6 +92,7 @@ public class EventoCPDefinidaState implements EventoState {
 
     /**
      * Faz o set do estado decidido
+     *
      * @return false
      */
     public boolean setDecidido() {
@@ -99,6 +101,7 @@ public class EventoCPDefinidaState implements EventoState {
 
     /**
      * Faz o set do estado notificado
+     *
      * @return false
      */
     public boolean setNotificado() {
@@ -107,10 +110,20 @@ public class EventoCPDefinidaState implements EventoState {
 
     /**
      * Faz o set do estado camara ready
+     *
      * @return false
      */
     public boolean setCameraReady() {
         return false;
     }
 
+    /**
+     * Faz o set do estado valor registo definido
+     *
+     * @return false
+     */
+    @Override
+    public boolean setValorRegistoDefinido() {
+        return false;
+    }
 }

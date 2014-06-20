@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package states;
 
 import eventoscientificos.Evento;
@@ -12,7 +11,8 @@ import eventoscientificos.Evento;
  *
  * @author Pedro
  */
-public class EventoCameraReadyState implements EventoState{
+public class EventoCameraReadyState implements EventoState {
+
     Evento m_e;
 
     /**
@@ -21,26 +21,28 @@ public class EventoCameraReadyState implements EventoState{
     public EventoCameraReadyState(Evento m_e) {
         this.m_e = m_e;
     }
-    
+
     /**
-     * Faz o set do estado criado 
+     * Faz o set do estado criado
+     *
      * @return false
      */
-    public boolean SetCriado() {
+    public boolean setCriado() {
         return false;
     }
 
     /**
      * Faz o set do estado registado
+     *
      * @return false
      */
-    public boolean SetRegistado() {
+    public boolean setRegistado() {
         return false;
     }
 
-    
-/**
+    /**
      * Valida o EventoCameraReadyState
+     *
      * @return boolean
      */
     public boolean valida() {
@@ -50,6 +52,7 @@ public class EventoCameraReadyState implements EventoState{
 
     /**
      * Faz o set do estado tópicos definidos
+     *
      * @return false
      */
     public boolean setTopicosDefinidos() {
@@ -58,6 +61,7 @@ public class EventoCameraReadyState implements EventoState{
 
     /**
      * Faz o set do estado CP definida
+     *
      * @return false
      */
     public boolean setCPDefinida() {
@@ -66,6 +70,7 @@ public class EventoCameraReadyState implements EventoState{
 
     /**
      * Faz o set do estado distribuido
+     *
      * @return false
      */
     public boolean setDistribuido() {
@@ -74,6 +79,7 @@ public class EventoCameraReadyState implements EventoState{
 
     /**
      * Faz o set do estado revisto
+     *
      * @return false
      */
     public boolean setRevisto() {
@@ -82,6 +88,7 @@ public class EventoCameraReadyState implements EventoState{
 
     /**
      * Faz o set do estado decidido
+     *
      * @return false
      */
     public boolean setDecidido() {
@@ -90,6 +97,7 @@ public class EventoCameraReadyState implements EventoState{
 
     /**
      * Faz o set do estado notificado
+     *
      * @return false
      */
     public boolean setNotificado() {
@@ -98,9 +106,20 @@ public class EventoCameraReadyState implements EventoState{
 
     /**
      * Faz o set do estado CameraReady
+     *
      * @return false
      */
     public boolean setCameraReady() {
+        return false;
+    }
+
+    /**
+     * Faz o set do estado Valor Registo Definido.
+     *
+     * @return false
+     */
+    @Override
+    public boolean setValorRegistoDefinido() {
         return false;
     }
 }
