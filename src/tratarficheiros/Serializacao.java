@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 
-package eventoscientificos;
+package tratarficheiros;
 
+import eventoscientificos.Empresa;
+import eventoscientificos.RegistoEventos;
+import eventoscientificos.RegistoUtilizador;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
