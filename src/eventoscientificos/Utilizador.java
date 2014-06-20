@@ -1,5 +1,6 @@
 package eventoscientificos;
 
+import java.io.Serializable;
 import utils.Utils;
 
 /**
@@ -7,7 +8,8 @@ import utils.Utils;
  *
  * @author Grupo66 LAPR2
  */
-public final class Utilizador {
+public final class Utilizador implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Atributos de instância do Utilizador.

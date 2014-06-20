@@ -4,6 +4,7 @@
  */
 package eventoscientificos;
 
+import java.io.Serializable;
 import states.EventoState;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +17,10 @@ import states.SubmissaoArtigosParaRevisaoSubmetidosState;
  *
  * @author Nuno Silva
  */
-public class Evento {
+public class Evento implements Serializable{
 
+    private static final long serialVersionUID = 1L;
+    
     private String m_strTitulo;
     private String m_strDescricao;
     private Local m_local;

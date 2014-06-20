@@ -5,11 +5,13 @@
  */
 package eventoscientificos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Mecanismo1 implements MecanismoDistribuicao {
+public class Mecanismo1 implements MecanismoDistribuicao, Serializable {
+    private static final long serialVersionUID = 1L;
     
     List<Distribuicao> listaDistribuicaos;
     private final String nome = "Mecanismo1";

@@ -1,13 +1,16 @@
 package eventoscientificos;
 
+import java.io.Serializable;
+
 /**
  * Esta classe cria um objeto do tipo Local com os atributos local,cidade e
  * país.
  *
  * @author Grupo66 LAPR2
  */
-public class Local {
-
+public class Local implements Serializable{
+    private static final long serialVersionUID = 1L;
+    
     /**
      * Atributos de instância.
      */

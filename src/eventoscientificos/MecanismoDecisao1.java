@@ -6,13 +6,15 @@
 
 package eventoscientificos;
 
+import java.io.Serializable;
 import java.util.List;
 
 /** 
  *Mecanismo de decisao criado para decidir 
  * @author Pereira
  */
-public class MecanismoDecisao1 implements MecanismoDecisao{
+public class MecanismoDecisao1 implements MecanismoDecisao, Serializable{
+    private static final long serialVersionUID = 1L;
     
      private List<Distribuicao> listaDistribuicao;
      private Decisao decisao;

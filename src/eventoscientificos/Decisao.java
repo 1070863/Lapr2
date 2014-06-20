@@ -6,13 +6,16 @@
 
 package eventoscientificos;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author Pereira
  */
-public class Decisao {
+public class Decisao implements Serializable{
+    private static final long serialVersionUID = 1L;
+    
     /**
      * variaveis de instancia
     */

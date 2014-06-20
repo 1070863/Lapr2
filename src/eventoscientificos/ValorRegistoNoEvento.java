@@ -1,11 +1,14 @@
 package eventoscientificos;
 
+import java.io.Serializable;
+
 /**
  * Classe responsável por definir os valores de pagamento do registo no evento.
  *
  * @author GRUPO66 LAPR2
  */
-public class ValorRegistoNoEvento {
+public class ValorRegistoNoEvento implements Serializable{
+    private static final long serialVersionUID = 1L;
 
     /**
      * Variáveis de instância.

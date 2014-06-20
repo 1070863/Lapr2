@@ -1,6 +1,7 @@
 package eventoscientificos;
 
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -8,8 +9,10 @@ import java.util.*;
  * @author Nuno Silva
  */
 
-public class Empresa
+public class Empresa implements Serializable
 {
+    private static final long serialVersionUID = 1L;
+    
     private RegistoEventos m_registoEventos;
     private RegistoUtilizador m_registoUtilizador;
 

@@ -4,13 +4,15 @@
  */
 package eventoscientificos;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author iazevedo
  */
-public class Topico {
+public class Topico implements Serializable{
+    private static final long serialVersionUID = 1L;
 
     private String m_strDescricao;
 

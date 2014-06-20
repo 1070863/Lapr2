@@ -5,6 +5,7 @@
  */
 package eventoscientificos;
 
+import java.io.Serializable;
 import states.SubmissaoCriadaState;
 import states.SubmissaoState;
 
@@ -12,7 +13,8 @@ import states.SubmissaoState;
  *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
-public class Submissao {
+public class Submissao implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private Artigo m_artigo;
     

@@ -6,6 +6,7 @@
 
 package eventoscientificos;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,7 +14,8 @@ import java.util.Objects;
  *
  * @author Pereira
  */
-public class ProcessoDecisao {
+public class ProcessoDecisao implements Serializable{
+    private static final long serialVersionUID = 1L;
     
     private MecanismoDecisao mecanismoDecisao;
     private List<Decisao> m_listaDecisao;

@@ -1,13 +1,16 @@
 package eventoscientificos;
 
+import java.io.Serializable;
+
 /**
  * Classe que cálcula o pagamento a efetuar pelo autor de um artigo quando o
  * mesmo pretende efetuar o registo no Evento.
  *
  * @author GRUPO66 LAPR2
  */
-public class Formula2 implements Pagamento {
-
+public class Formula2 implements Pagamento, Serializable {
+    private static final long serialVersionUID = 1L;
+    
     Evento m_evento;
 
     /**
