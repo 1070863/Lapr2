@@ -32,7 +32,7 @@ import states.*;
  *
  * @author Pereira
  * Esta classe apenas tem 2 métodos um para escrever e criar um ficheiro xml onde consta as informações relativas á revisão
- * e a sua decisão e outo que valida o estado da submissão
+ * e a sua decisão e outro que valida o estado da submissão
  */
 public class NotificarAutores  {
   private Empresa empresa;
@@ -53,7 +53,14 @@ public class NotificarAutores  {
 //  private String nameFile= m_artigo.getTitulo();
   
   
-  
+  /**
+   * Recebe um evento e corre as listas de submissoes e de revisores da sua cp e 
+   * escreve o conteudo 
+   * @param e
+   * @throws TransformerException
+   * @throws ParserConfigurationException
+   * @throws IOException 
+   */
   
  public void NotificarAutores(Evento e) throws TransformerException, ParserConfigurationException, IOException {
       
@@ -153,7 +160,9 @@ public class NotificarAutores  {
                 System.out.println("Done");
      
             }
-// testa se o estado de submissao é notificado aceite
+/**
+ * testa se o estado de submissao é notificado aceite ou rejeitado
+ */
           public boolean valida()
                 {
                      if(sub.getState() instanceof SubmissaoNotificadaAceiteState || sub.getState() instanceof SubmissaoRejeitadaState  )
