@@ -131,9 +131,28 @@ public class ValorRegistoNoEvento {
     public String toString() {
         return "Valores de Registo no Evento:\n"
                 + "\n Preço Full Paper: " + getPriceFP()
-                + "\n Preço Short Paper:  " + getPriceSP()
+                + "\n Preço Short Paper: " + getPriceSP()
                 + "\n Preço Poster Paper: " + getPricePP()
                 + "\n Fórmula de Cálculo: " + getPagamentoReg().getClass().getSimpleName();
     }
 
+    /**
+     * Reescrita do método equals para a classe ValorRegistoNoEvento.
+     *
+     * @param obj objeto do tipo ValorRegistoNoEvento
+     * @return verdadeiro se igual e falso no caso contrário
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj instanceof ValorRegistoNoEvento) {
+            ValorRegistoNoEvento aux = (ValorRegistoNoEvento) obj;
+            if (this.priceFP == aux.getPriceFP() && this.pricePP == aux.getPricePP()
+                    && this.priceSP == aux.getPriceSP()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

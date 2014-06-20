@@ -10,6 +10,11 @@ public class Formula2 implements Pagamento {
 
     Evento m_evento;
 
+    /**
+     * Construtor completo quando é passado por atributo o objeto EVento.
+     *
+     * @param m_evento evento a implementar a formula 2
+     */
     Formula2(Evento m_evento) {
         this.m_evento = m_evento;
     }
@@ -45,9 +50,9 @@ public class Formula2 implements Pagamento {
      */
     private double condicao1(int numFP, int numPP, int numSP) {
         double total1 = numFP * this.m_evento.getM_registoNoEvento().getPriceFP();
-        double total2 = this.m_evento.getM_registoNoEvento().getPriceSP() * ((double)numSP - ((double)numFP / 2));
-        double total3 = this.m_evento.getM_registoNoEvento().getPricePP() * ((double)numPP - ((double)numFP / 2));
-        return total1+total2+total3;
+        double total2 = this.m_evento.getM_registoNoEvento().getPriceSP() * ((double) numSP - ((double) numFP / 2));
+        double total3 = this.m_evento.getM_registoNoEvento().getPricePP() * ((double) numPP - ((double) numFP / 2));
+        return total1 + total2 + total3;
     }
 
     /**
@@ -61,7 +66,7 @@ public class Formula2 implements Pagamento {
      */
     private double condicao2(int numFP, int numPP) {
         return this.m_evento.getM_registoNoEvento().getPriceFP() * numFP
-                + this.m_evento.getM_registoNoEvento().getPricePP() * (numPP - (numFP / 2));
+                + this.m_evento.getM_registoNoEvento().getPricePP() * ((double) numPP - ((double) numFP / 2));
     }
 
     /**
@@ -75,6 +80,6 @@ public class Formula2 implements Pagamento {
      */
     private double calculo3(int numFP, int numSP) {
         return this.m_evento.getM_registoNoEvento().getPriceFP() * numFP
-                + this.m_evento.getM_registoNoEvento().getPriceSP() * (numSP - (numFP / 2));
+                + this.m_evento.getM_registoNoEvento().getPriceSP() * ((double) numSP - ((double) numFP / 2));
     }
 }
