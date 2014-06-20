@@ -16,7 +16,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import states.EventoTopicosCriadosState;
+import states.EventoTopicosDefinidosState;
 
 /**
  * Classe de teste à classe CriarCPController.
@@ -167,7 +167,7 @@ public class CriarCPControllerTest {
     @Test
     public void testTermina() {
         System.out.println("termina");
-        this.m_evento.setState(new EventoTopicosCriadosState(this.m_evento));
+        this.m_evento.setState(new EventoTopicosDefinidosState(this.m_evento));
         this.m_cPController.selectEvento(this.m_evento);
         this.m_cPController.registaMembroCP(this.m_cPController.addMembroCP(this.m_utilizador.getM_strEmail()));
         this.m_cPController.setCP();
