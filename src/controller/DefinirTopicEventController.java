@@ -63,8 +63,8 @@ public class DefinirTopicEventController {
     }
 
     /**
-     * Procura o código do tópico ACM na lista de tópicos devolvendo verdadeiro
-     * se existe e falso se não existir.
+     * Procura o código do tópico ACM na lista de tópicos devolvendo uma String
+     * com o resulatdo da pesquisa
      *
      * @param codeACM código introduzido na UI
      * @return devolve o resultado da pesquisa
@@ -73,7 +73,8 @@ public class DefinirTopicEventController {
      * @throws IOException
      * @throws XPathExpressionException
      */
-    public String procurarTopicoACM(String codeACM) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
+    public String procurarTopicoACM(String codeACM) throws ParserConfigurationException,
+            SAXException, IOException, XPathExpressionException {
 
         String resultado = "";
         NodeList nodes = lerXML();
@@ -154,7 +155,7 @@ public class DefinirTopicEventController {
      * estados.
      */
     public boolean termina() {
-        return true;
+        return this.m_evento.getState().valida();
     }
 
     /**
