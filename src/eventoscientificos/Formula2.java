@@ -10,6 +10,10 @@ public class Formula2 implements Pagamento {
 
     Evento m_evento;
 
+    Formula2(Evento m_evento) {
+        this.m_evento = m_evento;
+    }
+
     /**
      * Reescrita do método abstrato calculaValor da interface Pagamento.
      *
@@ -40,9 +44,10 @@ public class Formula2 implements Pagamento {
      * @return valor total a pagar
      */
     private double condicao1(int numFP, int numPP, int numSP) {
-        return numFP * this.m_evento.getM_registoNoEvento().getPriceFP()
-                + this.m_evento.getM_registoNoEvento().getPriceSP() * (numSP - (numFP / 2))
-                + this.m_evento.getM_registoNoEvento().getPricePP() * (numPP - (numFP / 2));
+        double total1 = numFP * this.m_evento.getM_registoNoEvento().getPriceFP();
+        double total2 = this.m_evento.getM_registoNoEvento().getPriceSP() * ((double)numSP - ((double)numFP / 2));
+        double total3 = this.m_evento.getM_registoNoEvento().getPricePP() * ((double)numPP - ((double)numFP / 2));
+        return total1+total2+total3;
     }
 
     /**
@@ -70,6 +75,6 @@ public class Formula2 implements Pagamento {
      */
     private double calculo3(int numFP, int numSP) {
         return this.m_evento.getM_registoNoEvento().getPriceFP() * numFP
-                    + this.m_evento.getM_registoNoEvento().getPriceSP() * (numSP - (numFP / 2));
+                + this.m_evento.getM_registoNoEvento().getPriceSP() * (numSP - (numFP / 2));
     }
 }
