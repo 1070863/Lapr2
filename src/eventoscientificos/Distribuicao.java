@@ -6,6 +6,7 @@
 
 package eventoscientificos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,9 @@ import java.util.List;
  *
  * @author Lopes
  */
-public class Distribuicao {
+public class Distribuicao implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
     
   /**
      * Variáveis de instância

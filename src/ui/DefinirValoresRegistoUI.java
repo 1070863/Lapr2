@@ -8,7 +8,6 @@ import java.util.List;
 import javax.security.auth.callback.ConfirmationCallback;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
-import javax.swing.JRadioButton;
 
 /**
  * Janela de interface gráfica para a definição de preço de registos no evento.
