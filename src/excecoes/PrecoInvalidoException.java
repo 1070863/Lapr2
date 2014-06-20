@@ -1,4 +1,4 @@
-package eventoscientificos;
+package excecoes;
 
 import java.io.Serializable;
 
