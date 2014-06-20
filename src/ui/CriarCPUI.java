@@ -216,10 +216,10 @@ public class CriarCPUI extends javax.swing.JDialog {
             }
 
             m_controllerCCP.setListaTopicosRevisor(r, lsTopicos);
-            r.setM_listaTopicos(jlTopicosEvento.getSelectedValuesList());
+            this.r.setM_listaTopicos(jlTopicosEvento.getSelectedValuesList());
             JOptionPane.showMessageDialog(null, "Tópicos de Perícia adicionados.");
-            jlTopicosEvento.clearSelection();
-            jtfNomeRevisor.setText("");
+            this.jlTopicosEvento.clearSelection();
+            this.jtfNomeRevisor.setText("");
         }
     }//GEN-LAST:event_btnSetTopicosPericiaActionPerformed
 
@@ -318,8 +318,8 @@ public class CriarCPUI extends javax.swing.JDialog {
      */
     public void inicializa(String strId) {
         List<Evento> le = this.m_controllerCCP.getEventosOrganizador(strId);
-        eventoSelected = apresentaEventosOrganizador(le);
-        m_controllerCCP.selectEvento(eventoSelected);
+        this.eventoSelected = apresentaEventosOrganizador(le);
+        this.m_controllerCCP.selectEvento(eventoSelected);
     }
 
     /**
