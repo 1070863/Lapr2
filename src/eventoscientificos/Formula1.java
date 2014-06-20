@@ -8,7 +8,11 @@ package eventoscientificos;
  */
 public class Formula1 implements Pagamento {
 
-    Evento m_evento;
+    private Evento m_evento;
+
+    public Formula1(Evento m_evento) {
+        this.m_evento = m_evento;
+    }
 
     /**
      * Reescrita do método abstrato calculaValor da interface Pagamento.
