@@ -97,7 +97,6 @@ public class CriarCPControllerTest {
         List<Topico> expResult = this.m_listTopicos;
         List<Topico> result = this.m_evento.getTopicos();
         assertEquals(expResult, result);
-
     }
 
     /**
@@ -141,7 +140,6 @@ public class CriarCPControllerTest {
     @Test
     public void testSetListaTopicosRevisor() {
         System.out.println("setListaTopicosRevisor");
-
         this.m_cPController.setListaTopicosRevisor(this.m_revisor, this.m_listTopicos);
         List<Topico> expResult = this.m_listTopicos;
         List<Topico> result = this.m_revisor.getM_listaTopicos();
