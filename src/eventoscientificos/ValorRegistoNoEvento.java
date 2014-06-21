@@ -17,7 +17,7 @@ public class ValorRegistoNoEvento implements Serializable{
     private double pricePP;
     private double priceSP;
 
-    private Pagamento pagamentoReg;
+    private FormulaCalculo pagamentoReg;
 
     /**
      * Construtor completo iniciado quando todos os atributos são passados como
@@ -28,7 +28,7 @@ public class ValorRegistoNoEvento implements Serializable{
      * @param priceSP preço de um Short Paper
      * @param pagamentoReg fórmula a ser usada no pagamento do registo
      */
-    public ValorRegistoNoEvento(double priceFP, double pricePP, double priceSP, Pagamento pagamentoReg) {
+    public ValorRegistoNoEvento(double priceFP, double pricePP, double priceSP, FormulaCalculo pagamentoReg) {
         this.priceFP = priceFP;
         this.pricePP = pricePP;
         this.priceSP = priceSP;
@@ -102,7 +102,7 @@ public class ValorRegistoNoEvento implements Serializable{
      *
      * @return fórmula de pagamento
      */
-    public Pagamento getPagamentoReg() {
+    public FormulaCalculo getPagamentoReg() {
         return pagamentoReg;
     }
 
@@ -112,7 +112,7 @@ public class ValorRegistoNoEvento implements Serializable{
      * @param m_evento objeto do tipo Evento
      */
     public void setPagamentoRegFormual1(Evento m_evento) {
-        this.pagamentoReg = new Formula1(m_evento);
+        this.pagamentoReg = new Formula1(this);
     }
 
     /**
@@ -121,7 +121,7 @@ public class ValorRegistoNoEvento implements Serializable{
      * @param m_evento objeto do tipo Evento
      */
     public void setPagamentoRegFormual2(Evento m_evento) {
-        this.pagamentoReg = new Formula2(m_evento);
+        this.pagamentoReg = new Formula2(this);
     }
 
     /**
