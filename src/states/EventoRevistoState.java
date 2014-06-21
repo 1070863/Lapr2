@@ -7,12 +7,13 @@
 package states;
 
 import eventoscientificos.Evento;
+import java.io.Serializable;
 
 /**
  *
  * @author Pedro
  */
-public class EventoRevistoState implements EventoState{
+public class EventoRevistoState implements EventoState, Serializable{
     Evento m_e;
 
     public EventoRevistoState(Evento m_e) {

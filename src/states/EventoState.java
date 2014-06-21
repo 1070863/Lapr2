@@ -6,6 +6,8 @@
 
 package states;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Pedro
