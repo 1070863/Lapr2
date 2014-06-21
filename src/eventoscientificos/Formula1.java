@@ -8,17 +8,18 @@ import java.io.Serializable;
  *
  * @author GRUPO66 LAPR2
  */
-public class Formula1 implements Pagamento, Serializable {
+public class Formula1 implements FormulaCalculo, Serializable {
+
     private static final long serialVersionUID = 1L;
 
-    private Evento m_evento;
+    private ValorRegistoNoEvento m_valor;
 
-    public Formula1(Evento m_evento) {
-        this.m_evento = m_evento;
+    public Formula1(ValorRegistoNoEvento m_valor) {
+        this.m_valor = m_valor;
     }
 
     /**
-     * Reescrita do método abstrato calculaValor da interface Pagamento.
+     * Reescrita do método abstrato calculaValor da interface FormulaCalculo.
      *
      * @param numFP numero de Full Pappers a pagar
      * @param numPP numero de Poster Papers a pagar
@@ -28,9 +29,9 @@ public class Formula1 implements Pagamento, Serializable {
     @Override
     public double calculaValor(int numFP, int numPP, int numSP) {
         double total = 0;
-        total += numFP * this.m_evento.getM_registoNoEvento().getPriceFP()
-                + numSP * this.m_evento.getM_registoNoEvento().getPriceSP()
-                + numPP * this.m_evento.getM_registoNoEvento().getPricePP();
+        total += numFP * this.m_valor.getPriceFP()
+                + numSP * this.m_valor.getPriceSP()
+                + numPP * this.m_valor.getPricePP();
         return total;
     }
 }

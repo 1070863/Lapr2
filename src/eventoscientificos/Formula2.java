@@ -8,22 +8,23 @@ import java.io.Serializable;
  *
  * @author GRUPO66 LAPR2
  */
-public class Formula2 implements Pagamento, Serializable {
+public class Formula2 implements FormulaCalculo, Serializable {
+
     private static final long serialVersionUID = 1L;
-    
-    Evento m_evento;
+
+    private ValorRegistoNoEvento m_valor;
 
     /**
      * Construtor completo quando é passado por atributo o objeto EVento.
      *
      * @param m_evento evento a implementar a formula 2
      */
-    Formula2(Evento m_evento) {
-        this.m_evento = m_evento;
+    Formula2(ValorRegistoNoEvento m_valor) {
+        this.m_valor = m_valor;
     }
 
     /**
-     * Reescrita do método abstrato calculaValor da interface Pagamento.
+     * Reescrita do método abstrato calculaValor da interface FormulaCalculo.
      *
      * @param numFP numero de Full Pappers a pagar
      * @param numPP numero de Poster Papers a pagar
@@ -52,9 +53,9 @@ public class Formula2 implements Pagamento, Serializable {
      * @return valor total a pagar
      */
     private double condicao1(int numFP, int numPP, int numSP) {
-        double total1 = numFP * this.m_evento.getM_registoNoEvento().getPriceFP();
-        double total2 = this.m_evento.getM_registoNoEvento().getPriceSP() * ((double) numSP - ((double) numFP / 2));
-        double total3 = this.m_evento.getM_registoNoEvento().getPricePP() * ((double) numPP - ((double) numFP / 2));
+        double total1 = numFP * this.m_valor.getPriceFP();
+        double total2 = this.m_valor.getPriceSP() * ((double) numSP - ((double) numFP / 2));
+        double total3 = this.m_valor.getPricePP() * ((double) numPP - ((double) numFP / 2));
         return total1 + total2 + total3;
     }
 
@@ -68,8 +69,8 @@ public class Formula2 implements Pagamento, Serializable {
      * @return valor total a pagar
      */
     private double condicao2(int numFP, int numPP) {
-        return this.m_evento.getM_registoNoEvento().getPriceFP() * numFP
-                + this.m_evento.getM_registoNoEvento().getPricePP() * ((double) numPP - ((double) numFP / 2));
+        return this.m_valor.getPriceSP() * numFP
+                + this.m_valor.getPriceSP() * ((double) numPP - ((double) numFP / 2));
     }
 
     /**
@@ -82,7 +83,7 @@ public class Formula2 implements Pagamento, Serializable {
      * @return valor total a pagar
      */
     private double calculo3(int numFP, int numSP) {
-        return this.m_evento.getM_registoNoEvento().getPriceFP() * numFP
-                + this.m_evento.getM_registoNoEvento().getPriceSP() * ((double) numSP - ((double) numFP / 2));
+        return this.m_valor.getPriceSP() * numFP
+                + this.m_valor.getPriceSP() * ((double) numSP - ((double) numFP / 2));
     }
 }
