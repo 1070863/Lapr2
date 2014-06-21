@@ -80,7 +80,7 @@ public class ValorRegistoNoEventoTest {
     }
 
     /**
-     * Test of setPagamentoRegFormual1 method, of class ValorRegistoNoEvento.
+     * Test of setFormulaCalculoRegFormual1 method, of class ValorRegistoNoEvento.
      */
     @Test
     public void testSetPagamentoRegFormual1() {
@@ -95,7 +95,7 @@ public class ValorRegistoNoEventoTest {
     }
 
     /**
-     * Test of setPagamentoRegFormual2 method, of class ValorRegistoNoEvento.
+     * Test of setFormulaCalculoRegFormual2 method, of class ValorRegistoNoEvento.
      */
     @Test
     public void testSetPagamentoRegFormual2() {

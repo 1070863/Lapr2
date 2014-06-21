@@ -8,7 +8,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Classe de teste à classe Formula1 que implementa a interface Pagamento.
+ * Classe de teste à classe Formula1 que implementa a interface FormulaCalculo.
  *
  * @author GRUPO66 LAPR2
  */
