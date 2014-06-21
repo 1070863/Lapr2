@@ -189,11 +189,11 @@ public class ArtigoTest {
     @Test
     public void testSetResumo() {
         System.out.println("setResumo");
-        String strResumo = "";
+        String expResult = "Resumo";
         Artigo instance = new Artigo();
-        instance.setResumo(strResumo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.setResumo(expResult);
+        String result = instance.getResumo();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -202,14 +202,14 @@ public class ArtigoTest {
     @Test
     public void testNovoAutor_String_String() {
         System.out.println("novoAutor");
-        String strNome = "";
-        String strAfiliacao = "";
+        String strNome = "autor1";
+        String strAfiliacao = "ISEP";
         Artigo instance = new Artigo();
-        Autor expResult = null;
+        Autor expResult = new Autor();
+        expResult.setNome(strNome);
+        expResult.setAfiliacao(strAfiliacao);
         Autor result = instance.novoAutor(strNome, strAfiliacao);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
