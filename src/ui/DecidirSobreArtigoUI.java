@@ -220,6 +220,7 @@ public class DecidirSobreArtigoUI extends javax.swing.JDialog {
                     jcMecanismos.addItem(MecanismoDecisao.getNome());
                 }
                
+                jPanelEvento.setVisible(false);
                 jPanelMecanismo.setVisible(true);
             }
         } else {
