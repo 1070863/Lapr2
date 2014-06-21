@@ -155,7 +155,7 @@ public class DefinirTopicEventController {
      * estados.
      */
     public boolean termina() {
-        return this.m_evento.getState().valida();
+        return this.m_evento.getState().setTopicosDefinidos();
     }
 
     /**

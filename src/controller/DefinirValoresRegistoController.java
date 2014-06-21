@@ -100,6 +100,6 @@ public class DefinirValoresRegistoController {
      * estados.
      */
     public boolean termina() {
-        return this.m_evento.getState().valida();
+        return this.m_evento.getState().setValorRegistoDefinido();
     }
 }
