@@ -37,6 +37,7 @@ public class Evento implements Serializable{
     private String dataLimiteRegisto;
     private ProcessoDistribuicao processoDistribuicao;
     private ValorRegistoNoEvento m_registoNoEvento;
+    private RegistoNoEvento m_registoNoEvento;
     private ProcessoDecisao m_processoDecisao;
 
     public Evento() {
