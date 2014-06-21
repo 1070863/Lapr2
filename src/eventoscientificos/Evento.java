@@ -36,7 +36,7 @@ public class Evento implements Serializable{
     private int nMaxTopicos;
     private String dataLimiteRegisto;
     private ProcessoDistribuicao processoDistribuicao;
-    private ValorRegistoNoEvento m_registoNoEvento;
+    private ValorRegistoNoEvento m_valorRegistoNoEvento;
     private RegistoNoEvento m_registoNoEvento;
     private ProcessoDecisao m_processoDecisao;
 
@@ -58,11 +58,11 @@ public class Evento implements Serializable{
     }
     
     public ValorRegistoNoEvento definirValorRegisto() {
-        return this.m_registoNoEvento = new ValorRegistoNoEvento();
+        return this.m_valorRegistoNoEvento = new ValorRegistoNoEvento();
      }
     
     public ValorRegistoNoEvento getM_registoNoEvento() {
-        return m_registoNoEvento;
+        return m_valorRegistoNoEvento;
     }
 
     public CP novaCP() {
