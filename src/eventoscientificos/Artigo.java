@@ -13,10 +13,9 @@ import java.util.List;
  *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
-public class Artigo implements Serializable{
-    
+public class Artigo implements Serializable {
     private static final long serialVersionUID = 1L;
-
+    
     private String m_strTitulo;
     private String m_strResumo;
     private List<Autor> m_listaAutores;
@@ -24,23 +23,6 @@ public class Artigo implements Serializable{
     private String m_strFicheiro;
     private List<Topico> m_listaTopicos;
     private String tipo;
-    
-    /**
-     * confianca: confiança do revisor no tópico do artigo
-     * adequacao: Adequação ao evento
-     * originalidade: originalidade do artigo
-     * qualidade: qualidade de apresentação
-     * recomendacao: recomendação global aceite/rejeitado
-     */
-    private String confianca;
-    private String adequacao;
-    private String originalidade;
-    private String qualidade;
-    private boolean recomendacao;
-    /**
-     * textoJustificativo: texto justificativo da revisão
-     */
-    private String textoJustificativo;
 
     public String getTipo() {
         return tipo;
@@ -262,101 +244,5 @@ public class Artigo implements Serializable{
         hash = 19 * hash + (this.m_strTitulo != null ? this.m_strTitulo.hashCode() : 0);
         hash = 19 * hash + (this.m_strResumo != null ? this.m_strResumo.hashCode() : 0);
         return hash;
-    }
-    
-    /**
-     * Retorna a confiança do revisor nos tópicos do artigo
-     * @return confianca
-     */
-    public String getConfianca() {
-        return confianca;
-    }
-
-    /**
-     * Altera a confiança do revisor nos tópicos do artigo
-     * @param confianca 
-     */
-    public void setConfianca(String confianca) {
-        this.confianca = confianca;
-    }
-
-    /**
-     * Retorna a adequação ao evento
-     * @return adequacao
-     */
-    public String getAdequacao() {
-        return adequacao;
-    }
-
-    /**
-     * Atribui a adequação ao evento
-     * @param adequacao 
-     */
-    public void setAdequacao(String adequacao) {
-        this.adequacao = adequacao;
-    }
-
-    /**
-     * Retorna a originalidade
-     * @return originalidade
-     */
-    public String getOriginalidade() {
-        return originalidade;
-    }
-
-    /**
-     * Atribui a originalidade
-     * @param originalidade 
-     */
-    public void setOriginalidade(String originalidade) {
-        this.originalidade = originalidade;
-    }
-
-    /**
-     * Retorna a qualidade
-     * @return qualidade
-     */
-    public String getQualidade() {
-        return qualidade;
-    }
-
-    /**
-     * Atribui a qualidade 
-     * @param qualidade 
-     */
-    public void setQualidade(String qualidade) {
-        this.qualidade = qualidade;
-    }
-
-    /**
-     * Retorna a recomendação
-     * @return recomendacao
-     */
-    public boolean getRecomendacao() {
-        return recomendacao;
-    }
-
-    /**
-     * Atribui a recomendação
-     * @param recomendacao 
-     */
-    public void setRecomendacao(boolean recomendacao) {
-        this.recomendacao = recomendacao;
-    }
-
-    /**
-     * Retorna o texto justificativo
-     * @return textoJustificativo
-     */
-    public String getTextoJustificativo() {
-        return textoJustificativo;
-    }
-
-    /**
-     * Atribui o texto justificativo
-     * @param textoJustificativo 
-     */
-    public void setTextoJustificativo(String textoJustificativo) {
-        this.textoJustificativo = textoJustificativo;
     }
 }

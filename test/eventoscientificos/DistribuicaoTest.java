@@ -76,5 +76,83 @@ public class DistribuicaoTest {
         Artigo result = instance.getM_artigo();
         assertEquals(expResult, result);
     }   
+    
+    /**
+     * Test of getConfianca method, of class Revisor.
+     */
+    @Test
+    public void testGetConfianca() {
+        System.out.println("getConfianca");
+        Distribuicao instance = new Distribuicao();
+        String expResult = "0";
+        instance.setConfianca(expResult);
+        String result = instance.getConfianca();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getAdequacao method, of class Revisor.
+     */
+    @Test
+    public void testGetAdequacao() {
+        System.out.println("getAdequacao");
+        Distribuicao instance = new Distribuicao();
+        String expResult = "1";
+        instance.setAdequacao(expResult);
+        String result = instance.getAdequacao();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getOriginalidade method, of class Revisor.
+     */
+    @Test
+    public void testGetOriginalidade() {
+        System.out.println("getOriginalidade");
+        Distribuicao instance = new Distribuicao();
+        String expResult = "2";
+        instance.setOriginalidade(expResult);
+        String result = instance.getOriginalidade();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getQualidade method, of class Revisor.
+     */
+    @Test
+    public void testGetQualidade() {
+        System.out.println("getQualidade");
+        Distribuicao instance = new Distribuicao();
+        String expResult = "3";
+        instance.setQualidade(expResult);
+        String result = instance.getQualidade();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getRecomendacao method, of class Revisor.
+     */
+    @Test
+    public void testGetRecomendacao() {
+        System.out.println("getRecomendacao");
+        Distribuicao instance = new Distribuicao();
+        boolean expResult = true;
+        instance.setRecomendacao(expResult);
+        boolean result = instance.getRecomendacao();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getTextoJustificativo method, of class Revisor.
+     */
+    @Test
+    public void testGetTextoJustificativo() {
+        System.out.println("getTextoJustificativo");
+        Distribuicao instance = new Distribuicao();
+        String expResult = "Teste texto";
+        instance.setTextoJustificativo(expResult);
+        String result = instance.getTextoJustificativo();
+        assertEquals(expResult, result);
+    }
 
 }
