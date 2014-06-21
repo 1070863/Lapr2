@@ -26,7 +26,7 @@ public class Evento implements Serializable{
     private Local m_local;
     private String m_strDataInicio;
     private String m_strDataFim;
-    private String m_strDataLimiteSubmissão;
+    private String m_strDataLimiteSubmissao;
     private List<Organizador> m_listaOrganizadores;
     private List<Submissao> m_listaSubmissoes;
     private CP m_cp;
@@ -37,8 +37,9 @@ public class Evento implements Serializable{
     private String dataLimiteRegisto;
     private ProcessoDistribuicao processoDistribuicao;
     private ValorRegistoNoEvento m_valorRegistoNoEvento;
-    private RegistoNoEvento m_registoNoEvento;
+//    private RegistoNoEvento m_registoNoEvento;
     private ProcessoDecisao m_processoDecisao;
+    private String m_strDataLimiteSubmissaoFinal;
 
     public Evento() {
         m_local = new Local();
@@ -88,8 +89,8 @@ public class Evento implements Serializable{
     }
 
     // adicionada na iteração 2
-    public void setDataLimiteSubmissão(String strDataLimiteSubmissão) {
-        this.m_strDataLimiteSubmissão = strDataLimiteSubmissão;
+    public void setDataLimiteSubmissao(String strDataLimiteSubmissao) {
+        this.m_strDataLimiteSubmissao = strDataLimiteSubmissao;
     }
 
     public String getDataLimiteRevisao() {
@@ -102,6 +103,22 @@ public class Evento implements Serializable{
 
     public void setLocal(String strLocal) {
         this.m_local.setM_strLocal(strLocal);;
+    }
+    
+    public void setCidade(String strCidade) {
+        this.m_local.setM_strCidade(strCidade);
+    }
+
+    public void setPais(String strPais) {
+        this.m_local.setM_strPais(strPais);
+    }
+    
+    public String getDataLimiteSubmissaoFinal() {
+        return m_strDataLimiteSubmissaoFinal;
+    }
+
+    public void setDataLimiteSubmissaoFinal(String m_strDataLimiteSubmissaoFinal) {
+        this.m_strDataLimiteSubmissaoFinal = m_strDataLimiteSubmissaoFinal;
     }
 
 
@@ -158,11 +175,6 @@ public class Evento implements Serializable{
 
     public void setCP(CP cp) {
         m_cp = cp;
-    }
-
-    @Override
-    public String toString() {
-        return this.m_strTitulo + "+ ...";
     }
 
     public boolean aceitaSubmissoes() {
@@ -349,6 +361,21 @@ public class Evento implements Serializable{
                 return submissao;
         }
         return null;
+    }
+    
+        @Override
+    public String toString() {
+        return "Titulo:" + m_strTitulo
+                + "\n Descricao:" + m_strDescricao
+                + "\n Local:" + m_local.toString()
+                + "\n DataInicio:" + m_strDataInicio
+                + "\n DataFim:" + m_strDataFim
+                + "\n DataLimiteSubmissão:" + m_strDataLimiteSubmissao
+                + "\n DataLimiteRevisão:" + dataLimiteRevisao
+                + "\n DataLimiteRegisto:" + dataLimiteRegisto
+                + "\n DataLimiteSubmissaoFinal:" + m_strDataLimiteSubmissaoFinal
+                + "\n ListaOrganizadores:" + m_listaOrganizadores
+                + "\n Numero máximo de topicos:" + nMaxTopicos;
     }
 
 }

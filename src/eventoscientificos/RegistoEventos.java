@@ -15,9 +15,11 @@ public class RegistoEventos implements Serializable{
     private List<MecanismoDistribuicao> m_listaMecanismoDistribuicao;
     private MecanismoDistribuicao m_MecanismoDistribuicao;
     private List<MecanismoDecisao> m_listaMecanismoDecisao;
+    private List<Evento> listaEventosCorrigir;
 
     public RegistoEventos(Empresa empresa) {
         this.m_listaEventos = new ArrayList<>();
+        this.listaEventosCorrigir = new ArrayList<>();
         this.m_empresa = empresa;
     }
 
@@ -147,7 +149,17 @@ public class RegistoEventos implements Serializable{
         if (!Objects.equals(this.m_listaEventos, other.m_listaEventos)) {
             return false;
         }
+        if (!Objects.equals(this.listaEventosCorrigir, other.listaEventosCorrigir)) {
+            return false;
+        }
         return true;
     }
+    
+       public List<Evento> getListaEventosCorrigir() {
+        return this.listaEventosCorrigir;
+    }
 
+    public void setListaEventosCorrigir(List<Evento> listaEventosCorrigir) {
+        this.listaEventosCorrigir = listaEventosCorrigir;
+    }
 }

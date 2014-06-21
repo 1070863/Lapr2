@@ -378,14 +378,14 @@ public class EventoTest {
     }
 
     /**
-     * Test of setDataLimiteSubmissão method, of class Evento.
+     * Test of setDataLimiteSubmissao method, of class Evento.
      */
     @Test
     public void testSetDataLimiteSubmissão() {
         System.out.println("setDataLimiteSubmiss\u00e3o");
         String strDataLimiteSubmissão = "";
         Evento instance = new Evento();
-        instance.setDataLimiteSubmissão(strDataLimiteSubmissão);
+        instance.setDataLimiteSubmissao(strDataLimiteSubmissão);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

@@ -56,7 +56,7 @@ public class CriarEventoCientificoController
 
     public void setDataLimiteSubmissão(String strDataLimiteSubmissão)
     {
-        m_evento.setDataLimiteSubmissão(strDataLimiteSubmissão);
+        m_evento.setDataLimiteSubmissao(strDataLimiteSubmissão);
     }
     
     public void setDataLimiteRevisao(String strDataLimiteRevisao) {

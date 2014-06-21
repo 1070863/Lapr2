@@ -17,6 +17,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.KeyStroke;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 import tratarficheiros.Serializacao;
 
 /**
@@ -84,12 +86,12 @@ public class MenuUI extends JFrame {
             Serializacao guardarFicheiro = new Serializacao(m_empresa);
             try {
                 guardarFicheiro.escreverDadosFicheiro();
-                            dispose();
+                dispose();
 
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Ocorreu um erro ao guardar os dados!",
                         "Impossivel guardar os dados!", JOptionPane.ERROR_MESSAGE);
-                            dispose();
+                dispose();
 
             }
         }
@@ -140,7 +142,14 @@ public class MenuUI extends JFrame {
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                CarregarEventosUI carEv = new CarregarEventosUI(m_empresa);
+                try {
+                    carEv.run();
+                } catch (ParserConfigurationException ex) {
+                    //joption
+                } catch (SAXException ex) {
+                    //joption
+                }
             }
         }
         );
@@ -271,8 +280,8 @@ public class MenuUI extends JFrame {
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-        DecidirSobreArtigoUI dialog = new DecidirSobreArtigoUI(new javax.swing.JFrame(), true, m_empresa);
-        dialog.run();
+                DecidirSobreArtigoUI dialog = new DecidirSobreArtigoUI(new javax.swing.JFrame(), true, m_empresa);
+                dialog.run();
             }
         }
         );

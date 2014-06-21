@@ -6,7 +6,7 @@
 
 package eventoscientificos;
 
-import tratarficheiros.LerFicheiroEventoXML;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -23,6 +23,7 @@ public class LerFicheiroEventoXMLTest {
     private static Empresa empresa;
     private static RegistoUtilizador registoUtilizador;
     private static RegistoEventos registoEventos;
+    private LerFicheiroEventoXML instance;
     
     
     public LerFicheiroEventoXMLTest() {
@@ -65,15 +66,12 @@ public class LerFicheiroEventoXMLTest {
     @Test
     public void testLerEventosXML() throws Exception {
         System.out.println("lerEventosXML");
-        RegistoEventos expResult = empresa.getM_registoEventos();
-        
-        Empresa resultado = new Empresa();
-        LerFicheiroEventoXML instance = new LerFicheiroEventoXML("EventList_teste.xml", resultado);
-        instance.lerEventosXML();
-        
-        assertEquals(expResult, resultado.getM_registoEventos());
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        String expResult = empresa.getM_registoEventos().getEvento("2013 Latin American Regional CDIO Meeting").getM_strDataInicio();      
+        Empresa empresa2 = new Empresa();
+        instance.LerFicheiro("EventList_teste.xml", empresa2);
+        String resultado = instance.getListaEventosProvisoria().get(0).getM_strDataInicio();
+        assertEquals(expResult, resultado);
+
     }
     
 }
