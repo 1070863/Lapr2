@@ -7,6 +7,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,6 +17,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.KeyStroke;
+import tratarficheiros.Serializacao;
 
 /**
  * Cria a janela principal da aplicação aonde estarão disponíveis todas as
@@ -79,7 +81,17 @@ public class MenuUI extends JFrame {
 
         final int SIM = 0;
         if (resposta == SIM) {
-            dispose();
+            Serializacao guardarFicheiro = new Serializacao(m_empresa);
+            try {
+                guardarFicheiro.escreverDadosFicheiro();
+                            dispose();
+
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Ocorreu um erro ao guardar os dados!",
+                        "Impossivel guardar os dados!", JOptionPane.ERROR_MESSAGE);
+                            dispose();
+
+            }
         }
     }
 //MENU ADMINISTRADOR

@@ -1,29 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package states;
 
 import eventoscientificos.Evento;
-import java.io.Serializable;
 
 /**
+ * Esta classe gere o estado de um evento validando se o mesmo reune condições
+ * para passar do estado Tópicos Definidos a CP Definida.
  *
- * @author Pedro
+ * @author GRUPO66 LAPR2
  */
-public class EventoCameraReadyState implements EventoState, Serializable{
+public class EventoTopicosDefinidosState implements EventoState {
+
     Evento m_e;
 
     /**
-     * Cria uma instância de EventoCamaraReadyState
+     * Cria uma instância de EventoCriadoState
+     *
+     * @param e objeto do tipo Evento
      */
-    public EventoCameraReadyState(Evento m_e) {
-        this.m_e = m_e;
+    public EventoTopicosDefinidosState(Evento e) {
+        m_e = e;
     }
 
     /**
-     * Faz o set do estado criado
+     * Faz o set do estado criado.
      *
      * @return false
      */
@@ -32,7 +31,7 @@ public class EventoCameraReadyState implements EventoState, Serializable{
     }
 
     /**
-     * Faz o set do estado registado
+     * Faz o set do estado Registado.
      *
      * @return false
      */
@@ -41,17 +40,21 @@ public class EventoCameraReadyState implements EventoState, Serializable{
     }
 
     /**
-     * Valida o EventoCameraReadyState
+     * Valida se o evento tem todas as condições para mudar para o estado CP
+     * definida
      *
-     * @return boolean
+     * @return false
      */
     public boolean valida() {
-        // validação específica do estado CP Definida
-        return true;
+        if (m_e.getCP().getListaRevisores().size() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
-     * Faz o set do estado tópicos definidos
+     * Faz o set do estado Topicos Definidos.
      *
      * @return false
      */
@@ -60,16 +63,21 @@ public class EventoCameraReadyState implements EventoState, Serializable{
     }
 
     /**
-     * Faz o set do estado CP definida
+     * Faz o set do estado CP definida.
      *
-     * @return false
+     * @return boolean
      */
     public boolean setCPDefinida() {
-        return false;
+        if (valida()) {
+            m_e.setState(new EventoCPDefinidaState(m_e));
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
-     * Faz o set do estado distribuido
+     * Faz o set do estado Distribuido.
      *
      * @return false
      */
@@ -78,7 +86,7 @@ public class EventoCameraReadyState implements EventoState, Serializable{
     }
 
     /**
-     * Faz o set do estado revisto
+     * Faz o set do estado Revisto.
      *
      * @return false
      */
@@ -87,7 +95,7 @@ public class EventoCameraReadyState implements EventoState, Serializable{
     }
 
     /**
-     * Faz o set do estado decidido
+     * Faz o set do estado Decidid.
      *
      * @return false
      */
@@ -96,7 +104,7 @@ public class EventoCameraReadyState implements EventoState, Serializable{
     }
 
     /**
-     * Faz o set do estado notificado
+     * Faz o set do estado Notificado.
      *
      * @return false
      */
@@ -105,7 +113,7 @@ public class EventoCameraReadyState implements EventoState, Serializable{
     }
 
     /**
-     * Faz o set do estado CameraReady
+     * Faz o set do estado Camera Ready.
      *
      * @return false
      */
@@ -114,7 +122,7 @@ public class EventoCameraReadyState implements EventoState, Serializable{
     }
 
     /**
-     * Faz o set do estado Valor Registo Definido.
+     * Faz o set do Valor Registo Definidos.
      *
      * @return false
      */
@@ -122,4 +130,5 @@ public class EventoCameraReadyState implements EventoState, Serializable{
     public boolean setValorRegistoDefinido() {
         return false;
     }
+
 }

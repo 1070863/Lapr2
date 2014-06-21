@@ -7,12 +7,13 @@
 package states;
 
 import eventoscientificos.Submissao;
+import java.io.Serializable;
 
 /**
  *
  * @author Pereira
  */
-public class SubmissaoRevistaState implements SubmissaoState {
+public class SubmissaoRevistaState implements SubmissaoState, Serializable {
 
     Submissao m_submissao;
 

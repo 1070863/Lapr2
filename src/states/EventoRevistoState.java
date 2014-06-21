@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package states;
 
 import eventoscientificos.Evento;
@@ -19,38 +13,58 @@ public class EventoRevistoState implements EventoState, Serializable{
     public EventoRevistoState(Evento m_e) {
         this.m_e = m_e;
     }
-    
-    public boolean SetCriado() {
+
+    public boolean setCriado() {
         return false;
     }
 
-    public boolean SetRegistado() {
+    public boolean setRegistado() {
         return false;
     }
 
     public boolean valida() {
-        // validação específica do estado CP Definida
         return true;
     }
 
+    /**
+     * Faz o set do estado Tópicos Definidoa.
+     *
+     * @return boolean
+     */
     public boolean setTopicosDefinidos() {
-     return false;
+        return false;
     }
 
+    /**
+     * Faz o set do estado CP Definida.
+     *
+     * @return boolean
+     */
     public boolean setCPDefinida() {
         return false;
     }
 
+    /**
+     * Faz o set do estado Distribuido.
+     *
+     * @return boolean
+     */
     public boolean setDistribuido() {
         return false;
     }
 
+    /**
+     * Faz o set do estado Revisto.
+     *
+     * @return boolean
+     */
     public boolean setRevisto() {
         return false;
     }
 
     /**
      * Faz o set do estado decidido
+     *
      * @return boolean
      */
     public boolean setDecidido() {
@@ -62,12 +76,32 @@ public class EventoRevistoState implements EventoState, Serializable{
         }
     }
 
+    /**
+     * Faz o set do estado Notificado.
+     *
+     * @return boolean
+     */
     public boolean setNotificado() {
         return false;
     }
 
+    /**
+     * Faz o set do estado Camera Ready.
+     *
+     * @return boolean
+     */
     public boolean setCameraReady() {
         return false;
     }
-    
+
+    /**
+     * Faz o set do estado Valor registo Definido.
+     *
+     * @return boolean
+     */
+    @Override
+    public boolean setValorRegistoDefinido() {
+        return false;
+    }
+
 }

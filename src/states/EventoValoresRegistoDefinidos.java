@@ -1,28 +1,27 @@
 package states;
 
 import eventoscientificos.Evento;
-import java.io.Serializable;
 
 /**
  * Esta classe gere o estado de um evento validando se o mesmo reune condições
- * para passar do estado Registado a Valores de Registo Definidos.
+ * para passar do estado Valores de Registo Definidos a Tópicos Definidos.
  *
  * @author GRUPO66 LAPR2
  */
-public class EventoRegistadoState implements EventoState, Serializable{
+public class EventoValoresRegistoDefinidos implements EventoState {
     Evento m_e;
 
     /**
-     * Cria uma instância de EventoRegistadoState
+     * Cria uma instância de EventoValoresRegistoDefinidos.
      *
      * @param m_e
      */
-    public EventoRegistadoState(Evento m_e) {
+    public EventoValoresRegistoDefinidos(Evento m_e) {
         this.m_e = m_e;
     }
 
     /**
-     * Faz o set do estado Criado.
+     * Faz o set do estado criado.
      *
      * @return false
      */
@@ -31,7 +30,7 @@ public class EventoRegistadoState implements EventoState, Serializable{
     }
 
     /**
-     * Faz o set do estado Registado.
+     * Faz o set do estado registado.
      *
      * @return false
      */
@@ -40,12 +39,12 @@ public class EventoRegistadoState implements EventoState, Serializable{
     }
 
     /**
-     * Valores Registo Definidos.
+     * Valida se o estado tópicos definidos.
      *
-     * @return boolean
+     * @return verdadeiro se validado e falso caso contrário
      */
     public boolean valida() {
-        if (this.m_e.getM_registoNoEvento().getPagamentoReg() != null) {
+        if (m_e.getM_listaTopicos().size() > 0) {
             return true;
         } else {
             return false;
@@ -53,14 +52,15 @@ public class EventoRegistadoState implements EventoState, Serializable{
     }
 
     /**
-     * Faz uma validação ao estado atual e se passar na validação altera o
-     * estado para Valores Registo Definidos.
+     * Valida se o evento reune condições para passar para o estado tópicos
+     * definidos.
      *
-     * @return verdaeiro ou falso em função da validação
+     * @return verdadeiro se passar a validação e falso no caso contrário
      */
+    @Override
     public boolean setValorRegistoDefinido() {
         if (valida()) {
-            this.m_e.setState(new EventoValoresRegistoDefinidos(this.m_e));
+            m_e.setState(new EventoTopicosDefinidosState(m_e));
             return true;
         } else {
             return false;
@@ -68,10 +68,11 @@ public class EventoRegistadoState implements EventoState, Serializable{
     }
 
     /**
-     * Faz o set do estado Tópicos Definidos.
+     * Faz o set do estado tópicos definidos.
      *
      * @return false
      */
+    @Override
     public boolean setTopicosDefinidos() {
         return false;
     }
@@ -81,6 +82,7 @@ public class EventoRegistadoState implements EventoState, Serializable{
      *
      * @return false
      */
+    @Override
     public boolean setCPDefinida() {
         return false;
     }
@@ -90,6 +92,7 @@ public class EventoRegistadoState implements EventoState, Serializable{
      *
      * @return false
      */
+    @Override
     public boolean setDistribuido() {
         return false;
     }
@@ -99,6 +102,7 @@ public class EventoRegistadoState implements EventoState, Serializable{
      *
      * @return false
      */
+    @Override
     public boolean setRevisto() {
         return false;
     }
@@ -108,6 +112,7 @@ public class EventoRegistadoState implements EventoState, Serializable{
      *
      * @return false
      */
+    @Override
     public boolean setDecidido() {
         return false;
     }
@@ -129,5 +134,4 @@ public class EventoRegistadoState implements EventoState, Serializable{
     public boolean setCameraReady() {
         return false;
     }
-
 }

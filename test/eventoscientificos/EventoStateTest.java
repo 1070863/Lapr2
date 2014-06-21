@@ -11,7 +11,7 @@ import states.EventoRevistoState;
 import states.EventoCriadoState;
 import states.EventoNotificadoState;
 import states.EventoRegistadoState;
-import states.EventoTopicosCriadosState;
+import states.EventoTopicosDefinidosState;
 import states.EventoCPDefinidaState;
 import states.EventoCameraReadyState;
 import states.EventoDistribuidoState;
@@ -27,7 +27,7 @@ public class EventoStateTest {
     
     
     /**
-     * Test of SetCriado method, of class EventoState.
+     * Test of setCriado method, of class EventoState.
      */
     @Test
     public void testSetCriado() {
@@ -35,14 +35,14 @@ public class EventoStateTest {
         Evento e = new Evento();
         EventoState instance = new EventoCriadoState(new Evento());
         boolean expResult = false;
-        boolean result = instance.SetCriado();
+        boolean result = instance.setCriado();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         
     }
 
     /**
-     * Test of SetRegistado method, of class EventoState.
+     * Test of setRegistado method, of class EventoState.
      */
     @Test
     public void testSetRegistado() {
@@ -50,7 +50,7 @@ public class EventoStateTest {
         Evento e = new Evento();
         EventoState instance = new EventoRegistadoState(e);
         boolean expResult = false;
-        boolean result = instance.SetRegistado();
+        boolean result = instance.setRegistado();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
     }
@@ -61,7 +61,7 @@ public class EventoStateTest {
     @Test
     public void testSetTopicosDefinidos() {
         System.out.println("setTopicosDefinidos");
-        EventoState instance = new EventoTopicosCriadosState(new Evento());
+        EventoState instance = new EventoTopicosDefinidosState(new Evento());
         boolean expResult = false;
         boolean result = instance.setTopicosDefinidos();
         assertEquals(expResult, result);
@@ -155,11 +155,11 @@ public class EventoStateTest {
 
     public class EventoStateImpl implements EventoState {
 
-        public boolean SetCriado() {
+        public boolean setCriado() {
             return false;
         }
 
-        public boolean SetRegistado() {
+        public boolean setRegistado() {
             return false;
         }
 
@@ -193,6 +193,11 @@ public class EventoStateTest {
 
         public boolean valida() {
             return false;
+        }
+
+        @Override
+        public boolean setValorRegistoDefinido() {
+           return false;
         }
     }
     

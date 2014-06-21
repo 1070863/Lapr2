@@ -1,5 +1,10 @@
 package eventoscientificos;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import tratarficheiros.Serializacao;
 import ui.MenuUI;
 
 /**
@@ -17,6 +22,16 @@ public class Main {
      */
     public static void main(String[] args) {
         Empresa empresa = new Empresa();
+        
+        Serializacao lerFicheiro = new Serializacao(empresa);
+        try {
+            lerFicheiro.lerDadosFicheiro();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Não existem dados para inicializar a aplicação!", "Carregar dados", JOptionPane.INFORMATION_MESSAGE);
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao inicializar a aplicação:"+ex.getMessage(), 
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+        }
 
         Evento e = new Evento("ev1", "afoisaf");
         Evento e2 = new Evento("ev2", "afoisaf");
