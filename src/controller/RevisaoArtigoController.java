@@ -45,9 +45,9 @@ public class RevisaoArtigoController {
     public List<Evento> getListaEventosPodeRever(String organizador){
         List<Evento> eventos = new ArrayList<Evento>();
         for (Evento e : this.m_empresa.getM_registoEventos().getEventosOrganizador(organizador)) {
-            if(e.getState() instanceof EventoDistribuidoState){
+            //if(e.getState() instanceof EventoDistribuidoState){
                 eventos.add(e);
-            }
+            //}
         }
         return eventos;
     }

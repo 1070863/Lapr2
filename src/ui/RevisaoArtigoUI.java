@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ui;
 
 import controller.RevisaoArtigoController;
+import eventoscientificos.Artigo;
 import eventoscientificos.Empresa;
 import eventoscientificos.Evento;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -18,11 +20,15 @@ import javax.swing.JOptionPane;
  * @author Pedro
  */
 public class RevisaoArtigoUI extends javax.swing.JDialog {
+
     private static final int JANELA_POSICAO_X = 200, JANELA_POSICAO_Y = 200;
-    
+    private static final String NOME_JANELA = "Revisão de artigo";
+
     private static Empresa empresa;
     private List<Evento> listaEventosPodeRever;
     private RevisaoArtigoController revisaoArtigoController;
+    private List<Artigo> listaArtigosEvento;
+
     /**
      * Creates new form RevisaoArtigoUI
      */
@@ -33,8 +39,8 @@ public class RevisaoArtigoUI extends javax.swing.JDialog {
         this.listaEventosPodeRever = new ArrayList<>();
         this.revisaoArtigoController = new RevisaoArtigoController(empresa);
     }
-    
-    public void run(){
+
+    public void run() {
         String organizador = JOptionPane.showInputDialog(this,
                 "Insira o ID do revisor", "Login", JOptionPane.INFORMATION_MESSAGE);
         if (organizador != null) {
@@ -42,8 +48,8 @@ public class RevisaoArtigoUI extends javax.swing.JDialog {
             listaEventosPodeRever = revisaoArtigoController.getListaEventosPodeRever(organizador);
 
             if (listaEventosPodeRever.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Utilizador não associado a nenhum evento", 
-                        "Revisão de artigo",
+                JOptionPane.showMessageDialog(this, "O " + organizador + " não tem eventos no estado distribuido!",
+                        NOME_JANELA,
                         JOptionPane.INFORMATION_MESSAGE);
                 dispose();
             } else {
@@ -112,7 +118,7 @@ public class RevisaoArtigoUI extends javax.swing.JDialog {
         txtTexto.setRows(5);
         jScrollPane1.setViewportView(txtTexto);
 
-        cmbConfianca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4" }));
+        cmbConfianca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4", "5" }));
 
         cmbAdequacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4", "5" }));
 
@@ -136,6 +142,12 @@ public class RevisaoArtigoUI extends javax.swing.JDialog {
 
         lblEvento.setText("Evento");
 
+        cmbEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                choiceListener(evt);
+            }
+        });
+
         lblArtigo.setText("Artigo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -155,12 +167,12 @@ public class RevisaoArtigoUI extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cmbQualidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cmbOriginalidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbRecomendacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(cmbRecomendacao, 0, 76, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(llbAdequacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblConfianca, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(llbAdequacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblConfianca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cmbConfianca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cmbAdequacao, 0, 76, Short.MAX_VALUE)))
@@ -235,8 +247,27 @@ public class RevisaoArtigoUI extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSubmeterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmeterActionPerformed
-        
+
     }//GEN-LAST:event_btnSubmeterActionPerformed
+
+    private void choiceListener(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choiceListener
+        class ChoiceListener implements ActionListener {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(cmbEvento.getSelectedIndex()!=-1){
+            revisaoArtigoController.seleccionaEvento((String)cmbEvento.getSelectedItem());
+            listaArtigosEvento = revisaoArtigoController.getListaArtigos();
+            for (Artigo artigo : listaArtigosEvento) {
+                    cmbArtigo.addItem(artigo.getTitulo());
+                }
+        } else {
+            JOptionPane.showMessageDialog(RevisaoArtigoUI.this, "Seleccione um evento primeiro!", NOME_JANELA, 
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+            }
+        }
+    }//GEN-LAST:event_choiceListener
 
     /**
      * @param args the command line arguments
