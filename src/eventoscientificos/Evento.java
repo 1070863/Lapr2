@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package eventoscientificos;
 
 import java.io.Serializable;
@@ -17,10 +13,10 @@ import states.SubmissaoArtigosParaRevisaoSubmetidosState;
  *
  * @author Nuno Silva
  */
-public class Evento implements Serializable{
+public class Evento implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     private String m_strTitulo;
     private String m_strDescricao;
     private Local m_local;
@@ -37,7 +33,7 @@ public class Evento implements Serializable{
     private String dataLimiteRegisto;
     private ProcessoDistribuicao processoDistribuicao;
     private ValorRegistoNoEvento m_valorRegistoNoEvento;
-//    private RegistoNoEvento m_registoNoEvento;
+    private List<RegistoNoEvento> m_listRegistoNoEvento;
     private ProcessoDecisao m_processoDecisao;
     private String m_strDataLimiteSubmissaoFinal;
 
@@ -57,11 +53,11 @@ public class Evento implements Serializable{
         this.setTitulo(titulo);
         this.setDescricao(descricao);
     }
-    
+
     public ValorRegistoNoEvento definirValorRegisto() {
         return this.m_valorRegistoNoEvento = new ValorRegistoNoEvento();
-     }
-    
+    }
+
     public ValorRegistoNoEvento getM_registoNoEvento() {
         return m_valorRegistoNoEvento;
     }
@@ -104,7 +100,7 @@ public class Evento implements Serializable{
     public void setLocal(String strLocal) {
         this.m_local.setM_strLocal(strLocal);;
     }
-    
+
     public void setCidade(String strCidade) {
         this.m_local.setM_strCidade(strCidade);
     }
@@ -112,7 +108,7 @@ public class Evento implements Serializable{
     public void setPais(String strPais) {
         this.m_local.setM_strPais(strPais);
     }
-    
+
     public String getDataLimiteSubmissaoFinal() {
         return m_strDataLimiteSubmissaoFinal;
     }
@@ -121,7 +117,6 @@ public class Evento implements Serializable{
         this.m_strDataLimiteSubmissaoFinal = m_strDataLimiteSubmissaoFinal;
     }
 
-
     public ProcessoDistribuicao getProcessoDistribuicao() {
         return processoDistribuicao;
     }
@@ -129,24 +124,25 @@ public class Evento implements Serializable{
     public void setProcessoDistribuicao(ProcessoDistribuicao pd) {
         this.processoDistribuicao = pd;
     }
-    
+
     public ProcessoDistribuicao novoProcessoDistribuicao() {
         processoDistribuicao = new ProcessoDistribuicao();
         return processoDistribuicao;
     }
-        
-     public ProcessoDecisao getProcessoDecisao() {
+
+    public ProcessoDecisao getProcessoDecisao() {
         return m_processoDecisao;
     }
 
     public void setProcessoDecisao(ProcessoDecisao pd) {
         this.m_processoDecisao = pd;
     }
-    
+
     public ProcessoDecisao novoProcessoDecisao() {
         m_processoDecisao = new ProcessoDecisao();
         return m_processoDecisao;
     }
+
     public List<Organizador> getListaOrganizadores() {
         List<Organizador> lOrg = new ArrayList<Organizador>();
 
@@ -183,6 +179,26 @@ public class Evento implements Serializable{
 
     public Submissao novaSubmissao() {
         return new Submissao();
+    }
+
+    /**
+     * Cria uma instância do tipo Registo no Evento.
+     *
+     * @return objeto do tipo Registo no Evento
+     */
+    public RegistoNoEvento novoRegisto() {
+        return new RegistoNoEvento();
+    }
+
+    /**
+     * Adiciona um objeto do tipo Registo no Evento à lista de Registos no
+     * Evento.
+     *
+     * @param novoRegisto novo Registo no Evento
+     * @return Verdadeiro se adicionado e falso no caaso contrário
+     */
+    public boolean addRegistoNoEvento(RegistoNoEvento novoRegisto) {
+        return this.m_listRegistoNoEvento.add(novoRegisto);
     }
 
     public boolean addSubmissao(Submissao submissao) {
@@ -344,26 +360,29 @@ public class Evento implements Serializable{
 
     /**
      * Obtém a lista de tópicos
+     *
      * @return List<Topico>
      */
     public List<Topico> getM_listaTopicos() {
         return m_listaTopicos;
     }
-    
+
     /**
      * Retorna uma submissão da lista de submissões
+     *
      * @param artigo
      * @return submissao
      */
-    public Submissao getSubmissao(Artigo artigo){
+    public Submissao getSubmissao(Artigo artigo) {
         for (Submissao submissao : this.getListaSubmissoes()) {
-            if(submissao.getArtigo().equals(artigo))
+            if (submissao.getArtigo().equals(artigo)) {
                 return submissao;
+            }
         }
         return null;
     }
-    
-        @Override
+
+    @Override
     public String toString() {
         return "Titulo:" + m_strTitulo
                 + "\n Descricao:" + m_strDescricao
