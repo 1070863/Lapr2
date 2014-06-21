@@ -6,18 +6,59 @@
 
 package ui;
 
+import controller.RevisaoArtigoController;
+import eventoscientificos.Empresa;
+import eventoscientificos.Evento;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Pedro
  */
 public class RevisaoArtigoUI extends javax.swing.JDialog {
-
+    private static final int JANELA_POSICAO_X = 200, JANELA_POSICAO_Y = 200;
+    
+    private static Empresa empresa;
+    private List<Evento> listaEventosPodeRever;
+    private RevisaoArtigoController revisaoArtigoController;
     /**
      * Creates new form RevisaoArtigoUI
      */
-    public RevisaoArtigoUI(java.awt.Frame parent, boolean modal) {
+    public RevisaoArtigoUI(java.awt.Frame parent, boolean modal, Empresa empresa) {
         super(parent, modal);
         initComponents();
+        this.empresa = empresa;
+        this.listaEventosPodeRever = new ArrayList<>();
+        this.revisaoArtigoController = new RevisaoArtigoController(empresa);
+    }
+    
+    public void run(){
+        String organizador = JOptionPane.showInputDialog(this,
+                "Insira o ID do revisor", "Login", JOptionPane.INFORMATION_MESSAGE);
+        if (organizador != null) {
+
+            listaEventosPodeRever = revisaoArtigoController.getListaEventosPodeRever(organizador);
+
+            if (listaEventosPodeRever.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Utilizador não associado a nenhum evento", 
+                        "Revisão de artigo",
+                        JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+            } else {
+                for (Evento evento : listaEventosPodeRever) {
+                    cmbEvento.addItem(evento.getM_strTitulo());
+                }
+                pack();
+                setResizable(false);
+                setLocation(JANELA_POSICAO_X, JANELA_POSICAO_Y);
+                setVisible(true);
+            }
+        } else {
+            JOptionPane.showInputDialog(this,
+                    "O ID introduzido não é válido", "Login", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -80,6 +121,11 @@ public class RevisaoArtigoUI extends javax.swing.JDialog {
         cmbQualidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4", "5" }));
 
         btnSubmeter.setText("Submeter");
+        btnSubmeter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmeterActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -188,6 +234,10 @@ public class RevisaoArtigoUI extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnSubmeterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmeterActionPerformed
+        
+    }//GEN-LAST:event_btnSubmeterActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -218,7 +268,7 @@ public class RevisaoArtigoUI extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                RevisaoArtigoUI dialog = new RevisaoArtigoUI(new javax.swing.JFrame(), true);
+                RevisaoArtigoUI dialog = new RevisaoArtigoUI(new javax.swing.JFrame(), true, empresa);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

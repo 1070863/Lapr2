@@ -24,22 +24,6 @@ public class Distribuicao implements Serializable{
     private List<Revisor> m_listaRevisores;
     private Artigo m_artigo;
     
-    /**
-     * confianca: confiança do revisor no tópico do artigo
-     * adequacao: Adequação ao evento
-     * originalidade: originalidade do artigo
-     * qualidade: qualidade de apresentação
-     * recomendacao: recomendação global aceite/rejeitado
-     */
-    private String confianca;
-    private String adequacao;
-    private String originalidade;
-    private String qualidade;
-    private boolean recomendacao;
-    /**
-     * textoJustificativo: texto justificativo da revisão
-     */
-    private String textoJustificativo;
 
     /**
      * Cria objeto do tipo Distribuicao que não recebe parametros (construtor
@@ -111,51 +95,5 @@ public class Distribuicao implements Serializable{
         return null;
     }
     
-    public String getConfianca() {
-        return confianca;
-    }
-
-    public void setConfianca(String confianca) {
-        this.confianca = confianca;
-    }
-
-    public String getAdequacao() {
-        return adequacao;
-    }
-
-    public void setAdequacao(String adequacao) {
-        this.adequacao = adequacao;
-    }
-
-    public String getOriginalidade() {
-        return originalidade;
-    }
-
-    public void setOriginalidade(String originalidade) {
-        this.originalidade = originalidade;
-    }
-
-    public String getQualidade() {
-        return qualidade;
-    }
-
-    public void setQualidade(String qualidade) {
-        this.qualidade = qualidade;
-    }
-
-    public boolean getRecomendacao() {
-        return recomendacao;
-    }
-
-    public void setRecomendacao(boolean recomendacao) {
-        this.recomendacao = recomendacao;
-    }
-
-    public String getTextoJustificativo() {
-        return textoJustificativo;
-    }
-
-    public void setTextoJustificativo(String textoJustificativo) {
-        this.textoJustificativo = textoJustificativo;
-    }
+    
 }

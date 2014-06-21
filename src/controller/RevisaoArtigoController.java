@@ -104,12 +104,12 @@ public class RevisaoArtigoController {
              for (Distribuicao distribuicao : this.m_empresa.getM_registoEventos().getEvento(evento.getM_strTitulo()).
                     getProcessoDistribuicao().getM_listaDistribuicao()) {
                  if(distribuicao.getM_artigo().equals(this.artigo)){
-                     distribuicao.setConfianca(confianca);
+                     /*distribuicao.setConfianca(confianca);
                      distribuicao.setAdequacao(adequacao);
                      distribuicao.setOriginalidade(originalidade);
                      distribuicao.setQualidade(qualidade);
                      distribuicao.setRecomendacao(recomendacao);
-                     distribuicao.setTextoJustificativo(texto);
+                     distribuicao.setTextoJustificativo(texto);*/
                      this.m_empresa.getM_registoEventos().getEvento(evento.getM_strTitulo()).
                              getSubmissao(artigo).setState(new SubmissaoRevistaState(submissao));
                      this.m_empresa.getM_registoEventos().getEvento(evento.getM_strTitulo()).

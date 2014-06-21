@@ -322,7 +322,7 @@ public class MenuUI extends JFrame {
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                RevisaoArtigoUI ra = new RevisaoArtigoUI(new java.awt.Frame(), true, m_empresa);
             }
         }
         );

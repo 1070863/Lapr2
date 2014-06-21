@@ -1,7 +1,5 @@
 package states;
 
-import java.io.Serializable;
-
 /**
  * Interface para a gestão dos diferentes estados de um objeto.
  *
