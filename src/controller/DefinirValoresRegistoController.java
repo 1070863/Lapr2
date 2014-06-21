@@ -6,20 +6,32 @@ import eventoscientificos.ValorRegistoNoEvento;
 import java.util.List;
 
 /**
- * Classe
+ * Classe controladora do fluxo de informação entre a a classe
+ * DefinirValoresRegsitoUi e o restante sistema.
  *
  * @author GRUPO66 LAPR2
  */
 public class DefinirValoresRegistoController {
 
+    /**
+     * Vaiáveis de instância
+     */
     private Empresa m_empresa;
     private Evento m_evento;
     private ValorRegistoNoEvento m_valorRegisto;
 
+    /**
+     * Construtor completo quando o atributo Empresa é passado por parâmetros.
+     *
+     * @param m_empresa
+     */
     public DefinirValoresRegistoController(Empresa m_empresa) {
         this.m_empresa = m_empresa;
     }
 
+    /**
+     * Construtor por omissão do atributo Empresa.
+     */
     public DefinirValoresRegistoController() {
         this.m_empresa = null;
     }
@@ -45,22 +57,37 @@ public class DefinirValoresRegistoController {
         this.m_valorRegisto = this.m_evento.definirValorRegisto();
     }
 
+    /**
+     * Define o valor de registo de um Full Papper.
+     */
     public void defineValorFP(double fullPaper) {
         this.m_evento.getM_registoNoEvento().setPriceFP(fullPaper);
     }
 
+    /**
+     * Define o valor de registo de um Short Papper.
+     */
     public void defineValorSP(double shortPaper) {
         this.m_evento.getM_registoNoEvento().setPriceSP(shortPaper);
     }
 
+    /**
+     * Define o valor de registo de um Poster Papper.
+     */
     public void defineValorPP(double posterPaper) {
         this.m_evento.getM_registoNoEvento().setPricePP(posterPaper);
     }
 
+    /**
+     * Define a fórmula de cálculo a ser usada no pagamento do registo.
+     */
     public void defineFormula1() {
         this.m_evento.getM_registoNoEvento().setPagamentoRegFormual1(this.m_evento);
     }
 
+    /**
+     * Define a fórmula de cálculo a ser usada no pagamento do registo.
+     */
     public void defineFormula2() {
         this.m_evento.getM_registoNoEvento().setPagamentoRegFormual2(this.m_evento);
     }
@@ -73,7 +100,6 @@ public class DefinirValoresRegistoController {
      * estados.
      */
     public boolean termina() {
-//        return this.m_evento.getState().valida();
-        return true;
+        return this.m_evento.getState().valida();
     }
 }
