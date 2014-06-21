@@ -18,7 +18,6 @@ public class MecanismoDecisao1 implements MecanismoDecisao, Serializable{
     
      private List<Distribuicao> listaDistribuicao;
      private Decisao decisao;
-     private List<Decisao> listaDecisao;
      private int aceite;
      private int recusada;
      private final String nome = "MecanismoDecisao1";
@@ -28,7 +27,6 @@ public class MecanismoDecisao1 implements MecanismoDecisao, Serializable{
     public Decisao decide(ProcessoDecisao pd) {
         
         decisao= pd.novaDecisao();
-       listaDecisao=pd.getM_listaDecisao();
        listaDistribuicao= pd.getM_listaDistribuicao();
             for (int i = 0; i < listaDistribuicao.size(); i++)   
         {
@@ -42,7 +40,7 @@ public class MecanismoDecisao1 implements MecanismoDecisao, Serializable{
     else
     decisao.setDecisao("recusada");
   
-    listaDecisao.add(decisao);
+    pd.getM_listaDecisao().add(decisao);
     return decisao;
   }
     @Override
@@ -72,7 +70,7 @@ public class MecanismoDecisao1 implements MecanismoDecisao, Serializable{
 
     @Override
     public String toString() {
-        return "MecanismoDecisao1{" + "listaDistribuicao=" + listaDistribuicao + ", decisao=" + decisao + ", listaDecisao=" + listaDecisao + ", aceite=" + aceite + ", recusada=" + recusada + ", nome=" + nome + '}';
+        return "MecanismoDecisao1{" + "listaDistribuicao=" + listaDistribuicao + ", decisao=" + decisao + ", aceite=" + aceite + ", recusada=" + recusada + ", nome=" + nome + '}';
     }
     
     

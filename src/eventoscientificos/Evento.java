@@ -37,6 +37,7 @@ public class Evento implements Serializable{
     private String dataLimiteRegisto;
     private ProcessoDistribuicao processoDistribuicao;
     private ValorRegistoNoEvento m_registoNoEvento;
+    private ProcessoDecisao m_processoDecisao;
 
     public Evento() {
         m_local = new Local();
@@ -116,6 +117,18 @@ public class Evento implements Serializable{
         return processoDistribuicao;
     }
         
+     public ProcessoDecisao getProcessoDecisao() {
+        return m_processoDecisao;
+    }
+
+    public void setProcessoDecisao(ProcessoDecisao pd) {
+        this.m_processoDecisao = pd;
+    }
+    
+    public ProcessoDecisao novoProcessoDecisao() {
+        m_processoDecisao = new ProcessoDecisao();
+        return m_processoDecisao;
+    }
     public List<Organizador> getListaOrganizadores() {
         List<Organizador> lOrg = new ArrayList<Organizador>();
 

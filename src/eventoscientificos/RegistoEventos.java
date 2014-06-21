@@ -14,6 +14,7 @@ public class RegistoEventos implements Serializable{
     private Empresa m_empresa;
     private List<MecanismoDistribuicao> m_listaMecanismoDistribuicao;
     private MecanismoDistribuicao m_MecanismoDistribuicao;
+    private List<MecanismoDecisao> m_listaMecanismoDecisao;
 
     public RegistoEventos(Empresa empresa) {
         this.m_listaEventos = new ArrayList<>();
@@ -60,6 +61,12 @@ public class RegistoEventos implements Serializable{
         m_listaMecanismoDistribuicao = new ArrayList<>();
         this.m_listaMecanismoDistribuicao.add(new Mecanismo1());
         return m_listaMecanismoDistribuicao;
+    }
+    
+     public List<MecanismoDecisao> criarListaMecanismoDecisao() {
+        m_listaMecanismoDecisao = new ArrayList<>();
+        this.m_listaMecanismoDecisao.add(new MecanismoDecisao1());
+        return m_listaMecanismoDecisao;
     }
 
     public List<Evento> getEventosOrganizador(String strId) {

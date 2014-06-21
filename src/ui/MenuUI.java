@@ -271,7 +271,8 @@ public class MenuUI extends JFrame {
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+        DecidirSobreArtigoUI dialog = new DecidirSobreArtigoUI(new javax.swing.JFrame(), true, m_empresa);
+        dialog.run();
             }
         }
         );

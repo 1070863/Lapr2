@@ -157,4 +157,10 @@ public class Distribuicao implements Serializable {
     public void setTextoJustificativo(String textoJustificativo) {
         this.textoJustificativo = textoJustificativo;
     }
+
+    @Override
+    public String toString() {
+        return "Distribuicao{" + "m_artigo=" + m_artigo + '}';
+    }
+    
 }
