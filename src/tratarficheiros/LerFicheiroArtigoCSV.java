@@ -8,7 +8,6 @@ package tratarficheiros;
 
 import eventoscientificos.Artigo;
 import eventoscientificos.Empresa;
-import eventoscientificos.Evento;
 import eventoscientificos.Utilizador;
 import java.io.File;
 import java.io.IOException;
@@ -25,10 +24,17 @@ import org.xml.sax.SAXException;
 public class LerFicheiroArtigoCSV {
     
     /**
-     * Lista de eventos provisória
+     * Lista de artigos provisória
      */
-    private List<Artigo> listaArtigosProvisoria= new ArrayList<>();;
+    private List<Artigo> listaArtigosProvisoria= new ArrayList<>();
 
+    /**
+     * Retorna a lista de artigos provisória
+     * @return List<Artigo> listaArtigosProvisoria
+     */
+    public List<Artigo> getListaArtigosProvisoria() {
+        return listaArtigosProvisoria;
+    }
 
     /**
      * Le ficheiro que carrega artigo
@@ -84,7 +90,7 @@ public class LerFicheiroArtigoCSV {
     }
         public void autor(List<String[]> temp, int linha, int coluna, Artigo artigo, Empresa empresa) {
         Utilizador u;
-        if (empresa.getM_registaUtilizador().getUtilizadorEmail(temp.get(linha)[coluna + 1]) != null) {
+        if (empresa.getM_registaUtilizador().getUtilizadorEmail(temp.get(linha)[coluna]) != null) {
             u = empresa.getM_registaUtilizador().getUtilizadorEmail(temp.get(linha)[coluna+2]);
             artigo.novoAutor(temp.get(linha)[coluna], temp.get(linha)[coluna+1], 
                     temp.get(linha)[coluna+2], u);

@@ -19,6 +19,23 @@ public class RevisaoArtigo implements Serializable{
      * Revisor que efectuou a revisão
      */
     private Revisor revisor;
+    
+    /**
+     * confianca: confiança do revisor no tópico do artigo
+     * adequacao: Adequação ao evento
+     * originalidade: originalidade do artigo
+     * qualidade: qualidade de apresentação
+     * recomendacao: recomendação global aceite/rejeitado
+     */
+    private String confianca;
+    private String adequacao;
+    private String originalidade;
+    private String qualidade;
+    private boolean recomendacao;
+    /**
+     * textoJustificativo: texto justificativo da revisão
+     */
+    private String textoJustificativo;
 
     public Revisor getRevisor() {
         return revisor;
@@ -42,22 +59,7 @@ public class RevisaoArtigo implements Serializable{
     }
 
    
-    /**
-     * confianca: confiança do revisor no tópico do artigo
-     * adequacao: Adequação ao evento
-     * originalidade: originalidade do artigo
-     * qualidade: qualidade de apresentação
-     * recomendacao: recomendação global aceite/rejeitado
-     */
-    private String confianca;
-    private String adequacao;
-    private String originalidade;
-    private String qualidade;
-    private boolean recomendacao;
-    /**
-     * textoJustificativo: texto justificativo da revisão
-     */
-    private String textoJustificativo;
+    
 
     /**
      * Controi uma instância de revisão de artigos

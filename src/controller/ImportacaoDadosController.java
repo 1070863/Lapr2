@@ -18,6 +18,9 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
+import tratarficheiros.LerFicheiroArtigoCSV;
 
 /**
  *
@@ -48,8 +51,10 @@ public class ImportacaoDadosController {
      * @param empresa
      * @return lista de eventos
      */
-    public List<Evento> lerEvento(String nomeFicheiro, Empresa empresa){
+    public List<Evento> lerEvento(String nomeFicheiro, Empresa empresa) throws ParserConfigurationException, 
+            SAXException, IOException{
         LerFicheiroEvento lerFicheiro = new LerFicheiroEventoCSV();
+        lerFicheiro.LerFicheiro(nomeFicheiro, empresa);
         
         return lerFicheiro.getListaEventosProvisoria();
     }    
@@ -59,9 +64,12 @@ public class ImportacaoDadosController {
      * @param empresa
      * @return lista de artigos
      */
-    public List<Artigo> lerArtigos(String nomeFicheiro, Empresa empresa){
+    public List<Artigo> lerArtigos(String nomeFicheiro, Empresa empresa) throws ParserConfigurationException, 
+            SAXException, IOException{
+        LerFicheiroArtigoCSV lerFicheiro = new LerFicheiroArtigoCSV();
+        lerFicheiro.LerFicheiro(nomeFicheiro, empresa);
         
-        return null;
+        return lerFicheiro.getListaArtigosProvisoria();
     }
     
     /**Método que retorna uma lista de revisões de artigos lida de um ficheiro .csv
