@@ -7,7 +7,8 @@ import java.util.*;
  *
  * @author Lopes
  */
-public class RegistoEventos implements Serializable{
+public class RegistoEventos implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     private List<Evento> m_listaEventos;
@@ -64,11 +65,36 @@ public class RegistoEventos implements Serializable{
         this.m_listaMecanismoDistribuicao.add(new Mecanismo1());
         return m_listaMecanismoDistribuicao;
     }
-    
-     public List<MecanismoDecisao> criarListaMecanismoDecisao() {
+
+    public List<MecanismoDecisao> criarListaMecanismoDecisao() {
         m_listaMecanismoDecisao = new ArrayList<>();
         this.m_listaMecanismoDecisao.add(new MecanismoDecisao1());
         return m_listaMecanismoDecisao;
+    }
+
+    public List<Evento> getEventosAutorAceites(String strId) {
+        List<Evento> leAutorAceites = new ArrayList<>();
+
+        Utilizador u = m_empresa.getM_registaUtilizador().getUtilizador(strId);
+         if (u != null) {
+             for (Iterator<Evento> it = m_listaEventos.listIterator(); it.hasNext();) {
+                Evento e = it.next();
+                List<Submissao> lSubmissoes = e.getListaSubmissoes();
+
+                boolean bRet = false;
+                if (!leAutorAceites.contains(e)) {
+                    for (Submissao sub : lSubmissoes) {
+                        if (sub.getArtigo().getAutorCorrespondente().getUtilizador().equals(u)) {
+                            bRet = true;
+                            break;
+                        }
+                    }
+                    if (bRet) {
+                        leAutorAceites.add(e);
+                    }
+                }
+            }
+         }
     }
 
     public List<Evento> getEventosOrganizador(String strId) {
@@ -154,8 +180,8 @@ public class RegistoEventos implements Serializable{
         }
         return true;
     }
-    
-       public List<Evento> getListaEventosCorrigir() {
+
+    public List<Evento> getListaEventosCorrigir() {
         return this.listaEventosCorrigir;
     }
 
