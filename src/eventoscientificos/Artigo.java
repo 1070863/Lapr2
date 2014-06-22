@@ -14,8 +14,9 @@ import java.util.List;
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
 public class Artigo implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     private String m_strTitulo;
     private String m_strResumo;
     private List<Autor> m_listaAutores;
@@ -44,11 +45,11 @@ public class Artigo implements Serializable {
     public void setTitulo(String strTitulo) {
         this.m_strTitulo = strTitulo;
     }
-    
-   /**
-    * 
-    * @return 
-    */
+
+    /**
+     *
+     * @return
+     */
     public String getTitulo() {
         return this.m_strTitulo;
     }
@@ -62,24 +63,24 @@ public class Artigo implements Serializable {
     }
 
     /**
-    * 
-    * @return 
-    */
+     *
+     * @return
+     */
     public String getResumo() {
         return this.m_strResumo;
     }
-    
-    public Autor getAutor(String id)
-        {
-            
-            for (Autor autor : m_listaAutores) {
-                String str=autor.getM_strNome();
-                if (str.equalsIgnoreCase(id))
-                    return autor;
+
+    public Autor getAutor(String id) {
+
+        for (Autor autor : m_listaAutores) {
+            String str = autor.getM_strNome();
+            if (str.equalsIgnoreCase(id)) {
+                return autor;
             }
-            return null;
         }
-    
+        return null;
+    }
+
     /**
      *
      * @param strNome
@@ -160,6 +161,10 @@ public class Artigo implements Serializable {
         this.m_autorCorrespondente = autor;
     }
 
+    public Autor getAutorCorrespondente() {
+        return this.m_autorCorrespondente;
+    }
+
     /**
      *
      * @param strFicheiro
@@ -200,24 +205,24 @@ public class Artigo implements Serializable {
 
     @Override
     public String toString() {
-        String aux= "Artigo: "+this.m_strTitulo + "\nResumo: "+this.m_strResumo+"\nAutores:\n";
+        String aux = "Artigo: " + this.m_strTitulo + "\nResumo: " + this.m_strResumo + "\nAutores:\n";
         for (Autor autor : m_listaAutores) {
-            aux+=autor.toString()+"\n";
+            aux += autor.toString() + "\n";
         }
-        aux+="Autor correspondente: "+this.m_autorCorrespondente+"\nTópicos do artigo:\n";
+        aux += "Autor correspondente: " + this.m_autorCorrespondente + "\nTópicos do artigo:\n";
         for (Topico topico : m_listaTopicos) {
-            aux+=topico.toString()+"\n";
+            aux += topico.toString() + "\n";
         }
-        return aux+="Ficheiro: "+this.m_strFicheiro;
+        return aux += "Ficheiro: " + this.m_strFicheiro;
     }
 
     /**
-     * 
+     *
      * @param obj
-     * @return 
-     * 
-     * Quando é que dois artigos são iguais? Quando têm o mesmo título e mesmo autor correspondente?
-     * Ou quando todos os autores forem também os mesmos?
+     * @return
+     *
+     * Quando é que dois artigos são iguais? Quando têm o mesmo título e mesmo
+     * autor correspondente? Ou quando todos os autores forem também os mesmos?
      */
     @Override
     public boolean equals(Object obj) {
@@ -226,7 +231,7 @@ public class Artigo implements Serializable {
         } else {
             if (obj instanceof Artigo) {
                 Artigo aux = (Artigo) obj;
-                 return this.m_autorCorrespondente.equals(aux.m_autorCorrespondente)
+                return this.m_autorCorrespondente.equals(aux.m_autorCorrespondente)
                         && this.m_strTitulo.equals(aux.m_strTitulo);
             } else {
                 return false;
