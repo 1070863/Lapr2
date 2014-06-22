@@ -53,9 +53,26 @@ public class RevisaoArtigoUI extends javax.swing.JDialog {
                         JOptionPane.INFORMATION_MESSAGE);
                 dispose();
             } else {
+
                 for (Evento evento : listaEventosPodeRever) {
                     cmbEvento.addItem(evento.getM_strTitulo());
                 }
+                cmbEvento.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (cmbEvento.getSelectedIndex() != -1) {
+                            revisaoArtigoController.seleccionaEvento((String) cmbEvento.getSelectedItem());
+                            listaArtigosEvento = revisaoArtigoController.getListaArtigos();
+                            for (Artigo artigo : listaArtigosEvento) {
+                                cmbArtigo.addItem(artigo.getTitulo());
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(RevisaoArtigoUI.this, "Seleccione um evento primeiro!", NOME_JANELA,
+                                    JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    }
+                });
+
                 pack();
                 setResizable(false);
                 setLocation(JANELA_POSICAO_X, JANELA_POSICAO_Y);
@@ -141,12 +158,6 @@ public class RevisaoArtigoUI extends javax.swing.JDialog {
         });
 
         lblEvento.setText("Evento");
-
-        cmbEvento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                choiceListener(evt);
-            }
-        });
 
         lblArtigo.setText("Artigo");
 
@@ -248,26 +259,25 @@ public class RevisaoArtigoUI extends javax.swing.JDialog {
 
     private void btnSubmeterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmeterActionPerformed
 
-    }//GEN-LAST:event_btnSubmeterActionPerformed
-
-    private void choiceListener(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choiceListener
-        class ChoiceListener implements ActionListener {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(cmbEvento.getSelectedIndex()!=-1){
-            revisaoArtigoController.seleccionaEvento((String)cmbEvento.getSelectedItem());
-            listaArtigosEvento = revisaoArtigoController.getListaArtigos();
-            for (Artigo artigo : listaArtigosEvento) {
-                    cmbArtigo.addItem(artigo.getTitulo());
-                }
-        } else {
-            JOptionPane.showMessageDialog(RevisaoArtigoUI.this, "Seleccione um evento primeiro!", NOME_JANELA, 
-                    JOptionPane.INFORMATION_MESSAGE);
-        }
+        revisaoArtigoController.sleccionaArtigo((String) cmbArtigo.getSelectedItem());
+        revisaoArtigoController.seleccionaSubmissao(revisaoArtigoController.getArtigo());
+            
+        if (JOptionPane.showConfirmDialog(this, "Confirmar o registo da revisão?", "Revisão artigo",
+                JOptionPane.INFORMATION_MESSAGE) == 1) {
+            if(revisaoArtigoController.registaRevisao((String) cmbConfianca.getSelectedItem(),
+                    (String) cmbAdequacao.getSelectedItem(), (String) cmbOriginalidade.getSelectedItem(),
+                    (String) cmbQualidade.getSelectedItem(),
+                    ((String) cmbRecomendacao.getSelectedItem()).equalsIgnoreCase("Aceite") ? true : false,
+                    txtTexto.getText())){
+                JOptionPane.showMessageDialog(this, "Revisão de artigo registada com sucessoa", 
+                        NOME_JANELA, JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Revisão de artigo não registada.", 
+                        NOME_JANELA, JOptionPane.ERROR_MESSAGE);
             }
+            
         }
-    }//GEN-LAST:event_choiceListener
+    }//GEN-LAST:event_btnSubmeterActionPerformed
 
     /**
      * @param args the command line arguments
