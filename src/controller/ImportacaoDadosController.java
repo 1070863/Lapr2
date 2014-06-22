@@ -12,16 +12,34 @@ import eventoscientificos.Evento;
 import eventoscientificos.LerFicheiroEvento;
 import eventoscientificos.LerFicheiroEventoCSV;
 import eventoscientificos.RevisaoArtigo;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  *
  * @author Pedro
  */
 public class ImportacaoDadosController {
+    Logger log = Logger.getLogger("Log");
+    FileHandler fh;
     
     public ImportacaoDadosController() {
+        try {
+            //Configuração do ficheiro de Logs
+            fh = new FileHandler("EventosLog.log");
+            log.addHandler(fh);
+            SimpleFormatter formatter = new SimpleFormatter();  
+            fh.setFormatter(formatter);
+            log.info("Importação de dados iniciada com sucesso!");
+        } catch (IOException ex) {
+            Logger.getLogger(ImportacaoDadosController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SecurityException ex) {
+            Logger.getLogger(ImportacaoDadosController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     
