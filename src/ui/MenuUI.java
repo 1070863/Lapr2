@@ -366,7 +366,14 @@ public class MenuUI extends JFrame {
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                String strId = JOptionPane.showInputDialog("Introduza o seu id:");
+                if (m_empresa.getM_registaUtilizador().getUtilizador(strId) == null) {
+                    JOptionPane.showMessageDialog(null, "Não está Registado no sistema!!!", "Registo no Evento", ERROR_MESSAGE);
+                } else if (m_empresa.getM_registoEventos().getEventosOrganizador(strId).isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Não está indicao como autor", "Registo no Evento", ERROR_MESSAGE);
+                } else {
+                    PagamentoRegistoUI pagRUI = new PagamentoRegistoUI(MenuUI.this, true, m_empresa, strId);
+                }
             }
         }
         );
