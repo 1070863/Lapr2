@@ -44,6 +44,14 @@ public class CriarEventoCientificoController
         m_evento.setLocal(strLocal);
     }
     
+    public void setCidade(String strCidade) {
+        m_evento.setCidade(strCidade);
+    }
+
+    public void setPais(String strPais) {
+        m_evento.setPais(strPais);
+    }
+    
     public void setDataInicio(String strDataInicio)
     {
         m_evento.setDataInicio(strDataInicio);
@@ -65,6 +73,10 @@ public class CriarEventoCientificoController
         
     public void setDataLimiteRegisto(String strDataLimiteRegisto) {
         m_evento.setDataLimiteRegisto(strDataLimiteRegisto);
+    }
+    
+    public void setDataLimiteSubmissaoFinal(String strDataLimiteSubmissaoFinal) {
+        m_evento.setDataLimiteSubmissaoFinal(strDataLimiteSubmissaoFinal);
     }
 
     public void setNumeroMaximoTopicos(int nMaxTopicos) {

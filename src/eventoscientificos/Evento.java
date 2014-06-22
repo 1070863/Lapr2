@@ -89,6 +89,10 @@ public class Evento implements Serializable {
         this.m_strDataLimiteSubmissao = strDataLimiteSubmissao;
     }
 
+    public String getDataLimiteSubmissao() {
+        return m_strDataLimiteSubmissao;
+    }
+
     public String getDataLimiteRevisao() {
         return dataLimiteRevisao;
     }
