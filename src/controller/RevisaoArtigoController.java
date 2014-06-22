@@ -100,6 +100,16 @@ public class RevisaoArtigoController {
                 getEvento(evento.getM_strTitulo()).getSubmissao(artigo); 
     }
     
+    /**
+     * Regista a revisão do artigo
+     * @param confianca
+     * @param adequacao
+     * @param originalidade
+     * @param qualidade
+     * @param recomendacao
+     * @param texto
+     * @return boolean
+     */
     public boolean registaRevisao(String confianca, String adequacao, String originalidade,
             String qualidade, boolean recomendacao, String texto){
         if(this.m_empresa.getM_registoEventos().getEvento(this.evento.
