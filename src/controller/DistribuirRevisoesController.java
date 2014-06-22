@@ -10,6 +10,8 @@ import eventoscientificos.Distribuicao;
 import eventoscientificos.*;
 import java.util.ArrayList;
 import java.util.List;
+import states.EventoCPDefinidaState;
+import states.SubmissaoArtigosParaRevisaoSubmetidosState;
 
 /**
  *
@@ -34,11 +36,19 @@ public class DistribuirRevisoesController {
     public void setEvento(Evento e) {
         m_evento = e;
         processoDistribuicao = m_evento.novoProcessoDistribuicao();
+        processoDistribuicao.setM_listaSubmissoes(m_evento.getListaSubmissoes());
     }
 
+
     public List<Evento> novaDistribuicaoOrganizador(String orgID) {
-        List<Evento> listaEventosOrganizador = m_empresa.getM_registoEventos().getEventosOrganizador(orgID);
-        return listaEventosOrganizador;
+       List<Evento> listaEventosOrganizador = new ArrayList<Evento>();
+                for(Evento e : m_empresa.getM_registoEventos().getEventosOrganizador(orgID)){
+                    for (Submissao submissao : e.getListaSubmissoes()) {
+                    if(e.getState() instanceof EventoCPDefinidaState &&
+                            submissao.getState() instanceof SubmissaoArtigosParaRevisaoSubmetidosState)
+                   listaEventosOrganizador.add(e);}
+                }
+                return listaEventosOrganizador;
     }
 
     public ProcessoDistribuicao getProcessoDistribuicao() {
@@ -52,7 +62,7 @@ public class DistribuirRevisoesController {
 
     public void setMecanismoDistribuicao(int m) {
         m_evento.getProcessoDistribuicao().setMecanismoDistribuicao(m);
-        listaDistribuicoes = m_evento.getProcessoDistribuicao().distribui();
+        listaDistribuicoes = m_evento.getProcessoDistribuicao().getMecanismoDistribuicao().distribui(processoDistribuicao);
     }
     
     public void RegistaDistribuicao() {
@@ -65,5 +75,15 @@ public class DistribuirRevisoesController {
 
     public void setListaDistribuicoes(List<Distribuicao> listaDistribuicoes) {
         this.listaDistribuicoes = listaDistribuicoes;
+    }
+    
+    public boolean termina()
+    {
+         for (Submissao submissao : m_evento.getListaSubmissoes())
+         {
+             submissao.getState().SetArtigosParaRevisaoSubmetidos();
+         }
+    return m_evento.getState().setCPDefinida();
+    
     }
 }

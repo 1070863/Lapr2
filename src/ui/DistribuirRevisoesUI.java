@@ -17,6 +17,7 @@ import java.util.List;
  */
 public class DistribuirRevisoesUI extends javax.swing.JDialog {
 
+    private static final int JANELA_POSICAO_X = 65, JANELA_POSICAO_Y = 200;
     private static Empresa empresa;
     private DistribuirRevisoesController distribuirRevisoesController;
     private List<Evento> listaEventos;
@@ -52,7 +53,7 @@ public class DistribuirRevisoesUI extends javax.swing.JDialog {
             listaEventos = distribuirRevisoesController.novaDistribuicaoOrganizador(organizador);
 
             if (listaEventos.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Utilizador não associado a nenhum evento", "Distribuir Revisões",
+                JOptionPane.showMessageDialog(this, "Utilizador não associado a nenhum evento pronto para Distribuição", "Distribuir Revisões",
                         JOptionPane.ERROR_MESSAGE);
                 dispose();
             } else {
@@ -61,6 +62,7 @@ public class DistribuirRevisoesUI extends javax.swing.JDialog {
                 }
                 pack();
                 setResizable(false);
+                setLocation(JANELA_POSICAO_X, JANELA_POSICAO_Y);
                 setVisible(true);
             }
         } else {
@@ -214,8 +216,8 @@ public class DistribuirRevisoesUI extends javax.swing.JDialog {
     private void jButtonOkEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkEventoActionPerformed
         iEvento = cmbEvento.getSelectedIndex();
         if (iEvento != -1) {
-            Evento e = new Evento();
-            distribuirRevisoesController.setEvento(e);
+            
+            distribuirRevisoesController.setEvento(empresa.getM_registoEventos().getEvento((String)cmbEvento.getSelectedItem()));
             listaMecanimos = distribuirRevisoesController.getMecanismoDistribuicao();
 
             if (listaMecanimos.isEmpty()) {
@@ -247,7 +249,7 @@ public class DistribuirRevisoesUI extends javax.swing.JDialog {
         listaDistribuicoes = new ArrayList<>();
         String revisoes = "";
         if (iMecanismo != -1) {
-            distribuirRevisoesController.setMecanismoDistribuicao(iMecanismo);
+            distribuirRevisoesController.setMecanismoDistribuicao(cmbMecanismo.getSelectedIndex()+1);
             JOptionPane.showMessageDialog(this, "Revisões distribuidos com Sucesso", "Distribuir Revisões", JOptionPane.OK_OPTION);
             listaDistribuicoes = distribuirRevisoesController.getListaDistribuicoes();
             if (listaDistribuicoes != null) {
@@ -266,6 +268,11 @@ public class DistribuirRevisoesUI extends javax.swing.JDialog {
         } else {
             JOptionPane.showMessageDialog(this, "Tem que seleccionar um mecanismo primeiro!", "Distribuir Revisões", JOptionPane.ERROR_MESSAGE);
         }
+        if(distribuirRevisoesController.termina()){
+            JOptionPane.showMessageDialog(this, "Distribuição realizada com sucesso", "Distribuir Revisões!", JOptionPane.OK_OPTION);
+            dispose();}
+        else
+            JOptionPane.showMessageDialog(this, "Não reuniu as condições para alterar o estado", "Distribuir Revisões", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_jButtonOkMecanismoActionPerformed
 
     /**
