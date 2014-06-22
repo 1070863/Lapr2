@@ -36,6 +36,23 @@ public class Evento implements Serializable {
     private List<RegistoNoEvento> m_listRegistoNoEvento;
     private ProcessoDecisao m_processoDecisao;
     private String m_strDataLimiteSubmissaoFinal;
+    private String ID;
+
+    /**
+     * Obtém o ID do evento. O ID é utilizado na importação de dados (migração de dados)
+     * @return ID
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * Atribui um ID. Utilizado na importação de dados (migração de dados)
+     * @param ID 
+     */
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
     public Evento() {
         m_local = new Local();
