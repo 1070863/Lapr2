@@ -20,6 +20,8 @@ public class CriarEventoCientificoUI extends javax.swing.JDialog {
 
     private static Empresa empresa;
     private CriarEventoCientificoController criarEventoCController;
+    
+    private static final int JANELA_POSICAO_X = 200, JANELA_POSICAO_Y = 200;
 
     public CriarEventoCientificoUI(Empresa empresa) {
         this.empresa = empresa;
@@ -34,15 +36,17 @@ public class CriarEventoCientificoUI extends javax.swing.JDialog {
         initComponents();
         this.empresa = empresa;
         criarEventoCController = new CriarEventoCientificoController(empresa);
-        
+
     }
-/**
- * arranca janela
- */
+
+    /**
+     * arranca janela
+     */
     public void run() {
 
         pack();
         setResizable(false);
+        setLocation(JANELA_POSICAO_X, JANELA_POSICAO_Y);
         setVisible(true);
     }
 
@@ -78,6 +82,12 @@ public class CriarEventoCientificoUI extends javax.swing.JDialog {
         lblNumMaxTopicos = new javax.swing.JLabel();
         jTextnMaxTopicos = new javax.swing.JTextField();
         lblDataInicio1 = new javax.swing.JLabel();
+        jDateChooserSubmissaoFinal = new com.toedter.calendar.JDateChooser();
+        lblDataLimiteRegisto1 = new javax.swing.JLabel();
+        lblLocal1 = new javax.swing.JLabel();
+        jTextCidade = new javax.swing.JTextField();
+        lblLocal2 = new javax.swing.JLabel();
+        jTextPais = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Criar Evento Cientifico");
@@ -129,7 +139,15 @@ public class CriarEventoCientificoUI extends javax.swing.JDialog {
 
         lblNumMaxTopicos.setText("Número Máximo de Tópicos por Artigo:");
 
-        lblDataInicio1.setText("Nota: Submissao < Revisão < Registo < Inicio < Fim");
+        lblDataInicio1.setText("Nota: Submissão < Revisão < Submissão Final < Registo < Inicio < Fim");
+
+        jDateChooserSubmissaoFinal.setDateFormatString("dd/MMM/yyyy");
+
+        lblDataLimiteRegisto1.setText("Data Limite de Submissão Final:");
+
+        lblLocal1.setText("Cidade:");
+
+        lblLocal2.setText("País:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,9 +159,13 @@ public class CriarEventoCientificoUI extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblDataInicio1)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(lblDataLimiteRegisto1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jDateChooserSubmissaoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblDataLimiteRegisto)
                                     .addComponent(lblNumMaxTopicos))
@@ -155,34 +177,26 @@ public class CriarEventoCientificoUI extends javax.swing.JDialog {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jDateChooserRegisto, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(lblDataInicio)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jDateChooserInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblTitulo)
-                                    .addComponent(lblDescricao)
-                                    .addComponent(lblLocal))
+                                    .addComponent(lblDescricao))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane1)
                                     .addComponent(jTextTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(60, 60, 60)
                                         .addComponent(jButtonContinuar))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblDataFim))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblDataLSubmissao))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblDataLimiteRevisao)))
+                                    .addComponent(lblDataFim)
+                                    .addComponent(lblDataLSubmissao)
+                                    .addComponent(lblDataLimiteRevisao))
                                 .addGap(62, 62, 62)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -194,7 +208,20 @@ public class CriarEventoCientificoUI extends javax.swing.JDialog {
                                             .addComponent(jDateChooserFim, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jDateChooserLSubmissao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jDateChooserRevisao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                        .addGap(18, 18, 18))))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblLocal)
+                        .addGap(2, 2, 2)
+                        .addComponent(jTextLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblLocal1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblLocal2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextPais, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +237,13 @@ public class CriarEventoCientificoUI extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblLocal))
+                    .addComponent(lblLocal)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblLocal1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblLocal2))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblDataInicio)
@@ -227,7 +260,11 @@ public class CriarEventoCientificoUI extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDataLimiteRevisao)
                     .addComponent(jDateChooserRevisao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDataLimiteRegisto1)
+                    .addComponent(jDateChooserSubmissaoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDataLimiteRegisto)
                     .addComponent(jDateChooserRegisto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -237,7 +274,7 @@ public class CriarEventoCientificoUI extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNumMaxTopicos)
                     .addComponent(jTextnMaxTopicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonContinuar)
                     .addComponent(jButtonCancelar))
@@ -258,8 +295,8 @@ public class CriarEventoCientificoUI extends javax.swing.JDialog {
 
     /**
      * Se todos os dados estiverem correctos, pede para introduzir organizador e
-     * se este for introduzido, declara sucesso.
-     * Uso da library jCalendar tirado do seguinte site: http://toedter.com/software/
+     * se este for introduzido, declara sucesso. Uso da library jCalendar tirado
+     * do seguinte site: http://toedter.com/software/
      *
      * @param evt
      */
@@ -267,82 +304,90 @@ public class CriarEventoCientificoUI extends javax.swing.JDialog {
 
         try {
             if (!jTextTitulo.getText().isEmpty() && !txtDescricao.getText().isEmpty() && jTextnMaxTopicos.getText() != null) {
-                if (criarEventoCController.validaEvento(jTextTitulo.getText())!=true) {
+                if (criarEventoCController.validaEvento(jTextTitulo.getText()) != true) {
 
                     Integer.parseInt(jTextnMaxTopicos.getText());
 
                     if (jDateChooserLSubmissao.getDate().before(jDateChooserRevisao.getDate())) {
-                        if (jDateChooserRevisao.getDate().before(jDateChooserRegisto.getDate())) {
-                            if (jDateChooserRegisto.getDate().before(jDateChooserInicio.getDate())) {
-                                if (jDateChooserInicio.getDate().before(jDateChooserFim.getDate()) || jDateChooserInicio.getDate().equals(jDateChooserFim.getDate())) {
+                        if (jDateChooserRevisao.getDate().before(jDateChooserSubmissaoFinal.getDate())) {
+                            if (jDateChooserSubmissaoFinal.getDate().before(jDateChooserRegisto.getDate())) {
+                                if (jDateChooserRegisto.getDate().before(jDateChooserInicio.getDate())) {
+                                    if (jDateChooserInicio.getDate().before(jDateChooserFim.getDate()) || jDateChooserInicio.getDate().equals(jDateChooserFim.getDate())) {
 
-                                    List<Utilizador> utilizadoresTemp = new ArrayList<Utilizador>();
+                                        List<Utilizador> utilizadoresTemp = new ArrayList<Utilizador>();
 
-                                    String texto = "Titulo: " + jTextTitulo.getText();
-                                    texto += "\nDescrição: " + txtDescricao.getText();
+                                        String texto = "Titulo: " + jTextTitulo.getText();
+                                        texto += "\nDescrição: " + txtDescricao.getText();
 
-                                    texto += "\n";
-                                    int nOrganizadores = 0;
-                                    String idOrganizador = "";
-                                    while (nOrganizadores >= 0 && idOrganizador != null) {
-                                        idOrganizador = JOptionPane.showInputDialog(this, "ID Organizador de Evento:", "Adicionar Organizador", JOptionPane.QUESTION_MESSAGE);
+                                        texto += "\n";
+                                        int nOrganizadores = 0;
+                                        String idOrganizador = "";
+                                        while (nOrganizadores >= 0 && idOrganizador != null) {
+                                            idOrganizador = JOptionPane.showInputDialog(this, "ID Organizador de Evento:", "Adicionar Organizador", JOptionPane.QUESTION_MESSAGE);
 
-                                        if (idOrganizador != null) {
-                                            Utilizador u = empresa.getM_registaUtilizador().getUtilizador(idOrganizador);
+                                            if (idOrganizador != null) {
+                                                Utilizador u = empresa.getM_registaUtilizador().getUtilizador(idOrganizador);
 
-                                            if (u != null && !utilizadoresTemp.contains(u)) {
-                                                utilizadoresTemp.add(u);
-                                                texto += "\nUtilizador " + (nOrganizadores + 1) + ": " + u.getM_strNome();
-                                                nOrganizadores++;
+                                                if (u != null && !utilizadoresTemp.contains(u)) {
+                                                    utilizadoresTemp.add(u);
+                                                    texto += "\nUtilizador " + (nOrganizadores + 1) + ": " + u.getM_strNome();
+                                                    nOrganizadores++;
+                                                } else {
+                                                    JOptionPane.showMessageDialog(this, "Organizador não adicionado!", "Erro!", JOptionPane.ERROR_MESSAGE);
+                                                }
+                                                int resposta = JOptionPane.showConfirmDialog(this, "Quer adicionar mais Organizadores?", "Adicionar Organizador",
+                                                        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                                                if (resposta == JOptionPane.NO_OPTION && nOrganizadores > 0) {
+                                                    nOrganizadores = -1;
+                                                } else if (resposta == JOptionPane.NO_OPTION && nOrganizadores == 0) {
+                                                    JOptionPane.showMessageDialog(this, "Não adicionou nenhum Organizador!", "Erro!", JOptionPane.ERROR_MESSAGE);
+                                                }
+
                                             } else {
-                                                JOptionPane.showMessageDialog(this, "Organizador não adicionado!", "Erro!", JOptionPane.ERROR_MESSAGE);
-                                            }
-                                            int resposta = JOptionPane.showConfirmDialog(this, "Quer adicionar mais Organizadores?", "Adicionar Organizador",
-                                                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-                                            if (resposta == JOptionPane.NO_OPTION && nOrganizadores > 0) {
-                                                nOrganizadores = -1;
-                                            } else if (resposta == JOptionPane.NO_OPTION && nOrganizadores == 0) {
                                                 JOptionPane.showMessageDialog(this, "Não adicionou nenhum Organizador!", "Erro!", JOptionPane.ERROR_MESSAGE);
+
                                             }
-
-                                        } else {
-                                            JOptionPane.showMessageDialog(this, "Não adicionou nenhum Organizador!", "Erro!", JOptionPane.ERROR_MESSAGE);
-
                                         }
-                                    }
-                                    if (nOrganizadores == -1) {
-                                        int adicionarDados = JOptionPane.showConfirmDialog(this, texto, "Confirmação de dados.", JOptionPane.YES_NO_OPTION);
+                                        if (nOrganizadores == -1) {
+                                            int adicionarDados = JOptionPane.showConfirmDialog(this, texto, "Confirmação de dados.", JOptionPane.YES_NO_OPTION);
 
-                                        if (adicionarDados == JOptionPane.NO_OPTION) {
-                                            dispose();
-                                        } else {
-                                            criarEventoCController.novoEvento();                                          
-                                            criarEventoCController.setTitulo(jTextTitulo.getText());
-                                            criarEventoCController.setDescricao(txtDescricao.getText());
-                                            criarEventoCController.setLocal(jTextLocal.getText());
-                                            criarEventoCController.setDataInicio(jDateChooserInicio.getDateFormatString());
-                                            criarEventoCController.setDataFim(jDateChooserFim.getDateFormatString());
-                                            criarEventoCController.setDataLimiteSubmissão(jDateChooserLSubmissao.getDateFormatString());
-                                            criarEventoCController.setDataLimiteRevisao(jDateChooserRevisao.getDateFormatString());
-                                            
-                                            for (Utilizador uExistente : utilizadoresTemp) {
-                                                criarEventoCController.addOrganizador(uExistente.getM_strUsername());
+                                            if (adicionarDados == JOptionPane.NO_OPTION) {
+                                                dispose();
+                                            } else {
+                                                criarEventoCController.novoEvento();
+                                                criarEventoCController.setTitulo(jTextTitulo.getText());
+                                                criarEventoCController.setDescricao(txtDescricao.getText());
+                                                criarEventoCController.setLocal(jTextLocal.getText());
+                                                criarEventoCController.setCidade(jTextCidade.getText());
+                                                criarEventoCController.setPais(jTextPais.getText());
+                                                criarEventoCController.setDataInicio(jDateChooserInicio.getDateFormatString());
+                                                criarEventoCController.setDataFim(jDateChooserFim.getDateFormatString());
+                                                criarEventoCController.setDataLimiteSubmissão(jDateChooserLSubmissao.getDateFormatString());
+                                                criarEventoCController.setDataLimiteRevisao(jDateChooserRevisao.getDateFormatString());
+                                                criarEventoCController.setDataLimiteRegisto(jDateChooserRegisto.getDateFormatString());
+                                                criarEventoCController.setDataLimiteSubmissaoFinal(jDateChooserSubmissaoFinal.getDateFormatString());
+
+                                                for (Utilizador uExistente : utilizadoresTemp) {
+                                                    criarEventoCController.addOrganizador(uExistente.getM_strUsername());
+                                                }
+                                                criarEventoCController.registaEvento();
+
+                                                JOptionPane.showMessageDialog(this, "Evento registado com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
+                                                dispose();
                                             }
-                                            criarEventoCController.registaEvento();
-
-                                            JOptionPane.showMessageDialog(this, "Evento registado com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
-                                            dispose();
                                         }
+                                    } else {
+                                        JOptionPane.showMessageDialog(this, "Data de inicio tem de ser anterior ou igual à data de fim!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
                                     }
                                 } else {
-                                    JOptionPane.showMessageDialog(this, "Data de inicio tem de ser anterior ou igual à data de fim!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
+                                    JOptionPane.showMessageDialog(this, "Data limite de registo tem de ser anterior à data de inicio!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
                                 }
                             } else {
-                                JOptionPane.showMessageDialog(this, "Data limite de registo tem de ser anterior à data de inicio!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(this, "Data limite de revisão tem de ser anterior à data limite submissão final!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
                             }
                         } else {
-                            JOptionPane.showMessageDialog(this, "Data limite de revisão tem de ser anterior à data limite de registo!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "Data limite submissão finalo tem de ser anterior à data limite de registo!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
                         }
                     } else {
                         JOptionPane.showMessageDialog(this, "Data limite de submissão tem de ser anterior à data limite de revisão!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
@@ -412,8 +457,11 @@ public class CriarEventoCientificoUI extends javax.swing.JDialog {
     private com.toedter.calendar.JDateChooser jDateChooserLSubmissao;
     private com.toedter.calendar.JDateChooser jDateChooserRegisto;
     private com.toedter.calendar.JDateChooser jDateChooserRevisao;
+    private com.toedter.calendar.JDateChooser jDateChooserSubmissaoFinal;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextCidade;
     private javax.swing.JTextField jTextLocal;
+    private javax.swing.JTextField jTextPais;
     private javax.swing.JTextField jTextTitulo;
     private javax.swing.JTextField jTextnMaxTopicos;
     private javax.swing.JLabel lblDataFim;
@@ -421,9 +469,12 @@ public class CriarEventoCientificoUI extends javax.swing.JDialog {
     private javax.swing.JLabel lblDataInicio1;
     private javax.swing.JLabel lblDataLSubmissao;
     private javax.swing.JLabel lblDataLimiteRegisto;
+    private javax.swing.JLabel lblDataLimiteRegisto1;
     private javax.swing.JLabel lblDataLimiteRevisao;
     private javax.swing.JLabel lblDescricao;
     private javax.swing.JLabel lblLocal;
+    private javax.swing.JLabel lblLocal1;
+    private javax.swing.JLabel lblLocal2;
     private javax.swing.JLabel lblNumMaxTopicos;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextArea txtDescricao;

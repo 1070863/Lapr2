@@ -31,8 +31,13 @@
                       <Component id="lblDataInicio1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblDataLimiteRegisto1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jDateChooserSubmissaoFinal" min="-2" pref="209" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblDataLimiteRegisto" min="-2" max="-2" attributes="0"/>
@@ -59,11 +64,9 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblTitulo" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblDescricao" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblLocal" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTextLocal" min="-2" pref="297" max="-2" attributes="0"/>
                                   <Component id="jScrollPane1" max="32767" attributes="0"/>
                                   <Component id="jTextTitulo" alignment="1" min="-2" pref="297" max="-2" attributes="0"/>
                               </Group>
@@ -97,6 +100,20 @@
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblLocal" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <Component id="jTextLocal" min="-2" pref="87" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblLocal1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTextCidade" min="-2" pref="87" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblLocal2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jTextPais" min="-2" pref="87" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
       </Group>
@@ -118,6 +135,14 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jTextLocal" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblLocal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                      <Component id="jTextCidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblLocal1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                          <Component id="jTextPais" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblLocal2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
@@ -139,7 +164,12 @@
                   <Component id="lblDataLimiteRevisao" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jDateChooserRevisao" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblDataLimiteRegisto1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jDateChooserSubmissaoFinal" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblDataLimiteRegisto" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jDateChooserRegisto" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -151,7 +181,7 @@
                   <Component id="lblNumMaxTopicos" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextnMaxTopicos" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace pref="53" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonContinuar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -272,8 +302,32 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblDataInicio1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nota: Submissao &lt; Revis&#xe3;o &lt; Registo &lt; Inicio &lt; Fim"/>
+        <Property name="text" type="java.lang.String" value="Nota: Submiss&#xe3;o &lt; Revis&#xe3;o &lt; Submiss&#xe3;o Final &lt; Registo &lt; Inicio &lt; Fim"/>
       </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserSubmissaoFinal">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="dd/MMM/yyyy"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblDataLimiteRegisto1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Data Limite de Submiss&#xe3;o Final:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblLocal1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cidade:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextCidade">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblLocal2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pa&#xed;s:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextPais">
     </Component>
   </SubComponents>
 </Form>
