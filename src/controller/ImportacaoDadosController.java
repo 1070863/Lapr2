@@ -13,12 +13,17 @@ import eventoscientificos.LerFicheiroEvento;
 import eventoscientificos.LerFicheiroEventoCSV;
 import eventoscientificos.RevisaoArtigo;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Pedro
  */
 public class ImportacaoDadosController {
+    
+    public ImportacaoDadosController() {
+    }
+    
     
     /**Método que retorna uma lista de eventos lida de um ficheiro .csv
      * @param nomeFicheiro
