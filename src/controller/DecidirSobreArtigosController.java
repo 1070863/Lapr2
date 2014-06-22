@@ -7,14 +7,12 @@
 package controller;
 
 
-import eventoscientificos.Decisao;
-import eventoscientificos.Empresa;
-import eventoscientificos.Evento;
-import eventoscientificos.MecanismoDecisao;
-import eventoscientificos.ProcessoDecisao;
+import eventoscientificos.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import states.EventoRevistoState;
+import states.SubmissaoRevistaState;
 
 /**
  *
@@ -28,6 +26,9 @@ public class DecidirSobreArtigosController implements Serializable{
     private ProcessoDecisao processoDecisao;
     private List<Decisao> listaDecisoes = new ArrayList<>();
     private List<MecanismoDecisao> listaMecanismosDecisao;
+    private Decisao m_decisao;
+    private List<RevisaoArtigo> listaRevisaoArtigos;
+    private Submissao submissao;
     
 /**
  * construtor recebe a empresa e instancia this.empresa
@@ -53,12 +54,18 @@ public class DecidirSobreArtigosController implements Serializable{
     }
     /**
      * devolve a lista de eventos para um dado organizador
-     * @param orgID
+     * @param orgID 
      * @return 
      */
     public List<Evento> ListarEventosOrganizador(String orgID) {
-        List<Evento> listaEventosOrganizador = m_empresa.getM_registoEventos().getEventosOrganizador(orgID);
-        return listaEventosOrganizador;
+        List<Evento> listaEventosOrganizador = new ArrayList<Evento>();
+                for(Evento e : m_empresa.getM_registoEventos().getEventosOrganizador(orgID)){
+                    for (Submissao submissao : e.getListaSubmissoes()) {
+                    if(e.getState() instanceof EventoRevistoState &&
+                            submissao.getState() instanceof SubmissaoRevistaState)
+                   listaEventosOrganizador.add(e);}
+                }
+                return listaEventosOrganizador;
     }
 /**
  * 
@@ -97,7 +104,7 @@ public class DecidirSobreArtigosController implements Serializable{
  */
      public void setMecanismoDecisao(int m) {
         m_evento.getProcessoDecisao().setMecanismoDecisao(m);
-         m_evento.getProcessoDecisao().decide();
+        m_decisao= m_evento.getProcessoDecisao().getMecanismoDecisao().decide(processoDecisao);
          listaDecisoes = m_evento.getProcessoDecisao().getM_listaDecisao();
     }
     
@@ -117,5 +124,26 @@ public class DecidirSobreArtigosController implements Serializable{
         this.listaDecisoes = listaDecisoes;
     }
     
-   
+    public Submissao getArtigo()
+    {
+        int i=0;
+     for (Submissao submissao : m_evento.getListaSubmissoes())
+         i++;
+         if(submissao.getArtigo().equals(processoDecisao.getM_listaDistribuicao().get(i).getM_artigo()))
+             return submissao;
+         else 
+             return null;
+    }
+   /**
+     * Quando terminado o caso de uso este método irá iniciar a validação do
+     * evento.
+     *
+     * @return verdadeiro ou falso em função da validação do evento e dos seus
+     * estados.
+     */
+    public boolean termina() {
+         getArtigo().getState().setRevista();
+        return this.m_evento.getState().setRevisto();
+        
+    }
 }

@@ -28,11 +28,12 @@ public class ProcessoDecisaoTest {
     private static Topico topico1, topico2, topico3;
     private static MecanismoDecisao1 mecanismoDecisao1;
     private static ProcessoDecisao instance;
-    private static Distribuicao distribuicao;
-    private static List<Distribuicao> listaDistribuicao;
+    private static RevisaoArtigo revisaoArtigo;
+    private static List<RevisaoArtigo> listaRevisaoArtigo;
     private static List<Decisao> listaDecisao;
     private static Empresa empresa;
     private static Decisao m_decisao;
+    
     
     public ProcessoDecisaoTest() {
     }
@@ -57,22 +58,22 @@ public class ProcessoDecisaoTest {
         listaRevisor = new ArrayList<>();
         artigo = new Artigo();
         instance = new ProcessoDecisao();
-        distribuicao = new Distribuicao();
-        distribuicao.setTextoJustificativo("apenas para testar");
-        distribuicao.setAdequacao("4");
-        distribuicao.setConfianca("3");
-        distribuicao.setOriginalidade("4");
-        distribuicao.setQualidade("3");
-        distribuicao.setM_artigo(artigo);
-        distribuicao.setM_listaRevisores(listaRevisor);
-        distribuicao.setRecomendacao(true);
-        listaDistribuicao = new ArrayList<>();
-        listaDistribuicao.add(distribuicao);
+        revisaoArtigo = new RevisaoArtigo();
+        revisaoArtigo.setTextoJustificativo("apenas para testar");
+        revisaoArtigo.setAdequacao("4");
+        revisaoArtigo.setConfianca("3");
+        revisaoArtigo.setOriginalidade("4");
+        revisaoArtigo.setQualidade("3");
+        revisaoArtigo.setM_artigo(artigo);
+       // revisaoArtigo.setM_listaRevisores(listaRevisor);
+        revisaoArtigo.setRecomendacao(true);
+        listaRevisaoArtigo = new ArrayList<>();
+        listaRevisaoArtigo.add(revisaoArtigo);
         m_decisao = new Decisao(aceite);
         listaDecisao=new ArrayList<Decisao>();
         listaDecisao.add(m_decisao);
  
-        instance.setM_listaRevisao(listaDistribuicao);
+        instance.setM_listaRevisao(listaRevisaoArtigo);
         instance.setM_decisao(m_decisao);
         instance.setM_listaDecisao(listaDecisao);
         instance.setMecanismoDecisao(1);
@@ -110,8 +111,8 @@ public class ProcessoDecisaoTest {
     @Test
     public void testGetM_listaDistribuicao() {
         System.out.println("getM_listaRevisao");
-        List<Distribuicao> expResult = listaDistribuicao;
-        List<Distribuicao> result = instance.getM_listaDistribuicao();
+        List<RevisaoArtigo> expResult = listaRevisaoArtigo;
+        List<RevisaoArtigo> result = instance.getM_listaDistribuicao();
         assertEquals(expResult, result);
 
     }
@@ -124,8 +125,7 @@ public class ProcessoDecisaoTest {
     @Test
     public void testDecide() {
         System.out.println("decide");
-        //listaDecisao.add(instance.decide());
-        boolean result = listaDecisao.add(mecanismoDecisao1.decide(instance));
+        boolean result =  listaDecisao.add(mecanismoDecisao1.decide(instance));
         boolean expResult = true;
         
         assertEquals(expResult, result);

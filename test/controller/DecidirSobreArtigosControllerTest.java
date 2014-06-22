@@ -133,5 +133,17 @@ public class DecidirSobreArtigosControllerTest {
         List<Decisao> result = instance.getListaDecisoes();
         assertEquals(expResult, result);
     }
-
+    /**
+     * teste do metodo 
+     */
+    /**
+     * Test of termina method, of class CriarCPController.
+     */
+    @Test
+    public void testTermina() {
+        System.out.println("termina");
+        boolean expResult = true;
+        boolean result = instance.termina();
+        assertEquals(expResult, result);
+    }
 }

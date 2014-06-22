@@ -19,7 +19,7 @@ public class ProcessoDecisao implements Serializable{
     
     private MecanismoDecisao mecanismoDecisao;
     private List<Decisao> m_listaDecisao;
-    private List<Distribuicao> m_listaDistribuicao;
+    private List<RevisaoArtigo> m_listaRevisaoArtigo;
     
     private Decisao m_decisao;
     /**
@@ -35,19 +35,19 @@ public class ProcessoDecisao implements Serializable{
  * 
  * @return List<Revisao>
  */
-    public List<Distribuicao> getM_listaDistribuicao() {
-        return m_listaDistribuicao;
+    public List<RevisaoArtigo> getM_listaDistribuicao() {
+        return m_listaRevisaoArtigo;
     }
 /**
  * 
- * @param m_listaDistribuicao
+ * @param m_listaRevisaoArtigo
  */
-    public void setM_listaRevisao(List<Distribuicao> m_listaDistribuicao) {
-        this.m_listaDistribuicao = m_listaDistribuicao;
+    public void setM_listaRevisao(List<RevisaoArtigo> m_listarevisaoArtigo) {
+        this.m_listaRevisaoArtigo = m_listarevisaoArtigo;
     }
 /**
  * 
- * @return List<Decisao>
+ * @return <Decisao>
  */
     public Decisao decide() {
         m_decisao= new Decisao();
@@ -107,8 +107,8 @@ public class ProcessoDecisao implements Serializable{
         return m_decisao;
     }
 
-    public void setM_listaDistribuicao(List<Distribuicao> m_listaDistribuicao) {
-        this.m_listaDistribuicao = m_listaDistribuicao;
+    public void setM_listaDistribuicao(List<RevisaoArtigo> m_listarevisaoArtigo) {
+        this.m_listaRevisaoArtigo = m_listarevisaoArtigo;
     }
 
   

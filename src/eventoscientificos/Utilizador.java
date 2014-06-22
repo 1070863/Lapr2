@@ -125,7 +125,10 @@ public final class Utilizador implements Serializable {
     public boolean validaEmail() {
         return Utils.validaEmail(this.m_strEmail);
     }
-
+    public void valida() {
+       
+    }
+    
     /**
      * Reescrita do método toString herdado da classe Object com a informação do
      * Utilizador.
@@ -165,10 +168,5 @@ public final class Utilizador implements Serializable {
         }
     }
 
-//    @Override
-//    public int hashCode() {
-//        int hash = 3;
-//        hash = 37 * hash + (this.m_strUsername != null ? this.m_strUsername.hashCode() : 0);
-//        return hash;
-//    }
+
 }

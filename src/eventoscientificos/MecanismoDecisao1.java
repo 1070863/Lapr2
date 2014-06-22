@@ -16,7 +16,7 @@ import java.util.List;
 public class MecanismoDecisao1 implements MecanismoDecisao, Serializable{
     private static final long serialVersionUID = 1L;
     
-     private List<Distribuicao> listaDistribuicao;
+     private List<RevisaoArtigo> listaRevisaoArtigo;
      private Decisao decisao;
      private int aceite;
      private int recusada;
@@ -27,10 +27,10 @@ public class MecanismoDecisao1 implements MecanismoDecisao, Serializable{
     public Decisao decide(ProcessoDecisao pd) {
         
         decisao= pd.novaDecisao();
-       listaDistribuicao= pd.getM_listaDistribuicao();
-            for (int i = 0; i < listaDistribuicao.size(); i++)   
+       listaRevisaoArtigo= pd.getM_listaDistribuicao();
+            for (int i = 0; i < listaRevisaoArtigo.size(); i++)   
         {
-            if(listaDistribuicao.get(i).getRecomendacao())
+            if(listaRevisaoArtigo.get(i).getRecomendacao())
                 aceite++;
             else
                 recusada++;
@@ -70,7 +70,7 @@ public class MecanismoDecisao1 implements MecanismoDecisao, Serializable{
 
     @Override
     public String toString() {
-        return "MecanismoDecisao1{" + "listaDistribuicao=" + listaDistribuicao + ", decisao=" + decisao + ", aceite=" + aceite + ", recusada=" + recusada + ", nome=" + nome + '}';
+        return "MecanismoDecisao1{" + "listaDistribuicao=" + listaRevisaoArtigo + ", decisao=" + decisao + ", aceite=" + aceite + ", recusada=" + recusada + ", nome=" + nome + '}';
     }
     
     

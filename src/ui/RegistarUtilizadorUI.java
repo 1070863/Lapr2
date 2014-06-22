@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class RegistarUtilizadorUI extends javax.swing.JDialog {
 
-    
+    private static final int JANELA_POSICAO_X = 100, JANELA_POSICAO_Y = 200;
     private static Empresa m_empresa;
     private RegistarUtilizadorController m_registoUtilizadorController;
     private RegistoUtilizador m_registoUtilizador;
@@ -37,6 +37,7 @@ public class RegistarUtilizadorUI extends javax.swing.JDialog {
     {
     pack();
     setResizable(false);
+    setLocation(JANELA_POSICAO_X, JANELA_POSICAO_Y);
     setVisible(true);
     
     }
@@ -165,8 +166,7 @@ public class RegistarUtilizadorUI extends javax.swing.JDialog {
              jTextUserName.getText(), jTexEmail.getText());
          if(m_registoUtilizadorController.getM_utilizador().validaEmail())
          {
-//                     JOptionPane.showConfirmDialog(RegistarUtilizadorUI.this, m_registoUtilizadorController.getM_utilizador(),
-//                                    "Adicionar utilizador?",JOptionPane.OK_CANCEL_OPTION);
+
                     if(JOptionPane.showConfirmDialog(RegistarUtilizadorUI.this, m_registoUtilizadorController.getM_utilizador(),
                                     "Adicionar utilizador?",JOptionPane.OK_CANCEL_OPTION)==0)
                     
@@ -175,7 +175,7 @@ public class RegistarUtilizadorUI extends javax.swing.JDialog {
                                         {
                                             JOptionPane.showMessageDialog(RegistarUtilizadorUI.this, "Utilizador Adicionado\n"+m_registoUtilizadorController.getM_utilizador() 
                                                                                   , "Registar Utilizador", JOptionPane.INFORMATION_MESSAGE);
-                                        this.jTextNome.setText(""); this.jTextPassword.setText(""); this.jTextUserName.setText(""); this.jTexEmail.setText("");
+                                        this.jTextNome.setText(""); this.jTextPassword.setText(""); this.jTextUserName.setText(""); this.jTexEmail.setText("");                      
                                         }
                     
                     else
@@ -189,13 +189,13 @@ public class RegistarUtilizadorUI extends javax.swing.JDialog {
      else   JOptionPane.showMessageDialog(RegistarUtilizadorUI.this,"Campos vazios\n" , "Registar Utilizador", JOptionPane.ERROR_MESSAGE);
                                     
          
-         
+          dispose();
          
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
+      dispose();
+//        this.setVisible(false);
     }//GEN-LAST:event_btnCancelActionPerformed
 
     /**

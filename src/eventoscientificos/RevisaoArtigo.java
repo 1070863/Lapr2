@@ -29,6 +29,20 @@ public class RevisaoArtigo implements Serializable{
     }
     
     /**
+     * Artigo que foi revisto
+     */
+    private Artigo m_artigo;
+
+    public Artigo getM_artigo() {
+        return m_artigo;
+    }
+
+    public void setM_artigo(Artigo m_artigo) {
+        this.m_artigo = m_artigo;
+    }
+
+   
+    /**
      * confianca: confiança do revisor no tópico do artigo
      * adequacao: Adequação ao evento
      * originalidade: originalidade do artigo
@@ -165,5 +179,6 @@ public class RevisaoArtigo implements Serializable{
     public void setTextoJustificativo(String textoJustificativo) {
         this.textoJustificativo = textoJustificativo;
     }
+
     
 }

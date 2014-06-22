@@ -22,7 +22,8 @@ import javax.swing.JOptionPane;
  * @author Pereira
  */
 public class DecidirSobreArtigoUI extends javax.swing.JDialog {
-
+    
+ private static final int JANELA_POSICAO_X = 65, JANELA_POSICAO_Y = 200;
     private static Empresa empresa;
     private DecidirSobreArtigosController decidirSobreArtigoController;
     private List<Evento> listaEventos;
@@ -62,6 +63,7 @@ public class DecidirSobreArtigoUI extends javax.swing.JDialog {
                 }
                 pack();
                 setResizable(false);
+                setLocation(JANELA_POSICAO_X, JANELA_POSICAO_Y);
                 setVisible(true);
             }
         } else {
@@ -103,6 +105,11 @@ public class DecidirSobreArtigoUI extends javax.swing.JDialog {
         });
 
         btnCancelEvento.setText("Cancelar");
+        btnCancelEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelEventoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelEventoLayout = new javax.swing.GroupLayout(jPanelEvento);
         jPanelEvento.setLayout(jPanelEventoLayout);
@@ -148,6 +155,11 @@ public class DecidirSobreArtigoUI extends javax.swing.JDialog {
         });
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelMecanismoLayout = new javax.swing.GroupLayout(jPanelMecanismo);
         jPanelMecanismo.setLayout(jPanelMecanismoLayout);
@@ -207,8 +219,8 @@ public class DecidirSobreArtigoUI extends javax.swing.JDialog {
     private void btnOKEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKEventoActionPerformed
         iEvento = jcbEvento.getSelectedIndex();
         if (iEvento != -1) {
-            Evento e = new Evento();
-            decidirSobreArtigoController.setM_evento(e);
+            System.out.println("Nome do evento selecionado: "+(String)jcbEvento.getSelectedItem());
+            decidirSobreArtigoController.setM_evento(empresa.getM_registoEventos().getEvento((String)jcbEvento.getSelectedItem()));
             listaMecanimosDecisao = decidirSobreArtigoController.getListaMecanismosDecisao();
 
             if (listaMecanimosDecisao.isEmpty()) {
@@ -232,8 +244,9 @@ public class DecidirSobreArtigoUI extends javax.swing.JDialog {
         iMecanismo = jcMecanismos.getSelectedIndex();
         listaDecisoes = new ArrayList<>();
         String decisao = "";
+        int m=1;
         if (iMecanismo != -1) {
-            decidirSobreArtigoController.setMecanismoDecisao(iMecanismo);
+            decidirSobreArtigoController.setMecanismoDecisao(m);
             JOptionPane.showMessageDialog(this, "Decisão definida com Sucesso", "Decisão", JOptionPane.OK_OPTION);
             listaDecisoes = decidirSobreArtigoController.getListaDecisoes();
             if (listaDecisoes != null) {
@@ -248,9 +261,17 @@ public class DecidirSobreArtigoUI extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Nao existem dados suficientes para efectuar a decisao!", "Erro!", JOptionPane.ERROR_MESSAGE);
                 dispose();
             }
-        
+        decidirSobreArtigoController.termina();
     
     }//GEN-LAST:event_btnOKMecanismoActionPerformed
+
+    private void btnCancelEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelEventoActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelEventoActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

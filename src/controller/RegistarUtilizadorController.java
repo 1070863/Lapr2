@@ -41,10 +41,6 @@ public class RegistarUtilizadorController
     public Utilizador setDados(String strNome, String strPassword, String strUsername, String strEmail)
     {
         novoUtilizador();
-        System.out.println(strNome);
-        System.out.println(strPassword);
-        System.out.println(strUsername);
-        System.out.println(strEmail);
         
         this.m_utilizador.setM_strNome(strNome);
         this.m_utilizador.setM_strPassword(strPassword);
