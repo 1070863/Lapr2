@@ -317,8 +317,7 @@ public class CriarEventoCientificoUI extends javax.swing.JDialog {
                                         if (adicionarDados == JOptionPane.NO_OPTION) {
                                             dispose();
                                         } else {
-                                            criarEventoCController.novoEvento();
-                                            criarEventoCController.registaEvento();
+                                            criarEventoCController.novoEvento();                                          
                                             criarEventoCController.setTitulo(jTextTitulo.getText());
                                             criarEventoCController.setDescricao(txtDescricao.getText());
                                             criarEventoCController.setLocal(jTextLocal.getText());
@@ -326,12 +325,13 @@ public class CriarEventoCientificoUI extends javax.swing.JDialog {
                                             criarEventoCController.setDataFim(jDateChooserFim.getDateFormatString());
                                             criarEventoCController.setDataLimiteSubmissão(jDateChooserLSubmissao.getDateFormatString());
                                             criarEventoCController.setDataLimiteRevisao(jDateChooserRevisao.getDateFormatString());
-
+                                            
                                             for (Utilizador uExistente : utilizadoresTemp) {
                                                 criarEventoCController.addOrganizador(uExistente.getM_strUsername());
                                             }
+                                            criarEventoCController.registaEvento();
 
-                                            JOptionPane.showMessageDialog(this, "Evento criado com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
+                                            JOptionPane.showMessageDialog(this, "Evento registado com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
                                             dispose();
                                         }
                                     }

@@ -51,6 +51,7 @@ public class CarregarEventosController {
     }
 
     public void setEvento(Evento e) {
-        m_empresa.getM_registoEventos().getListaEventosCorrigir().add(e);
+        e.getState().setCarregado();
+        m_empresa.getM_registoEventos().registaEvento(e);
     }
 }

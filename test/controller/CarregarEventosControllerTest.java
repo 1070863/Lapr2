@@ -75,10 +75,9 @@ public class CarregarEventosControllerTest {
     public void testSetEvento() {
         System.out.println("setEvento");
         instance.setEvento(evento);
-        List<Evento> expResult = new ArrayList<>();
-        expResult.add(evento);
-        List<Evento> result = new ArrayList<>();
-        result = empresa.getM_registoEventos().getListaEventosCorrigir();
+        String expResult = evento.getM_strTitulo();
+        String result = empresa.getM_registoEventos().getEvento("12th International CDIO Conference, Turku, Finland").getM_strTitulo();
+
         assertEquals(expResult, result);
     }
 

@@ -22,6 +22,7 @@ public class CriarEventoCientificoController
     public void novoEvento()
     {
         m_evento = m_empresa.getM_registoEventos().novoEvento();
+        m_evento.getState().setCriado();
     }
 
     public String getEventoString()
@@ -95,6 +96,7 @@ public class CriarEventoCientificoController
     
     public boolean registaEvento()
     {
+        m_evento.getState().setRegistado();
         return m_empresa.getM_registoEventos().registaEvento(m_evento);
     }
     
