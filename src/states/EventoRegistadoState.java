@@ -22,6 +22,15 @@ public class EventoRegistadoState implements EventoState, Serializable{
     }
 
     /**
+     * Faz o set do estado carregado
+     *
+     * @return false valor booleano falso
+     */
+    public boolean setCarregado() {
+        return false;
+    }
+
+    /**
      * Faz o set do estado Criado.
      *
      * @return false

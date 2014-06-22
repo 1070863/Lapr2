@@ -20,6 +20,15 @@ public class EventoTopicosDefinidosState implements EventoState {
     public EventoTopicosDefinidosState(Evento e) {
         m_e = e;
     }
+    
+    /**
+     * Faz o set do estado carregado
+     *
+     * @return false valor booleano falso
+     */
+    public boolean setCarregado() {
+        return false;
+    }
 
     /**
      * Faz o set do estado criado.

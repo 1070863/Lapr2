@@ -14,6 +14,15 @@ public class EventoRevistoState implements EventoState, Serializable{
         this.m_e = m_e;
     }
 
+    /**
+     * Faz o set do estado carregado
+     *
+     * @return false valor booleano falso
+     */
+    public boolean setCarregado() {
+        return false;
+    }
+
     public boolean setCriado() {
         return false;
     }

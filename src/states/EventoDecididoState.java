@@ -25,6 +25,15 @@ public class EventoDecididoState implements EventoState, Serializable{
     }
 
     /**
+     * Faz o set do estado carregado
+     *
+     * @return false valor booleano falso
+     */
+    public boolean setCarregado() {
+        return false;
+    }
+
+    /**
      * Faz o set do estado criado
      *
      * @return false
