@@ -6,16 +6,7 @@
 
 package eventoscientificos;
 
-import states.EventoDecididoState;
-import states.EventoRevistoState;
-import states.EventoCriadoState;
-import states.EventoNotificadoState;
-import states.EventoRegistadoState;
-import states.EventoTopicosDefinidosState;
-import states.EventoCPDefinidaState;
-import states.EventoCameraReadyState;
-import states.EventoDistribuidoState;
-import states.EventoState;
+import states.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -25,6 +16,21 @@ import static org.junit.Assert.*;
  */
 public class EventoStateTest {
     
+    
+    /**
+     * Test of setCarregado method, of class EventoState.
+     */
+    @Test
+    public void testSetCarregado() {
+        System.out.println("SetCarregado");
+        Evento e = new Evento();
+        EventoState instance = new EventoCarregadoState(new Evento());
+        boolean expResult = false;
+        boolean result = instance.setCarregado();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        
+    }
     
     /**
      * Test of setCriado method, of class EventoState.
@@ -155,6 +161,10 @@ public class EventoStateTest {
 
     public class EventoStateImpl implements EventoState {
 
+        public boolean setCarregado() {
+            return false;
+        }
+        
         public boolean setCriado() {
             return false;
         }
