@@ -2,7 +2,10 @@ package eventoscientificos;
 
 import java.io.Serializable;
 import java.util.*;
+import states.EventoDecididoState;
 import states.SubmissaoAceiteState;
+import states.SubmissaoNotificadaAceiteState;
+import states.SubmissaoRejeitadaState;
 
 /**
  *
@@ -200,5 +203,26 @@ public class RegistoEventos implements Serializable {
 
     public List<Evento> getM_listaEventos() {
         return m_listaEventos;
+    }
+    
+    /**
+     * Retorna a lista de eventos prontos a notificar
+     * @param strId
+     * @return List<Evento>
+     */
+    public List<Evento> getListaEventosProntosNotificar(String strId) {
+        List<Evento> le = new ArrayList<>();
+
+        for (Evento e : getEventosOrganizador(strId)) 
+        {
+            for (Submissao submissao : e.getListaSubmissoes())
+            {
+                    if(e.getState() instanceof EventoDecididoState &&
+                            submissao.getState() instanceof SubmissaoNotificadaAceiteState || 
+                            submissao.getState() instanceof SubmissaoRejeitadaState)
+            le.add(e);
+            }
+        }    
+        return le;
     }
 }
