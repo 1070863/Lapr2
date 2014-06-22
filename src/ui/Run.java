@@ -2,7 +2,7 @@ package ui;
 
 
 import eventoscientificos.Empresa;
-import tratarficheiros.LerFicheiroEventoXML;
+import eventoscientificos.LerFicheiroEventoXML;
 import eventoscientificos.Utilizador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -49,7 +49,7 @@ public class Run extends JFrame {
         this.empresa.getM_registaUtilizador().addUtilizador(u1);
         this.empresa.getM_registaUtilizador().addUtilizador(u2);
         
-        LerFicheiroEventoXML lerEventos = new LerFicheiroEventoXML("EventList_CDIO.xml", 
+      /*  LerFicheiroEventoXML lerEventos = new LerFicheiroEventoXML("EventList_CDIO.xml", 
                 empresa);
         try {
             lerEventos.lerEventosXML();
@@ -59,7 +59,7 @@ public class Run extends JFrame {
             JOptionPane.showMessageDialog(null,"Erro a ler o ficheiro xml!");
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null,"Não fo possivel ler o ficheiro xml!");
-        }
+        }*/
 
         JMenuBar menuBar = new JMenuBar();
 
