@@ -1,7 +1,9 @@
 package eventoscientificos;
 
+import static com.sun.org.apache.bcel.internal.Repository.*;
 import java.io.Serializable;
 import java.util.*;
+import states.SubmissaoAceiteState;
 
 /**
  *
@@ -70,21 +72,29 @@ public class RegistoEventos implements Serializable {
         m_listaMecanismoDecisao = new ArrayList<>();
         this.m_listaMecanismoDecisao.add(new MecanismoDecisao1());
         return m_listaMecanismoDecisao;
+
     }
 
+    /**
+     * Procura no registo de eventos os eventos cujo Autor tenha Submissões e as
+     * mesmas tenham o seu estado como aceite.
+     *
+     * @param strId id do autor correspondente
+     * @return Lista de Eventos com Submissões aceites.
+     */
     public List<Evento> getEventosAutorAceites(String strId) {
         List<Evento> leAutorAceites = new ArrayList<>();
 
         Utilizador u = m_empresa.getM_registaUtilizador().getUtilizador(strId);
-         if (u != null) {
-             for (Iterator<Evento> it = m_listaEventos.listIterator(); it.hasNext();) {
+        if (u != null) {
+            for (Iterator<Evento> it = m_listaEventos.listIterator(); it.hasNext();) {
                 Evento e = it.next();
                 List<Submissao> lSubmissoes = e.getListaSubmissoes();
 
                 boolean bRet = false;
                 if (!leAutorAceites.contains(e)) {
                     for (Submissao sub : lSubmissoes) {
-                        if (sub.getArtigo().getAutorCorrespondente().getUtilizador().equals(u)) {
+                        if ((sub.getArtigo().getAutorCorrespondente().getUtilizador().equals(u)) && (sub.getState() instanceof SubmissaoAceiteState)) {
                             bRet = true;
                             break;
                         }
@@ -94,7 +104,8 @@ public class RegistoEventos implements Serializable {
                     }
                 }
             }
-         }
+        }
+        return leAutorAceites;
     }
 
     public List<Evento> getEventosOrganizador(String strId) {
