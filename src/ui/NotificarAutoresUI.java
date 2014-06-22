@@ -20,6 +20,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -32,6 +34,8 @@ public class NotificarAutoresUI extends javax.swing.JDialog {
     private   Artigo m_artigo;
     private Utilizador utilizadorID;
     private  NotificarAutoresController m_NotificarAutoresController;
+    private List<Evento> listaEventos;
+    private String utilizador;
     private int iEvento=-1;
     /**
      * Creates new form NotificarAutoresUI
@@ -43,20 +47,7 @@ public class NotificarAutoresUI extends javax.swing.JDialog {
         this.m_empresa=empresa;
         m_NotificarAutoresController= new NotificarAutoresController(m_empresa);
         
-        if (m_NotificarAutoresController.getListaEventosProntosNotificar().length > 0) {
-            for (String eventoNome : m_NotificarAutoresController.getListaEventosProntosNotificar()) {
-                jCBoxEventos.addItem(eventoNome);
-            }
-        }
-  
-       
-    }
-/**
- * Torna visivel a janela e  faz também a autenticação do utilizador
- */
-     public void run()
-     {
-   String utilizador = JOptionPane.showInputDialog(this,
+       utilizador = JOptionPane.showInputDialog(this,
                 "Insira o Organizador", "Login", JOptionPane.INFORMATION_MESSAGE);
         if (utilizador != null) {
 
@@ -68,15 +59,40 @@ public class NotificarAutoresUI extends javax.swing.JDialog {
                         JOptionPane.ERROR_MESSAGE);
                 dispose();
             } else {
+                JOptionPane.showInputDialog(this,
+                    "O ID introduzido não é válido", "Login", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+  
+       listaEventos = m_NotificarAutoresController.getListaEventosProntosNotificar(utilizador);
+
+            if (listaEventos.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Utilizador não associado a nenhum evento", "Distribuir Revisões",
+                        JOptionPane.ERROR_MESSAGE);
+                dispose();
+            } else 
+                for (Evento evento : listaEventos) {
+                    jcboxEventos.addItem(evento.getM_strTitulo());
+                    }
+    }
+/**
+ * Torna visivel a janela e  faz também a autenticação do utilizador
+ */
+     public void run()
+     {
+         
+              
+                
+  
 
                 pack();
                 setResizable(false);
                 setLocationRelativeTo(NotificarAutoresUI.this);
                 
                 setVisible(true);
-            }
+                
         }
-    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,7 +109,7 @@ public class NotificarAutoresUI extends javax.swing.JDialog {
         jList2 = new javax.swing.JList();
         p1Evento = new javax.swing.JPanel();
         lblSelecionaEvento = new javax.swing.JLabel();
-        jCBoxEventos = new javax.swing.JComboBox();
+        jcboxEventos = new javax.swing.JComboBox();
         btnOK = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
@@ -117,9 +133,9 @@ public class NotificarAutoresUI extends javax.swing.JDialog {
 
         lblSelecionaEvento.setText("Selecione um evento:");
 
-        jCBoxEventos.addActionListener(new java.awt.event.ActionListener() {
+        jcboxEventos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBoxEventosActionPerformed(evt);
+                jcboxEventosActionPerformed(evt);
             }
         });
 
@@ -147,7 +163,7 @@ public class NotificarAutoresUI extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(lblSelecionaEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
-                        .addComponent(jCBoxEventos, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jcboxEventos, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(p1EventoLayout.createSequentialGroup()
                         .addGap(83, 83, 83)
                         .addComponent(btnOK)
@@ -161,7 +177,7 @@ public class NotificarAutoresUI extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(p1EventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSelecionaEvento)
-                    .addComponent(jCBoxEventos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcboxEventos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(p1EventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnOK)
@@ -189,17 +205,17 @@ public class NotificarAutoresUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        NotificarAutoresUI.this.dispose();      // TODO add your handling code here:
+        dispose();      // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActionPerformed
 /**
  * Após selecionar o evento inicia a autenticação usando o controller para iniciar o processo de notificação
  * @param evt 
  */
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
-    iEvento = jCBoxEventos.getSelectedIndex();
+    iEvento = jcboxEventos.getSelectedIndex()+1;
         if (iEvento != -1) {
             Evento e = new Evento();
-            e = m_empresa.getM_registoEventos().getEvento((String) jCBoxEventos.getSelectedItem());
+            e = m_empresa.getM_registoEventos().getEvento((String) jcboxEventos.getSelectedItem());
         try {
             if(m_NotificarAutoresController.NotificarAutores(e))
                 JOptionPane.showMessageDialog(NotificarAutoresUI.this,"Foi criado o ficheiro para notificação");
@@ -212,14 +228,14 @@ public class NotificarAutoresUI extends javax.swing.JDialog {
         }
                         }
                        
-                        else JOptionPane.showMessageDialog(NotificarAutoresUI.this,"erro");
+                        else JOptionPane.showMessageDialog(NotificarAutoresUI.this,"erro na Notificaçao");
                         
              
     }//GEN-LAST:event_btnOKActionPerformed
 
-    private void jCBoxEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxEventosActionPerformed
+    private void jcboxEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcboxEventosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCBoxEventosActionPerformed
+    }//GEN-LAST:event_jcboxEventosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,11 +283,11 @@ public class NotificarAutoresUI extends javax.swing.JDialog {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnOK;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jCBoxEventos;
     private javax.swing.JList jList1;
     private javax.swing.JList jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JComboBox jcboxEventos;
     private javax.swing.JLabel lblSelecionaEvento;
     private javax.swing.JPanel p1Evento;
     // End of variables declaration//GEN-END:variables

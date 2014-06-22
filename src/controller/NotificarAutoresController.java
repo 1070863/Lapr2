@@ -13,6 +13,7 @@ import eventoscientificos.NotificarAutores;
 import eventoscientificos.Submissao;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,18 +50,14 @@ public class NotificarAutoresController {
             m_empresa.getM_registoEventos().novoEvento().novaSubmissao().novoArtigo();
        }
        
-          public String[] getListaEventosProntosNotificar(){
-        String[] listaEventos= new String[m_empresa.getM_registoEventos().getListaEventosProntosNotificar().size()];
-        for (Evento evento : m_empresa.getM_registoEventos().getListaEventosProntosNotificar()) {
-            listaEventos[m_empresa.getM_registoEventos().getListaEventosProntosNotificar().indexOf(evento)]=
-                    evento.getM_strTitulo();
-        }
+          public List<Evento> getListaEventosProntosNotificar(String strId){
+         List<Evento> listaEventos= new ArrayList<>();
+                listaEventos= m_empresa.getM_registoEventos().getListaEventosProntosNotificar();
         return listaEventos;
     }
          
           public boolean NotificarAutores(Evento env) throws TransformerException, ParserConfigurationException, IOException
           {
-            if(env.getState() instanceof EventoDecididoState) 
             NotificarAutores(env);
           return true;
           }
