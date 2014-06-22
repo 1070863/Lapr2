@@ -1,5 +1,8 @@
 package utils;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 /**
  * Representa uma data através do dia, mês e ano.
  *
@@ -226,4 +229,28 @@ public class Data {
     public static boolean isAnoBissexto(int ano) {
         return ano % 4 == 0 && ano % 100 != 0 || ano % 400 == 0;
     }
+    
+    
+     public static Calendar String2Data(String str_data) {
+        String[] aux = str_data.split(",");
+        String[] aux2 = aux[1].trim().split(" ");
+
+        int mes = findMes(aux2[0].trim());
+        int dia = Integer.parseInt(aux2[1].trim());
+        int ano = Integer.parseInt(aux[2].trim());
+
+        Calendar c = new GregorianCalendar(ano, mes - 1, dia);
+        return c;
+    }
+    
+     public static int findMes(String aux) {
+        for (int i = 1; i < 14; i++) {
+            if (aux.equalsIgnoreCase(Data.nomeMes[i])) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+  
 }

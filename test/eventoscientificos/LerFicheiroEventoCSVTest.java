@@ -92,9 +92,9 @@ public class LerFicheiroEventoCSVTest {
         System.out.println("organizador");
         int coluna = 1;
         int linha = 1;
-        instance.organizador(listaString, linha, coluna, evento, empresa);
-        Organizador expResult = new Organizador("DorisB", utilizador);
-        Organizador result = empresa.getM_registoEventos().getEvento("EventoTitulo").getListaOrganizadores().get(0);
+        instance.organizador(listaString, linha, coluna, empresa);
+        Utilizador expResult = utilizador;
+        Utilizador result = empresa.getM_registoEventos().getEvento("EventoTitulo").getListaOrganizadores().get(0).getM_utilizador();
         assertEquals(expResult, result);
     }
 }

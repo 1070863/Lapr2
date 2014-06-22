@@ -20,12 +20,21 @@ public class EventoValoresRegistoDefinidos implements EventoState {
         this.m_e = m_e;
     }
 
-    /**
-     * Faz o set do estado carregado
+     /**
+     * Faz o set do estado criado ficheiro
      *
      * @return false valor booleano falso
      */
-    public boolean setCarregado() {
+    public boolean setCriadoFicheiro() {
+        return false;
+    }
+    
+    /**
+     * Faz o set do estado lido ficheiro (aprovado após confirmacao)
+     *
+     * @return false valor booleano falso
+     */
+    public boolean setLidoFicheiro() {
         return false;
     }
 

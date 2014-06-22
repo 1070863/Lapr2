@@ -12,34 +12,43 @@ import java.io.Serializable;
  *
  * @author Lopes
  */
-public class EventoCarregadoState implements EventoState, Serializable{
+public class EventoLidoFicheiroState implements EventoState, Serializable{
      Evento m_e;
      
-     public EventoCarregadoState(Evento e) {
+     public EventoLidoFicheiroState(Evento e) {
         this.m_e = e;
     }
      
       /**
-     * Faz o set do estado carregado
+     /**
+     * Faz o set do estado criado ficheiro
      *
      * @return false valor booleano falso
      */
-    public boolean setCarregado() {
-        if (valida()) {
-            m_e.setState(new EventoCarregadoState(m_e));
-            return true;
-        } else {
-            return false;
-        }
+    public boolean setCriadoFicheiro() {
+        return false;
     }
-
+    
+    /**
+     * Faz o set do estado lido ficheiro (aprovado após confirmacao)
+     *
+     * @return false valor booleano falso
+     */
+    public boolean setLidoFicheiro() {
+        return false;
+    }
     /**
      * Faz o set do estado criado
      *
      * @return false
      */
     public boolean setCriado() {
-        return false;
+        if (valida()) {
+            m_e.setState(new EventoCriadoState(m_e));
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

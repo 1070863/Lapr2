@@ -7,7 +7,8 @@ package states;
  */
 public interface EventoState {
 
-    public abstract boolean setCarregado();
+    public abstract boolean setCriadoFicheiro();
+    public abstract boolean setLidoFicheiro();
     public abstract boolean setCriado();
     public abstract boolean setRegistado();
     public abstract boolean setTopicosDefinidos();

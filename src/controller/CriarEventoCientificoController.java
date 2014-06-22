@@ -103,13 +103,13 @@ public class CriarEventoCientificoController
     /**
  * Valida o nome do evento
  * @param ID nome do evento que tem de ser unico
- * @return false se não existir, true se já existir um evento com este nome
+ * @return true se não existir, false se já existir um evento com este nome
  */
     public boolean validaEvento(String ID) {
         if (m_empresa.getM_registoEventos().getEvento(ID) == null) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 }

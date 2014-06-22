@@ -16,17 +16,31 @@ import static org.junit.Assert.*;
  */
 public class EventoStateTest {
     
-    
     /**
-     * Test of setCarregado method, of class EventoState.
+     * Test of setLidoFicheiro method, of class EventoState.
      */
     @Test
-    public void testSetCarregado() {
-        System.out.println("SetCarregado");
+    public void testCriadoFicheiro() {
+        System.out.println("SetCriadoFicheiro");
         Evento e = new Evento();
-        EventoState instance = new EventoCarregadoState(new Evento());
+        EventoState instance = new EventoCriadoFicheiroState(new Evento());
         boolean expResult = false;
-        boolean result = instance.setCarregado();
+        boolean result = instance.setLidoFicheiro();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        
+    }
+
+    /**
+     * Test of setLidoFicheiro method, of class EventoState.
+     */
+    @Test
+    public void testSetLidoFicheiro() {
+        System.out.println("SetLidoFicheiro");
+        Evento e = new Evento();
+        EventoState instance = new EventoLidoFicheiroState(new Evento());
+        boolean expResult = false;
+        boolean result = instance.setLidoFicheiro();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         
@@ -161,7 +175,11 @@ public class EventoStateTest {
 
     public class EventoStateImpl implements EventoState {
 
-        public boolean setCarregado() {
+        public boolean setCriadoFicheiro() {
+            return false;
+        }
+        
+        public boolean setLidoFicheiro() {
             return false;
         }
         

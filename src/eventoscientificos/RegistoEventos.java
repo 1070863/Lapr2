@@ -1,6 +1,5 @@
 package eventoscientificos;
 
-import static com.sun.org.apache.bcel.internal.Repository.*;
 import java.io.Serializable;
 import java.util.*;
 import states.SubmissaoAceiteState;
@@ -52,9 +51,6 @@ public class RegistoEventos implements Serializable {
         }
     }
 
-    private boolean validaEvento(Evento e) {
-        return true;
-    }
 
     private boolean addEvento(Evento e) {
         return m_listaEventos.add(e);
@@ -166,6 +162,21 @@ public class RegistoEventos implements Serializable {
         return null;
     }
 
+    
+    private boolean validaEvento(Evento e) {
+        System.out.println("validaEvento: " +  this.getEvento(e.getM_strTitulo()));
+        
+        if(this.getEvento(e.getM_strTitulo()) == null)
+        {System.out.println("Evento Valido: " + e.getM_strTitulo());
+            return true;
+        }
+            
+        else{
+            System.out.println("Evento NAOValido: " + e.getM_strTitulo());
+             return false;
+        }
+           
+    }
     @Override
     public int hashCode() {
         int hash = 3;
@@ -187,4 +198,7 @@ public class RegistoEventos implements Serializable {
         return true;
     }
 
+    public List<Evento> getM_listaEventos() {
+        return m_listaEventos;
+    }
 }

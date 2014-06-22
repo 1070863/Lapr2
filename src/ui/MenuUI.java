@@ -172,6 +172,7 @@ public class MenuUI extends JFrame {
         menu.add(criarSubMenuDecidSArtigo());
         menu.add(criarSubMenuNotificaAutores());
         menu.add(criarSubMenuDefinirValoresRegisto());
+        menu.add(criarSubMenuCorrigirEventosImportados());
         return menu;
     }
 
@@ -301,6 +302,25 @@ public class MenuUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NotificarAutoresUI dialog = new NotificarAutoresUI(new javax.swing.JFrame(), true, m_empresa);
                 dialog.run();
+            }
+        }
+        );
+        return item;
+    }
+    
+        /**
+     * Cria item do menu Organizador com a opção corrigir eventos importados.
+     *
+     * @return item Notificar Autores para adicionar ao Menu
+     */
+    private JMenuItem criarSubMenuCorrigirEventosImportados() {
+        JMenuItem item = new JMenuItem("Corrigir Eventos Importados", KeyEvent.VK_7);
+        item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_7, InputEvent.CTRL_MASK));
+        item.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CorrigirEventosImportadosUI cei = new CorrigirEventosImportadosUI(new javax.swing.JFrame(), true, m_empresa);
+                cei.run();
             }
         }
         );

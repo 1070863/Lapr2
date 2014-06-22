@@ -16,7 +16,9 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
-import utils.Data;
+import states.EventoCriadoFicheiroState;
+import utils.*;
+import static utils.Data.*;
 
 /**
  *
@@ -63,55 +65,60 @@ public class LerFicheiroEventoCSV implements LerFicheiroEvento {
         for (String[] strings : temp) {
             while (linha < temp.size())
             {
-                listaEventosProvisoria.add(new Evento());
+                Evento e = new Evento();
+                //listaEventosProvisoria.add(new Evento());
                 while (coluna < temp.get(0).length) {
                     opcao = temp.get(0)[coluna];
                     switch (opcao) {
                         case "Name":
-                            listaEventosProvisoria.get(i).setTitulo(temp.get(linha)[coluna]);
+                            e.setTitulo(temp.get(linha)[coluna]);
                             break;
                         case "Host":
-                            listaEventosProvisoria.get(i).setLocal(temp.get(linha)[coluna]);
+                            e.setLocal(temp.get(linha)[coluna]);
                             break;
                         case "City":
-                            listaEventosProvisoria.get(i).setCidade(temp.get(linha)[coluna]);
+                            e.setCidade(temp.get(linha)[coluna]);
                             break;
                         case "Country":
-                            listaEventosProvisoria.get(i).setPais(temp.get(linha)[coluna]);
+                            e.setPais(temp.get(linha)[coluna]);
                             break;
                         case "Submission deadline":
-                            listaEventosProvisoria.get(i).setDataLimiteSubmissao(temp.get(linha)[coluna]);
+                            e.setDataLimiteSubmissao(temp.get(linha)[coluna]);
                             break;
                         case "Revision deadline":
-                            listaEventosProvisoria.get(i).setDataLimiteRevisao(temp.get(linha)[coluna]);
+                            e.setDataLimiteRevisao(temp.get(linha)[coluna]);
                             break;
                         case "Final paper deadline":
-                            listaEventosProvisoria.get(i).setDataLimiteSubmissaoFinal(temp.get(linha)[coluna]);
+                            e.setDataLimiteSubmissaoFinal(temp.get(linha)[coluna]);
                             break;
                         case "Author registration deadline":
-                            listaEventosProvisoria.get(i).setDataLimiteRegisto(temp.get(linha)[coluna]);
+                            e.setDataLimiteRegisto(temp.get(linha)[coluna]);
                             break;
                         case "Date":
-                            listaEventosProvisoria.get(i).setDataInicio(temp.get(linha)[coluna]);
+                            e.setDataInicio(temp.get(linha)[coluna]);
                             break;
                         case "Duration (days)":
                             String dataFinal = calculoDataFim(temp, linha, coluna);
-                            listaEventosProvisoria.get(i).setDataFim(dataFinal);
+                            e.setDataFim(dataFinal);
                             break;
                         case "Organizer":
-                            if(coluna < temp.get(linha).length )
-                                 organizador(temp, linha, coluna, listaEventosProvisoria.get(i), empresa);
+                            if(coluna < temp.get(linha).length && organizador(temp, linha, coluna, empresa) != null)
+                                 e.addOrganizador(temp.get(linha)[coluna + 1], organizador(temp, linha, coluna, empresa));
                             break;
                     }
                     coluna++;
                 }
-                boolean regista = empresa.getM_registoEventos().registaEvento(listaEventosProvisoria.get(i));
-                if(regista)
-                {
+                //listaEventosProvisoria.get(i).setState(new EventoCriadoFicheiroState(listaEventosProvisoria.get(i)));
+                e.setState(new EventoCriadoFicheiroState(e));
+                //boolean regista = empresa.getM_registoEventos().registaEvento(listaEventosProvisoria.get(i));
+                boolean regista = empresa.getM_registoEventos().registaEvento(e);
+                
+                //if(regista)
+                //{
                     i++;
                     linha++;
                     coluna = 0;  
-                }
+                //}
             }
         }
     }
@@ -135,37 +142,22 @@ public class LerFicheiroEventoCSV implements LerFicheiroEvento {
                 break;
             }
         }
-        String[] aux = (temp.get(linha)[date].split(","));
-        String[] aux2 = aux[1].trim().split(" ");
 
-        int mes = findMes(aux2[0].trim());
-        int dia = Integer.parseInt(aux2[1].trim());
-        int ano = Integer.parseInt(aux[2].trim());
-
-        SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy");
-        Calendar c = new GregorianCalendar(ano, mes - 1, dia);
+        Calendar c = String2Data(temp.get(linha)[date]);
         c.add(Calendar.DAY_OF_MONTH, duration);
 
+        SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy");
         String texto = (String) sd.format(c.getTime());
         String[] aux3 = (texto.split("/"));
-        dia = Integer.parseInt(aux3[0].trim());
-        mes = Integer.parseInt(aux3[1].trim());
-        ano = Integer.parseInt(aux3[2].trim());
+        int dia = Integer.parseInt(aux3[0].trim());
+        int mes = Integer.parseInt(aux3[1].trim());
+        int ano = Integer.parseInt(aux3[2].trim());
         Data dataFim = new Data(ano, mes, dia);
         String dataFinal = dataFim.toString();
 
         return dataFinal;
     }
-
-    private int findMes(String aux) {
-        for (int i = 1; i < 14; i++) {
-            if (aux.equalsIgnoreCase(Data.nomeMes[i])) {
-                return i;
-            }
-        }
-        return 0;
-    }
-
+   
     /**
      * Introducao e validacao de organizadores na lista dos mesmo do evento em
      * questao
@@ -174,12 +166,17 @@ public class LerFicheiroEventoCSV implements LerFicheiroEvento {
      * @param posicao posicao que estamos a tratar no array
      * @param evento evento que vai conter a lista de organizadores
      */
-    public void organizador(List<String[]> temp, int linha, int coluna, Evento evento, Empresa empresa) {
+    public Utilizador organizador(List<String[]> temp, int linha, int coluna, Empresa empresa) {
         Utilizador u;
+        System.out.println(":organizador: ");
         if (empresa.getM_registaUtilizador().getUtilizadorEmail(temp.get(linha)[coluna + 1]) != null) {
             u = empresa.getM_registaUtilizador().getUtilizadorEmail(temp.get(linha)[coluna + 1]);
-            evento.addOrganizador(temp.get(linha)[coluna + 1], u);
+            return u;
+            //listaEventosProvisoria.get(i).addOrganizador(temp.get(linha)[coluna + 1], u);
+           // System.out.println("size: " + listaEventosProvisoria.get(i).getListaOrganizadores().size());
+  
         }
+        return null;
     }
 
 }

@@ -132,16 +132,18 @@
                   <Component id="jScrollPane1" min="-2" pref="78" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextLocal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblLocal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="jTextPais" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblLocal2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jTextCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblLocal1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                          <Component id="jTextPais" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblLocal2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jTextLocal" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblLocal" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>

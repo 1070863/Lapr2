@@ -110,6 +110,9 @@ public class CarregarEventosUI extends JFrame {
 
     private void mostrarEventos() {
         List<Evento> listaEventosProvisoria = carregarEventosController.mostrarListaProvisoria();
+        System.out.println("mostrarEventos: " + listaEventosProvisoria.size());
+                
+                
         int contador = 0;
         boolean flag = true;
         for (Evento evento : listaEventosProvisoria) {

@@ -1,26 +1,25 @@
-package states;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
+package states;
 import eventoscientificos.Evento;
 import java.io.Serializable;
 
 /**
- * Esta classe gere o estado de um evento validando se o mesmo reune condições
- * para passar do estado criado a Registado.
  *
- * @author GRUPO66 LAPR2
+ * @author Lopes
  */
-public class EventoCriadoState implements EventoState, Serializable{
+public class EventoCriadoFicheiroState implements EventoState, Serializable{
     Evento m_e;
-
-    /**
-     * Cria uma instância de EventoCriadoState
-     *
-     * @param m_e
-     */
-    public EventoCriadoState(Evento m_e) {
-        this.m_e = m_e;
+     
+     public EventoCriadoFicheiroState(Evento e) {
+        this.m_e = e;
     }
-
+     
+       /**
      /**
      * Faz o set do estado criado ficheiro
      *
@@ -36,9 +35,14 @@ public class EventoCriadoState implements EventoState, Serializable{
      * @return false valor booleano falso
      */
     public boolean setLidoFicheiro() {
-        return false;
+        System.out.println("state: setLidoFicheiro");
+        if (valida()) {
+            m_e.setState(new EventoLidoFicheiroState(m_e));
+            return true;
+        } else {
+            return false;
+        }
     }
-
     /**
      * Faz o set do estado criado
      *
@@ -54,12 +58,7 @@ public class EventoCriadoState implements EventoState, Serializable{
      * @return false
      */
     public boolean setRegistado() {
-        if (valida()) {
-            m_e.setState(new EventoRegistadoState(m_e));
-            return true;
-        } else {
-            return false;
-        }
+         return false;
     }
 
     /**
@@ -67,9 +66,8 @@ public class EventoCriadoState implements EventoState, Serializable{
      *
      * @return boolean
      */
-    public boolean valida() {
-        return !(m_e.getM_strTitulo().isEmpty() || m_e.getM_strDescricao().isEmpty()
-                || m_e.getM_local() == null || m_e.getListaOrganizadores() == null);
+    public boolean valida() { 
+        return true;
     }
 
     /**

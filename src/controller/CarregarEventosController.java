@@ -1,14 +1,13 @@
 package controller;
 
 import eventoscientificos.*;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
+import states.EventoCriadoFicheiroState;
+import states.EventoLidoFicheiroState;
 
 /**
  *
@@ -34,11 +33,12 @@ public class CarregarEventosController {
         else if (ext.equalsIgnoreCase(".xml")) 
             lerFicheiroEvento = new LerFicheiroEventoXML();
         else 
-            return 1;
+            return 1; 
         
         lerFicheiroEvento.LerFicheiro(fileName, m_empresa);
 
-        if(lerFicheiroEvento.getListaEventosProvisoria().size() < 1)
+        if(m_empresa.getM_registoEventos().getM_listaEventos().size() < 1)
+        //if(lerFicheiroEvento.getListaEventosProvisoria().size() < 1)
             return 2; 
         
         return 0;
@@ -46,12 +46,20 @@ public class CarregarEventosController {
 
     public List<Evento> mostrarListaProvisoria() {
         this.listaProvisoria = new ArrayList<>();
-        this.listaProvisoria = lerFicheiroEvento.getListaEventosProvisoria();
+        for (Evento e : m_empresa.getM_registoEventos().getM_listaEventos()) {
+            System.out.println(e.getM_strTitulo() + ", " +e.getState() );
+            if (e.getState() instanceof EventoCriadoFicheiroState) {
+                listaProvisoria.add(e);
+            }
+        }
+        //this.listaProvisoria = lerFicheiroEvento.getListaEventosProvisoria();
         return this.listaProvisoria;
     }
 
     public void setEvento(Evento e) {
-        e.getState().setCarregado();
-        m_empresa.getM_registoEventos().registaEvento(e);
+        System.out.println("SetEvento: " + e.getM_strTitulo() +", " + e.getState());
+             
+        e.getState().setLidoFicheiro();
+         System.out.println("DepoisSetEvento: " + e.getM_strTitulo() +", " + e.getState());
     }
 }

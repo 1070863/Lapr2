@@ -67,9 +67,14 @@ private static final long serialVersionUID = 1L;
      *
      * @return informação do Organizador
      */
-    @Override
+     @Override
     public String toString() {
         return m_utilizador.toString();
     }
+    
+    public String toStringSimplificada() {
+        return m_utilizador.getM_strUsername() + ", " + m_utilizador.getM_strEmail();
+    }
+
 
 }
