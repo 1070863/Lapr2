@@ -21,12 +21,15 @@ import java.util.logging.SimpleFormatter;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 import tratarficheiros.LerFicheiroArtigoCSV;
+import tratarficheiros.LerFicheiroRevisaoCSV;
 
 /**
  *
  * @author Pedro
  */
 public class ImportacaoDadosController {
+    private int opcao;
+    
     Logger log = Logger.getLogger("Log");
     FileHandler fh;
     
@@ -50,6 +53,9 @@ public class ImportacaoDadosController {
      * @param nomeFicheiro
      * @param empresa
      * @return lista de eventos
+     * @throws javax.xml.parsers.ParserConfigurationException
+     * @throws org.xml.sax.SAXException
+     * @throws java.io.IOException
      */
     public List<Evento> lerEvento(String nomeFicheiro, Empresa empresa) throws ParserConfigurationException, 
             SAXException, IOException{
@@ -63,6 +69,9 @@ public class ImportacaoDadosController {
      * @param nomeFicheiro
      * @param empresa
      * @return lista de artigos
+     * @throws javax.xml.parsers.ParserConfigurationException
+     * @throws org.xml.sax.SAXException
+     * @throws java.io.IOException
      */
     public List<Artigo> lerArtigos(String nomeFicheiro, Empresa empresa) throws ParserConfigurationException, 
             SAXException, IOException{
@@ -76,9 +85,24 @@ public class ImportacaoDadosController {
      * @param nomeFicheiro
      * @param empresa
      * @return lista de revisão de artigos
+     * @throws javax.xml.parsers.ParserConfigurationException
+     * @throws org.xml.sax.SAXException
+     * @throws java.io.IOException
      */
-    public List<RevisaoArtigo> lerRevisoes(String nomeFicheiro, Empresa empresa){
+    public List<RevisaoArtigo> lerRevisoes(String nomeFicheiro, Empresa empresa) throws 
+            ParserConfigurationException, SAXException, IOException{
+        LerFicheiroRevisaoCSV lerFicheiro = new LerFicheiroRevisaoCSV();
+        lerFicheiro.LerFicheiro(nomeFicheiro, empresa);
         
-        return null;
+        return lerFicheiro.getListaRevisoesProvisoria();
     }
+
+    /**
+     * Atribui a opção selleccionada
+     * @param opcao 
+     */
+    public void setOpcao(int opcao) {
+        this.opcao = opcao;
+    }
+    
 }
