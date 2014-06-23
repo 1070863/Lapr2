@@ -39,7 +39,9 @@ public class Evento implements Serializable {
     private String ID;
 
     /**
-     * Obtém o ID do evento. O ID é utilizado na importação de dados (migração de dados)
+     * Obtém o ID do evento. O ID é utilizado na importação de dados (migração
+     * de dados)
+     *
      * @return ID
      */
     public String getID() {
@@ -48,7 +50,8 @@ public class Evento implements Serializable {
 
     /**
      * Atribui um ID. Utilizado na importação de dados (migração de dados)
-     * @param ID 
+     *
+     * @param ID
      */
     public void setID(String ID) {
         this.ID = ID;
@@ -177,10 +180,11 @@ public class Evento implements Serializable {
     public boolean addOrganizador(String strId, Utilizador u) {
         Organizador o = new Organizador(strId, u);
 
-        if(o.valida() && validaOrganizador(o))
+        if (o.valida() && validaOrganizador(o)) {
             return addOrganizador(o);
-        else
+        } else {
             return false;
+        }
     }
 
     private boolean addOrganizador(Organizador o) {
@@ -199,7 +203,7 @@ public class Evento implements Serializable {
         }
         return true;
     }
-    
+
     public void setCP(CP cp) {
         m_cp = cp;
     }
@@ -284,6 +288,15 @@ public class Evento implements Serializable {
     // adicionada na iteração 2
     private boolean validaGlobalTopico(Topico t) {
         return true;
+    }
+
+    /**
+     * Procura a lista de Registos no evento
+     *
+     * @return lista de registos no evento
+     */
+    public List<RegistoNoEvento> getListaRegistos() {
+        return this.m_listRegistoNoEvento;
     }
 
     public EventoState getState() {
@@ -432,5 +445,4 @@ public class Evento implements Serializable {
         return m_listaOrganizadores;
     }
 
-    
 }
