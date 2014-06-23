@@ -6,20 +6,11 @@
 
 package states;
 
-import eventoscientificos.Submissao;
-import java.io.Serializable;
-
 /**
  *
  * @author Pereira
  */
-public class SubmissaoNotificadaAceiteState implements SubmissaoState, Serializable {
-    
-    Submissao m_submissao;
-
-    public SubmissaoNotificadaAceiteState(Submissao m_submissao) {
-        this.m_submissao = m_submissao;
-    }
+public class SubmissaoNotificadaRejeitadaState implements SubmissaoState {
 
     @Override
     public boolean SetCriada() {
@@ -28,7 +19,7 @@ public class SubmissaoNotificadaAceiteState implements SubmissaoState, Serializa
 
     @Override
     public boolean SetArtigosParaRevisaoSubmetidos() {
-        return false;
+       return false;
     }
 
     @Override
@@ -38,36 +29,36 @@ public class SubmissaoNotificadaAceiteState implements SubmissaoState, Serializa
 
     @Override
     public boolean setRevista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      return false;
     }
 
     @Override
     public boolean setRejeitada() {
-        return false;
+       return false;
     }
 
     @Override
     public boolean setAceite() {
-        return false;
+       return false;
     }
+
+    @Override
     public boolean setNotificadoAceite() {
         return false;
     }
 
     @Override
     public boolean valida() {
-        return true;
+       return false;
     }
-
-    @Override
+    
     public boolean setNotificadoRejeitada() {
-      return false;
+       return false;
     }
 
     @Override
     public boolean setRegistada() {
         return false;
     }
-    
     
 }

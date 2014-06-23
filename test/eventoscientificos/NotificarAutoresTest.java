@@ -77,24 +77,7 @@ public class NotificarAutoresTest {
      
     }*/
    
-    /**
-     * Test of valida method, of class NotificarAutores.
-     */
-    @Test
-    public void testValida() {
-        System.out.println("valida");
-        boolean pass= false;
-        
-
-        NotificarAutores instance = new NotificarAutores();
-        
-        boolean result = instance.valida();
-        boolean expResult = false;  // o resultado esperado é falso pois perante o problema aprenatado em lapr2 
-        //o estado de submissão não chega a ser aceite ou rejeitado pois nao existem mecanismos de decisão para implemantar
-               
-        assertEquals(expResult, result);
-            
-        }
+   
      
     
     

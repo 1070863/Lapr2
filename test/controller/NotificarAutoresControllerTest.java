@@ -10,6 +10,7 @@ import eventoscientificos.Evento;
 import eventoscientificos.Organizador;
 import eventoscientificos.Utilizador;
 import eventoscientificos.*;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -31,6 +32,7 @@ public class NotificarAutoresControllerTest {
     private  Artigo a;
     private Autor autor ;
     private Submissao s;
+    private List<Evento> listaEventos;
     public NotificarAutoresControllerTest() {
     }
     
@@ -55,40 +57,15 @@ public class NotificarAutoresControllerTest {
       e.setLocal("isep");
       e.setDescricao("Descrição");
       org= new Organizador("sergio",u);
-     s=empresa.getM_registoEventos().novoEvento().novaSubmissao();
-     a=empresa.getM_registoEventos().novoEvento().novaSubmissao().novoArtigo();
-        a.setTitulo("Titulo");
-        a.setResumo("Esperança");
-        a.setFicheiro("Nau da esperança");
-        autor = a.novoAutor("Isep", u.getM_strEmail());
-        autor.setAfiliacao("isep");
-        autor.setM_Utilizador(u);
-        autor.setNome(u.getM_strNome());
-        a.addAutor(autor);
-        e.addSubmissao(s);
-        re.registaEvento(e);
+       re.getM_listaEventos().add(e);
+       listaEventos= re.getM_listaEventos();
+       re.registaEvento(e);
+       
     }
     
     @After
     public void tearDown() {
     }
-
-
-    /**
-     * Test of iniciarSubmissao method, of class NotificarAutoresController.
-     */
-    @Test
-    public void testIniciarSubmissao() {
-        System.out.println("iniciarSubmissao");
-        NotificarAutoresController instance = new NotificarAutoresController(empresa);
-        e.addSubmissao(s);
-        re.getListaEventosPodeSubmeter().add(e);
-        List<Evento> expResult = re.getListaEventosPodeSubmeter();
-        List<Evento> result = instance.iniciarSubmissao();
-        assertEquals(expResult, result);
-      
-    }
-
    
 
     /**
@@ -97,15 +74,14 @@ public class NotificarAutoresControllerTest {
     @Test
     public void testGetListaEventosProntosNotificar() {
         System.out.println("getListaEventosProntosNotificar");
-        String[] listaEventos= new String[re.getListaEventosProntosNotificar().size()];
-        for (Evento evento : re.getListaEventosProntosNotificar()) {
-            listaEventos[re.getListaEventosProntosNotificar().indexOf(evento)]=
-                    evento.getM_strTitulo();}
+        boolean a= false;
         NotificarAutoresController instance = new NotificarAutoresController(empresa);
-        System.out.println(listaEventos);
-        String[] expResult = listaEventos;
-        String[] result = instance.getListaEventosProntosNotificar();
-        assertArrayEquals(expResult, result);
+        listaEventos=instance.getListaEventosProntosNotificar(org.getM_utilizador().getM_strUsername());
+         if(listaEventos.get(0)!=null )
+             a=true;
+        boolean expResult = true;       
+        boolean result = a;
+        assertEquals(expResult, result);
     }
 
     
