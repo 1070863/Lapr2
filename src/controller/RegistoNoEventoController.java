@@ -4,7 +4,10 @@ import eventoscientificos.Empresa;
 import eventoscientificos.Evento;
 import eventoscientificos.RegistoNoEvento;
 import eventoscientificos.Submissao;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
+import javax.swing.JTextField;
 
 /**
  * esta classe serve de controladora do fluxo de infomração entreo o sistema e a
@@ -89,4 +92,55 @@ public class RegistoNoEventoController {
         return this.m_evento.addRegistoNoEvento(this.m_registonoEvento);
     }
 
+    /**
+     * Quando terminado o caso de uso este método irá iniciar a validação do
+     * evento.
+     *
+     * @return verdadeiro ou falso em função da validação do evento e dos seus
+     * estados.
+     */
+    public boolean termina() {
+        for (int i = 0; i < this.m_registonoEvento.getM_listaSubmisoesAceites().size(); i++) {
+            this.m_registonoEvento.getM_listaSubmisoesAceites().get(i).getState().setRegistada();
+        }
+        return true;
+    }
+
+    /**
+     * Define os valores do registo no evento de acordo com a informação passada
+     * na interface gráfica.
+     *
+     * @param metodoPagamento método de pagamento externo
+     * @param diaValidade dia da validade do cartão de crédito
+     * @param mesValidade mês da validade do cartão de crédito
+     * @param anoValidade ano da validade do cartão de crédito
+     * @param diaLimite dia até ao qual os valores devem estar disponiveis
+     * @param mesLimite mês até ao qual os valores devem estar disponiveis
+     * @param anoLimite ano até ao qual os valores devem estar disponiveis
+     * @param valor valor a ser autorizado
+     * @param numeroCartao numero do cartão
+     * @return verdadeiro ou falso em função do registo no evento
+     */
+    public boolean defineRegisto(String metodoPagamento, String diaValidade, String mesValidade,
+            String anoValidade, String diaLimite, String mesLimite, String anoLimite, float valor, String numeroCartao) {
+        if (metodoPagamento.equalsIgnoreCase("CanadaExpress")) {
+            Date validade = new Date();
+            validade.setDate(Integer.parseInt(diaValidade));
+            validade.setMonth(Integer.parseInt(mesValidade));
+            validade.setYear(Integer.parseInt(anoValidade));
+            Date limite = new Date();
+            limite.setDate(Integer.parseInt(diaLimite));
+            limite.setMonth(Integer.parseInt(mesLimite));
+            limite.setYear(Integer.parseInt(anoLimite));
+            this.m_registonoEvento.pagamentoCanadaExpress(validade, numeroCartao, valor, limite);
+            this.m_registonoEvento.setM_autor(this.m_registonoEvento.getM_listaSubmisoesAceites().get(1).getArtigo().getAutorCorrespondente());
+            this.m_registonoEvento.setM_valor(valor);
+            return adicionaRegisto();
+        } else {
+            String dataValidade = anoValidade + "-" + mesValidade + "-" + diaValidade;
+            String dataLimite = anoLimite + "-" + mesLimite + "-" + diaLimite;
+            this.m_registonoEvento.pagamentoVisaoLight(numeroCartao, dataValidade, valor, dataLimite);
+            return adicionaRegisto();
+        }
+    }
 }
