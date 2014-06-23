@@ -59,10 +59,11 @@ public class CarregarEventosController {
         return this.listaProvisoria;
     }
 
-    public void setEvento(Evento e) {
-        System.out.println("SetEvento: " + e.getM_strTitulo() +", " + e.getState());
-             
+    public void setEvento(Evento e) {     
         e.getState().setLidoFicheiro();
-         System.out.println("DepoisSetEvento: " + e.getM_strTitulo() +", " + e.getState());
+    }
+    
+     public void apagaEventosDesnecessarios() {     
+        m_empresa.getM_registoEventos().apagaEventosCriadoFicheiro();
     }
 }

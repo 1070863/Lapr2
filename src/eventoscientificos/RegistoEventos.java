@@ -2,6 +2,7 @@ package eventoscientificos;
 
 import java.io.Serializable;
 import java.util.*;
+import states.EventoCriadoFicheiroState;
 import states.EventoDecididoState;
 import states.SubmissaoAceiteState;
 import states.SubmissaoNotificadaAceiteState;
@@ -217,5 +218,19 @@ public class RegistoEventos implements Serializable {
             }
         }    
         return le;
+    }
+    
+    public void apagaEventosCriadoFicheiro(){
+
+        int contador = 0;
+        for (int i=m_listaEventos.size()-1; i> -1; i--) {
+            Evento e = m_listaEventos.get(i);
+
+            if(e.getState() instanceof EventoCriadoFicheiroState)
+            {
+                this.m_listaEventos.remove(e);
+                contador++;
+            }
+        }
     }
 }

@@ -109,9 +109,7 @@ public class CarregarEventosUI extends JFrame {
     }
 
     private void mostrarEventos() {
-        List<Evento> listaEventosProvisoria = carregarEventosController.mostrarListaProvisoria();
-        System.out.println("mostrarEventos: " + listaEventosProvisoria.size());
-                
+        List<Evento> listaEventosProvisoria = carregarEventosController.mostrarListaProvisoria();   
                 
         int contador = 0;
         boolean flag = true;
@@ -137,5 +135,8 @@ public class CarregarEventosUI extends JFrame {
         if (flag == true) {
             JOptionPane.showMessageDialog(this, "Todos os eventos lidos", "Carregar Eventos", JOptionPane.INFORMATION_MESSAGE);
         }
+        
+        carregarEventosController.apagaEventosDesnecessarios();
+        
     }
 }
