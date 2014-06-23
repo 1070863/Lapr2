@@ -219,18 +219,23 @@ public class RegistoEventos implements Serializable {
         }    
         return le;
     }
-    
+   
+    public int getListaEventosCriadoFicheiroSize(){
+        int contador = 0;
+        for (Evento e : m_listaEventos) {
+            if(e.getState() instanceof EventoCriadoFicheiroState)
+                contador++;
+        }
+        return contador;
+    }
     public void apagaEventosCriadoFicheiro(){
 
-        int contador = 0;
         for (int i=m_listaEventos.size()-1; i> -1; i--) {
             Evento e = m_listaEventos.get(i);
 
             if(e.getState() instanceof EventoCriadoFicheiroState)
-            {
                 this.m_listaEventos.remove(e);
-                contador++;
-            }
+            
         }
     }
 }

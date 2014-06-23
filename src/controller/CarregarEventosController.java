@@ -40,8 +40,7 @@ public class CarregarEventosController {
         
         lerFicheiroEvento.LerFicheiro(fileName, m_empresa);
 
-        if(m_empresa.getM_registoEventos().getM_listaEventos().size() < 1)
-        //if(lerFicheiroEvento.getListaEventosProvisoria().size() < 1)
+        if(m_empresa.getM_registoEventos().getListaEventosCriadoFicheiroSize() < 1)
             return 2; 
         
         return 0;
