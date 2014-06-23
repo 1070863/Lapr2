@@ -1,8 +1,9 @@
 /**
  * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates and open the template
- * in the editor.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
+
 package states;
 
 import eventoscientificos.Submissao;
@@ -16,59 +17,77 @@ public class SubmissaoDistribuidaState implements SubmissaoState, Serializable {
 
     Submissao m_submissao;
 
-    public SubmissaoDistribuidaState(Submissao m_submissao) {
-        this.m_submissao = m_submissao;
-    }
+	public SubmissaoDistribuidaState(Submissao m_submissao)
+	{
+		this.m_submissao=m_submissao;
+	}
 
-    public boolean SetCriada() {
-        return false;
+	public boolean SetCriada()
+	{
+	return false;
 
-    }
+	}
 
-    public boolean SetArtigosParaRevisaoSubmetidos() {
-        return false;
-    }
+    public boolean SetArtigosParaRevisaoSubmetidos()
+	{
+	return false;
+	}
+    public boolean setDestribuida()
+	{
+		return false;
+	
+	}
 
-    public boolean setDestribuida() {
-        return false;
 
-    }
-
-    public boolean setRevista() {
-        if (valida()) {
+    public boolean setRevista()
+	{
+	if (valida())
+	 {
             m_submissao.setState(new SubmissaoRevistaState(m_submissao));
             return true;
-        } else {
-            return false;
-        }
+         } 
+		else 
+		{
+           	 return false;
+        	} 
 
-    }
-
-    public boolean valida() {
-        return true;
-
-    }
-
-    public boolean setRejeitada() {
+	}
+	
+	public boolean valida() 
+	{
+          if(m_submissao.getState() instanceof SubmissaoDistribuidaState &&											
+               m_submissao.getArtigo().getM_listaTopicos().size()>0)
+              return true;
+          else
         return false;
     }
+    
 
-    public boolean setAceite() {
-        return false;
+    
 
+    public  boolean setRejeitada()
+	{
+	return false;
+	}
+
+    public boolean setAceite()
+	{
+	return false;
+
+	}
+    public boolean setNotificadoAceite()
+	{
+	return false;
+
+	}
+
+    @Override
+    public boolean setNotificadoRejeitada() {
+       return false;
     }
 
-    public boolean setNotificadoAceite() {
-        return false;
-
-    }
-
-    /**
-     * Define a submissão como registada após o pagamento do Registo no Evento.
-     *
-     * @return false
-     */
+    @Override
     public boolean setRegistada() {
         return false;
     }
-}
+}    

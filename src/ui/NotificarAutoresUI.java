@@ -47,52 +47,41 @@ public class NotificarAutoresUI extends javax.swing.JDialog {
         this.m_empresa=empresa;
         m_NotificarAutoresController= new NotificarAutoresController(m_empresa);
         
-       utilizador = JOptionPane.showInputDialog(this,
-                "Insira o Organizador", "Login", JOptionPane.INFORMATION_MESSAGE);
-        if (utilizador != null) {
-
-            utilizadorID = m_empresa.getM_registaUtilizador().getUtilizador(utilizador);
-            
-
-            if (utilizadorID == null) {
-                JOptionPane.showMessageDialog(this, "Utilizador inexistente!", "Notificar Autor",
-                        JOptionPane.ERROR_MESSAGE);
-                dispose();
-            } else {
-                JOptionPane.showInputDialog(this,
-                    "O ID introduzido não é válido", "Login", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-  
-       listaEventos = m_NotificarAutoresController.getListaEventosProntosNotificar(utilizador);
-
-            if (listaEventos.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Utilizador não associado a nenhum evento", "Distribuir Revisões",
-                        JOptionPane.ERROR_MESSAGE);
-                dispose();
-            } else 
-                for (Evento evento : listaEventos) {
-                    jcboxEventos.addItem(evento.getM_strTitulo());
-                    }
     }
 /**
  * Torna visivel a janela e  faz também a autenticação do utilizador
  */
      public void run()
      {
-         
-              
-                
-  
+              utilizador = JOptionPane.showInputDialog(this,
+                "Insira o Organizador", "Login", JOptionPane.INFORMATION_MESSAGE);
+        if (utilizador != null) {
 
+            utilizadorID = m_empresa.getM_registaUtilizador().getUtilizador(utilizador);
+            listaEventos = m_NotificarAutoresController.getListaEventosProntosNotificar(utilizador);
+
+            if (listaEventos.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Utilizador não associado a nenhum evento pronto pra Notificação", "Notificar Autores",
+                        JOptionPane.ERROR_MESSAGE);
+                dispose();
+            } else 
+                for (Evento evento : listaEventos) {
+                    jcboxEventos.addItem(evento.getM_strTitulo());
+                    }
+
+            }
+        else {
+                JOptionPane.showInputDialog(this,
+                    "O ID introduzido não é válido", "Login", JOptionPane.ERROR_MESSAGE);
+            
                 pack();
                 setResizable(false);
                 setLocationRelativeTo(NotificarAutoresUI.this);
                 
                 setVisible(true);
-                
-        }
-    
+            }
+        
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -218,7 +207,8 @@ public class NotificarAutoresUI extends javax.swing.JDialog {
             e = m_empresa.getM_registoEventos().getEvento((String) jcboxEventos.getSelectedItem());
         try {
             if(m_NotificarAutoresController.NotificarAutores(e))
-                JOptionPane.showMessageDialog(NotificarAutoresUI.this,"Foi criado o ficheiro para notificação");
+                JOptionPane.showMessageDialog(NotificarAutoresUI.this,"Foi criado o ficheiro para notificação","Notificar Autores",
+                        JOptionPane.OK_OPTION);
         } catch (TransformerException ex) {
             Logger.getLogger(NotificarAutoresUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParserConfigurationException ex) {
@@ -228,8 +218,15 @@ public class NotificarAutoresUI extends javax.swing.JDialog {
         }
                         }
                        
-                        else JOptionPane.showMessageDialog(NotificarAutoresUI.this,"erro na Notificaçao");
-                        
+                        else JOptionPane.showMessageDialog(NotificarAutoresUI.this,"erro na Notificaçao","Notificar Autores",
+                        JOptionPane.ERROR_MESSAGE);
+           
+       if( m_NotificarAutoresController.termina())
+           JOptionPane.showMessageDialog(NotificarAutoresUI.this,"Foi criado o ficheiro para notificação","Notificar Autores",
+                        JOptionPane.OK_OPTION);
+       else
+         JOptionPane.showMessageDialog(NotificarAutoresUI.this,"erro na Notificaçao","Notificar Autores",
+                        JOptionPane.ERROR_MESSAGE);
              
     }//GEN-LAST:event_btnOKActionPerformed
 

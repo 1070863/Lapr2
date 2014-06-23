@@ -170,6 +170,16 @@ public class SubmissaoStateTest {
         public boolean valida() {
             return true;
         }
+
+        @Override
+        public boolean setRegistada() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public boolean setNotificadoRejeitada() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
     }
 
 }

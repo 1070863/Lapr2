@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -108,7 +110,8 @@ public class MenuUI extends JFrame {
         menu.setMnemonic(KeyEvent.VK_A);
         menu.add(criarItemCriarEventos());
         menu.add(criarItemCarregarEventos());
-
+        menu.add(criarItemMigrarDados());
+        
         return menu;
     }
 
@@ -149,6 +152,88 @@ public class MenuUI extends JFrame {
                     //joption
                 } catch (SAXException ex) {
                     //joption
+                }
+            }
+        }
+        );
+        return item;
+    }
+    
+    /**
+     * Cria item do menu Administrador com a opção Migração de dados.
+     * @return 
+     */
+    private JMenu criarItemMigrarDados() {
+        JMenu item = new JMenu("Migração de dados");
+        item.add(criarItemImportarEventos());
+        item.add(criarItemImportarArtigos());
+        item.add(criarItemImportarRevisoesArtigos());
+        
+        return item;
+    }
+    /**
+     * Importar eventos
+     * @return JMenuItem
+     */
+    private JMenuItem criarItemImportarEventos() {
+        JMenuItem item = new JMenuItem("Importar Eventos", KeyEvent.VK_E);
+        item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_MASK));
+        item.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ImportacaoDadosUI ie = new ImportacaoDadosUI(m_empresa);
+                try {
+                    ie.run(1);
+                } catch (ParserConfigurationException ex) {
+                    Logger.getLogger(MenuUI.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SAXException ex) {
+                    Logger.getLogger(MenuUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        );
+        return item;
+    }
+    /**
+     * Importar artigos
+     * @return JMenuItem
+     */
+    private JMenuItem criarItemImportarArtigos() {
+        JMenuItem item = new JMenuItem("Importar Artigos", KeyEvent.VK_A);
+        item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
+        item.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ImportacaoDadosUI ia = new ImportacaoDadosUI(m_empresa);
+                try {
+                    ia.run(2);
+                } catch (ParserConfigurationException ex) {
+                    Logger.getLogger(MenuUI.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SAXException ex) {
+                    Logger.getLogger(MenuUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        );
+        return item;
+    }
+    /**
+     * Importar revisões de artigos
+     * @return JMenuItem
+     */
+    private JMenuItem criarItemImportarRevisoesArtigos() {
+        JMenuItem item = new JMenuItem("Importar Revisões Artigos", KeyEvent.VK_R);
+        item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_MASK));
+        item.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ImportacaoDadosUI ir = new ImportacaoDadosUI(m_empresa);
+                try {
+                    ir.run(3);
+                } catch (ParserConfigurationException ex) {
+                    Logger.getLogger(MenuUI.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SAXException ex) {
+                    Logger.getLogger(MenuUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

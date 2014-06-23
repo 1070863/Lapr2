@@ -59,14 +59,26 @@ public class SubmissaoRejeitadaState implements SubmissaoState, Serializable{
 
     @Override
     public boolean valida() {
-        return true;
+      if(m_submissao.getState() instanceof SubmissaoRevistaState &&											
+           m_submissao.getArtigo().getM_listaTopicos().size()>0)
+               return true;
+       else
+               return false;											
+
     }
-    
-    /**
-     * Define a submissão como registada após o pagamento do Registo no Evento.
-     *
-     * @return false
-     */
+
+    @Override
+    public boolean setNotificadoRejeitada() {
+      
+        if(valida())
+        {m_submissao.setState(new SubmissaoNotificadaRejeitadaState());
+        return true;
+        }
+        else
+        return false;
+    }
+
+    @Override
     public boolean setRegistada() {
         return false;
     }

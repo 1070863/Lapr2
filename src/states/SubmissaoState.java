@@ -72,5 +72,12 @@ public interface SubmissaoState {
      * @return verdadeiro ou falso em função da sua validação
      */
     public abstract boolean setRegistada();
+    
+    /**
+     * Define a submissão como registada após o pagamento do Registo no Evento
+     *
+     * @return verdadeiro ou falso em função da sua validação
+     */
+    public abstract boolean setNotificadoRejeitada();
 
 }

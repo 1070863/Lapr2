@@ -83,8 +83,7 @@ public class NotificarAutores implements Serializable
 
         for (int i = 0; i < e.getListaSubmissoes().size(); i++) {
             
-     if(valida())
-     {
+    
           String element ="paper_title";
           String data = e.getListaSubmissoes().get(i).getArtigo().getTitulo();
           Element em = document.createElement(element);
@@ -125,7 +124,7 @@ public class NotificarAutores implements Serializable
           folderElement.appendChild(em4);}
    
         }
-    }
+    
         
          Element comentsElement= document.createElement(coments);
          folderElement.appendChild(comentsElement);
@@ -163,13 +162,6 @@ public class NotificarAutores implements Serializable
 /**
  * testa se o estado de submissao é notificado aceite ou rejeitado
  */
-          public boolean valida()
-                {
-                     if(sub.getState() instanceof SubmissaoNotificadaAceiteState || sub.getState() instanceof SubmissaoRejeitadaState  )
-                         return true;
-                 return false;
-                
-                }
-
+          
  }
 

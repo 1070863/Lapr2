@@ -107,4 +107,9 @@ public class SubmissaoRegistadaState implements SubmissaoState, Serializable {
         }
         return true;
     }
+
+    @Override
+    public boolean setNotificadoRejeitada() {
+        return false;
+    }
 }

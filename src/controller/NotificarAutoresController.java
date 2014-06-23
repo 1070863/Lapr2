@@ -38,18 +38,6 @@ public class NotificarAutoresController {
        this.m_empresa=empresa;
     }
  
-
-        public List<Evento> iniciarSubmissao()
-    {
-        return this.m_empresa.getM_registoEventos().getListaEventosPodeSubmeter();
-    }
-        
-       public void  NovoArtigo()
-       {
-           m_empresa.getM_registoEventos().novoEvento().novaSubmissao();   
-            m_empresa.getM_registoEventos().novoEvento().novaSubmissao().novoArtigo();
-       }
-       
           public List<Evento> getListaEventosProntosNotificar(String strId){
          List<Evento> listaEventos= new ArrayList<>();
                 listaEventos= m_empresa.getM_registoEventos().getListaEventosProntosNotificar();
@@ -60,6 +48,20 @@ public class NotificarAutoresController {
           {
             NotificarAutores(env);
           return true;
+          }
+          
+          
+          public boolean termina()
+          {
+              for (Submissao submissao : m_evento.getListaSubmissoes())
+         {
+             submissao.getState().setNotificadoAceite();
+              submissao.getState().setRejeitada();
+         }
+              
+          return m_evento.getState().setDecidido();
+          
+          
           }
 }
 
