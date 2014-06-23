@@ -62,4 +62,13 @@ public class SubmissaoRejeitadaState implements SubmissaoState, Serializable{
         return true;
     }
     
+    /**
+     * Define a submissão como registada após o pagamento do Registo no Evento.
+     *
+     * @return false
+     */
+    public boolean setRegistada() {
+        return false;
+    }
+    
 }
