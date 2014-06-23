@@ -406,70 +406,34 @@ public class CorrigirEventosImportadosUI extends javax.swing.JDialog {
                             if (jDateChooserSubmissaoFinal.getDate().before(jDateChooserRegisto.getDate())) {
                                 if (jDateChooserRegisto.getDate().before(jDateChooserInicio.getDate())) {
                                     if (jDateChooserInicio.getDate().before(jDateChooserFim.getDate()) || jDateChooserInicio.getDate().equals(jDateChooserFim.getDate())) {
+                                        if(!corrigirEventosImportadosController.getModelOrganizadores().isEmpty())
+                                        {
 
-//                                        List<Utilizador> utilizadoresTemp = new ArrayList<Utilizador>();
-//
-//                                        String texto = "Titulo: " + jTextTitulo.getText();
-//                                        texto += "\nDescrição: " + txtDescricao.getText();
-//
-//                                        texto += "\n";
-//                                        int nOrganizadores = 0;
-//                                        String idOrganizador = "";
-//                                        while (nOrganizadores >= 0 && idOrganizador != null) {
-//                                            idOrganizador = JOptionPane.showInputDialog(this, "ID Organizador de Evento:", "Adicionar Organizador", JOptionPane.QUESTION_MESSAGE);
-//
-//                                            if (idOrganizador != null) {
-//                                                Utilizador u = empresa.getM_registaUtilizador().getUtilizador(idOrganizador);
-//
-//                                                if (u != null && !utilizadoresTemp.contains(u)) {
-//                                                    utilizadoresTemp.add(u);
-//                                                    texto += "\nUtilizador " + (nOrganizadores + 1) + ": " + u.getM_strNome();
-//                                                    nOrganizadores++;
-//                                                } else {
-//                                                    JOptionPane.showMessageDialog(this, "Organizador não adicionado!", "Erro!", JOptionPane.ERROR_MESSAGE);
-//                                                }
-//                                                int resposta = JOptionPane.showConfirmDialog(this, "Quer adicionar mais Organizadores?", "Adicionar Organizador",
-//                                                        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-//
-//                                                if (resposta == JOptionPane.NO_OPTION && nOrganizadores > 0) {
-//                                                    nOrganizadores = -1;
-//                                                } else if (resposta == JOptionPane.NO_OPTION && nOrganizadores == 0) {
-//                                                    JOptionPane.showMessageDialog(this, "Não adicionou nenhum Organizador!", "Erro!", JOptionPane.ERROR_MESSAGE);
-//                                                }
-//
-//                                            } else {
-//                                                JOptionPane.showMessageDialog(this, "Não adicionou nenhum Organizador!", "Erro!", JOptionPane.ERROR_MESSAGE);
-//
-//                                            }
-//                                        }
-//                                        if (nOrganizadores == -1) {
-//                                            int adicionarDados = JOptionPane.showConfirmDialog(this, texto, "Confirmação de dados.", JOptionPane.YES_NO_OPTION);
-//
-//                                            if (adicionarDados == JOptionPane.NO_OPTION) {
-//                                                dispose();
-//                                            } else {
-                                                corrigirEventosImportadosController.setTitulo(jTextTitulo.getText());
-                                                corrigirEventosImportadosController.setDescricao(txtDescricao.getText());
-                                                corrigirEventosImportadosController.setLocal(jTextLocal.getText());
-                                                corrigirEventosImportadosController.setCidade(jTextCidade.getText());
-                                                corrigirEventosImportadosController.setPais(jTextPais.getText());
-                                                System.out.println("setDataInicio: " + jDateChooserInicio.getDateFormatString());
-                                                corrigirEventosImportadosController.setDataInicio(jDateChooserInicio.getDateFormatString());
-                                                corrigirEventosImportadosController.setDataFim(jDateChooserFim.getDateFormatString());
-                                                corrigirEventosImportadosController.setDataLimiteSubmissão(jDateChooserLSubmissao.getDateFormatString());
-                                                corrigirEventosImportadosController.setDataLimiteRevisao(jDateChooserRevisao.getDateFormatString());
-                                                corrigirEventosImportadosController.setDataLimiteRegisto(jDateChooserRegisto.getDateFormatString());
-                                                corrigirEventosImportadosController.setDataLimiteSubmissaoFinal(jDateChooserSubmissaoFinal.getDateFormatString());
+                                        corrigirEventosImportadosController.setTitulo(jTextTitulo.getText());
+                                        corrigirEventosImportadosController.setDescricao(txtDescricao.getText());
+                                        corrigirEventosImportadosController.setLocal(jTextLocal.getText());
+                                        corrigirEventosImportadosController.setCidade(jTextCidade.getText());
+                                        corrigirEventosImportadosController.setPais(jTextPais.getText());
 
-//                                                for (Utilizador uExistente : utilizadoresTemp) {
-//                                                    criarEventoCController.addOrganizador(uExistente.getM_strUsername());
-//                                                }
-                                                corrigirEventosImportadosController.registaEvento();
+                                        corrigirEventosImportadosController.setDataInicio(jDateChooserInicio.getDateFormatString());
+                                        corrigirEventosImportadosController.setDataFim(jDateChooserFim.getDateFormatString());
+                                        corrigirEventosImportadosController.setDataLimiteSubmissão(jDateChooserLSubmissao.getDateFormatString());
+                                        corrigirEventosImportadosController.setDataLimiteRevisao(jDateChooserRevisao.getDateFormatString());
+                                        corrigirEventosImportadosController.setDataLimiteRegisto(jDateChooserRegisto.getDateFormatString());
+                                        corrigirEventosImportadosController.setDataLimiteSubmissaoFinal(jDateChooserSubmissaoFinal.getDateFormatString());
+                               
+                                        for (Utilizador u : corrigirEventosImportadosController.getNovosOrganizadores()) {
+                                            corrigirEventosImportadosController.addOrganizador(u);
+                                        }
 
-                                                JOptionPane.showMessageDialog(this, "Evento registado com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
-                                                dispose();
-//                                            }
-//                                        }
+                                        corrigirEventosImportadosController.registaEvento();
+
+                                        JOptionPane.showMessageDialog(this, "Evento registado com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
+                                        dispose();
+
+                                        } else {
+                                            JOptionPane.showMessageDialog(this, "O Evento deverá ter no mínimo um organizador!", "Erro nos Organizadores", JOptionPane.INFORMATION_MESSAGE);
+                                        }
                                     } else {
                                         JOptionPane.showMessageDialog(this, "Data de inicio tem de ser anterior ou igual à data de fim!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
                                     }
@@ -503,6 +467,7 @@ public class CorrigirEventosImportadosUI extends javax.swing.JDialog {
         iEvento = cmbEvento.getSelectedIndex();
         if(iEvento != -1){
             //jPanelDadosCorrigir.setVisible(true);
+            corrigirEventosImportadosController.resetNovosOrganizadores();
             Evento eventoCorrigir = corrigirEventosImportadosController.getListaEventosCarregados().get(iEvento);
             corrigirEventosImportadosController.setStrTitulo_old(eventoCorrigir.getM_strTitulo());
             jTextTitulo.setText(eventoCorrigir.getM_strTitulo());
@@ -533,19 +498,23 @@ public class CorrigirEventosImportadosUI extends javax.swing.JDialog {
             
             jTextnMaxTopicos.setText(""+eventoCorrigir.getnMaxTopicos());
 
-            System.out.println("Organizaodres: " + eventoCorrigir.getListaOrganizadores().size());
             jListOrganizadores.setModel(corrigirEventosImportadosController.listaDeOrganizadores(eventoCorrigir));
-           // jListOrganizadores.add((Component) eventoCorrigir.getListaOrganizadores());
-            
-          
-                    
+     
         }else{
             JOptionPane.showMessageDialog(this, "Tem que seleccionar um evento primeiro");
         }
     }//GEN-LAST:event_jButtonOkActionPerformed
 
     private void jButtonAdicionarOrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarOrgActionPerformed
-        // TODO add your handling code here:
+        String idOrganizador = "";
+        Utilizador u = new Utilizador();
+        idOrganizador = JOptionPane.showInputDialog(this, "ID Organizador de Evento:", "Adicionar Organizador", JOptionPane.QUESTION_MESSAGE);
+        
+        if (idOrganizador != null) 
+            u = empresa.getM_registaUtilizador().getUtilizador(idOrganizador);
+        
+        corrigirEventosImportadosController.getModelOrganizadores().addElement(u.getM_strUsername() + ", " + u.getM_strEmail());
+        corrigirEventosImportadosController.getNovosOrganizadores().add(u);
     }//GEN-LAST:event_jButtonAdicionarOrgActionPerformed
 
     /**

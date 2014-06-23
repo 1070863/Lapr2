@@ -5,6 +5,7 @@
  */
 package eventoscientificos;
 
+import tratarficheiros.LerFicheiroEventoCSV;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;

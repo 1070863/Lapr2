@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eventoscientificos;
+package tratarficheiros;
 
+import eventoscientificos.Empresa;
+import eventoscientificos.Evento;
+import eventoscientificos.Utilizador;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -25,20 +28,6 @@ import static utils.Data.*;
  * @author Lopcaoes
  */
 public class LerFicheiroEventoCSV implements LerFicheiroEvento {
-
-    /**
-     * Lista de eventos provisória
-     */
-    private List<Evento> listaEventosProvisoria= new ArrayList<>();;
-@Override
-    public List<Evento> getListaEventosProvisoria() {
-        return listaEventosProvisoria;
-    }
-
-    @Override
-    public void setListaEventosProvisoria(List<Evento> listaEventosProvisoria) {
-        this.listaEventosProvisoria = listaEventosProvisoria;
-    }
 
     /**
      * Le ficheiro que carrega evento
@@ -168,7 +157,6 @@ public class LerFicheiroEventoCSV implements LerFicheiroEvento {
      */
     public Utilizador organizador(List<String[]> temp, int linha, int coluna, Empresa empresa) {
         Utilizador u;
-        System.out.println(":organizador: ");
         if (empresa.getM_registaUtilizador().getUtilizadorEmail(temp.get(linha)[coluna + 1]) != null) {
             u = empresa.getM_registaUtilizador().getUtilizadorEmail(temp.get(linha)[coluna + 1]);
             return u;

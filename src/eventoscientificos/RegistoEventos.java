@@ -167,19 +167,12 @@ public class RegistoEventos implements Serializable {
 
     
     private boolean validaEvento(Evento e) {
-        System.out.println("validaEvento: " +  this.getEvento(e.getM_strTitulo()));
-        
         if(this.getEvento(e.getM_strTitulo()) == null)
-        {System.out.println("Evento Valido: " + e.getM_strTitulo());
             return true;
-        }
-            
-        else{
-            System.out.println("Evento NAOValido: " + e.getM_strTitulo());
-             return false;
-        }
-           
+        else
+             return false; 
     }
+    
     @Override
     public int hashCode() {
         int hash = 3;

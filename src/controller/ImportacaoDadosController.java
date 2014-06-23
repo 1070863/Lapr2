@@ -9,8 +9,8 @@ package controller;
 import eventoscientificos.Artigo;
 import eventoscientificos.Empresa;
 import eventoscientificos.Evento;
-import eventoscientificos.LerFicheiroEvento;
-import eventoscientificos.LerFicheiroEventoCSV;
+import tratarficheiros.LerFicheiroEvento;
+import tratarficheiros.LerFicheiroEventoCSV;
 import eventoscientificos.RevisaoArtigo;
 import java.io.IOException;
 import java.util.List;
@@ -46,24 +46,7 @@ public class ImportacaoDadosController {
         } catch (SecurityException ex) {
             Logger.getLogger(ImportacaoDadosController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    
-    /**Método que retorna uma lista de eventos lida de um ficheiro .csv
-     * @param nomeFicheiro
-     * @param empresa
-     * @return lista de eventos
-     * @throws javax.xml.parsers.ParserConfigurationException
-     * @throws org.xml.sax.SAXException
-     * @throws java.io.IOException
-     */
-    public List<Evento> lerEvento(String nomeFicheiro, Empresa empresa) throws ParserConfigurationException, 
-            SAXException, IOException{
-        LerFicheiroEvento lerFicheiro = new LerFicheiroEventoCSV();
-        lerFicheiro.LerFicheiro(nomeFicheiro, empresa);
-        
-        return lerFicheiro.getListaEventosProvisoria();
-    }    
+    }  
     
     /**Método que retorna uma lista de artigos lida de um ficheiro .csv
      * @param nomeFicheiro

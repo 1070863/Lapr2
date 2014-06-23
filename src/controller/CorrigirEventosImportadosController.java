@@ -20,7 +20,9 @@ public class CorrigirEventosImportadosController {
 
     private Empresa m_empresa;
     private String strTitulo_old;
-
+    DefaultListModel modelOrganizadores;
+    List<Utilizador> novosOrganizadores;
+            
     public CorrigirEventosImportadosController(Empresa m_empresa) {
         this.m_empresa = m_empresa;
     }
@@ -93,6 +95,14 @@ public class CorrigirEventosImportadosController {
         this.strTitulo_old = strTitulo_old;
     }
 
+    public boolean addOrganizador(Utilizador u)
+    {
+        if( u!=null)
+           return m_empresa.getM_registoEventos().getEvento(strTitulo_old).addOrganizador(u.getM_strUsername(), u);
+        else
+            return false;
+    }
+    
     /**
      * Valida o nome do evento
      *
@@ -111,12 +121,24 @@ public class CorrigirEventosImportadosController {
     }
     
     public DefaultListModel listaDeOrganizadores(Evento e) {
-        DefaultListModel modelOrganizadores = new DefaultListModel();
+        modelOrganizadores = new DefaultListModel();
         
         for (Organizador o : e.getListaOrganizadores()) {
             modelOrganizadores.addElement(o.toStringSimplificada());
         }
         return modelOrganizadores;
+    }
+
+    public DefaultListModel getModelOrganizadores() {
+        return modelOrganizadores;
+    }
+
+    public List<Utilizador> getNovosOrganizadores() {
+        return novosOrganizadores;
+    }
+    
+    public void resetNovosOrganizadores(){
+        this.novosOrganizadores = new ArrayList<>();
     }
 
 }

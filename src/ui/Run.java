@@ -2,7 +2,7 @@ package ui;
 
 
 import eventoscientificos.Empresa;
-import eventoscientificos.LerFicheiroEventoXML;
+import tratarficheiros.LerFicheiroEventoXML;
 import eventoscientificos.Utilizador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

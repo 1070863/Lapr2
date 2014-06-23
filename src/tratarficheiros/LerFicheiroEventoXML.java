@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eventoscientificos;
+package tratarficheiros;
 
+import eventoscientificos.Empresa;
+import eventoscientificos.Evento;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,26 +19,13 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
+import states.EventoCriadoFicheiroState;
 
 /**
  *
  * @author Pedro
  */
 public class LerFicheiroEventoXML implements LerFicheiroEvento{
-    
-        /**
-     * Lista de eventos provisória
-     */
-    private List<Evento> listaEventosProvisoria = new ArrayList<>();
-
-    public List<Evento> getListaEventosProvisoria() {
-        return listaEventosProvisoria;
-    }
-
-    public void setListaEventosProvisoria(List<Evento> listaEventosProvisoria) {
-        this.listaEventosProvisoria = listaEventosProvisoria;
-    }
-       
     
     
     @Override
@@ -178,7 +167,8 @@ public class LerFicheiroEventoXML implements LerFicheiroEvento{
                         
                         
                     }
-                    listaEventosProvisoria.add(evento);
+                    evento.setState(new EventoCriadoFicheiroState(evento));
+                    empresa.getM_registoEventos().registaEvento(evento);
                 }
 
             }

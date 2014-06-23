@@ -1,5 +1,8 @@
 package controller;
 
+import tratarficheiros.LerFicheiroEvento;
+import tratarficheiros.LerFicheiroEventoCSV;
+import tratarficheiros.LerFicheiroEventoXML;
 import eventoscientificos.*;
 import java.io.IOException;
 import java.util.ArrayList;

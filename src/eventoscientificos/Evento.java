@@ -177,9 +177,10 @@ public class Evento implements Serializable {
     public boolean addOrganizador(String strId, Utilizador u) {
         Organizador o = new Organizador(strId, u);
 
-        o.valida();
-
-        return addOrganizador(o);
+        if(o.valida() && validaOrganizador(o))
+            return addOrganizador(o);
+        else
+            return false;
     }
 
     private boolean addOrganizador(Organizador o) {
@@ -190,6 +191,15 @@ public class Evento implements Serializable {
         return true;
     }
 
+    public boolean validaOrganizador(Organizador org) {
+        for (Organizador o : this.getListaOrganizadores()) {
+            if (o.getM_utilizador().getM_strEmail().equalsIgnoreCase(org.getM_utilizador().getM_strEmail())) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
     public void setCP(CP cp) {
         m_cp = cp;
     }
@@ -418,4 +428,9 @@ public class Evento implements Serializable {
                 + "\n Numero máximo de topicos:" + nMaxTopicos;
     }
 
+    public List<Organizador> getM_listaOrganizadores() {
+        return m_listaOrganizadores;
+    }
+
+    
 }
