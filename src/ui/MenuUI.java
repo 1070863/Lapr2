@@ -274,6 +274,9 @@ public class MenuUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String strId = JOptionPane.showInputDialog("Introduza o seu id:");
+                if (strId.isEmpty()) {
+                    dispose();
+                }
                 if (m_empresa.getM_registaUtilizador().getUtilizador(strId) == null) {
                     JOptionPane.showMessageDialog(null, "Não está Registado no sistema!!!", "Definir Tópicos de Artigo", ERROR_MESSAGE);
                 } else if (m_empresa.getM_registoEventos().getEventosOrganizador(strId).isEmpty()) {
@@ -299,6 +302,9 @@ public class MenuUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String strId = JOptionPane.showInputDialog("Introduza o seu id:");
+                if (strId.isEmpty()) {
+                    dispose();
+                }
                 if (m_empresa.getM_registaUtilizador().getUtilizador(strId) == null) {
                     JOptionPane.showMessageDialog(null, "Não está Registado no sistema!!!", "Definir Valores de Registo", ERROR_MESSAGE);
                 } else if (m_empresa.getM_registoEventos().getEventosOrganizador(strId).isEmpty()) {
@@ -352,6 +358,9 @@ public class MenuUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String strId = JOptionPane.showInputDialog("Introduza o seu id:");
+                if (strId.isEmpty()) {
+                    dispose();
+                }
                 if (m_empresa.getM_registaUtilizador().getUtilizador(strId) == null) {
                     JOptionPane.showMessageDialog(null, "Não está Registado no sistema!!!", "Criar Comissão de Programa", ERROR_MESSAGE);
                 } else if (m_empresa.getM_registoEventos().getEventosOrganizador(strId).isEmpty()) {
