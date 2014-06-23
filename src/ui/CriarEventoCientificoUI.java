@@ -307,77 +307,78 @@ public class CriarEventoCientificoUI extends javax.swing.JDialog {
         try {
             if (!jTextTitulo.getText().isEmpty() && !txtDescricao.getText().isEmpty() && jTextnMaxTopicos.getText() != null) {
                 if (criarEventoCController.validaEvento(jTextTitulo.getText())) {
-
-                    Integer.parseInt(jTextnMaxTopicos.getText());
-
                     if (jDateChooserLSubmissao.getDate().before(jDateChooserRevisao.getDate())) {
                         if (jDateChooserRevisao.getDate().before(jDateChooserSubmissaoFinal.getDate())) {
                             if (jDateChooserSubmissaoFinal.getDate().before(jDateChooserRegisto.getDate())) {
                                 if (jDateChooserRegisto.getDate().before(jDateChooserInicio.getDate())) {
                                     if (jDateChooserInicio.getDate().before(jDateChooserFim.getDate()) || jDateChooserInicio.getDate().equals(jDateChooserFim.getDate())) {
+                                        if (Integer.parseInt(jTextnMaxTopicos.getText()) > 0) {
 
-                                        List<Utilizador> utilizadoresTemp = new ArrayList<Utilizador>();
+                                            List<Utilizador> utilizadoresTemp = new ArrayList<Utilizador>();
 
-                                        String texto = "Titulo: " + jTextTitulo.getText();
-                                        texto += "\nDescrição: " + txtDescricao.getText();
+                                            String texto = "Titulo: " + jTextTitulo.getText();
+                                            texto += "\nDescrição: " + txtDescricao.getText();
 
-                                        texto += "\n";
-                                        int nOrganizadores = 0;
-                                        String idOrganizador = "";
-                                        while (nOrganizadores >= 0 && idOrganizador != null) {
-                                            idOrganizador = JOptionPane.showInputDialog(this, "ID Organizador de Evento:", "Adicionar Organizador", JOptionPane.QUESTION_MESSAGE);
+                                            texto += "\n";
+                                            int nOrganizadores = 0;
+                                            String idOrganizador = "";
+                                            while (nOrganizadores >= 0 && idOrganizador != null) {
+                                                idOrganizador = JOptionPane.showInputDialog(this, "ID Organizador de Evento:", "Adicionar Organizador", JOptionPane.QUESTION_MESSAGE);
 
-                                            if (idOrganizador != null) {
-                                                Utilizador u = empresa.getM_registaUtilizador().getUtilizador(idOrganizador);
+                                                if (idOrganizador != null) {
+                                                    Utilizador u = empresa.getM_registaUtilizador().getUtilizador(idOrganizador);
 
-                                                if (u != null && !utilizadoresTemp.contains(u)) {
-                                                    utilizadoresTemp.add(u);
-                                                    texto += "\nUtilizador " + (nOrganizadores + 1) + ": " + u.getM_strNome();
-                                                    nOrganizadores++;
+                                                    if (u != null && !utilizadoresTemp.contains(u)) {
+                                                        utilizadoresTemp.add(u);
+                                                        texto += "\nUtilizador " + (nOrganizadores + 1) + ": " + u.getM_strNome();
+                                                        nOrganizadores++;
+                                                    } else {
+                                                        JOptionPane.showMessageDialog(this, "Organizador não adicionado!", "Erro!", JOptionPane.ERROR_MESSAGE);
+                                                    }
+                                                    int resposta = JOptionPane.showConfirmDialog(this, "Quer adicionar mais Organizadores?", "Adicionar Organizador",
+                                                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                                                    if (resposta == JOptionPane.NO_OPTION && nOrganizadores > 0) {
+                                                        nOrganizadores = -1;
+                                                    } else if (resposta == JOptionPane.NO_OPTION && nOrganizadores == 0) {
+                                                        JOptionPane.showMessageDialog(this, "Não adicionou nenhum Organizador!", "Erro!", JOptionPane.ERROR_MESSAGE);
+                                                    }
+
                                                 } else {
-                                                    JOptionPane.showMessageDialog(this, "Organizador não adicionado!", "Erro!", JOptionPane.ERROR_MESSAGE);
-                                                }
-                                                int resposta = JOptionPane.showConfirmDialog(this, "Quer adicionar mais Organizadores?", "Adicionar Organizador",
-                                                        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-                                                if (resposta == JOptionPane.NO_OPTION && nOrganizadores > 0) {
-                                                    nOrganizadores = -1;
-                                                } else if (resposta == JOptionPane.NO_OPTION && nOrganizadores == 0) {
                                                     JOptionPane.showMessageDialog(this, "Não adicionou nenhum Organizador!", "Erro!", JOptionPane.ERROR_MESSAGE);
+
                                                 }
-
-                                            } else {
-                                                JOptionPane.showMessageDialog(this, "Não adicionou nenhum Organizador!", "Erro!", JOptionPane.ERROR_MESSAGE);
-
                                             }
-                                        }
-                                        if (nOrganizadores == -1) {
-                                            int adicionarDados = JOptionPane.showConfirmDialog(this, texto, "Confirmação de dados.", JOptionPane.YES_NO_OPTION);
+                                            if (nOrganizadores == -1) {
+                                                int adicionarDados = JOptionPane.showConfirmDialog(this, texto, "Confirmação de dados.", JOptionPane.YES_NO_OPTION);
 
-                                            if (adicionarDados == JOptionPane.NO_OPTION) {
-                                                dispose();
-                                            } else {
-                                                criarEventoCController.novoEvento();
-                                                criarEventoCController.setTitulo(jTextTitulo.getText());
-                                                criarEventoCController.setDescricao(txtDescricao.getText());
-                                                criarEventoCController.setLocal(jTextLocal.getText());
-                                                criarEventoCController.setCidade(jTextCidade.getText());
-                                                criarEventoCController.setPais(jTextPais.getText());
-                                                criarEventoCController.setDataInicio(jDateChooserInicio.getDateFormatString());
-                                                criarEventoCController.setDataFim(jDateChooserFim.getDateFormatString());
-                                                criarEventoCController.setDataLimiteSubmissão(jDateChooserLSubmissao.getDateFormatString());
-                                                criarEventoCController.setDataLimiteRevisao(jDateChooserRevisao.getDateFormatString());
-                                                criarEventoCController.setDataLimiteRegisto(jDateChooserRegisto.getDateFormatString());
-                                                criarEventoCController.setDataLimiteSubmissaoFinal(jDateChooserSubmissaoFinal.getDateFormatString());
+                                                if (adicionarDados == JOptionPane.NO_OPTION) {
+                                                    dispose();
+                                                } else {
+                                                    criarEventoCController.novoEvento();
+                                                    criarEventoCController.setTitulo(jTextTitulo.getText());
+                                                    criarEventoCController.setDescricao(txtDescricao.getText());
+                                                    criarEventoCController.setLocal(jTextLocal.getText());
+                                                    criarEventoCController.setCidade(jTextCidade.getText());
+                                                    criarEventoCController.setPais(jTextPais.getText());
+                                                    criarEventoCController.setDataInicio(jDateChooserInicio.getDateFormatString());
+                                                    criarEventoCController.setDataFim(jDateChooserFim.getDateFormatString());
+                                                    criarEventoCController.setDataLimiteSubmissão(jDateChooserLSubmissao.getDateFormatString());
+                                                    criarEventoCController.setDataLimiteRevisao(jDateChooserRevisao.getDateFormatString());
+                                                    criarEventoCController.setDataLimiteRegisto(jDateChooserRegisto.getDateFormatString());
+                                                    criarEventoCController.setDataLimiteSubmissaoFinal(jDateChooserSubmissaoFinal.getDateFormatString());
 
-                                                for (Utilizador uExistente : utilizadoresTemp) {
-                                                    criarEventoCController.addOrganizador(uExistente.getM_strUsername());
+                                                    for (Utilizador uExistente : utilizadoresTemp) {
+                                                        criarEventoCController.addOrganizador(uExistente.getM_strUsername());
+                                                    }
+                                                    criarEventoCController.registaEvento();
+
+                                                    JOptionPane.showMessageDialog(this, "Evento registado com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
+                                                    dispose();
                                                 }
-                                                criarEventoCController.registaEvento();
-
-                                                JOptionPane.showMessageDialog(this, "Evento registado com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
-                                                dispose();
                                             }
+                                        } else {
+                                            JOptionPane.showMessageDialog(this, "Número máximo de eventos deve ser maior do que zero!", "Erro!", JOptionPane.INFORMATION_MESSAGE);
                                         }
                                     } else {
                                         JOptionPane.showMessageDialog(this, "Data de inicio tem de ser anterior ou igual à data de fim!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);

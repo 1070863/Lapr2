@@ -397,40 +397,41 @@ public class CorrigirEventosImportadosUI extends javax.swing.JDialog {
      */
     private void jButtonContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonContinuarActionPerformed
 
-        try { 
+        try {
             if (!jTextTitulo.getText().isEmpty() && !txtDescricao.getText().isEmpty() && jTextnMaxTopicos.getText() != null) {
                 if (corrigirEventosImportadosController.validaNomeEvento(jTextTitulo.getText())) {
-                    Integer.parseInt(jTextnMaxTopicos.getText());
                     if (jDateChooserLSubmissao.getDate().before(jDateChooserRevisao.getDate())) {
                         if (jDateChooserRevisao.getDate().before(jDateChooserSubmissaoFinal.getDate())) {
                             if (jDateChooserSubmissaoFinal.getDate().before(jDateChooserRegisto.getDate())) {
                                 if (jDateChooserRegisto.getDate().before(jDateChooserInicio.getDate())) {
                                     if (jDateChooserInicio.getDate().before(jDateChooserFim.getDate()) || jDateChooserInicio.getDate().equals(jDateChooserFim.getDate())) {
-                                        if(!corrigirEventosImportadosController.getModelOrganizadores().isEmpty())
-                                        {
+                                        if (!corrigirEventosImportadosController.getModelOrganizadores().isEmpty()) {
+                                            if (Integer.parseInt(jTextnMaxTopicos.getText()) > 0) {
 
-                                        corrigirEventosImportadosController.setTitulo(jTextTitulo.getText());
-                                        corrigirEventosImportadosController.setDescricao(txtDescricao.getText());
-                                        corrigirEventosImportadosController.setLocal(jTextLocal.getText());
-                                        corrigirEventosImportadosController.setCidade(jTextCidade.getText());
-                                        corrigirEventosImportadosController.setPais(jTextPais.getText());
+                                                corrigirEventosImportadosController.setTitulo(jTextTitulo.getText());
+                                                corrigirEventosImportadosController.setDescricao(txtDescricao.getText());
+                                                corrigirEventosImportadosController.setLocal(jTextLocal.getText());
+                                                corrigirEventosImportadosController.setCidade(jTextCidade.getText());
+                                                corrigirEventosImportadosController.setPais(jTextPais.getText());
 
-                                        corrigirEventosImportadosController.setDataInicio(jDateChooserInicio.getDateFormatString());
-                                        corrigirEventosImportadosController.setDataFim(jDateChooserFim.getDateFormatString());
-                                        corrigirEventosImportadosController.setDataLimiteSubmissão(jDateChooserLSubmissao.getDateFormatString());
-                                        corrigirEventosImportadosController.setDataLimiteRevisao(jDateChooserRevisao.getDateFormatString());
-                                        corrigirEventosImportadosController.setDataLimiteRegisto(jDateChooserRegisto.getDateFormatString());
-                                        corrigirEventosImportadosController.setDataLimiteSubmissaoFinal(jDateChooserSubmissaoFinal.getDateFormatString());
-                               
-                                        for (Utilizador u : corrigirEventosImportadosController.getNovosOrganizadores()) {
-                                            corrigirEventosImportadosController.addOrganizador(u);
-                                        }
+                                                corrigirEventosImportadosController.setDataInicio(jDateChooserInicio.getDateFormatString());
+                                                corrigirEventosImportadosController.setDataFim(jDateChooserFim.getDateFormatString());
+                                                corrigirEventosImportadosController.setDataLimiteSubmissão(jDateChooserLSubmissao.getDateFormatString());
+                                                corrigirEventosImportadosController.setDataLimiteRevisao(jDateChooserRevisao.getDateFormatString());
+                                                corrigirEventosImportadosController.setDataLimiteRegisto(jDateChooserRegisto.getDateFormatString());
+                                                corrigirEventosImportadosController.setDataLimiteSubmissaoFinal(jDateChooserSubmissaoFinal.getDateFormatString());
 
-                                        corrigirEventosImportadosController.registaEvento();
+                                                for (Utilizador u : corrigirEventosImportadosController.getNovosOrganizadores()) {
+                                                    corrigirEventosImportadosController.addOrganizador(u);
+                                                }
 
-                                        JOptionPane.showMessageDialog(this, "Evento registado com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
-                                        dispose();
+                                                corrigirEventosImportadosController.registaEvento();
 
+                                                JOptionPane.showMessageDialog(this, "Evento registado com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
+                                                dispose();
+                                            } else {
+                                                JOptionPane.showMessageDialog(this, "Número máximo de eventos deve ser maior do que zero!", "Erro!", JOptionPane.INFORMATION_MESSAGE);
+                                            }
                                         } else {
                                             JOptionPane.showMessageDialog(this, "O Evento deverá ter no mínimo um organizador!", "Erro nos Organizadores", JOptionPane.INFORMATION_MESSAGE);
                                         }
