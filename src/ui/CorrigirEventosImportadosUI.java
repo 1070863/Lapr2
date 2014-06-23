@@ -512,10 +512,12 @@ public class CorrigirEventosImportadosUI extends javax.swing.JDialog {
         idOrganizador = JOptionPane.showInputDialog(this, "ID Organizador de Evento:", "Adicionar Organizador", JOptionPane.QUESTION_MESSAGE);
         
         if (idOrganizador != null) 
+        {
             u = empresa.getM_registaUtilizador().getUtilizador(idOrganizador);
         
-        corrigirEventosImportadosController.getModelOrganizadores().addElement(u.getM_strUsername() + ", " + u.getM_strEmail());
-        corrigirEventosImportadosController.getNovosOrganizadores().add(u);
+            corrigirEventosImportadosController.getModelOrganizadores().addElement(u.getM_strUsername() + ", " + u.getM_strEmail());
+            corrigirEventosImportadosController.getNovosOrganizadores().add(u);
+        }
     }//GEN-LAST:event_jButtonAdicionarOrgActionPerformed
 
     /**
