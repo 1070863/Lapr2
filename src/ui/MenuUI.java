@@ -173,6 +173,7 @@ public class MenuUI extends JFrame {
         menu.add(criarSubMenuNotificaAutores());
         menu.add(criarSubMenuDefinirValoresRegisto());
         menu.add(criarSubMenuCorrigirEventosImportados());
+        menu.add(criarSubMenuExportarPagamentos());
         return menu;
     }
 
@@ -219,6 +220,34 @@ public class MenuUI extends JFrame {
                     JOptionPane.showMessageDialog(null, "Não é Organizador de Eventos!!!", "Definir Valores de Registo", ERROR_MESSAGE);
                 } else {
                     DefinirValoresRegistoUI defVRUI = new DefinirValoresRegistoUI(MenuUI.this, true, m_empresa, strId);
+                }
+            }
+        }
+        );
+        return item;
+    }
+    
+    /**
+     * Cria item do menu Organizador com a opçãoExportar Pagamentos de Registos.
+     *
+     * @return item Criar Tópicos para adicionar ao Menu
+     */
+    private JMenuItem criarSubMenuExportarPagamentos() {
+        JMenuItem item = new JMenuItem("Exportar Pagamentos de Registos", KeyEvent.VK_8);
+        item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_8, InputEvent.CTRL_MASK));
+        item.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String strId = JOptionPane.showInputDialog("Introduza o seu id:");
+                if (strId.isEmpty()) {
+                    dispose();
+                }
+                if (m_empresa.getM_registaUtilizador().getUtilizador(strId) == null) {
+                    JOptionPane.showMessageDialog(null, "Não está Registado no sistema!!!", "Exportar Pagamentos de Registos", ERROR_MESSAGE);
+                } else if (m_empresa.getM_registoEventos().getEventosOrganizador(strId).isEmpty() ) {
+                    JOptionPane.showMessageDialog(null, "Não é Organizador de Eventos!!!", "Exportar Pagamentos de Registos", ERROR_MESSAGE);
+                } else {
+//                    ExportarPagamentosRegisto expPRUI = new ExportarPagamentosRegisto(MenuUI.this, true, m_empresa, strId);
                 }
             }
         }
