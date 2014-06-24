@@ -58,8 +58,11 @@ private static final long serialVersionUID = 1L;
      * 
      * @return 
      */
-    public boolean valida() {
-        return true;//FALTA TRATAR
+    public boolean valida(Utilizador u) {
+        if(!"".equals(u.getM_strUsername()))
+            return true;
+        else
+            return false;
     }
     /**
      * Reecrita do método to String herdado da classe Object e que devolve uma

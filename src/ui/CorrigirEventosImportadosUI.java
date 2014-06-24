@@ -514,9 +514,13 @@ public class CorrigirEventosImportadosUI extends javax.swing.JDialog {
         if (idOrganizador != null) 
         {
             u = empresa.getM_registaUtilizador().getUtilizador(idOrganizador);
-        
-            corrigirEventosImportadosController.getModelOrganizadores().addElement(u.getM_strUsername() + ", " + u.getM_strEmail());
-            corrigirEventosImportadosController.getNovosOrganizadores().add(u);
+            if(null != u)
+            {
+                corrigirEventosImportadosController.getModelOrganizadores().addElement(u.getM_strUsername() + ", " + u.getM_strEmail());
+                corrigirEventosImportadosController.getNovosOrganizadores().add(u);
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Erro!  Utilizador inválido.", "Erro!", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAdicionarOrgActionPerformed
 

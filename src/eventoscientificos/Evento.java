@@ -179,8 +179,9 @@ public class Evento implements Serializable {
 
     public boolean addOrganizador(String strId, Utilizador u) {
         Organizador o = new Organizador(strId, u);
-
-        if (o.valida() && validaOrganizador(o)) {
+        System.out.println("addOrganizador");
+        System.out.println("addOrganizador: " + o.valida(u));
+        if (o.valida(u) && validaOrganizador(o)) {
             return addOrganizador(o);
         } else {
             return false;
