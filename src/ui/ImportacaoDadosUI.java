@@ -79,10 +79,17 @@ public class ImportacaoDadosUI extends JFrame {
                         case 0:
                             jfcCarregarEventos.setVisible(false);
                             ficheiroValido = true;
-                            if (this.opcao == 1) {
-                                importacaoDadosController.lerEventos(ficheiro.getAbsolutePath(), m_empresa);
+                            switch(this.opcao){
+                                case 1:
+                                    importacaoDadosController.lerEventos(ficheiro.getAbsolutePath(), m_empresa);
+                                    break;
+                                case 2:
+                                    importacaoDadosController.lerArtigos(ficheiro.getAbsolutePath(), m_empresa);
+                                    break;
+                                case 3:
+                                    importacaoDadosController.lerRevisoes(ficheiro.getAbsolutePath(), m_empresa);
+                                    break;
                             }
-
                             break;
                         case 1:
                             log.severe("Erro: Tipo de ficheiro desconhecido!");
