@@ -6,7 +6,6 @@
 
 package tratarficheiros;
 
-import eventoscientificos.Autor;
 import eventoscientificos.Empresa;
 import eventoscientificos.RevisaoArtigo;
 import eventoscientificos.Revisor;
@@ -23,7 +22,7 @@ import org.xml.sax.SAXException;
  *
  * @author Pedro
  */
-public class LerFicheiroRevisaoCSV {
+public class ImportarFicheiroRevisaoCSV {
     /**
      * Lista de revisões provisória
      */

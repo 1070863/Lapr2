@@ -21,7 +21,7 @@ import org.xml.sax.SAXException;
  *
  * @author Pedro
  */
-public class LerFicheiroArtigoCSV {
+public class ImportarFicheiroArtigoCSV {
     
     /**
      * Lista de artigos provisória
