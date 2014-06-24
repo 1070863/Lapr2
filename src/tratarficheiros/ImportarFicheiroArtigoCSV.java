@@ -102,32 +102,26 @@ public class ImportarFicheiroArtigoCSV {
                 
                 boolean regista;
                 if (existeEvento(a.getEventoID(), empresa)) {
+                    
                     Submissao submissao = new Submissao();
                     submissao.novoArtigo();
                     submissao.setArtigo(a);
-                    empresa.getM_registoEventos().getEventoPorId(a.getEventoID()).novaSubmissao();
-                    empresa.getM_registoEventos().getEventoPorId(a.getEventoID()).addSubmissao(submissao);
-                    empresa.getM_registoEventos().getEventoPorId(a.getEventoID()).getSubmissao(a).
-                            setState(new SubmissaoCriadaState(submissao));
+                    empresa.getM_registoEventos().getEventoPorId(a.getEventoID()).addSubmissaoLegacy(submissao);
+                    
                 } else {
-                    //throw new EventoNaoEncontradoException();
+                    log.severe("Erro: Não foi possivel adicionar o artigo: "+a.getTitulo()+
+                            " Causa: O evento "+ a.getEventoID()+" não existe no sistema!");
                 }
-                 //if(regista)
-                 //{
+
                  i++;
                  linha++;
                  coluna = 0;  
                  
-            }
-            
+            }            
         }
         }catch (IOException excecao) {
             log.severe("Erro: Erro na leitura do ficheiro!" + excecao.getMessage());
-       /* } catch (ParserConfigurationException ex) {
-            log.severe(ex.getMessage());
-        } catch (SAXException ex) {
-            log.severe(ex.getMessage());
-        }*/
+       
         }
     }
     /**

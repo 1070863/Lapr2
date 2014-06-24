@@ -241,6 +241,11 @@ public class Evento implements Serializable {
         }
     }
 
+    public boolean addSubmissaoLegacy(Submissao submissao) {
+            submissao.setState(new SubmissaoArtigosParaRevisaoSubmetidosState(submissao));
+            return this.m_listaSubmissoes.add(submissao);
+    }
+    
     private boolean validaSubmissao(Submissao submissao) {
         return submissao.valida();
     }
