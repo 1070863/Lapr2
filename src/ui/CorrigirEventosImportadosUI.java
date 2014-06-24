@@ -432,10 +432,7 @@ public class CorrigirEventosImportadosUI extends javax.swing.JDialog {
                                                 JOptionPane.showMessageDialog(this, "Evento registado com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
                                                 dispose();
                                             } else {
-                                                JOptionPane.showMessageDialog(this, "Número máximo de eventos deve ser maior do que zero!", "Erro!", JOptionPane.INFORMATION_MESSAGE);
-                                            }
-                                        } else {
-                                            JOptionPane.showMessageDialog(this, "O Evento deverá ter no mínimo um organizador!", "Erro nos Organizadores", JOptionPane.INFORMATION_MESSAGE);
+                                            JOptionPane.showMessageDialog(this, "Número máximo de eventos deve ser maior do que zero!", "Erro!", JOptionPane.INFORMATION_MESSAGE);
                                         }
                                     } else {
                                         JOptionPane.showMessageDialog(this, "Data de inicio tem de ser anterior ou igual à data de fim!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
@@ -444,10 +441,10 @@ public class CorrigirEventosImportadosUI extends javax.swing.JDialog {
                                     JOptionPane.showMessageDialog(this, "Data limite de registo tem de ser anterior à data de inicio!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
                                 }
                             } else {
-                                JOptionPane.showMessageDialog(this, "Data limite de revisão tem de ser anterior à data limite submissão final!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(this, "Data limite de submissão final tem de ser anterior à data limite de registo!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
                             }
                         } else {
-                            JOptionPane.showMessageDialog(this, "Data limite submissão finalo tem de ser anterior à data limite de registo!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "Data limite de revisão tem de ser anterior à data limite de submissão final!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
                         }
                     } else {
                         JOptionPane.showMessageDialog(this, "Data limite de submissão tem de ser anterior à data limite de revisão!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
@@ -458,7 +455,7 @@ public class CorrigirEventosImportadosUI extends javax.swing.JDialog {
             } else if (jTextTitulo.getText().isEmpty() || txtDescricao.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Erro! Introduza dados em falta.", "Erro!", JOptionPane.INFORMATION_MESSAGE);
             }
-
+            }
         } catch (NumberFormatException exception) {
             JOptionPane.showMessageDialog(this, "Erro! Numero inválido.", "Erro!", JOptionPane.INFORMATION_MESSAGE);
         } catch (NullPointerException exception) {
