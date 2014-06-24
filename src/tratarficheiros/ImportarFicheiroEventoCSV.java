@@ -49,7 +49,7 @@ public class ImportarFicheiroEventoCSV {
             log.addHandler(fh);
             SimpleFormatter formatter = new SimpleFormatter();
             fh.setFormatter(formatter);
-            log.info("Inicia a importação de dados!");
+            log.info("Importação de eventos iniciada com sucesso!");
         } catch (IOException ex) {
             log.getLogger(ImportacaoDadosController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SecurityException ex) {
@@ -81,11 +81,13 @@ public class ImportarFicheiroEventoCSV {
         int coluna = 0;
         int linha = 1;
         int i = 0;
+        
+        Evento e;
 
         String opcao = "";
         for (String[] strings : temp) {
             while (linha < temp.size()) {
-                Evento e = new Evento();
+                e = new Evento();
 
                 while (coluna < temp.get(0).length) {
                     opcao = temp.get(0)[coluna];
@@ -137,19 +139,20 @@ public class ImportarFicheiroEventoCSV {
                     e.setState(new EventoCriadoFicheiroState(e));
                     regista = empresa.getM_registoEventos().registaEvento(e);
                 } else {
-                    log.severe("Erro: Não foi possivel adicionar o evento " + e.getID() + " - título " + e.getM_strTitulo()
+                    log.severe("Erro: Não foi possivel adicionar o evento " + e.getID() + " - " + e.getM_strTitulo()
                             + "! Já existe no sistema!");
                 }
-                if(!regista)
-                    log.severe("Erro: evento não registado!");
+                if(!regista){
+                    log.severe("Erro: evento" + e.getID()+" - "+e.getM_strTitulo()+" não registado!");
                 }
                 i++;
                 linha++;
                 coluna = 0;
-                //}
+                
             }
         
-        } catch (IOException excecao) {
+        }
+        }catch (IOException excecao) {
             log.severe("Erro: Erro na leitura do ficheiro!" + excecao.getMessage());
         } catch (ParserConfigurationException ex) {
             log.severe(ex.getMessage());
