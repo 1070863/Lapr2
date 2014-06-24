@@ -65,7 +65,12 @@ public class SubmissaoRegistadaState implements SubmissaoState, Serializable {
      * @return verdadeiro ou falso em função da validação
      */
     public boolean valida() {
-        return true;
+        if (m_submissao.getState() instanceof SubmissaoNotificadaAceiteState) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     /**
@@ -102,7 +107,7 @@ public class SubmissaoRegistadaState implements SubmissaoState, Serializable {
      * @return false
      */
     public boolean setRegistada() {
-       if (valida()) {
+        if (valida()) {
             this.m_submissao.setState(new SubmissaoRegistadaState(this.m_submissao));
         }
         return true;

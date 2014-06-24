@@ -21,6 +21,8 @@ public class Submissao implements Serializable {
     private SubmissaoState state;
     
     private RevisaoArtigo revisaoArtigo;
+    
+    private Decisao m_decisao;
 
     public Submissao() {
         this.setState(new SubmissaoCriadaState(this));
@@ -73,5 +75,19 @@ public class Submissao implements Serializable {
     public void setRevisaoArtigo(RevisaoArtigo revisaoArtigo) {
         this.revisaoArtigo = revisaoArtigo;
     }
-    
+
+    /**
+     * Retorna a decisão
+     * @return m_decisao
+     */
+    public Decisao getM_decisao() {
+        return m_decisao;
+    }
+
+    /**
+     * Atribui a decisão
+     */
+    public void setM_decisao(Decisao m_decisao) {
+        this.m_decisao = m_decisao;
+    }    
 }

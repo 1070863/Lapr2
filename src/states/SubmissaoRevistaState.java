@@ -11,58 +11,98 @@ import eventoscientificos.Submissao;
 import java.io.Serializable;
 
 /**
- *
+ *SubmissãoRevistaState gere o estado de uma submissão, efetudando
+ * validações e de acordo com o modelo de negócio .
+ * é utilizada para alterar o estado de submissão para SubmissãoRevistaState
  * @author Pereira
  */
 public class SubmissaoRevistaState implements SubmissaoState, Serializable {
 
     private Submissao m_submissao;
-    private Decisao m_decisao;
+/**
+ * Construtor da classe Submissão quando Submissão é passado por parâmetro.
+     *
+ * @param m_submissao 
+ */
 	public SubmissaoRevistaState(Submissao m_submissao)
 	{
 		this.m_submissao=m_submissao;
-	}
-
-    public SubmissaoRevistaState(Decisao m_decisao) {
-        this.m_decisao = m_decisao;
-    }
-        
-
+	}        
+/**
+ * Define a submissão como criada quando iniciado o processo de Submissão.
+ * @return false
+ */
 	public  boolean SetCriada()
 	{
 	return false;
 
 	}
+        /**
+         * Define a submissão submetida após o sucesso do processo de Submissão.
+         * @return false
+         */
 
     public  boolean SetArtigosParaRevisaoSubmetidos()
 	{
-	return false;
+	return false; 
 	}
+    
+    /**
+     * Define a submissão como distribuida após ter sido distribuida para
+     * revisão.
+     *
+     * @return false
+     */
     public  boolean setDestribuida()
 	{
 		return false;
 	
 	}
 
-
+  /**
+     * Define a submissão como aceite após o parecer positivo do Organizador.
+     *
+     * @return false
+     */
+    
     public boolean setRevista()
 	{
 	return false;
 
 	}
+    
+     /**
+     * Define a submissão como aceite após o parecer positivo do Organizador.
+     *
+     * @return false
+     */
 	
 	public boolean valida() 
 	{
-       return true;												
-
-
-    }
+       if(m_submissao.getState() instanceof SubmissaoRevistaState && 
+           m_submissao.getM_decisao().getDecisao().equalsIgnoreCase("aceite"))
+           return true;
+       else
+           return false;
+         }
+        
+         /**
+     * Define a submissão como rejeitada após o parecer negativo do Organizador.
+     *
+     * @return false
+     */
 
     public boolean setRejeitada()
 	{
 	return false;
 	}
+   
 
+  /**
+     * Define a submissão como aceite após o parecer positivo do Organizador.
+     *
+     * @return false
+     */
     public boolean setAceite()
 	{
 	if (valida())
@@ -79,17 +119,32 @@ public class SubmissaoRevistaState implements SubmissaoState, Serializable {
 	}
     
 
-    
+     
+    /**
+     * Define a submissão como NotificadaAceite após a aceitação do artigo no
+     * Evento e a geração da notificação.
+     *
+     * @return verdadeiro ou falso em função da validação
+     */
     public boolean setNotificadoAceite() {
        return false;
        
     }
-
+ /**
+     * Define a submissão como NotificadaRejeitada após a rejeição do artigo no
+     * Evento e a geração da notificação.
+     *
+     * @return verdadeiro ou falso em função da validação
+     */
     @Override
     public boolean setNotificadoRejeitada() {
         return false;
     }
-
+ /**
+     * Define a submissão como registada após o pagamento do Registo no Evento.
+     *
+     * @return false
+     */
     @Override
     public boolean setRegistada() {
         return false;
