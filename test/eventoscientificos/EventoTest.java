@@ -444,20 +444,6 @@ public class EventoTest {
     }
 
     /**
-     * Test of valida method, of class Evento.
-     */
-    @Test
-    public void testValida() {
-        System.out.println("valida");
-        Evento instance = new Evento();
-        boolean expResult = false;
-        boolean result = instance.valida();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of setCP method, of class Evento.
      */
     @Test
