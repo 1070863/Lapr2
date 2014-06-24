@@ -4,13 +4,11 @@ package controller;
 import eventoscientificos.Distribuicao;
 import eventoscientificos.Empresa;
 import eventoscientificos.Evento;
-import eventoscientificos.Revisor;
 import eventoscientificos.Submissao;
 import java.util.ArrayList;
 import java.util.List;
 import states.EventoCPDefinidaState;
 import states.EventoDecididoState;
-import states.EventoLidoFicheiroState;
 import states.EventoNotificadoState;
 import states.SubmissaoAceiteState;
 
@@ -83,20 +81,21 @@ public class EstatisticaEventoController {
         
         if(totalDistribuicoes > 0)
         {
-            for (Distribuicao d : e.getProcessoDistribuicao().getM_listaDistribuicao()) {
+            //for (Distribuicao d : e.getProcessoDistribuicao().getM_listaDistribuicao()) {
+            for (Submissao s : e.getListaSubmissoes()) {
                 switch (parametro)
                 {
                     case "Confianca":
-                        taxa += Integer.parseInt(d.getConfianca());
+                        taxa += Integer.parseInt(s.getRevisaoArtigo().getConfianca());
                         break;
                     case "Adequacao":
-                        taxa += Integer.parseInt(d.getAdequacao());
+                        taxa += Integer.parseInt(s.getRevisaoArtigo().getAdequacao());
                         break;
                     case "Originalidade":
-                        taxa += Integer.parseInt(d.getOriginalidade());
+                        taxa += Integer.parseInt(s.getRevisaoArtigo().getOriginalidade());
                         break;
                     case "Qualidade":
-                        taxa += Integer.parseInt(d.getQualidade());
+                        taxa += Integer.parseInt(s.getRevisaoArtigo().getQualidade());
                         break;
                 }
             }

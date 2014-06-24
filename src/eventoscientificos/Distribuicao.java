@@ -19,23 +19,6 @@ public class Distribuicao implements Serializable {
     private Artigo m_artigo;
     
     /**
-     * confianca: confiança do revisor no tópico do artigo
-     * adequacao: Adequação ao evento
-     * originalidade: originalidade do artigo
-     * qualidade: qualidade de apresentação
-     * recomendacao: recomendação global aceite/rejeitado
-     */
-    private String confianca;
-    private String adequacao;
-    private String originalidade;
-    private String qualidade;
-    private boolean recomendacao;
-    /**
-     * textoJustificativo: texto justificativo da revisão
-     */
-    private String textoJustificativo;
-
-    /**
      * Cria objeto do tipo Distribuicao que não recebe parametros (construtor
      * vazio)
      */
@@ -103,91 +86,6 @@ public class Distribuicao implements Serializable {
                 return rev;
         }
         return null;
-    }
-    /**
-     * @return atributo confianca
-     */
-    public String getConfianca() {
-        return confianca;
-    }
-
-     /**
-     * Define atributo confiança
-     *
-     * @param confianca 
-     */
-    public void setConfianca(String confianca) {
-        this.confianca = confianca;
-    }
-     /**
-     * @return atributo adequacao
-     */
-    public String getAdequacao() {
-        return adequacao;
-    }
-     /**
-     * Define atributo adequação
-     *
-     * @param adequacao 
-     */
-    public void setAdequacao(String adequacao) {
-        this.adequacao = adequacao;
-    }
-    /**
-     * @return atributo originalidade
-     */
-    public String getOriginalidade() {
-        return originalidade;
-    }
- /**
-     * Define atributo originalidade
-     *
-     * @param originalidade 
-     */
-    public void setOriginalidade(String originalidade) {
-        this.originalidade = originalidade;
-    }
-    /**
-     * @return atributo qualidade
-     */
-    public String getQualidade() {
-        return qualidade;
-    }
- /**
-     * Define atributo qualidade
-     *
-     * @param qualidade 
-     */
-    public void setQualidade(String qualidade) {
-        this.qualidade = qualidade;
-    }
-    /**
-     * @return atributo recomendacao
-     */
-    public boolean getRecomendacao() {
-        return recomendacao;
-    }
-    /**
-     * Define atributo recomendação
-     *
-     * @param recomendacao 
-     */
-    public void setRecomendacao(boolean recomendacao) {
-        this.recomendacao = recomendacao;
-    }
-    /**
-     * @return texto justificativo da revisao
-     */
-    public String getTextoJustificativo() {
-        return textoJustificativo;
-    }
-     /**
-     * Define texto justificativo da revisao
-     *
-     * @param textoJustificativo 
-     */
-    public void setTextoJustificativo(String textoJustificativo) {
-        this.textoJustificativo = textoJustificativo;
     }
 
     /**
