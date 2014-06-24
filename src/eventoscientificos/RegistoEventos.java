@@ -253,7 +253,7 @@ public class RegistoEventos implements Serializable {
      */
     public Evento getEvento(String eventoID) {
         for (Evento e : m_listaEventos) {
-            if (eventoID.equalsIgnoreCase(e.getM_strTitulo())) {
+            if (eventoID.equalsIgnoreCase(e.getID())) {
                 return e;
             }
         }

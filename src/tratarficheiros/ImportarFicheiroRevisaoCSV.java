@@ -58,6 +58,8 @@ public class ImportarFicheiroRevisaoCSV {
             String[] aux = (fIn.nextLine()).split(";");
             temp.add(aux);
         }
+        
+        fIn.close();
 
         int coluna = 0;
         int linha = 1;
@@ -67,6 +69,7 @@ public class ImportarFicheiroRevisaoCSV {
         for (String[] strings : temp) {
             while (linha < temp.size()) {
                 RevisaoArtigo revisao = new RevisaoArtigo();
+                
                 while (coluna < temp.get(0).length) {
                     opcao = temp.get(0)[coluna];
                     switch (opcao) {
@@ -118,8 +121,12 @@ public class ImportarFicheiroRevisaoCSV {
                                                 getSubmissao(revisao.getM_artigo())));
                     }
                 }
+                    i++;
+                 linha++;
+                 coluna = 0;
+                }
             }
-        }
+        
     }
 
     /**

@@ -41,6 +41,8 @@ public class ImportarFicheiroArtigoCSV {
             String[] aux = (fIn.nextLine()).split(";");
             temp.add(aux);
         }
+        
+        fIn.close();
 
         int coluna = 0;
         int linha = 1;
