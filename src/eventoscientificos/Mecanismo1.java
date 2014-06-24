@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package eventoscientificos;
 
 import java.io.Serializable;
@@ -10,9 +5,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Classe responsável pela implementação de um processo de distribuição.
+ *
+ * @author Grupo 66 LPR2
+ */
 public class Mecanismo1 implements MecanismoDistribuicao, Serializable {
     private static final long serialVersionUID = 1L;
     
+    /**
+     * Atributos de instância.
+     */
     List<Distribuicao> listaDistribuicaos;
     private final String nome = "Mecanismo1";
 
@@ -61,6 +64,12 @@ public class Mecanismo1 implements MecanismoDistribuicao, Serializable {
     public static void setnAtribuicoes(int nAtribuicoes) {
         Mecanismo1.nAtribuicoes = nAtribuicoes;
     }
+    /**
+     * Distribuí um conjunto de artigos por revisores segundo especificacoes de mecanismo.
+     * 
+     * @param processoDistribuicao 
+     * @return lista de distribuição (contento um determinado número de revisores para cada artigo).
+     */
        @Override
     public List<Distribuicao> distribui(ProcessoDistribuicao processoDistribuicao) {
         listaDistribuicaos = new ArrayList<>();
@@ -110,7 +119,11 @@ public class Mecanismo1 implements MecanismoDistribuicao, Serializable {
         }
         return nd;
     }
-
+    /**
+     * devolve nome do mecanismo
+     *
+     * @return nome
+     */
     public String getNome() {
         return nome;
     }

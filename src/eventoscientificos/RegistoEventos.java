@@ -10,44 +10,73 @@ import states.SubmissaoNotificadaAceiteState;
 import states.SubmissaoRejeitadaState;
 
 /**
+ * Classe responsável pelo processo de registo de eventos.
  *
- * @author Lopes
+ * @author Grupo 66 LPR2
  */
 public class RegistoEventos implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Atributos de instância.
+     */
     private List<Evento> m_listaEventos;
     private Empresa m_empresa;
     private List<MecanismoDistribuicao> m_listaMecanismoDistribuicao;
     private MecanismoDistribuicao m_MecanismoDistribuicao;
     private List<MecanismoDecisao> m_listaMecanismoDecisao;
 
+    /**
+     * Construtor por criar um no Registo de Eventos para a empresa. 
+     *
+     * @param m_empresa Empresa a ser definida
+     */
     public RegistoEventos(Empresa empresa) {
         this.m_listaEventos = new ArrayList<>();
         this.m_empresa = empresa;
     }
-
+    /**
+     * Cria um novo objecto Evento
+     *
+     * @return Evento
+     */
     public Evento novoEvento() {
         return new Evento();
     }
-
+    /**
+     * @return m_listaMecanismoDistribuicao lista com mecanimos de distribuição disponíveis
+     */
     public List<MecanismoDistribuicao> getM_listaMecanismoDistribuicao() {
         return m_listaMecanismoDistribuicao;
     }
-
+    /**
+     * Define a lista de mecanismos de distribuição disponíveis
+     *
+     * @param m_listaMecanismoDistribuicao Objecto do tipo List<MecanismoDistribuicao>
+     */
     public void setM_listaMecanismoDistribuicao(List<MecanismoDistribuicao> m_listaMecanismoDistribuicao) {
         this.m_listaMecanismoDistribuicao = m_listaMecanismoDistribuicao;
     }
-
+    /**
+     * @return m_MecanismoDistribuicao, mecanismo de distribuição definido
+     */
     public MecanismoDistribuicao getMd() {
         return m_MecanismoDistribuicao;
     }
-
+    /**
+     * Define o mecanismo de distribuição disponível
+     *
+     * @param md Objecto do tipo MecanismoDistribuicao
+     */
     public void setMd(MecanismoDistribuicao md) {
         this.m_MecanismoDistribuicao = md;
     }
-
+    /**
+     * Regista um evento na lista de eventos após validação. 
+     * 
+     * @return true se evento válido e adicionado com sucesso. 
+     */
     public boolean registaEvento(Evento e) {
         if (validaEvento(e)) {
             return addEvento(e);
@@ -55,17 +84,29 @@ public class RegistoEventos implements Serializable {
             return false;
         }
     }
-
+    /**
+     * Regista um evento na lista de eventos. 
+     * 
+     * @return true se evento adicionado com sucesso. 
+     */
     private boolean addEvento(Evento e) {
         return m_listaEventos.add(e);
     }
-
+    /**
+     * Cria uma nova lista de mecanismos de distribuição disponíveis e atribui mecanismos à lista
+     * 
+     * @return m_listaMecanismoDistribuicao lista criada
+     */
     public List<MecanismoDistribuicao> criarListaMecanismoDistribuicaos() {
         m_listaMecanismoDistribuicao = new ArrayList<>();
         this.m_listaMecanismoDistribuicao.add(new Mecanismo1());
         return m_listaMecanismoDistribuicao;
     }
-
+    /**
+     * Cria uma nova lista de mecanismos de decisão disponíveis e atribui mecanismos à lista
+     * 
+     * @return m_listaMecanismoDistribuicao lista criada
+     */
     public List<MecanismoDecisao> criarListaMecanismoDecisao() {
         m_listaMecanismoDecisao = new ArrayList<>();
         this.m_listaMecanismoDecisao.add(new MecanismoDecisao1());
@@ -140,6 +181,13 @@ public class RegistoEventos implements Serializable {
         return leOrganizador;
     }
 
+    /**
+     * Procura no registo de eventos os eventos cujo organizador tenha a id
+     * indicada.
+     *
+     * @param strId id do organizador correspondente
+     * @return Lista de Eventos do organizador pedido
+     */
     public List<Evento> getEventosOrganizador(String strId) {
         List<Evento> leOrganizador = new ArrayList<>();
 
@@ -167,6 +215,11 @@ public class RegistoEventos implements Serializable {
         return leOrganizador;
     }
 
+    /**
+     * Procura no registo de eventos todos aqueles que aceitam submissões
+     *
+     * @return Lista de Eventos que estão a aceitar submissões
+     */
     public List<Evento> getListaEventosPodeSubmeter() {
         List<Evento> le = new ArrayList<>();
 
@@ -191,6 +244,13 @@ public class RegistoEventos implements Serializable {
         return le;
     }
 
+     /**
+     * Devolve evento da lista de eventos com id pedida
+     *
+     * @param eventoID título do evento 
+     * @return e Evento com título pedido. null no caso de não haver nenhum evento com
+     * esse título
+     */
     public Evento getEvento(String eventoID) {
         for (Evento e : m_listaEventos) {
             if (eventoID.equalsIgnoreCase(e.getM_strTitulo())) {
@@ -200,6 +260,12 @@ public class RegistoEventos implements Serializable {
         return null;
     }
 
+    /**
+     * Devolve evento válido ou não
+     *
+     * @param e Evento a validar
+     * @return true se título de evento é único e false no caso contrário.
+     */
     private boolean validaEvento(Evento e) {
         if (this.getEvento(e.getM_strTitulo()) == null) {
             return true;
@@ -229,6 +295,9 @@ public class RegistoEventos implements Serializable {
         return true;
     }
 
+    /**
+     * @return m_listaEventos actual
+     */
     public List<Evento> getM_listaEventos() {
         return m_listaEventos;
     }
@@ -254,6 +323,12 @@ public class RegistoEventos implements Serializable {
         return le;
     }
 
+    /**
+     * Retorna número de eventos em estado CriadoFicheiro. Necessário para saber se 
+     * ficheiro carregado contém ou não eventos válidos
+     *
+     * @return número de eventos criados do ficheiro actualmente registados.
+     */
     public int getListaEventosCriadoFicheiroSize() {
         int contador = 0;
         for (Evento e : m_listaEventos) {
@@ -264,6 +339,9 @@ public class RegistoEventos implements Serializable {
         return contador;
     }
 
+     /**
+     * Apaga eventos em estado "CriadoFicheiro". 
+     */
     public void apagaEventosCriadoFicheiro() {
 
         for (int i = m_listaEventos.size() - 1; i > -1; i--) {

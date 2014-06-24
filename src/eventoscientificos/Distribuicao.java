@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package eventoscientificos;
 
 import java.io.Serializable;
@@ -11,13 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Classe que define uma distribuição. 
  *
- * @author Lopes
+ * @author Grupo 66 LPR2
  */
 public class Distribuicao implements Serializable {
     private static final long serialVersionUID = 1L;
     
-  /**
+    /**
      * Variáveis de instância
      */
     private List<Revisor> m_listaRevisores;
@@ -109,55 +104,95 @@ public class Distribuicao implements Serializable {
         }
         return null;
     }
-    
+    /**
+     * @return atributo confianca
+     */
     public String getConfianca() {
         return confianca;
     }
 
+     /**
+     * Define atributo confiança
+     *
+     * @param confianca 
+     */
     public void setConfianca(String confianca) {
         this.confianca = confianca;
     }
-
+     /**
+     * @return atributo adequacao
+     */
     public String getAdequacao() {
         return adequacao;
     }
-
+     /**
+     * Define atributo adequação
+     *
+     * @param adequacao 
+     */
     public void setAdequacao(String adequacao) {
         this.adequacao = adequacao;
     }
-
+    /**
+     * @return atributo originalidade
+     */
     public String getOriginalidade() {
         return originalidade;
     }
-
+ /**
+     * Define atributo originalidade
+     *
+     * @param originalidade 
+     */
     public void setOriginalidade(String originalidade) {
         this.originalidade = originalidade;
     }
-
+    /**
+     * @return atributo qualidade
+     */
     public String getQualidade() {
         return qualidade;
     }
-
+ /**
+     * Define atributo qualidade
+     *
+     * @param qualidade 
+     */
     public void setQualidade(String qualidade) {
         this.qualidade = qualidade;
     }
-
+    /**
+     * @return atributo recomendacao
+     */
     public boolean getRecomendacao() {
         return recomendacao;
     }
-
+    /**
+     * Define atributo recomendação
+     *
+     * @param recomendacao 
+     */
     public void setRecomendacao(boolean recomendacao) {
         this.recomendacao = recomendacao;
     }
-
+    /**
+     * @return texto justificativo da revisao
+     */
     public String getTextoJustificativo() {
         return textoJustificativo;
     }
-
+     /**
+     * Define texto justificativo da revisao
+     *
+     * @param textoJustificativo 
+     */
     public void setTextoJustificativo(String textoJustificativo) {
         this.textoJustificativo = textoJustificativo;
     }
 
+    /**
+     * @return string com artigo da distribuição 
+     */
     @Override
     public String toString() {
         return "Distribuicao{" + "m_artigo=" + m_artigo + '}';
