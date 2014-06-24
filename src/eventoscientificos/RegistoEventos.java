@@ -5,6 +5,8 @@ import java.util.*;
 import states.EventoCameraReadyState;
 import states.EventoCriadoFicheiroState;
 import states.EventoDecididoState;
+import states.EventoRegistadoState;
+import states.EventoTopicosDefinidosState;
 import states.SubmissaoAceiteState;
 import states.SubmissaoNotificadaAceiteState;
 import states.SubmissaoRejeitadaState;
@@ -12,7 +14,7 @@ import states.SubmissaoRejeitadaState;
 /**
  * Classe responsável pelo processo de registo de eventos.
  *
- * @author Grupo 66 LPR2
+ * @author Grupo 66 LAPR2
  */
 public class RegistoEventos implements Serializable {
 
@@ -181,6 +183,75 @@ public class RegistoEventos implements Serializable {
         return leOrganizador;
     }
 
+    
+    /**
+     * Procura no registo de eventos os eventos cujo organizador tenha a id
+     * indicada e os eventos tenham já tópicos definidos.
+     *
+     * @param strId id do autor correspondente
+     * @return Lista de Eventos com Tópicos definidos
+     */
+    public List<Evento> getEventosOrgTopicosDef(String strId) {
+        List<Evento> leOrganizador = new ArrayList<>();
+
+        Utilizador u = m_empresa.getM_registaUtilizador().getUtilizador(strId);
+
+        if (u != null) {
+            for (Iterator<Evento> it = m_listaEventos.listIterator(); it.hasNext();) {
+                Evento e = it.next();
+                List<Organizador> lOrg = e.getListaOrganizadores();
+
+                boolean bRet = false;
+                if (!leOrganizador.contains(e) && e.getState() instanceof EventoTopicosDefinidosState) {
+                    for (Organizador org : lOrg) {
+                        if (org.getM_utilizador().equals(u)) {
+                            bRet = true;
+                            break;
+                        }
+                    }
+                    if (bRet) {
+                        leOrganizador.add(e);
+                    }
+                }
+            }
+        }
+        return leOrganizador;
+    }
+    
+    /**
+     * Procura no registo de eventos os eventos cujo organizador tenha a id
+     * indicada e os eventos tenham o seu estado definido como registado.
+     *
+     * @param strId id do autor correspondente
+     * @return Lista de Eventos com estado Registado
+     */
+    public List<Evento> getEventosOrgRegistados(String strId) {
+        List<Evento> leOrganizador = new ArrayList<>();
+
+        Utilizador u = m_empresa.getM_registaUtilizador().getUtilizador(strId);
+
+        if (u != null) {
+            for (Iterator<Evento> it = m_listaEventos.listIterator(); it.hasNext();) {
+                Evento e = it.next();
+                List<Organizador> lOrg = e.getListaOrganizadores();
+
+                boolean bRet = false;
+                if (!leOrganizador.contains(e) && e.getState() instanceof EventoRegistadoState) {
+                    for (Organizador org : lOrg) {
+                        if (org.getM_utilizador().equals(u)) {
+                            bRet = true;
+                            break;
+                        }
+                    }
+                    if (bRet) {
+                        leOrganizador.add(e);
+                    }
+                }
+            }
+        }
+        return leOrganizador;
+    }
+    
     /**
      * Procura no registo de eventos os eventos cujo organizador tenha a id
      * indicada.

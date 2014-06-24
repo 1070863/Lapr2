@@ -28,7 +28,7 @@ public class CriarTopicoEventoController {
     
     public List<Evento> getEventosOrganizador(String strId)
     {
-        return m_empresa.getM_registoEventos().getEventosOrganizador(strId);
+        return m_empresa.getM_registoEventos().getEventosOrgRegistados(strId);
     }
     
    public void setEvento(Evento e)
