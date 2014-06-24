@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import eventoscientificos.*;
@@ -36,8 +31,6 @@ public class CorrigirEventosImportadosController {
     public CorrigirEventosImportadosController(Empresa m_empresa) {
         this.m_empresa = m_empresa;
     }
-
-    
     /**
      * Procura eventos registados que foram lidos do ficheiro e confirmados para correcao
      *
