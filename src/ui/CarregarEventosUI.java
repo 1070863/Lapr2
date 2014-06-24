@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import controller.CarregarEventosController;
@@ -16,8 +11,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 /**
+ * Classe que serve de interface gráfica ao processo de criação de Carremento de Eventos via ficheiro
  *
- * @author Lopes
+ * @author GRUPO66 LAPR2
  */
 public class CarregarEventosUI extends JFrame {
 
@@ -30,6 +26,10 @@ public class CarregarEventosUI extends JFrame {
         carregarEventosController = new CarregarEventosController(m_empresa);
     }
 
+     /**
+     * Cria interface gráfica de carregamento de ficheiros. Apresenta mensagem de erro 
+     * em caso de ficheiro inválido.
+     */
     public void run() throws ParserConfigurationException, SAXException {
         CarregarEventosUI ceUI = new CarregarEventosUI(m_empresa);
 
@@ -66,6 +66,9 @@ public class CarregarEventosUI extends JFrame {
         }
     }
 
+    /**
+     * Define filtro de pesquisa para apresentar apenas ficheiros ou directórios relevantes.
+     */
     private void definirFiltro(JFileChooser jfcCarregarEventos) {
         jfcCarregarEventos.setFileFilter(new javax.swing.filechooser.FileFilter() {
             @Override
@@ -108,6 +111,10 @@ public class CarregarEventosUI extends JFrame {
         });
     }
 
+     /**
+     * UI para apresentação de eventos carregados e confirmação ou negação de adição à lista de 
+     * eventos lidos a partir do ficheiro (para posterior correcção)
+     */
     private void mostrarEventos() {
         List<Evento> listaEventosProvisoria = carregarEventosController.mostrarListaProvisoria();   
                 

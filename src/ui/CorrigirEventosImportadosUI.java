@@ -1,27 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import controller.CorrigirEventosImportadosController;
 import eventoscientificos.*;
-import java.awt.Component;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static utils.Data.String2Data;
 
 /**
+ * Classe que serve de interface gráfica à correcção de eventos importados via ficheiro
  *
- * @author Lopes
+ * @author GRUPO66 LAPR2
  */
 public class CorrigirEventosImportadosUI extends javax.swing.JDialog {
 
@@ -51,8 +39,9 @@ public class CorrigirEventosImportadosUI extends javax.swing.JDialog {
         }
     }
 
-    /**
-     * arranca janela
+     /**
+     * Apresentação de janela para correcao de eventos. Protegida com painel de validação 
+     * para ids de organizadores
      */
     public void run() {
         String organizador = JOptionPane.showInputDialog(this,
@@ -477,6 +466,10 @@ public class CorrigirEventosImportadosUI extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButtonContinuarActionPerformed
 
+         /**
+     * Apresentação de janela para correcao de eventos. Protegida com painel de validação 
+     * para ids de organizadores
+     */
     private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
         iEvento = cmbEvento.getSelectedIndex();
         if(iEvento != -1){
@@ -518,7 +511,10 @@ public class CorrigirEventosImportadosUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Tem que seleccionar um evento primeiro");
         }
     }//GEN-LAST:event_jButtonOkActionPerformed
-
+     /**
+     * Adiçao gráfica de organizadores a uma lista na UI (só são adicionados organizadores
+     * novos após confirmação final).
+     */
     private void jButtonAdicionarOrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarOrgActionPerformed
         String idOrganizador = "";
         Utilizador u = new Utilizador();

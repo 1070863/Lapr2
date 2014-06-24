@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import controller.CriarEventoCientificoController;
@@ -13,8 +8,9 @@ import javax.swing.JOptionPane;
 import java.util.List;
 
 /**
+ * Classe que serve de interface gráfica ao processo de criação de eventos cientificos
  *
- * @author Lopes
+ * @author GRUPO66 LAPR2
  */
 public class CriarEventoCientificoUI extends javax.swing.JDialog {
 

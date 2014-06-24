@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import controller.DistribuirRevisoesController;
@@ -12,8 +7,9 @@ import javax.swing.JOptionPane;
 import java.util.List;
 
 /**
+ * Classe que serve de interface gráfica ao processo de distribuição de revisões
  *
- * @author Lopes
+ * @author GRUPO66 LAPR2
  */
 public class DistribuirRevisoesUI extends javax.swing.JDialog {
 
@@ -43,7 +39,8 @@ public class DistribuirRevisoesUI extends javax.swing.JDialog {
     }
 
     /**
-     * arranca janela
+     * Arranca janela. Apresentação de distribuições está sujeita a introdução de id 
+     * de um organizador com distribuições pendentes.
      */
     public void run() {
         String organizador = JOptionPane.showInputDialog(this,
@@ -213,6 +210,9 @@ public class DistribuirRevisoesUI extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Apresenta mecanismos de distribuição disponíveis
+     */
     private void jButtonOkEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkEventoActionPerformed
         iEvento = cmbEvento.getSelectedIndex();
         if (iEvento != -1) {
@@ -244,6 +244,9 @@ public class DistribuirRevisoesUI extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButtonCancelarMecActionPerformed
 
+    /**
+     * Processae distribuição para evento e mecanismo selecionado
+     */
     private void jButtonOkMecanismoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkMecanismoActionPerformed
         iMecanismo = cmbMecanismo.getSelectedIndex();
         listaDistribuicoes = new ArrayList<>();
