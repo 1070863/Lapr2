@@ -40,7 +40,7 @@ public class NotificarAutoresController {
  
           public List<Evento> getListaEventosProntosNotificar(String strId){
          List<Evento> listaEventos= new ArrayList<>();
-                listaEventos= m_empresa.getM_registoEventos().getListaEventosProntosNotificar();
+                listaEventos= m_empresa.getM_registoEventos().getListaEventosProntosNotificar(strId);
         return listaEventos;
     }
          

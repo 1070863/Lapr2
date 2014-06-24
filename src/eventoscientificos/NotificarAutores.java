@@ -50,6 +50,7 @@ public class NotificarAutores implements Serializable
   private Submissao sub;
   private SubmissaoState sub_state;
   private String parafile;
+  
 //  private String nameFile= m_artigo.getTitulo();
   
   
@@ -122,15 +123,14 @@ public class NotificarAutores implements Serializable
           Element em4 = document.createElement(element4);
           em4.appendChild(document.createTextNode(data4));
           folderElement.appendChild(em4);}
-   
-        }
+             
+ 
     
         
          Element comentsElement= document.createElement(coments);
          folderElement.appendChild(comentsElement);
         
-        for (int i = 0; i < e.getCP().getListaRevisores().size(); i++) {
-       int a=i;
+        for (int a = 0; a < e.getCP().getListaRevisores().size(); a++) {
          
   
           String element5 ="review_number";
@@ -140,11 +140,12 @@ public class NotificarAutores implements Serializable
           comentsElement.appendChild(em5);
           
           String element6 ="review_comments";
-          String data6 = " Comentarios do revisor";
+          String data6 = e.getSubmissao(m_artigo).getRevisaoArtigo().getTextoJustificativo();
           Element em6 = document.createElement(element6);
           em6.appendChild(document.createTextNode(data6));
           comentsElement.appendChild(em6);
       } 
+        }
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
