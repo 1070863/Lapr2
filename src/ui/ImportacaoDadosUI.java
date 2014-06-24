@@ -13,6 +13,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -35,10 +39,27 @@ public class ImportacaoDadosUI extends JFrame  {
      */
     private int opcao;
     
+    Logger log = Logger.getLogger("Log");
+    FileHandler fh;
+    
     public ImportacaoDadosUI(Empresa empresa) {
         super("Carregar Eventos Cientificos");
         this.m_empresa = empresa;
         importacaoDadosController = new ImportacaoDadosController();
+        FileHandler fh;
+        
+        try {
+            //Configuração do ficheiro de Logs
+            fh = new FileHandler("EventosCientificos.log");
+            log.addHandler(fh);
+            SimpleFormatter formatter = new SimpleFormatter();  
+            fh.setFormatter(formatter);
+            log.info("Inicia a importação de dados!");
+        } catch (IOException ex) {
+            log.getLogger(ImportacaoDadosController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SecurityException ex) {
+            log.getLogger(ImportacaoDadosController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void run(int opcao) throws ParserConfigurationException, SAXException {
@@ -63,10 +84,10 @@ public class ImportacaoDadosUI extends JFrame  {
                                 importacaoDadosController.lerEventos(ficheiro.getAbsolutePath(), m_empresa);
                             break;
                         case 1:
-                            JOptionPane.showMessageDialog(idUI, "Tipo de ficheiro desconhecido!", "ERRO!", JOptionPane.ERROR_MESSAGE);
+                            log.severe("Erro: Tipo de ficheiro desconhecido!");
                             break;
                         case 2:
-                            JOptionPane.showMessageDialog(idUI, "Ficheiro sem eventos válidos!", "ERRO!", JOptionPane.ERROR_MESSAGE);
+                            log.severe("Erro: Ficheiro sem eventos válidos!");
                             break;
                     }
 
@@ -75,7 +96,7 @@ public class ImportacaoDadosUI extends JFrame  {
                 }
             }
         } catch (IOException excecao) {
-            JOptionPane.showMessageDialog(idUI, "Ficheiro inválido!", "ERRO!", JOptionPane.ERROR_MESSAGE);
+            log.severe("Erro: Ficheiro inválido!\n"+excecao.getMessage());
         }
     }
 
