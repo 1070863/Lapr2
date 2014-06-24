@@ -3,6 +3,9 @@ package controller;
 import eventoscientificos.Empresa;
 import eventoscientificos.Evento;
 import eventoscientificos.RegistoNoEvento;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.List;
 
 public class ExportarPagamentosRegistoController {
@@ -35,4 +38,18 @@ public class ExportarPagamentosRegistoController {
         this.m_listaRegistos = this.m_evento.getListaRegistos();
     }
 
+    public void escreveCSV(String fileName) throws FileNotFoundException {
+        PrintWriter novoCSV = new PrintWriter(fileName);
+
+        novoCSV.write("Autor;Artigo;Data Pagamento\n");
+
+        for (RegistoNoEvento r : this.m_listaRegistos) {
+            for (int i = 0; i < r.getM_listaSubmisoesAceites().size(); i++) {
+                novoCSV.write(r.getM_autor().getM_strNome() + ";"
+                        + r.getM_listaSubmisoesAceites().get(i).getArtigo().getTitulo() + ";"
+                        + r.getM_data()+"\n");
+            }
+        }
+        novoCSV.close();
+    }
 }
