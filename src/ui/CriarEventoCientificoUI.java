@@ -383,10 +383,10 @@ public class CriarEventoCientificoUI extends javax.swing.JDialog {
                                     JOptionPane.showMessageDialog(this, "Data limite de registo tem de ser anterior à data de inicio!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
                                 }
                             } else {
-                                JOptionPane.showMessageDialog(this, "Data limite de revisão tem de ser anterior à data limite submissão final!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(this, "Data limite de submissão final tem de ser anterior à data limite de registo!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
                             }
                         } else {
-                            JOptionPane.showMessageDialog(this, "Data limite submissão finalo tem de ser anterior à data limite de registo!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "Data limite de revisão tem de ser anterior à data limite de submissão final!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);
                         }
                     } else {
                         JOptionPane.showMessageDialog(this, "Data limite de submissão tem de ser anterior à data limite de revisão!", "Erro na data", JOptionPane.INFORMATION_MESSAGE);

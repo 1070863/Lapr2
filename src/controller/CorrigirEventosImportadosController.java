@@ -157,6 +157,7 @@ public class CorrigirEventosImportadosController {
      */
     public void registaEvento() {
         m_empresa.getM_registoEventos().getEvento(strTitulo_old).getState().setCriado();
+        m_empresa.getM_registoEventos().getEvento(strTitulo_old).getState().setRegistado();
     }
     /**
      * Adiciona novo organizador ao evento que está a ser lido actualmente.

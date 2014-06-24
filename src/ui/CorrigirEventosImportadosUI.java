@@ -4,7 +4,7 @@ import controller.CorrigirEventosImportadosController;
 import eventoscientificos.*;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import static utils.Data.String2Data;
+import static utils.Data.StringToData;
 
 /**
  * Classe que serve de interface gráfica à correcção de eventos importados via ficheiro
@@ -485,17 +485,17 @@ public class CorrigirEventosImportadosUI extends javax.swing.JDialog {
             
             try
             {
-                Date dataInicio = String2Data(eventoCorrigir.getM_strDataInicio()).getTime();
+                Date dataInicio = StringToData(eventoCorrigir.getM_strDataInicio()).getTime();
                 jDateChooserInicio.setDate(dataInicio);
-                Date dataFim = String2Data(eventoCorrigir.getM_strDataFim()).getTime();
+                Date dataFim = StringToData(eventoCorrigir.getM_strDataFim()).getTime();
                 jDateChooserFim.setDate(dataFim);
-                Date dataLSubmissao = String2Data(eventoCorrigir.getDataLimiteSubmissao()).getTime();
+                Date dataLSubmissao = StringToData(eventoCorrigir.getDataLimiteSubmissao()).getTime();
                 jDateChooserLSubmissao.setDate(dataLSubmissao);
-                Date dataRevisao = String2Data(eventoCorrigir.getDataLimiteRevisao()).getTime();
+                Date dataRevisao = StringToData(eventoCorrigir.getDataLimiteRevisao()).getTime();
                 jDateChooserRevisao.setDate(dataRevisao);
-                Date dataSubmissaoFinal = String2Data(eventoCorrigir.getDataLimiteSubmissaoFinal()).getTime();
+                Date dataSubmissaoFinal = StringToData(eventoCorrigir.getDataLimiteSubmissaoFinal()).getTime();
                 jDateChooserSubmissaoFinal.setDate(dataSubmissaoFinal);
-                Date dataRegisto = String2Data(eventoCorrigir.getDataLimiteRegisto()).getTime();
+                Date dataRegisto = StringToData(eventoCorrigir.getDataLimiteRegisto()).getTime();
                 jDateChooserRegisto.setDate(dataRegisto);
             }
             catch(NullPointerException exception)

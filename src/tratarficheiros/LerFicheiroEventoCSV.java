@@ -124,7 +124,7 @@ public class LerFicheiroEventoCSV implements LerFicheiroEvento {
             }
         }
 
-        Calendar c = String2Data(temp.get(linha)[date]);
+        Calendar c = StringToData(temp.get(linha)[date]);
         c.add(Calendar.DAY_OF_MONTH, duration);
 
         SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy");

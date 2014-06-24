@@ -231,7 +231,7 @@ public class Data {
     }
     
     
-     public static Calendar String2Data(String str_data) {
+     public static Calendar StringToData(String str_data) {
         String[] aux = str_data.split(",");
         String[] aux2 = aux[1].trim().split(" ");
 

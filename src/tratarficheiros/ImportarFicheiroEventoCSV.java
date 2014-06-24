@@ -28,7 +28,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
-import static utils.Data.String2Data;
+import static utils.Data.StringToData;
 
 /**
  *
@@ -181,7 +181,7 @@ public class ImportarFicheiroEventoCSV {
             }
         }
 
-        Calendar c = String2Data(temp.get(linha)[date]);
+        Calendar c = StringToData(temp.get(linha)[date]);
         c.add(Calendar.DAY_OF_MONTH, duration);
 
         SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy");
