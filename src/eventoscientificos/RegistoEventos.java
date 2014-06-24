@@ -234,15 +234,6 @@ public class RegistoEventos implements Serializable {
         return le;
     }
 
-    public List<Evento> getListaEventosProntosNotificar() {
-        List<Evento> le = new ArrayList<>();
-
-        for (Evento e : m_listaEventos) {
-            //  if (e.aceitaNotificar()) 
-            le.add(e);
-        }
-        return le;
-    }
 
      /**
      * Devolve evento da lista de eventos com id pedida
