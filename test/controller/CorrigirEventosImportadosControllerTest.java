@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package controller;
 
 import eventoscientificos.Empresa;
@@ -22,8 +16,9 @@ import states.EventoCriadoState;
 import states.EventoLidoFicheiroState;
 
 /**
+ * Classe de teste à classe CorrigirEventosImportadosController.
  *
- * @author Lopes
+ * @author GRUPO66 LAPR2
  */
 public class CorrigirEventosImportadosControllerTest {
     
@@ -54,7 +49,7 @@ public class CorrigirEventosImportadosControllerTest {
         instance.setStrTitulo_old("12th International CDIO Conference, Turku, Finland");
         empresa.getM_registoEventos().registaEvento(evento);
         u = new Utilizador("teste","teste","teste","teste@isep.ipp.pt");
-        
+        evento.addOrganizador("teste", u);
     }
     
     @After
@@ -95,9 +90,9 @@ public class CorrigirEventosImportadosControllerTest {
     @Test
     public void testAddOrganizador() {
         System.out.println("addOrganizador");
-       
+        Utilizador u2 = new Utilizador("teste2","teste2","teste2","teste2@isep.ipp.pt");
         boolean expResult = true;
-        boolean result = instance.addOrganizador(u);
+        boolean result = instance.addOrganizador(u2);
         assertEquals(expResult, result);
     }
 
@@ -138,6 +133,18 @@ public class CorrigirEventosImportadosControllerTest {
         int result = instance.getNovosOrganizadores().size();
         int expResult = 0;
         
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of isOrganizador method, of class CorrigirEventosImportadosController.
+     */
+    @Test
+    public void testIsOrganizador() {
+        System.out.println("isOrganizador");
+        String orgID = "teste@isep.ipp.pt";
+        boolean expResult = true;
+        boolean result = instance.isOrganizador(orgID);
         assertEquals(expResult, result);
     }
     

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import eventoscientificos.*;
@@ -17,10 +12,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.xml.sax.SAXException;
+import states.EventoCriadoFicheiroState;
 
 /**
+ * Classe de teste à classe CarregarEventosController.
  *
- * @author Lopes
+ * @author GRUPO66 LAPR2
  */
 public class CarregarEventosControllerTest {
 
@@ -46,6 +43,7 @@ public class CarregarEventosControllerTest {
         instance = new CarregarEventosController(empresa);
         evento = new Evento();
         evento.setTitulo("12th International CDIO Conference, Turku, Finland");
+        evento.setState(new EventoCriadoFicheiroState(evento));
         listaEventos = new ArrayList<>();
         listaEventos.add(evento);
         instance.setFicheiro("EventList_CDIO.csv");
@@ -54,6 +52,18 @@ public class CarregarEventosControllerTest {
 
     @After
     public void tearDown() {
+    }
+
+     /**
+     * Test of mostrarListaProvisoria method, of class
+     * CarregarEventosController.
+     */
+    @Test
+    public void testSetFicheiro() throws Exception {
+        System.out.println("setFicheiro");
+        int expResult = instance.setFicheiro("ficheiro.xpto");
+        int result = 1;
+        assertEquals(expResult, result);
     }
 
     /**
@@ -80,5 +90,19 @@ public class CarregarEventosControllerTest {
 
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of apagaEventosDesnecessarios method, of class CarregarEventosController.
+     */
+    @Test
+    public void testApagaEventosDesnecessarios() {
+        System.out.println("apagaEventosDesnecessarios");
+        instance.apagaEventosDesnecessarios();
+        int result = instance.mostrarListaProvisoria().size();
+        int expResult = 0;
+        assertEquals(expResult, result);
+    }
+
+
 
 }

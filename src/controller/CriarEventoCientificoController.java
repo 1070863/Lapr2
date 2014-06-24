@@ -147,7 +147,7 @@ public class CriarEventoCientificoController
     public boolean addOrganizador(String strId)
     {
         Utilizador u = m_empresa.getM_registaUtilizador().getUtilizador(strId);
-        
+        System.out.println("addOrganizador: " + m_empresa.getM_registaUtilizador().getM_listaUtilizadores().size());
         if( u!=null)
             return m_evento.addOrganizador( strId, u );
         else

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import eventoscientificos.*;
@@ -14,10 +9,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import states.EventoCPDefinidaState;
 
 /**
+ * Classe de teste à classe DistribuirRevisoesController.
  *
- * @author Lopes
+ * @author GRUPO66 LAPR2
  */
 public class DistribuirRevisoesControllerTest {
 
@@ -31,6 +28,8 @@ public class DistribuirRevisoesControllerTest {
     private static MecanismoDistribuicao mecanismoDistribuicao;
     private static Mecanismo1 mecanismo1;
     private static List<Distribuicao> listaDistribuicoes;
+    private static Submissao submissao;
+    private static Artigo artigo;
 
 
     public DistribuirRevisoesControllerTest() {
@@ -48,9 +47,12 @@ public class DistribuirRevisoesControllerTest {
         listaMecanismoDistribuicoes = new ArrayList<>();
         mecanismo1 = new Mecanismo1();
         listaMecanismoDistribuicoes.add(mecanismo1);
-
-        
-        
+        artigo = new Artigo();
+        artigo.setTitulo("tituloartigo1");
+        artigo.setResumo("resumoartigo1");
+        submissao = new Submissao();
+        submissao.setArtigo(artigo);
+        evento.addSubmissao(submissao);  
     }
 
     @AfterClass
@@ -90,6 +92,7 @@ public class DistribuirRevisoesControllerTest {
         String orgID = "UN1";
         List<Evento> expResult = new ArrayList<>();
         expResult.add(evento);
+        evento.setState(new EventoCPDefinidaState(evento));
         List<Evento> result = instance.novaDistribuicaoOrganizador(orgID);
         assertEquals(expResult, result);
     }
