@@ -9,6 +9,7 @@ import controller.ImportacaoDadosController;
 import eventoscientificos.Empresa;
 import eventoscientificos.Evento;
 import excecoes.EventoExistenteException;
+import excecoes.EventoNaoEncontradoException;
 import excecoes.RegistoEventoException;
 import java.io.File;
 import java.io.IOException;
@@ -112,6 +113,8 @@ public class ImportacaoDadosUI extends JFrame {
         } catch (RegistoEventoException ex){
             log.severe("Erro: "+ex.getMessage());
         } catch (EventoExistenteException ex) {
+            log.severe("Erro: "+ex.getMessage());
+        } catch (EventoNaoEncontradoException ex) {
             log.severe("Erro: "+ex.getMessage());
         }
     }

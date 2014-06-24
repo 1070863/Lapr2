@@ -13,6 +13,7 @@ import tratarficheiros.LerFicheiroEvento;
 import tratarficheiros.LerFicheiroEventoCSV;
 import eventoscientificos.RevisaoArtigo;
 import excecoes.EventoExistenteException;
+import excecoes.EventoNaoEncontradoException;
 import excecoes.RegistoEventoException;
 import java.io.IOException;
 import java.util.List;
@@ -63,7 +64,7 @@ public class ImportacaoDadosController {
      * @throws java.io.IOException
      */
     public List<Artigo> lerArtigos(String nomeFicheiro, Empresa empresa) throws ParserConfigurationException, 
-            SAXException, IOException{
+            SAXException, IOException, EventoNaoEncontradoException{
         ImportarFicheiroArtigoCSV lerFicheiro = new ImportarFicheiroArtigoCSV();
         lerFicheiro.LerFicheiro(nomeFicheiro, empresa);
         

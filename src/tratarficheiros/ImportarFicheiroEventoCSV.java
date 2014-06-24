@@ -176,6 +176,12 @@ public class ImportarFicheiroEventoCSV {
         return u;
     }
 
+    /**
+     * Verifica se o evento já existe
+     * @param e
+     * @param empresa
+     * @return boolean
+     */
     public boolean existeEvento(Evento e, Empresa empresa) {
         for (Evento evento : empresa.getM_registoEventos().getM_listaEventos()) {
             if (evento.getID().equalsIgnoreCase(e.getID())
