@@ -49,7 +49,7 @@ public class RegistoEventos implements Serializable {
     }
 
     public boolean registaEvento(Evento e) {
-        if (e.valida() && validaEvento(e)) {
+        if (validaEvento(e)) {
             return addEvento(e);
         } else {
             return false;
