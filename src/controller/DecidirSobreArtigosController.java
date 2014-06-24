@@ -15,7 +15,7 @@ import states.EventoRevistoState;
 import states.SubmissaoRevistaState;
 
 /**
- *
+ *Esta classe faz a ligação entre a ui e o model do UC7
  * @author Pereira
  */
 public class DecidirSobreArtigosController implements Serializable{
@@ -123,7 +123,10 @@ public class DecidirSobreArtigosController implements Serializable{
     public void setListaDecisoes(List<Decisao> listaDecisoes) {
         this.listaDecisoes = listaDecisoes;
     }
-    
+    /**
+     * verifica se os artigos sao os mesmos.
+     * @return submissao
+     */
     public Submissao getArtigo()
     {
         int i=0;

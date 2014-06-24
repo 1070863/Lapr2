@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- *
+ *classe que contem decisao
  * @author Pereira
  */
 public class Decisao implements Serializable{
@@ -22,11 +22,16 @@ public class Decisao implements Serializable{
     private String decisao;
   
     
-    
+    /**
+     * construtor por omissão de Decisão
+     */
     public Decisao() {
        
     }
-
+/**
+ * Construtor que recebe decisao 
+ * @param decisao 
+ */
     public Decisao(String decisao) {
         this.decisao = decisao;
     }

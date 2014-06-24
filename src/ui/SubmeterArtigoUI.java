@@ -58,7 +58,7 @@ public class SubmeterArtigoUI extends javax.swing.JDialog {
                         JOptionPane.ERROR_MESSAGE);
                 dispose();
             } else {
-
+                
                 pack();
                 setResizable(false);
                 setLocation(JANELA_POSICAO_X, JANELA_POSICAO_Y);

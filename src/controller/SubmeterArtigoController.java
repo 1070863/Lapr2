@@ -10,6 +10,7 @@ import eventoscientificos.Artigo;
 import eventoscientificos.Autor;
 import eventoscientificos.Empresa;
 import eventoscientificos.Evento;
+import eventoscientificos.Organizador;
 import eventoscientificos.Submissao;
 import eventoscientificos.Topico;
 import eventoscientificos.Utilizador;
@@ -128,10 +129,12 @@ public class SubmeterArtigoController
      * @return String[]
      */
     public String[] getListaEventosPodeSub(){
-        String[] listaEventos= new String[m_empresa.getM_registoEventos().getListaEventosPodeSubmeter().size()];
+        String[] listaEventos= new String[m_empresa.getM_registoEventos().
+                getListaEventosPodeSubmeter().size()];
         for (Evento evento : m_empresa.getM_registoEventos().getListaEventosPodeSubmeter()) {
-            listaEventos[m_empresa.getM_registoEventos().getListaEventosPodeSubmeter().indexOf(evento)]=
+                listaEventos[m_empresa.getM_registoEventos().getListaEventosPodeSubmeter().indexOf(evento)]=
                     evento.getM_strTitulo();
+            
         }
         return listaEventos;
     }

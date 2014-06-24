@@ -10,7 +10,8 @@ import java.io.Serializable;
 import java.util.List;
 
 /** 
- *Mecanismo de decisao criado para decidir 
+ *Mecanismo de decisao criado para decidir sobre um artigo
+ * implementa a interface MecanismoDecisao
  * @author Pereira
  */
 public class MecanismoDecisao1 implements MecanismoDecisao, Serializable{
@@ -22,7 +23,13 @@ public class MecanismoDecisao1 implements MecanismoDecisao, Serializable{
      private int recusada;
      private final String nome = "MecanismoDecisao1";
 
-
+/**
+ * O método recebe um processo de decisão ao qual será associado
+ * e percorre a lista de revisões casso existam mais recomendações para aceitar
+ * a decisão será "aceite.
+ * @param pd
+ * @return 
+ */
     @Override
     public Decisao decide(ProcessoDecisao pd) {
         
@@ -43,17 +50,29 @@ public class MecanismoDecisao1 implements MecanismoDecisao, Serializable{
     pd.getM_listaDecisao().add(decisao);
     return decisao;
   }
+    /**
+     * devolve o nome
+     * @return 
+     */
     @Override
     public String getNome() {
         return nome;
     }
-
+/**
+ * 
+ * @return a posição
+ */
+    
     @Override
     public int hashCode() {
         int hash = 7;
         return hash;
     }
-
+/**
+ * compara objetos
+ * @param obj
+ * @return 
+ */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -67,7 +86,10 @@ public class MecanismoDecisao1 implements MecanismoDecisao, Serializable{
         
         
     }
-
+/**
+ * escreve a lista de revisões e a decião
+ * @return 
+ */
     @Override
     public String toString() {
         return "MecanismoDecisao1{" + "listaDistribuicao=" + listaRevisaoArtigo + ", decisao=" + decisao + ", aceite=" + aceite + ", recusada=" + recusada + ", nome=" + nome + '}';

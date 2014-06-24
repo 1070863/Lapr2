@@ -201,20 +201,23 @@ public class NotificarAutoresUI extends javax.swing.JDialog {
  * @param evt 
  */
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
-    iEvento = jcboxEventos.getSelectedIndex()+1;
+    iEvento = jcboxEventos.getSelectedIndex();
         if (iEvento != -1) {
-            Evento e = new Evento();
-            e = m_empresa.getM_registoEventos().getEvento((String) jcboxEventos.getSelectedItem());
+//            Evento e = new Evento();
+//            e = m_empresa.getM_registoEventos().getEvento((String) jcboxEventos.getSelectedItem());
         try {
-            if(m_NotificarAutoresController.NotificarAutores(e))
+            if(m_NotificarAutoresController.NotificarAutores(m_empresa.getM_registoEventos().getEvento((String) jcboxEventos.getSelectedItem())))
                 JOptionPane.showMessageDialog(NotificarAutoresUI.this,"Foi criado o ficheiro para notificação","Notificar Autores",
                         JOptionPane.OK_OPTION);
         } catch (TransformerException ex) {
-            Logger.getLogger(NotificarAutoresUI.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(NotificarAutoresUI.this,"erro na Notificaçao","Notificar Autores",
+                        JOptionPane.ERROR_MESSAGE);
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(NotificarAutoresUI.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(NotificarAutoresUI.this,"erro na Notificaçao","Notificar Autores",
+                        JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
-            Logger.getLogger(NotificarAutoresUI.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(NotificarAutoresUI.this,"erro na Notificaçao","Notificar Autores",
+                        JOptionPane.ERROR_MESSAGE);
         }
                         }
                        
