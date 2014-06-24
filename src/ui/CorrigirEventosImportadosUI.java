@@ -55,13 +55,26 @@ public class CorrigirEventosImportadosUI extends javax.swing.JDialog {
      * arranca janela
      */
     public void run() {
+        String organizador = JOptionPane.showInputDialog(this,
+                "Insira o ID de organizador", "Login", JOptionPane.INFORMATION_MESSAGE);
 
-        pack();
-        setResizable(false);
-        setLocation(JANELA_POSICAO_X, JANELA_POSICAO_Y);
-        setVisible(true);
-        jPanelEscolherEvento.setVisible(true);
-        jPanelDadosCorrigir.setVisible(true);
+        if (organizador != null) {
+            if (!corrigirEventosImportadosController.isOrganizador(organizador)) {
+                JOptionPane.showMessageDialog(this, "Utilizador não e organizador de nenhum evento", "Corrigir Eventos",
+                        JOptionPane.ERROR_MESSAGE);
+                dispose();
+            } else {
+                pack();
+                setResizable(false);
+                setLocation(JANELA_POSICAO_X, JANELA_POSICAO_Y);
+                setVisible(true);
+                jPanelEscolherEvento.setVisible(true);
+                jPanelDadosCorrigir.setVisible(true);
+            }
+        } else {
+            JOptionPane.showInputDialog(this,
+                    "O ID introduzido não é válido", "Login", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**

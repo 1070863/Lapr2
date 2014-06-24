@@ -223,5 +223,21 @@ public class CorrigirEventosImportadosController {
     public void resetNovosOrganizadores(){
         this.novosOrganizadores = new ArrayList<>();
     }
-
+    /**
+     * Valida se id introduzida corresponde a organizador
+     *
+     * @param orgID id do organizador (email ou username)
+     * @return true se encontra pelo menos um evento com aquele id de organizador. 
+     */
+    public boolean isOrganizador(String orgID) {
+        for (Evento e : m_empresa.getM_registoEventos().getM_listaEventos()) {
+            for (Organizador o : e.getListaOrganizadores()) { 
+                if (o.getM_utilizador().getM_strEmail().equals(orgID)
+                        || o.getM_utilizador().getM_strUsername().equals(orgID)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
