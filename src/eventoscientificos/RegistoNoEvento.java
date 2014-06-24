@@ -94,6 +94,15 @@ public class RegistoNoEvento implements Serializable {
     }
 
     /**
+     * Procura o valor a data em que foi efetuado o resgito no evento.
+     *
+     * @return data em que o registo. registo foi efetuado
+     */
+    public String getM_data() {
+        return m_date;
+    }
+
+    /**
      * Define o valor a pagar pelo registo no evento.
      *
      * @param m_valor valor a pagar pelo registo
@@ -113,7 +122,6 @@ public class RegistoNoEvento implements Serializable {
     public void pagamentoVisaoLight(String strNumCC, String dataValidadeCC, float valorAutoriza, String dataLimiteAutoriza) {
         this.m_date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         VisaoLight.getAutorizacaoDCC(strNumCC, dataValidadeCC, valorAutoriza, dataLimiteAutoriza);
-
     }
 
     /**
