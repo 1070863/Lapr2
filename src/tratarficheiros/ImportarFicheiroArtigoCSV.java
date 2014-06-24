@@ -141,8 +141,9 @@ public class ImportarFicheiroArtigoCSV {
      */
     public boolean existeEvento(String eventoId, Empresa empresa) {
         for (Evento evento : empresa.getM_registoEventos().getM_listaEventos()) {
-            if (evento.getID().equalsIgnoreCase(eventoId))
-                return true;
+            if(evento.getID()!=null)
+                if (evento.getID().equalsIgnoreCase(eventoId))
+                    return true;
         }
         return false;
     }
