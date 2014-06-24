@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tratarficheiros;
 
 import eventoscientificos.Empresa;
@@ -24,13 +19,15 @@ import utils.*;
 import static utils.Data.*;
 
 /**
+ * Esta classe serve como controladora do fluxo entre a interface gráfica e a as
+ * classes intervenientes para o carregamento de eventos via ficheiro.
  *
- * @author Lopcaoes
+ * @author Grupo 66 LPR2
  */
 public class LerFicheiroEventoCSV implements LerFicheiroEvento {
 
     /**
-     * Le ficheiro que carrega evento
+     * Le ficheiro que carrega evento conforme definições de ficheiro
      *
      * @param fichEvento objecto do tipo String
      * @throws java.lang.Exception caso não encontre ficheiro
@@ -48,7 +45,6 @@ public class LerFicheiroEventoCSV implements LerFicheiroEvento {
         
         int coluna = 0;
         int linha = 1;
-        int i = 0;
 
         String opcao = "";
         for (String[] strings : temp) {
@@ -97,17 +93,13 @@ public class LerFicheiroEventoCSV implements LerFicheiroEvento {
                     }
                     coluna++;
                 }
-                //listaEventosProvisoria.get(i).setState(new EventoCriadoFicheiroState(listaEventosProvisoria.get(i)));
+
                 e.setState(new EventoCriadoFicheiroState(e));
-                //boolean regista = empresa.getM_registoEventos().registaEvento(listaEventosProvisoria.get(i));
+           
                 boolean regista = empresa.getM_registoEventos().registaEvento(e);
-                
-                //if(regista)
-                //{
-                    i++;
+
                     linha++;
                     coluna = 0;  
-                //}
             }
         }
     }
