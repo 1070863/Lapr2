@@ -26,7 +26,7 @@ public class CorrigirEventosImportadosController {
     /**
      * Construtor responsável por criar instância de empresa.
      *
-     * @param empresa Empresa a ser instânciada
+     * @param m_empresa Empresa a ser instânciada
      */
     public CorrigirEventosImportadosController(Empresa m_empresa) {
         this.m_empresa = m_empresa;
@@ -191,7 +191,7 @@ public class CorrigirEventosImportadosController {
      * Cria uma lista com os organizadores iniciais do tipo DefaultListModel para
      * ser listada na UI.
      *
-     * @return lista de organizadores
+     * @return lista de organizadores em forma simplificada para apresentacao
      */
     public DefaultListModel listaDeOrganizadores(Evento e) {
         modelOrganizadores = new DefaultListModel();
