@@ -19,6 +19,8 @@ public class Submissao implements Serializable {
     private Artigo m_artigo;
     
     private SubmissaoState state;
+    
+    private RevisaoArtigo revisaoArtigo;
 
     public Submissao() {
         this.setState(new SubmissaoCriadaState(this));
@@ -54,6 +56,22 @@ public class Submissao implements Serializable {
 
     public SubmissaoState getState() {
         return state;
+    }
+
+    /**
+     * Retorna a RevisaoArtigo
+     * @return RevisaoArtigo
+     */
+    public RevisaoArtigo getRevisaoArtigo() {
+        return revisaoArtigo;
+    }
+
+    /**
+     * Atltera a revisao de artigo
+     * @param revisaoArtigo 
+     */
+    public void setRevisaoArtigo(RevisaoArtigo revisaoArtigo) {
+        this.revisaoArtigo = revisaoArtigo;
     }
     
 }

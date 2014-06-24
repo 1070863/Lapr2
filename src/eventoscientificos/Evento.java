@@ -37,7 +37,6 @@ public class Evento implements Serializable {
     private ProcessoDecisao m_processoDecisao;
     private String m_strDataLimiteSubmissaoFinal;
     private String ID;
-    private RevisaoArtigo revisaoArtigo;
 
     /**
      * Obtém o ID do evento. O ID é utilizado na importação de dados (migração
@@ -357,22 +356,6 @@ public class Evento implements Serializable {
      */
     public void setDataLimiteRegisto(String dataLimiteRegisto) {
         this.dataLimiteRegisto = dataLimiteRegisto;
-    }
-
-    /**
-     * Retorna a revisão de artigo
-     * @return RevisaoArtigo
-     */
-    public RevisaoArtigo getRevisaoArtigo() {
-        return revisaoArtigo;
-    }
-
-    /**
-     * Altera a revissaoArtigo
-     * @param revisaoArtigo 
-     */
-    public void setRevisaoArtigo(RevisaoArtigo revisaoArtigo) {
-        this.revisaoArtigo = revisaoArtigo;
     }
 
     @Override
