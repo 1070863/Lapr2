@@ -61,10 +61,17 @@ public class ImportarFicheiroArtigoCSV {
         for (String[] strings : temp) {
             while (linha < temp.size())
             {
-                listaArtigosProvisoria.add(new Artigo());
+                Artigo a = new Artigo();
+                
                 while (coluna < temp.get(0).length) {
                     opcao = temp.get(0)[coluna];
                     switch (opcao) {
+                        case "ConferenceID":
+                            a.setEventoID(temp.get(linha)[coluna]);
+                            break;
+                        case "ID":
+                            a.setId(temp.get(linha)[coluna]);
+                            break;
                         case "Type":
                             listaArtigosProvisoria.get(i).setTipo(temp.get(linha)[coluna]);
                             break;

@@ -169,12 +169,11 @@ public class ImportarFicheiroEventoCSV {
         Utilizador u;
         if (empresa.getM_registaUtilizador().getUtilizadorEmail(temp.get(linha)[coluna + 1]) != null) {
             u = empresa.getM_registaUtilizador().getUtilizadorEmail(temp.get(linha)[coluna + 1]);
-            return u;
-            //listaEventosProvisoria.get(i).addOrganizador(temp.get(linha)[coluna + 1], u);
-            // System.out.println("size: " + listaEventosProvisoria.get(i).getListaOrganizadores().size());
-
+        } else {
+            u = new Utilizador(temp.get(linha)[coluna], temp.get(linha)[coluna], null, temp.get(linha)[coluna + 1]);
+            empresa.getM_registaUtilizador().addUtilizador(u);
         }
-        return null;
+        return u;
     }
 
     public boolean existeEvento(Evento e, Empresa empresa) {

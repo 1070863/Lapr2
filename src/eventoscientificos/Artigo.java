@@ -16,6 +16,9 @@ import java.util.List;
 public class Artigo implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
+    private String id;
+    private String eventoID;
 
     private String m_strTitulo;
     private String m_strResumo;
@@ -250,4 +253,37 @@ public class Artigo implements Serializable {
         hash = 19 * hash + (this.m_strResumo != null ? this.m_strResumo.hashCode() : 0);
         return hash;
     }
+
+    /**
+     * Retorna o id do artigo. Utilizado na importação de artigos.
+     * @return id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Atribui o id
+     * @param id 
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * Retorna o ID do evento. Utilizado na importação de artigos.
+     * @return eventoID
+     */
+    public String getEventoID() {
+        return eventoID;
+    }
+
+    /**
+     * Atribui o valor a eventoID
+     * @param eventoID 
+     */
+    public void setEventoID(String eventoID) {
+        this.eventoID = eventoID;
+    }
+    
 }
