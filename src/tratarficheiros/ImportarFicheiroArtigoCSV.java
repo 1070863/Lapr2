@@ -40,7 +40,7 @@ public class ImportarFicheiroArtigoCSV {
             log.addHandler(fh);
             SimpleFormatter formatter = new SimpleFormatter();
             fh.setFormatter(formatter);
-            log.info("Inicia a importação de dados!");
+            log.info("Importação de artigos iniciada com sucesso!");
         } catch (IOException ex) {
             log.getLogger(ImportacaoDadosController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SecurityException ex) {
@@ -105,9 +105,9 @@ public class ImportarFicheiroArtigoCSV {
                     Submissao submissao = new Submissao();
                     submissao.novoArtigo();
                     submissao.setArtigo(a);
-                    empresa.getM_registoEventos().getEvento(a.getEventoID()).novaSubmissao();
-                    empresa.getM_registoEventos().getEvento(a.getEventoID()).addSubmissao(submissao);
-                    empresa.getM_registoEventos().getEvento(a.getEventoID()).getSubmissao(a).
+                    empresa.getM_registoEventos().getEventoPorId(a.getEventoID()).novaSubmissao();
+                    empresa.getM_registoEventos().getEventoPorId(a.getEventoID()).addSubmissao(submissao);
+                    empresa.getM_registoEventos().getEventoPorId(a.getEventoID()).getSubmissao(a).
                             setState(new SubmissaoCriadaState(submissao));
                 } else {
                     //throw new EventoNaoEncontradoException();

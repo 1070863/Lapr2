@@ -307,13 +307,32 @@ public class RegistoEventos implements Serializable {
 
 
      /**
-     * Devolve evento da lista de eventos com id pedida
+     * Devolve evento da lista de eventos com titulo pedida
      *
-     * @param eventoID título do evento 
+     * @param eventoTitulo título do evento 
      * @return e Evento com título pedido. null no caso de não haver nenhum evento com
      * esse título
      */
-    public Evento getEvento(String eventoID) {
+    public Evento getEvento(String eventoTitulo) {
+        
+        for (Evento e : m_listaEventos) {
+            if(e.getM_strTitulo()!=null){
+                if (eventoTitulo.equalsIgnoreCase(e.getM_strTitulo())) {
+                    return e;
+                }
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * Devolve evento da lista de eventos com id pedida
+     *
+     * @param eventoID id do evento 
+     * @return e Evento com título pedido. null no caso de não haver nenhum evento com
+     * esse título
+     */
+    public Evento getEventoPorId(String eventoID) {
         
         for (Evento e : m_listaEventos) {
             if(e.getID()!=null){
