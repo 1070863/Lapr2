@@ -314,9 +314,12 @@ public class RegistoEventos implements Serializable {
      * esse título
      */
     public Evento getEvento(String eventoID) {
+        
         for (Evento e : m_listaEventos) {
-            if (eventoID.equalsIgnoreCase(e.getID())) {
-                return e;
+            if(e.getID()!=null){
+                if (eventoID.equalsIgnoreCase(e.getID())) {
+                    return e;
+                }
             }
         }
         return null;

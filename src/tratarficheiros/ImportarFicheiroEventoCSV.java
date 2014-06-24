@@ -5,6 +5,7 @@
  */
 package tratarficheiros;
 
+import controller.ImportacaoDadosController;
 import eventoscientificos.Empresa;
 import eventoscientificos.Evento;
 import eventoscientificos.Utilizador;
@@ -22,6 +23,11 @@ import org.xml.sax.SAXException;
 import states.EventoCriadoFicheiroState;
 import utils.Data;
 import excecoes.RegistoEventoException;
+import static java.lang.Math.log;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 import static utils.Data.String2Data;
 
 /**
@@ -30,6 +36,27 @@ import static utils.Data.String2Data;
  */
 public class ImportarFicheiroEventoCSV {
 
+    FileHandler fh;
+     Logger log = Logger.getLogger("Log");
+    
+    /**
+     * Cria uma instância de ImportarFicheiroEventoCSV
+     */
+    public ImportarFicheiroEventoCSV() {
+        try {
+            //Configuração do ficheiro de Logs
+            fh = new FileHandler("EventosCientificos.log");
+            log.addHandler(fh);
+            SimpleFormatter formatter = new SimpleFormatter();
+            fh.setFormatter(formatter);
+            log.info("Inicia a importação de dados!");
+        } catch (IOException ex) {
+            log.getLogger(ImportacaoDadosController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SecurityException ex) {
+            log.getLogger(ImportacaoDadosController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * Le ficheiro que carrega evento
      *
@@ -37,10 +64,10 @@ public class ImportarFicheiroEventoCSV {
      * @throws java.lang.Exception caso não encontre ficheiro
      */
 
-    public void lerFicheiro(String fichEvento, Empresa empresa) throws ParserConfigurationException, 
-            SAXException, IOException, EventoExistenteException, RegistoEventoException {
+    public void lerFicheiro(String fichEvento, Empresa empresa) {
 
         List<String[]> temp = new ArrayList<>();
+        try{
         Scanner fIn = new Scanner(new File(fichEvento), "ISO-8859-1");
 
         while (fIn.hasNext()) {
@@ -49,7 +76,8 @@ public class ImportarFicheiroEventoCSV {
         }
         
         fIn.close();
-
+       
+        
         int coluna = 0;
         int linha = 1;
         int i = 0;
@@ -104,23 +132,29 @@ public class ImportarFicheiroEventoCSV {
                     }
                     coluna++;
                 }
-                boolean regista;
+                boolean regista=false;
                 if (!existeEvento(e, empresa)) {
                     e.setState(new EventoCriadoFicheiroState(e));
                     regista = empresa.getM_registoEventos().registaEvento(e);
                 } else {
-                    throw new EventoExistenteException("O evento com " + e.getID() + " e título " + e.getM_strTitulo()
-                            + " já existe!");
+                    log.severe("Erro: Não foi possivel adicionar o evento " + e.getID() + " - título " + e.getM_strTitulo()
+                            + "! Já existe no sistema!");
                 }
                 if(!regista)
-                {
-                    throw new RegistoEventoException();
+                    log.severe("Erro: evento não registado!");
                 }
                 i++;
                 linha++;
                 coluna = 0;
                 //}
             }
+        
+        } catch (IOException excecao) {
+            log.severe("Erro: Erro na leitura do ficheiro!" + excecao.getMessage());
+        } catch (ParserConfigurationException ex) {
+            log.severe(ex.getMessage());
+        } catch (SAXException ex) {
+            log.severe(ex.getMessage());
         }
     }
 
@@ -186,13 +220,17 @@ public class ImportarFicheiroEventoCSV {
      */
     public boolean existeEvento(Evento e, Empresa empresa) {
         for (Evento evento : empresa.getM_registoEventos().getM_listaEventos()) {
-            if (evento.getID().equalsIgnoreCase(e.getID())
-                    || evento.getM_strTitulo().equalsIgnoreCase(e.getM_strTitulo())) {
-                //Atualiza o ID caso o evento não o tenha
+            if(evento.getID()!=null){
+            if (evento.getID().equalsIgnoreCase(e.getID())){
+                return true;
+            } else {
+                if(evento.getM_strTitulo().equalsIgnoreCase(e.getM_strTitulo())){
+                    //Atualiza o ID caso o evento não o tenha
                 if (evento.getID() == null) {
                     evento.setID(e.getID());
                 }
-                return true;
+                }
+            }
             }
         }
         return false;

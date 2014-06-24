@@ -5,6 +5,7 @@
  */
 package tratarficheiros;
 
+import controller.ImportacaoDadosController;
 import eventoscientificos.Empresa;
 import eventoscientificos.Evento;
 import eventoscientificos.RevisaoArtigo;
@@ -16,10 +17,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 import states.EventoRevistoState;
-import states.SubmissaoCriadaState;
 import states.SubmissaoRevistaState;
 
 /**
@@ -28,18 +32,23 @@ import states.SubmissaoRevistaState;
  */
 public class ImportarFicheiroRevisaoCSV {
 
-    /**
-     * Lista de revisões provisória
-     */
-    private List<RevisaoArtigo> listaRevisoesProvisoria = new ArrayList<>();
+    
+    FileHandler fh;
+Logger log = Logger.getLogger("Log");
 
-    /**
-     * Retorna a lista de revisões provisória
-     *
-     * @return List<RevisaoArtigo> listaRevisoesProvisoria
-     */
-    public List<RevisaoArtigo> getListaRevisoesProvisoria() {
-        return listaRevisoesProvisoria;
+    public ImportarFicheiroRevisaoCSV() {
+        try {
+            //Configuração do ficheiro de Logs
+				fh = new FileHandler("EventosCientificos.log");
+            log.addHandler(fh);
+            SimpleFormatter formatter = new SimpleFormatter();
+            fh.setFormatter(formatter);
+            log.info("Inicia a importação de dados!");
+        } catch (IOException ex) {
+            log.getLogger(ImportarFicheiroRevisaoCSV.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SecurityException ex) {
+            log.getLogger(ImportarFicheiroRevisaoCSV.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -48,10 +57,10 @@ public class ImportarFicheiroRevisaoCSV {
      * @param fichRevisoes objecto do tipo String
      * @throws java.lang.Exception caso não encontre ficheiro
      */
-    public void LerFicheiro(String fichArtigo, Empresa empresa) throws ParserConfigurationException,
-            SAXException, IOException {
+    public void lerFicheiro(String fichArtigo, Empresa empresa) {
 
         List<String[]> temp = new ArrayList<>();
+        try{
         Scanner fIn = new Scanner(new File(fichArtigo), "ISO-8859-1");
 
         while (fIn.hasNext()) {
@@ -126,7 +135,9 @@ public class ImportarFicheiroRevisaoCSV {
                  coluna = 0;
                 }
             }
-        
+       } catch (IOException excecao) {
+            log.severe("Erro: Erro na leitura do ficheiro!" + excecao.getMessage());
+        } 
     }
 
     /**

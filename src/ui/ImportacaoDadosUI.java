@@ -7,14 +7,11 @@ package ui;
 
 import controller.ImportacaoDadosController;
 import eventoscientificos.Empresa;
-import eventoscientificos.Evento;
 import excecoes.EventoExistenteException;
 import excecoes.EventoNaoEncontradoException;
 import excecoes.RegistoEventoException;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,34 +36,20 @@ public class ImportacaoDadosUI extends JFrame {
      */
     private int opcao;
 
-    Logger log = Logger.getLogger("Log");
-    FileHandler fh;
 
     public ImportacaoDadosUI(Empresa empresa) {
         super("Carregar Eventos Cientificos");
         this.m_empresa = empresa;
         importacaoDadosController = new ImportacaoDadosController();
-        FileHandler fh;
+        
 
-        try {
-            //Configuração do ficheiro de Logs
-            fh = new FileHandler("EventosCientificos.log");
-            log.addHandler(fh);
-            SimpleFormatter formatter = new SimpleFormatter();
-            fh.setFormatter(formatter);
-            log.info("Inicia a importação de dados!");
-        } catch (IOException ex) {
-            log.getLogger(ImportacaoDadosController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SecurityException ex) {
-            log.getLogger(ImportacaoDadosController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     public void run(int opcao) {
         ImportacaoDadosUI idUI = new ImportacaoDadosUI(m_empresa);
 
         this.opcao = opcao;
-        try {
+       
             boolean ficheiroValido = false;
             while (!ficheiroValido) {
                 JFileChooser jfcCarregarEventos = new JFileChooser();
@@ -93,10 +76,12 @@ public class ImportacaoDadosUI extends JFrame {
                             }
                             break;
                         case 1:
-                            log.severe("Erro: Tipo de ficheiro desconhecido!");
+                            JOptionPane.showMessageDialog(this, "Erro: Tipo de ficheiro desconhecido!",
+                                    "Erro", JOptionPane.ERROR_MESSAGE);
                             break;
                         case 2:
-                            log.severe("Erro: Ficheiro sem eventos válidos!");
+                            JOptionPane.showMessageDialog(this, "Erro: Ficheiro sem eventos válidos!",
+                                    "Erro", JOptionPane.ERROR_MESSAGE);
                             break;
                     }
 
@@ -104,19 +89,7 @@ public class ImportacaoDadosUI extends JFrame {
                     ficheiroValido = true;
                 }
             }
-        } catch (IOException excecao) {
-            log.severe("Erro: Erro na leitura do ficheiro!" + excecao.getMessage());
-        } catch (ParserConfigurationException ex) {
-            log.severe(ex.getMessage());
-        } catch (SAXException ex) {
-            log.severe(ex.getMessage());
-        } catch (RegistoEventoException ex){
-            log.severe("Erro: "+ex.getMessage());
-        } catch (EventoExistenteException ex) {
-            log.severe("Erro: "+ex.getMessage());
-        } catch (EventoNaoEncontradoException ex) {
-            log.severe("Erro: "+ex.getMessage());
-        }
+        
     }
 
     private void definirFiltro(JFileChooser jfcCarregarEventos) {

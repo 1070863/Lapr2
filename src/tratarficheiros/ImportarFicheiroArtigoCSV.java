@@ -5,17 +5,22 @@
  */
 package tratarficheiros;
 
+import controller.ImportacaoDadosController;
 import eventoscientificos.Artigo;
 import eventoscientificos.Empresa;
 import eventoscientificos.Evento;
 import eventoscientificos.Submissao;
 import eventoscientificos.Utilizador;
-import excecoes.EventoNaoEncontradoException;
 import java.io.File;
 import java.io.IOException;
+import static java.lang.Math.log;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 import states.SubmissaoCriadaState;
@@ -25,16 +30,34 @@ import states.SubmissaoCriadaState;
  * @author Pedro
  */
 public class ImportarFicheiroArtigoCSV {
+    FileHandler fh;
+    Logger log = Logger.getLogger("Log");
 
+    public ImportarFicheiroArtigoCSV() {
+        try {
+            //Configuração do ficheiro de Logs
+            fh = new FileHandler("EventosCientificos.log");
+            log.addHandler(fh);
+            SimpleFormatter formatter = new SimpleFormatter();
+            fh.setFormatter(formatter);
+            log.info("Inicia a importação de dados!");
+        } catch (IOException ex) {
+            log.getLogger(ImportacaoDadosController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SecurityException ex) {
+            log.getLogger(ImportacaoDadosController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * Le ficheiro que carrega artigo
      *
      * @param fichArtigo objecto do tipo String
      * @throws java.lang.Exception caso não encontre ficheiro
      */
-    public void LerFicheiro(String fichArtigo, Empresa empresa) throws ParserConfigurationException, SAXException, IOException, EventoNaoEncontradoException {
-
+    public void lerFicheiro(String fichArtigo, Empresa empresa) {
+        
         List<String[]> temp = new ArrayList<>();
+        try{
         Scanner fIn = new Scanner(new File(fichArtigo), "ISO-8859-1");
 
         while (fIn.hasNext()) {
@@ -98,8 +121,15 @@ public class ImportarFicheiroArtigoCSV {
             }
             
         }
+        }catch (IOException excecao) {
+            log.severe("Erro: Erro na leitura do ficheiro!" + excecao.getMessage());
+       /* } catch (ParserConfigurationException ex) {
+            log.severe(ex.getMessage());
+        } catch (SAXException ex) {
+            log.severe(ex.getMessage());
+        }*/
+        }
     }
-
     /**
      * Verifica se o autor pertence à lista de utilizadores. Se existir na lista adiciona ao artigo senão cria o utilizador
      * e adiciona-o ao artigo.

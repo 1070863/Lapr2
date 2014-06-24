@@ -6,17 +6,13 @@
 
 package controller;
 
-import eventoscientificos.Artigo;
 import eventoscientificos.Empresa;
-import tratarficheiros.LerFicheiroEventoCSV;
-import eventoscientificos.RevisaoArtigo;
-import excecoes.EventoExistenteException;
-import excecoes.EventoNaoEncontradoException;
-import excecoes.RegistoEventoException;
 import java.io.IOException;
-import java.util.List;
-import javax.xml.parsers.ParserConfigurationException;
-import org.xml.sax.SAXException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+import tratarficheiros.ImportarFicheiroEventoCSV;
 import tratarficheiros.ImportarFicheiroArtigoCSV;
 import tratarficheiros.ImportarFicheiroRevisaoCSV;
 
@@ -31,20 +27,16 @@ public class ImportacaoDadosController {
     
     public ImportacaoDadosController() {
         
+        
     }  
     
     /**Método que carrega eventos lidos de um ficheiro .csv
      * @param nomeFicheiro
      * @param empresa
-     * @throws javax.xml.parsers.ParserConfigurationException
-     * @throws org.xml.sax.SAXException
-     * @throws java.io.IOException
      */
-    public void lerEventos(String nomeFicheiro, Empresa empresa) throws ParserConfigurationException, 
-            SAXException, IOException, EventoExistenteException, RegistoEventoException{
-        LerFicheiroEventoCSV lerFicheiro = new LerFicheiroEventoCSV();
-        lerFicheiro.LerFicheiro(nomeFicheiro, empresa);
-        
+    public void lerEventos(String nomeFicheiro, Empresa empresa) {
+        ImportarFicheiroEventoCSV lerFicheiro = new ImportarFicheiroEventoCSV();
+        lerFicheiro.lerFicheiro(nomeFicheiro, empresa);
     }
     
     /**Método que carrega artigos lidos de um ficheiro .csv
@@ -54,25 +46,21 @@ public class ImportacaoDadosController {
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
      */
-    public void lerArtigos(String nomeFicheiro, Empresa empresa) throws ParserConfigurationException, 
-            SAXException, IOException, EventoNaoEncontradoException{
+    public void lerArtigos(String nomeFicheiro, Empresa empresa) {
         ImportarFicheiroArtigoCSV lerFicheiro = new ImportarFicheiroArtigoCSV();
-        lerFicheiro.LerFicheiro(nomeFicheiro, empresa);
+        lerFicheiro.lerFicheiro(nomeFicheiro, empresa);
         
-    }
+    } 
+        
     
     /**Método que carrega revisões de artigos lidas de um ficheiro .csv
      * @param nomeFicheiro
      * @param empresa
-     * @throws javax.xml.parsers.ParserConfigurationException
-     * @throws org.xml.sax.SAXException
-     * @throws java.io.IOException
      */
-    public void lerRevisoes(String nomeFicheiro, Empresa empresa) throws 
-            ParserConfigurationException, SAXException, IOException{
+    public void lerRevisoes(String nomeFicheiro, Empresa empresa) {
         ImportarFicheiroRevisaoCSV lerFicheiro = new ImportarFicheiroRevisaoCSV();
-        lerFicheiro.LerFicheiro(nomeFicheiro, empresa);
-        
+        lerFicheiro.lerFicheiro(nomeFicheiro, empresa);
+
     }
 
     /**
