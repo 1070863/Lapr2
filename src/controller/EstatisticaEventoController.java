@@ -40,8 +40,7 @@ public class EstatisticaEventoController {
         List<Evento> eventos = new ArrayList<>();
         for (Evento e : m_empresa.getM_registoEventos().getM_listaEventos()) {
             if (e.getState() instanceof EventoDecididoState
-                    || e.getState() instanceof EventoNotificadoState
-                    || e.getState() instanceof EventoCPDefinidaState) { //Apagar este estado, exclusivo para testes
+                    || e.getState() instanceof EventoNotificadoState) {
                 eventos.add(e);
             }
         }
@@ -52,7 +51,7 @@ public class EstatisticaEventoController {
      * @return lista de eventos registados com estado "Decidido" ou "Notificado"
      */
     public String getTaxaAceitacao(Evento e) {
-        int contador = 0;
+        double contador = 0;
         String resultado = "Evento sem submissões";
         double taxa = 0;
         
@@ -74,14 +73,13 @@ public class EstatisticaEventoController {
      * @return lista de eventos registados com estado "Decidido" ou "Notificado"
      */
     public String getValorMedioAvaliacao(Evento e, String parametro) {
-        int contador = 0;
+   
         String resultado = "Sem dados para apresentar";
         double taxa = 0; 
-        double totalDistribuicoes = e.getProcessoDistribuicao().getM_listaDistribuicao().size();
+        double totalSubmissoes = e.getListaSubmissoes().size();
         
-        if(totalDistribuicoes > 0)
+        if(totalSubmissoes > 0)
         {
-            //for (Distribuicao d : e.getProcessoDistribuicao().getM_listaDistribuicao()) {
             for (Submissao s : e.getListaSubmissoes()) {
                 switch (parametro)
                 {
@@ -99,10 +97,10 @@ public class EstatisticaEventoController {
                         break;
                 }
             }
-            taxa /= totalDistribuicoes;
-            /*taxa = 0.5;
+            System.out.println(parametro + ": " + taxa);
+            taxa /= totalSubmissoes;
             resultado = String.format("%.2f", taxa);
-            resultado += " %";*/
+            resultado += "%";
         }
        
         

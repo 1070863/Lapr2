@@ -1,8 +1,10 @@
 package eventoscientificos;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import states.EventoCriadoState;
 
 /**
  * Classe responsável pela distribuição/atribuição de revisores a artigos. 
@@ -21,6 +23,9 @@ public class ProcessoDistribuicao implements Serializable {
     private CP m_cp;
     private Distribuicao m_distribuicao;
 
+     public ProcessoDistribuicao() {
+         m_listaDistribuicao = new ArrayList();
+    }
     /**
      * Define o mecanismo de distribuição a utilizar
      *
