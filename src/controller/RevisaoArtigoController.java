@@ -115,17 +115,19 @@ public class RevisaoArtigoController {
         if(this.m_empresa.getM_registoEventos().getEvento(this.evento.
                 getM_strTitulo()).getSubmissao(artigo).valida()){
             
-             for (Distribuicao distribuicao : this.m_empresa.getM_registoEventos().getEvento(evento.getM_strTitulo()).
-                    getProcessoDistribuicao().getM_listaDistribuicao()) {
-                 if(distribuicao.getM_artigo().equals(this.artigo)){
-                     distribuicao.setConfianca(confianca);
-                     distribuicao.setAdequacao(adequacao);
-                     distribuicao.setOriginalidade(originalidade);
-                     distribuicao.setQualidade(qualidade);
-                     distribuicao.setRecomendacao(recomendacao);
-                     distribuicao.setTextoJustificativo(texto);
-                     this.m_empresa.getM_registoEventos().getEvento(evento.getM_strTitulo()).
-                             getSubmissao(artigo).setState(new SubmissaoRevistaState(submissao));
+             for (Submissao submissao : this.m_empresa.getM_registoEventos().
+                     getEvento(evento.getM_strTitulo()).getListaSubmissoes()){
+                    
+                 if(submissao.getRevisaoArtigo().getM_artigo().equals(this.artigo)){
+                     submissao.getRevisaoArtigo().setConfianca(confianca);
+                     submissao.getRevisaoArtigo().setAdequacao(adequacao);
+                     submissao.getRevisaoArtigo().setOriginalidade(originalidade);
+                     submissao.getRevisaoArtigo().setQualidade(qualidade);
+                     submissao.getRevisaoArtigo().setRecomendacao(recomendacao);
+                     submissao.getRevisaoArtigo().setTextoJustificativo(texto);
+                     //this.m_empresa.getM_registoEventos().getEvento(evento.getM_strTitulo()).
+                     //        getSubmissao(artigo).setState(new SubmissaoRevistaState(submissao));
+                     submissao.setState(new SubmissaoRevistaState(submissao));
                      this.m_empresa.getM_registoEventos().getEvento(evento.getM_strTitulo()).
                              setState(new EventoRevistoState(evento));
                      return true;
