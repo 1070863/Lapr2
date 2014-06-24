@@ -8,7 +8,14 @@ package ui;
 
 import controller.ImportacaoDadosController;
 import eventoscientificos.Empresa;
+import eventoscientificos.Evento;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
@@ -35,30 +42,31 @@ public class ImportacaoDadosUI extends JFrame  {
     }
 
     public void run(int opcao) throws ParserConfigurationException, SAXException {
-        CarregarEventosUI ceUI = new CarregarEventosUI(m_empresa);
+        ImportacaoDadosUI idUI = new ImportacaoDadosUI(m_empresa);
 
-  /*      this.opcao = opcao;
+        this.opcao = opcao;
         try {
             boolean ficheiroValido = false;
             while (!ficheiroValido) {
                 JFileChooser jfcCarregarEventos = new JFileChooser();
                 definirFiltro(jfcCarregarEventos);
-                int resp = jfcCarregarEventos.showOpenDialog(ceUI);
+                int resp = jfcCarregarEventos.showOpenDialog(idUI);
                 if (resp == JFileChooser.APPROVE_OPTION) {
-                    File eventos = jfcCarregarEventos.getSelectedFile();
-                    int ficheiro = importacaoDadosController.setFicheiro(eventos.getName());
+                    File ficheiro = jfcCarregarEventos.getSelectedFile();
+                    int validacaoFicheiro = importacaoDadosController.validaFicheiro(ficheiro.getName());
 
-                    switch (ficheiro) {
+                    switch (validacaoFicheiro) {
                         case 0:
                             jfcCarregarEventos.setVisible(false);
                             ficheiroValido = true;
-                            mostrarEventos();
+                            if(this.opcao==1)
+                                importacaoDadosController.lerEventos(ficheiro.getAbsolutePath(), m_empresa);
                             break;
                         case 1:
-                            JOptionPane.showMessageDialog(ceUI, "Tipo de ficheiro desconhecido!", "ERRO!", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(idUI, "Tipo de ficheiro desconhecido!", "ERRO!", JOptionPane.ERROR_MESSAGE);
                             break;
                         case 2:
-                            JOptionPane.showMessageDialog(ceUI, "Ficheiro sem eventos válidos!", "ERRO!", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(idUI, "Ficheiro sem eventos válidos!", "ERRO!", JOptionPane.ERROR_MESSAGE);
                             break;
                     }
 
@@ -67,7 +75,7 @@ public class ImportacaoDadosUI extends JFrame  {
                 }
             }
         } catch (IOException excecao) {
-            JOptionPane.showMessageDialog(ceUI, "Ficheiro inválido!", "ERRO!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(idUI, "Ficheiro inválido!", "ERRO!", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -81,15 +89,11 @@ public class ImportacaoDadosUI extends JFrame  {
                 }
                 String extensao = extensao(f);
                 if (extensao != null) {
-                    return (extensao.equals("csv") || extensao.equals("xml"));
-
-                }
-                if (extensao != null) {
                     return (extensao.equals("csv"));
 
                 }
                 if (extensao != null) {
-                    return (extensao.equals("xml"));
+                    return (extensao.equals("csv"));
 
                 }
                 return false;
@@ -98,7 +102,7 @@ public class ImportacaoDadosUI extends JFrame  {
             @Override
 
             public String getDescription() {
-                return "*.csv, *.xml";
+                return "*.csv";
             }
 
             public String extensao(File f) {
@@ -110,10 +114,10 @@ public class ImportacaoDadosUI extends JFrame  {
                 }
                 return extensao;
             }
-        });*/
+        });
     }
 
-  /*  private void mostrarEventos() {
+    /*private void mostrarEventos() {
         List<Evento> listaEventosProvisoria = carregarEventosController.mostrarListaProvisoria();
         System.out.println("mostrarEventos: " + listaEventosProvisoria.size());
                 
@@ -142,5 +146,5 @@ public class ImportacaoDadosUI extends JFrame  {
         if (flag == true) {
             JOptionPane.showMessageDialog(this, "Todos os eventos lidos", "Carregar Eventos", JOptionPane.INFORMATION_MESSAGE);
         }
-*/    
+    */
 }
