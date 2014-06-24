@@ -15,6 +15,9 @@ import java.io.Serializable;
 public class RevisaoArtigo implements Serializable{
     private static final long serialVersionUID = 1L;
     
+    private String idEvento;
+    private String idArtigo;
+    
     /**
      * Revisor que efectuou a revisão
      */
@@ -50,16 +53,53 @@ public class RevisaoArtigo implements Serializable{
      */
     private Artigo m_artigo;
 
+    /**
+     * Retorna o artigo revisto
+     * @return m_artigo
+     */
     public Artigo getM_artigo() {
         return m_artigo;
     }
 
+    /**
+     * Atribui o artigo revisto
+     * @param m_artigo 
+     */
     public void setM_artigo(Artigo m_artigo) {
         this.m_artigo = m_artigo;
     }
 
-   
-    
+    /**
+     * Retorna o id do evento
+     * @return idEvento
+     */
+    public String getIdEvento() {
+        return idEvento;
+    }
+
+    /**
+     * Atribui o idEvento
+     * @param idEvento 
+     */
+    public void setIdEvento(String idEvento) {
+        this.idEvento = idEvento;
+    }
+
+    /**
+     * Retorna o idArtigo
+     * @return idArtigo
+     */
+    public String getIdArtigo() {
+        return idArtigo;
+    }
+
+    /**
+     * Atribui o idArtigo
+     * @param idArtigo 
+     */
+    public void setIdArtigo(String idArtigo) {
+        this.idArtigo = idArtigo;
+    }    
 
     /**
      * Controi uma instância de revisão de artigos
@@ -181,6 +221,4 @@ public class RevisaoArtigo implements Serializable{
     public void setTextoJustificativo(String textoJustificativo) {
         this.textoJustificativo = textoJustificativo;
     }
-
-    
 }

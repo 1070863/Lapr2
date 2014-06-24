@@ -7,6 +7,7 @@
 package tratarficheiros;
 
 import eventoscientificos.Empresa;
+import eventoscientificos.Evento;
 import eventoscientificos.RevisaoArtigo;
 import eventoscientificos.Revisor;
 import eventoscientificos.Utilizador;
@@ -62,10 +63,12 @@ public class ImportarFicheiroRevisaoCSV {
         for (String[] strings : temp) {
             while (linha < temp.size())
             {
-                listaRevisoesProvisoria.add(new RevisaoArtigo());
+                RevisaoArtigo revisao = new RevisaoArtigo();
                 while (coluna < temp.get(0).length) {
                     opcao = temp.get(0)[coluna];
                     switch (opcao) {
+                        case "ConferenceID":
+                            
                         case "Reviewer":        
                             listaRevisoesProvisoria.get(i).setRevisor(revisor(temp, linha, coluna,
                                     empresa));
@@ -116,5 +119,21 @@ public class ImportarFicheiroRevisaoCSV {
             revisor.setM_strNome(u.getM_strNome());
         }
         return revisor;
+    }
+    
+    /**
+     * Verifica se o evento já existe
+     *
+     * @param e
+     * @param empresa
+     * @return boolean
+     */
+    private boolean existeEvento(String eventoId, Empresa empresa) {
+        for (Evento evento : empresa.getM_registoEventos().getM_listaEventos()) {
+            if(evento.getID()!=null)
+                if (evento.getID().trim().equalsIgnoreCase(eventoId.trim()))
+                    return true;
+        }
+        return false;
     }
 }

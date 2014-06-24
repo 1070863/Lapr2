@@ -27,20 +27,6 @@ import states.SubmissaoCriadaState;
 public class ImportarFicheiroArtigoCSV {
 
     /**
-     * Lista de artigos provisória
-     */
-    private List<Artigo> listaArtigosProvisoria = new ArrayList<>();
-
-    /**
-     * Retorna a lista de artigos provisória
-     *
-     * @return List<Artigo> listaArtigosProvisoria
-     */
-    public List<Artigo> getListaArtigosProvisoria() {
-        return listaArtigosProvisoria;
-    }
-
-    /**
      * Le ficheiro que carrega artigo
      *
      * @param fichArtigo objecto do tipo String
@@ -90,7 +76,7 @@ public class ImportarFicheiroArtigoCSV {
                 }
                 
                 boolean regista;
-                if (!existeEvento(a.getEventoID(), empresa)) {
+                if (existeEvento(a.getEventoID(), empresa)) {
                     Submissao submissao = new Submissao();
                     submissao.novoArtigo();
                     submissao.setArtigo(a);
@@ -99,7 +85,7 @@ public class ImportarFicheiroArtigoCSV {
                     empresa.getM_registoEventos().getEvento(a.getEventoID()).getSubmissao(a).
                             setState(new SubmissaoCriadaState(submissao));
                 } else {
-                    throw new EventoNaoEncontradoException();
+                    //throw new EventoNaoEncontradoException();
                 }
                  //if(regista)
                  //{
@@ -108,6 +94,7 @@ public class ImportarFicheiroArtigoCSV {
                  coluna = 0;  
                  
             }
+            
         }
     }
 
@@ -142,7 +129,7 @@ public class ImportarFicheiroArtigoCSV {
     public boolean existeEvento(String eventoId, Empresa empresa) {
         for (Evento evento : empresa.getM_registoEventos().getM_listaEventos()) {
             if(evento.getID()!=null)
-                if (evento.getID().equalsIgnoreCase(eventoId))
+                if (evento.getID().trim().equalsIgnoreCase(eventoId.trim()))
                     return true;
         }
         return false;
