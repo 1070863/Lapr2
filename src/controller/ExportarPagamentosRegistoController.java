@@ -24,8 +24,8 @@ public class ExportarPagamentosRegistoController {
      * @param strId endereço de email ou username do organizador
      * @return lista de eventos do organizador
      */
-    public List<Evento> getEventosOrganizador(String strId) {
-        return this.m_empresa.getM_registoEventos().getEventosOrganizador(strId);
+    public List<Evento> getEventosOrgDataRegistoPassada(String strId) {
+        return this.m_empresa.getM_registoEventos().getEventosOrgDataRegistoPassada(strId);
     }
 
     /**

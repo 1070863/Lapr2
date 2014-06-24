@@ -2,6 +2,7 @@ package eventoscientificos;
 
 import java.io.Serializable;
 import java.util.*;
+import states.EventoCameraReadyState;
 import states.EventoCriadoFicheiroState;
 import states.EventoDecididoState;
 import states.SubmissaoAceiteState;
@@ -55,7 +56,6 @@ public class RegistoEventos implements Serializable {
         }
     }
 
-
     private boolean addEvento(Evento e) {
         return m_listaEventos.add(e);
     }
@@ -104,6 +104,40 @@ public class RegistoEventos implements Serializable {
             }
         }
         return leAutorAceites;
+    }
+
+    /**
+     * Procura no registo de eventos os eventos cujo organizador tenha a id
+     * indicada e os eventos tenham a data de registo ultrapassada.
+     *
+     * @param strId id do autor correspondente
+     * @return Lista de Eventos com Submissões aceites.
+     */
+    public List<Evento> getEventosOrgDataRegistoPassada(String strId) {
+        List<Evento> leOrganizador = new ArrayList<>();
+
+        Utilizador u = m_empresa.getM_registaUtilizador().getUtilizador(strId);
+
+        if (u != null) {
+            for (Iterator<Evento> it = m_listaEventos.listIterator(); it.hasNext();) {
+                Evento e = it.next();
+                List<Organizador> lOrg = e.getListaOrganizadores();
+
+                boolean bRet = false;
+                if (!leOrganizador.contains(e) && e.getState() instanceof EventoCameraReadyState) {
+                    for (Organizador org : lOrg) {
+                        if (org.getM_utilizador().equals(u)) {
+                            bRet = true;
+                            break;
+                        }
+                    }
+                    if (bRet) {
+                        leOrganizador.add(e);
+                    }
+                }
+            }
+        }
+        return leOrganizador;
     }
 
     public List<Evento> getEventosOrganizador(String strId) {
@@ -166,14 +200,14 @@ public class RegistoEventos implements Serializable {
         return null;
     }
 
-    
     private boolean validaEvento(Evento e) {
-        if(this.getEvento(e.getM_strTitulo()) == null)
+        if (this.getEvento(e.getM_strTitulo()) == null) {
             return true;
-        else
-             return false; 
+        } else {
+            return false;
+        }
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -198,44 +232,48 @@ public class RegistoEventos implements Serializable {
     public List<Evento> getM_listaEventos() {
         return m_listaEventos;
     }
-    
+
     /**
      * Retorna a lista de eventos prontos a notificar
+     *
      * @param strId
      * @return List<Evento>
      */
     public List<Evento> getListaEventosProntosNotificar(String strId) {
         List<Evento> le = new ArrayList<>();
 
-        for (Evento e : getEventosOrganizador(strId)) 
-        {
-            for (Submissao submissao : e.getListaSubmissoes())
-            {
-                    if(e.getState() instanceof EventoDecididoState &&
-                            submissao.getState() instanceof SubmissaoNotificadaAceiteState || 
-                            submissao.getState() instanceof SubmissaoRejeitadaState)
-            le.add(e);
+        for (Evento e : getEventosOrganizador(strId)) {
+            for (Submissao submissao : e.getListaSubmissoes()) {
+                if (e.getState() instanceof EventoDecididoState
+                        && submissao.getState() instanceof SubmissaoNotificadaAceiteState
+                        || submissao.getState() instanceof SubmissaoRejeitadaState) {
+                    le.add(e);
+                }
             }
-        }    
+        }
         return le;
     }
-   
-    public int getListaEventosCriadoFicheiroSize(){
+
+    public int getListaEventosCriadoFicheiroSize() {
         int contador = 0;
         for (Evento e : m_listaEventos) {
-            if(e.getState() instanceof EventoCriadoFicheiroState)
+            if (e.getState() instanceof EventoCriadoFicheiroState) {
                 contador++;
+            }
         }
         return contador;
     }
-    public void apagaEventosCriadoFicheiro(){
 
-        for (int i=m_listaEventos.size()-1; i> -1; i--) {
+    public void apagaEventosCriadoFicheiro() {
+
+        for (int i = m_listaEventos.size() - 1; i > -1; i--) {
             Evento e = m_listaEventos.get(i);
 
-            if(e.getState() instanceof EventoCriadoFicheiroState)
+            if (e.getState() instanceof EventoCriadoFicheiroState) {
                 this.m_listaEventos.remove(e);
-            
+            }
+
         }
     }
+
 }

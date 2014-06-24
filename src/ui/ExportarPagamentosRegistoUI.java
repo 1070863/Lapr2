@@ -34,7 +34,7 @@ public class ExportarPagamentosRegistoUI extends javax.swing.JDialog {
         m_empresa = empresa;
         strId = id;
         m_controllerEPR = new ExportarPagamentosRegistoController(m_empresa);
-        List<Evento> le = this.m_controllerEPR.getEventosOrganizador(strId);
+        List<Evento> le = this.m_controllerEPR.getEventosOrgDataRegistoPassada(strId);
         m_eventoSelecionado = apresentaEventosOrganizador(le);
         m_controllerEPR.selectEvento(m_eventoSelecionado);
         initComponents();
