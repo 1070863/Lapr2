@@ -1,16 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package states;
 
 import eventoscientificos.Evento;
 import java.io.Serializable;
 /**
+ * Esta classe gere o estado de um evento validando se o mesmo reune condições
+ * para passar do estado LidoFicheiro a Criado.
  *
- * @author Lopes
+ * @author GRUPO66 LAPR2
  */
 public class EventoLidoFicheiroState implements EventoState, Serializable{
      Evento m_e;
