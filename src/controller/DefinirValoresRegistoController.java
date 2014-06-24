@@ -43,7 +43,7 @@ public class DefinirValoresRegistoController {
      * @return lista de eventos do organizador
      */
     public List<Evento> getEventosOrganizador(String strId) {
-        return this.m_empresa.getM_registoEventos().getEventosOrganizador(strId);
+        return this.m_empresa.getM_registoEventos().getEventosOrgRegistados(strId);
     }
 
     /**

@@ -7,6 +7,7 @@ import states.EventoCriadoFicheiroState;
 import states.EventoDecididoState;
 import states.EventoRegistadoState;
 import states.EventoTopicosDefinidosState;
+import states.EventoValoresRegistoDefinidos;
 import states.SubmissaoAceiteState;
 import states.SubmissaoNotificadaAceiteState;
 import states.SubmissaoRejeitadaState;
@@ -30,7 +31,7 @@ public class RegistoEventos implements Serializable {
     private List<MecanismoDecisao> m_listaMecanismoDecisao;
 
     /**
-     * Construtor por criar um no Registo de Eventos para a empresa. 
+     * Construtor por criar um no Registo de Eventos para a empresa.
      *
      * @param m_empresa Empresa a ser definida
      */
@@ -38,6 +39,7 @@ public class RegistoEventos implements Serializable {
         this.m_listaEventos = new ArrayList<>();
         this.m_empresa = empresa;
     }
+
     /**
      * Cria um novo objecto Evento
      *
@@ -46,26 +48,32 @@ public class RegistoEventos implements Serializable {
     public Evento novoEvento() {
         return new Evento();
     }
+
     /**
-     * @return m_listaMecanismoDistribuicao lista com mecanimos de distribuição disponíveis
+     * @return m_listaMecanismoDistribuicao lista com mecanimos de distribuição
+     * disponíveis
      */
     public List<MecanismoDistribuicao> getM_listaMecanismoDistribuicao() {
         return m_listaMecanismoDistribuicao;
     }
+
     /**
      * Define a lista de mecanismos de distribuição disponíveis
      *
-     * @param m_listaMecanismoDistribuicao Objecto do tipo List<MecanismoDistribuicao>
+     * @param m_listaMecanismoDistribuicao Objecto do tipo
+     * List<MecanismoDistribuicao>
      */
     public void setM_listaMecanismoDistribuicao(List<MecanismoDistribuicao> m_listaMecanismoDistribuicao) {
         this.m_listaMecanismoDistribuicao = m_listaMecanismoDistribuicao;
     }
+
     /**
      * @return m_MecanismoDistribuicao, mecanismo de distribuição definido
      */
     public MecanismoDistribuicao getMd() {
         return m_MecanismoDistribuicao;
     }
+
     /**
      * Define o mecanismo de distribuição disponível
      *
@@ -74,10 +82,11 @@ public class RegistoEventos implements Serializable {
     public void setMd(MecanismoDistribuicao md) {
         this.m_MecanismoDistribuicao = md;
     }
+
     /**
-     * Regista um evento na lista de eventos após validação. 
-     * 
-     * @return true se evento válido e adicionado com sucesso. 
+     * Regista um evento na lista de eventos após validação.
+     *
+     * @return true se evento válido e adicionado com sucesso.
      */
     public boolean registaEvento(Evento e) {
         if (validaEvento(e)) {
@@ -86,17 +95,20 @@ public class RegistoEventos implements Serializable {
             return false;
         }
     }
+
     /**
-     * Regista um evento na lista de eventos. 
-     * 
-     * @return true se evento adicionado com sucesso. 
+     * Regista um evento na lista de eventos.
+     *
+     * @return true se evento adicionado com sucesso.
      */
     private boolean addEvento(Evento e) {
         return m_listaEventos.add(e);
     }
+
     /**
-     * Cria uma nova lista de mecanismos de distribuição disponíveis e atribui mecanismos à lista
-     * 
+     * Cria uma nova lista de mecanismos de distribuição disponíveis e atribui
+     * mecanismos à lista
+     *
      * @return m_listaMecanismoDistribuicao lista criada
      */
     public List<MecanismoDistribuicao> criarListaMecanismoDistribuicaos() {
@@ -104,9 +116,11 @@ public class RegistoEventos implements Serializable {
         this.m_listaMecanismoDistribuicao.add(new Mecanismo1());
         return m_listaMecanismoDistribuicao;
     }
+
     /**
-     * Cria uma nova lista de mecanismos de decisão disponíveis e atribui mecanismos à lista
-     * 
+     * Cria uma nova lista de mecanismos de decisão disponíveis e atribui
+     * mecanismos à lista
+     *
      * @return m_listaMecanismoDistribuicao lista criada
      */
     public List<MecanismoDecisao> criarListaMecanismoDecisao() {
@@ -183,7 +197,6 @@ public class RegistoEventos implements Serializable {
         return leOrganizador;
     }
 
-    
     /**
      * Procura no registo de eventos os eventos cujo organizador tenha a id
      * indicada e os eventos tenham já tópicos definidos.
@@ -217,7 +230,41 @@ public class RegistoEventos implements Serializable {
         }
         return leOrganizador;
     }
-    
+
+    /**
+     * Procura no registo de eventos os eventos cujo organizador tenha a id
+     * indicada e os eventos tenham já tópicos definidos.
+     *
+     * @param strId id do autor correspondente
+     * @return Lista de Eventos com Tópicos definidos
+     */
+    public List<Evento> getEventosOrgValoresDef(String strId) {
+        List<Evento> leOrganizador = new ArrayList<>();
+
+        Utilizador u = m_empresa.getM_registaUtilizador().getUtilizador(strId);
+
+        if (u != null) {
+            for (Iterator<Evento> it = m_listaEventos.listIterator(); it.hasNext();) {
+                Evento e = it.next();
+                List<Organizador> lOrg = e.getListaOrganizadores();
+
+                boolean bRet = false;
+                if (!leOrganizador.contains(e) && e.getState() instanceof EventoValoresRegistoDefinidos) {
+                    for (Organizador org : lOrg) {
+                        if (org.getM_utilizador().equals(u)) {
+                            bRet = true;
+                            break;
+                        }
+                    }
+                    if (bRet) {
+                        leOrganizador.add(e);
+                    }
+                }
+            }
+        }
+        return leOrganizador;
+    }
+
     /**
      * Procura no registo de eventos os eventos cujo organizador tenha a id
      * indicada e os eventos tenham o seu estado definido como registado.
@@ -251,7 +298,7 @@ public class RegistoEventos implements Serializable {
         }
         return leOrganizador;
     }
-    
+
     /**
      * Procura no registo de eventos os eventos cujo organizador tenha a id
      * indicada.
@@ -305,18 +352,17 @@ public class RegistoEventos implements Serializable {
         return le;
     }
 
-
-     /**
+    /**
      * Devolve evento da lista de eventos com titulo pedida
      *
-     * @param eventoTitulo título do evento 
-     * @return e Evento com título pedido. null no caso de não haver nenhum evento com
-     * esse título
+     * @param eventoTitulo título do evento
+     * @return e Evento com título pedido. null no caso de não haver nenhum
+     * evento com esse título
      */
     public Evento getEvento(String eventoTitulo) {
-        
+
         for (Evento e : m_listaEventos) {
-            if(e.getM_strTitulo()!=null){
+            if (e.getM_strTitulo() != null) {
                 if (eventoTitulo.equalsIgnoreCase(e.getM_strTitulo())) {
                     return e;
                 }
@@ -324,18 +370,18 @@ public class RegistoEventos implements Serializable {
         }
         return null;
     }
-    
+
     /**
      * Devolve evento da lista de eventos com id pedida
      *
-     * @param eventoID id do evento 
-     * @return e Evento com título pedido. null no caso de não haver nenhum evento com
-     * esse título
+     * @param eventoID id do evento
+     * @return e Evento com título pedido. null no caso de não haver nenhum
+     * evento com esse título
      */
     public Evento getEventoPorId(String eventoID) {
-        
+
         for (Evento e : m_listaEventos) {
-            if(e.getID()!=null){
+            if (e.getID() != null) {
                 if (eventoID.equalsIgnoreCase(e.getID())) {
                     return e;
                 }
@@ -408,8 +454,8 @@ public class RegistoEventos implements Serializable {
     }
 
     /**
-     * Retorna número de eventos em estado CriadoFicheiro. Necessário para saber se 
-     * ficheiro carregado contém ou não eventos válidos
+     * Retorna número de eventos em estado CriadoFicheiro. Necessário para saber
+     * se ficheiro carregado contém ou não eventos válidos
      *
      * @return número de eventos criados do ficheiro actualmente registados.
      */
@@ -423,8 +469,8 @@ public class RegistoEventos implements Serializable {
         return contador;
     }
 
-     /**
-     * Apaga eventos em estado "CriadoFicheiro". 
+    /**
+     * Apaga eventos em estado "CriadoFicheiro".
      */
     public void apagaEventosCriadoFicheiro() {
 
