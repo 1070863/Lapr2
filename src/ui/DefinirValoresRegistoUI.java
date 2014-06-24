@@ -284,7 +284,7 @@ public class DefinirValoresRegistoUI extends javax.swing.JDialog {
                 if (this.m_controllerDFR.termina()) {
                     JOptionPane.showMessageDialog(this, "Os valores de registo foram definidos com sucesso.");
                     dispose();
-                    System.out.println(this.m_eventoSelecionado.getM_registoNoEvento().toString());
+         
                 } else {
                     JOptionPane.showMessageDialog(this, "Os valores de registo não foram definidos.",
                             "Definir Valores de Registo", ERROR_MESSAGE);

@@ -518,7 +518,7 @@ public class MenuUI extends JFrame {
                 } else if (m_empresa.getM_registoEventos().getEventosOrganizador(strId).isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Não está indicao como autor", "Registo no Evento", ERROR_MESSAGE);
                 } else {
-                    PagamentoRegistoUI pagRUI = new PagamentoRegistoUI(MenuUI.this, true, m_empresa, strId);
+                    RegistoNoEventoUI pagRUI = new RegistoNoEventoUI(MenuUI.this, true, m_empresa, strId);
                 }
             }
         }

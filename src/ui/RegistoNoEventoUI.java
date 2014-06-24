@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author GRUPO66 LAPR2
  */
-public class PagamentoRegistoUI extends JDialog {
+public class RegistoNoEventoUI extends JDialog {
 
     private Evento m_eventoSelecionado;
     private RegistoNoEventoController m_controllerRNE;
@@ -37,7 +37,7 @@ public class PagamentoRegistoUI extends JDialog {
     /**
      * Creates new form PagamentoRegistoUI
      */
-    public PagamentoRegistoUI(javax.swing.JFrame pai, boolean modal, Empresa m_empresa, String strIda) {
+    public RegistoNoEventoUI(javax.swing.JFrame pai, boolean modal, Empresa m_empresa, String strIda) {
         initComponents();
         strId = strIda;
         m_empresa = m_empresa;
@@ -347,7 +347,7 @@ public class PagamentoRegistoUI extends JDialog {
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(this,
-                        "O seu Registo no evento foi efetuado!!!",
+                        "O seu Registo no evento não foi efetuado!!!",
                         "Pagamento do Registo",
                         JOptionPane.WARNING_MESSAGE);
             }
@@ -371,20 +371,20 @@ public class PagamentoRegistoUI extends JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PagamentoRegistoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistoNoEventoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PagamentoRegistoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistoNoEventoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PagamentoRegistoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistoNoEventoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PagamentoRegistoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistoNoEventoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                PagamentoRegistoUI dialog = new PagamentoRegistoUI(new javax.swing.JFrame(), true, m_empresa, strId);
+                RegistoNoEventoUI dialog = new RegistoNoEventoUI(new javax.swing.JFrame(), true, m_empresa, strId);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
