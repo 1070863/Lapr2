@@ -77,12 +77,7 @@ public class EventoValoresRegistoDefinidos implements EventoState {
      */
     @Override
     public boolean setValorRegistoDefinido() {
-        if (valida()) {
-            m_e.setState(new EventoTopicosDefinidosState(m_e));
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     /**
@@ -92,7 +87,12 @@ public class EventoValoresRegistoDefinidos implements EventoState {
      */
     @Override
     public boolean setTopicosDefinidos() {
-        return false;
+        if (valida()) {
+            m_e.setState(new EventoTopicosDefinidosState(m_e));
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

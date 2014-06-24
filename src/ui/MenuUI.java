@@ -51,7 +51,6 @@ public class MenuUI extends JFrame {
         menuBar.add(menuRevisor());
         menuBar.add(menuAutor());
         menuBar.add(menuUtilizador());
-        menuBar.add(menuEstatistica());
         menuBar.add(menuAjuda());
 
         add(new JLabel(new ImageIcon("isep_logo.jpg")));
@@ -243,6 +242,7 @@ public class MenuUI extends JFrame {
         menu.add(criarSubMenuDefinirValoresRegisto());
         menu.add(criarSubMenuCorrigirEventosImportados());
         menu.add(criarSubMenuExportarPagamentos());
+        menu.add(criarItemEstatisticaEvento());
         return menu;
     }
 
@@ -433,6 +433,25 @@ public class MenuUI extends JFrame {
         );
         return item;
     }
+    
+
+    /**
+     * Cria item do menu Estatisctia com a opção Estatística de Evento.
+     *
+     * @return item Acerca para adicionar ao Menu
+     */
+    private JMenuItem criarItemEstatisticaEvento() {
+        JMenuItem item = new JMenuItem("Estistica de Evento", KeyEvent.VK_C);
+        item.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                EstatisticaEventoUI estatisticaEvento = new EstatisticaEventoUI(new java.awt.Frame(), true, m_empresa);
+                estatisticaEvento.run();
+            }
+        });
+        return item;
+    }
+    
 //MENU REVISOR
 
     /**
@@ -559,37 +578,6 @@ public class MenuUI extends JFrame {
 
         return menu;
     }
-    
-
-    /**
-     * Cria item do menu Estatisctia com a opção Criar Eventos
-     *
-     * @return item Criar Eventos para adicionar ao Menu
-     */
-    private JMenu menuEstatistica() {
-        JMenu menu = new JMenu("Estatistica");
-        menu.setMnemonic(KeyEvent.VK_A);
-        menu.add(criarItemEstatisticaEvento());
-        return menu;
-    }
-
-    /**
-     * Cria item do menu Estatisctia com a opção Estatística de Evento.
-     *
-     * @return item Acerca para adicionar ao Menu
-     */
-    private JMenuItem criarItemEstatisticaEvento() {
-        JMenuItem item = new JMenuItem("Estistica de Evento", KeyEvent.VK_C);
-        item.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                EstatisticaEventoUI estatisticaEvento = new EstatisticaEventoUI(new java.awt.Frame(), true, m_empresa);
-                estatisticaEvento.run();
-            }
-        });
-        return item;
-    }
-
 
     /**
      * Cria menu Ajuda com um sub menu.

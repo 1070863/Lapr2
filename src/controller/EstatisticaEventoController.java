@@ -1,11 +1,14 @@
 
 package controller;
 
+import eventoscientificos.Distribuicao;
 import eventoscientificos.Empresa;
 import eventoscientificos.Evento;
+import eventoscientificos.Revisor;
 import eventoscientificos.Submissao;
 import java.util.ArrayList;
 import java.util.List;
+import states.EventoCPDefinidaState;
 import states.EventoDecididoState;
 import states.EventoLidoFicheiroState;
 import states.EventoNotificadoState;
@@ -39,7 +42,8 @@ public class EstatisticaEventoController {
         List<Evento> eventos = new ArrayList<>();
         for (Evento e : m_empresa.getM_registoEventos().getM_listaEventos()) {
             if (e.getState() instanceof EventoDecididoState
-                    || e.getState() instanceof EventoNotificadoState) {
+                    || e.getState() instanceof EventoNotificadoState
+                    || e.getState() instanceof EventoCPDefinidaState) { //Apagar este estado, exclusivo para testes
                 eventos.add(e);
             }
         }
@@ -51,8 +55,8 @@ public class EstatisticaEventoController {
      */
     public String getTaxaAceitacao(Evento e) {
         int contador = 0;
-        String result = "Evento sem submissões";
-        float taxa = 0;
+        String resultado = "Evento sem submissões";
+        double taxa = 0;
         
         if(e.getListaSubmissoes().size() > 0)
         {
@@ -61,9 +65,48 @@ public class EstatisticaEventoController {
                     contador++;
             }
             taxa = contador / e.getListaSubmissoes().size() * 100;
-            result.format("%.2f",taxa);
-            result += " %";
+            resultado = String.format("%.2f", taxa);
+            resultado += " %";
         }
-        return result;
+        return resultado;
+    }
+    
+    
+    /**
+     * @return lista de eventos registados com estado "Decidido" ou "Notificado"
+     */
+    public String getValorMedioAvaliacao(Evento e, String parametro) {
+        int contador = 0;
+        String resultado = "Sem dados para apresentar";
+        double taxa = 0; 
+        double totalDistribuicoes = e.getProcessoDistribuicao().getM_listaDistribuicao().size();
+        
+        if(totalDistribuicoes > 0)
+        {
+            for (Distribuicao d : e.getProcessoDistribuicao().getM_listaDistribuicao()) {
+                switch (parametro)
+                {
+                    case "Confianca":
+                        taxa += Integer.parseInt(d.getConfianca());
+                        break;
+                    case "Adequacao":
+                        taxa += Integer.parseInt(d.getAdequacao());
+                        break;
+                    case "Originalidade":
+                        taxa += Integer.parseInt(d.getOriginalidade());
+                        break;
+                    case "Qualidade":
+                        taxa += Integer.parseInt(d.getQualidade());
+                        break;
+                }
+            }
+            taxa /= totalDistribuicoes;
+            /*taxa = 0.5;
+            resultado = String.format("%.2f", taxa);
+            resultado += " %";*/
+        }
+       
+        
+        return resultado;
     }
 }
