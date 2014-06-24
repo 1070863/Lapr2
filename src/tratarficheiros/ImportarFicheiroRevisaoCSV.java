@@ -43,7 +43,7 @@ Logger log = Logger.getLogger("Log");
             log.addHandler(fh);
             SimpleFormatter formatter = new SimpleFormatter();
             fh.setFormatter(formatter);
-            log.info("Inicia a importação de dados!");
+            log.info("Importação de revisões de artigos iniciada com sucesso!");
         } catch (IOException ex) {
             log.getLogger(ImportarFicheiroRevisaoCSV.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SecurityException ex) {
@@ -112,23 +112,29 @@ Logger log = Logger.getLogger("Log");
 
                 boolean regista;
                 if (existeEvento(revisao.getIdEvento(), empresa)) {
-                    Submissao submissao = empresa.getM_registoEventos().getEvento(revisao.getIdEvento()).
+                    Submissao submissao = empresa.getM_registoEventos().getEventoPorId(revisao.getIdEvento()).
                             getSubmissao(revisao.getM_artigo());
                     if (submissao != null) {
-                        empresa.getM_registoEventos().getEvento(revisao.getIdEvento()).
+                        empresa.getM_registoEventos().getEventoPorId(revisao.getIdEvento()).
                                 getSubmissao(revisao.getM_artigo()).
                                 setRevisaoArtigo(revisao);
 
-                        empresa.getM_registoEventos().getEvento(revisao.getIdEvento()).
+                        empresa.getM_registoEventos().getEventoPorId(revisao.getIdEvento()).
                                 setState(new EventoRevistoState(empresa.getM_registoEventos().
                                                 getEvento(revisao.getIdEvento())));
 
-                        empresa.getM_registoEventos().getEvento(revisao.getIdEvento()).
+                        empresa.getM_registoEventos().getEventoPorId(revisao.getIdEvento()).
                                 getSubmissao(revisao.getM_artigo()).
                                 setState(new SubmissaoRevistaState(empresa.getM_registoEventos().
                                                 getEvento(revisao.getIdEvento()).
                                                 getSubmissao(revisao.getM_artigo())));
+                    } else {
+                        log.severe("Erro: Não foi possivel adicionar a revisão do artigo "+revisao.getIdArtigo()+
+                                "Causa: O evento "+ revisao.getIdEvento()+" não tem submissões! ");
                     }
+                } else {
+                    log.severe("Erro: Não foi possivel adicionar a revisão do artigo "+revisao.getIdArtigo()+
+                            "Causa: O evento "+ revisao.getIdEvento()+"Não existe no sistema!");
                 }
                     i++;
                  linha++;
