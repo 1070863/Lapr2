@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ui;
 
 import controller.ImportacaoDadosController;
 import eventoscientificos.Empresa;
 import eventoscientificos.Evento;
+import excecoes.EventoExistenteException;
+import excecoes.RegistoEventoException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,32 +28,30 @@ import org.xml.sax.SAXException;
  *
  * @author Pedro
  */
-public class ImportacaoDadosUI extends JFrame  {
+public class ImportacaoDadosUI extends JFrame {
+
     private Empresa m_empresa;
     private ImportacaoDadosController importacaoDadosController;
-    
+
     /**
-     * Opção
-     * 1-Ler eventos
-     * 2-Ler artigos
-     * 3-Ler revisões artigos
+     * Opção 1-Ler eventos 2-Ler artigos 3-Ler revisões artigos
      */
     private int opcao;
-    
+
     Logger log = Logger.getLogger("Log");
     FileHandler fh;
-    
+
     public ImportacaoDadosUI(Empresa empresa) {
         super("Carregar Eventos Cientificos");
         this.m_empresa = empresa;
         importacaoDadosController = new ImportacaoDadosController();
         FileHandler fh;
-        
+
         try {
             //Configuração do ficheiro de Logs
             fh = new FileHandler("EventosCientificos.log");
             log.addHandler(fh);
-            SimpleFormatter formatter = new SimpleFormatter();  
+            SimpleFormatter formatter = new SimpleFormatter();
             fh.setFormatter(formatter);
             log.info("Inicia a importação de dados!");
         } catch (IOException ex) {
@@ -62,7 +61,7 @@ public class ImportacaoDadosUI extends JFrame  {
         }
     }
 
-    public void run(int opcao) throws ParserConfigurationException, SAXException {
+    public void run(int opcao) {
         ImportacaoDadosUI idUI = new ImportacaoDadosUI(m_empresa);
 
         this.opcao = opcao;
@@ -80,8 +79,10 @@ public class ImportacaoDadosUI extends JFrame  {
                         case 0:
                             jfcCarregarEventos.setVisible(false);
                             ficheiroValido = true;
-                            if(this.opcao==1)
+                            if (this.opcao == 1) {
                                 importacaoDadosController.lerEventos(ficheiro.getAbsolutePath(), m_empresa);
+                            }
+
                             break;
                         case 1:
                             log.severe("Erro: Tipo de ficheiro desconhecido!");
@@ -96,7 +97,15 @@ public class ImportacaoDadosUI extends JFrame  {
                 }
             }
         } catch (IOException excecao) {
-            log.severe("Erro: Ficheiro inválido!\n"+excecao.getMessage());
+            log.severe("Erro: Erro na leitura do ficheiro!" + excecao.getMessage());
+        } catch (ParserConfigurationException ex) {
+            log.severe(ex.getMessage());
+        } catch (SAXException ex) {
+            log.severe(ex.getMessage());
+        } catch (RegistoEventoException ex){
+            log.severe("Erro: "+ex.getMessage());
+        } catch (EventoExistenteException ex) {
+            log.severe("Erro: "+ex.getMessage());
         }
     }
 
@@ -139,33 +148,33 @@ public class ImportacaoDadosUI extends JFrame  {
     }
 
     /*private void mostrarEventos() {
-        List<Evento> listaEventosProvisoria = carregarEventosController.mostrarListaProvisoria();
-        System.out.println("mostrarEventos: " + listaEventosProvisoria.size());
+     List<Evento> listaEventosProvisoria = carregarEventosController.mostrarListaProvisoria();
+     System.out.println("mostrarEventos: " + listaEventosProvisoria.size());
                 
                 
-        int contador = 0;
-        boolean flag = true;
-        for (Evento evento : listaEventosProvisoria) {
-            int resp = JOptionPane.showConfirmDialog(this, evento.toString(), "Confirmar dados do evento!", JOptionPane.YES_NO_CANCEL_OPTION);
+     int contador = 0;
+     boolean flag = true;
+     for (Evento evento : listaEventosProvisoria) {
+     int resp = JOptionPane.showConfirmDialog(this, evento.toString(), "Confirmar dados do evento!", JOptionPane.YES_NO_CANCEL_OPTION);
 
-            if (resp == JOptionPane.YES_OPTION) {
-                carregarEventosController.setEvento(evento);
-                contador++;
-                JOptionPane.showMessageDialog(this, "Evento carregado com sucesso!");
-            } else if (resp == JOptionPane.CANCEL_OPTION) {
-                listaEventosProvisoria = new ArrayList<>();
-                if (contador > 0) {
-                    JOptionPane.showMessageDialog(this, contador + " eventos aceites carregados com sucesso!");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Nenhum evento carregado do ficheiro!");
-                }
-                flag = false;
-                dispose();
-                break;
-            }
-        }
-        if (flag == true) {
-            JOptionPane.showMessageDialog(this, "Todos os eventos lidos", "Carregar Eventos", JOptionPane.INFORMATION_MESSAGE);
-        }
-    */
+     if (resp == JOptionPane.YES_OPTION) {
+     carregarEventosController.setEvento(evento);
+     contador++;
+     JOptionPane.showMessageDialog(this, "Evento carregado com sucesso!");
+     } else if (resp == JOptionPane.CANCEL_OPTION) {
+     listaEventosProvisoria = new ArrayList<>();
+     if (contador > 0) {
+     JOptionPane.showMessageDialog(this, contador + " eventos aceites carregados com sucesso!");
+     } else {
+     JOptionPane.showMessageDialog(this, "Nenhum evento carregado do ficheiro!");
+     }
+     flag = false;
+     dispose();
+     break;
+     }
+     }
+     if (flag == true) {
+     JOptionPane.showMessageDialog(this, "Todos os eventos lidos", "Carregar Eventos", JOptionPane.INFORMATION_MESSAGE);
+     }
+     */
 }

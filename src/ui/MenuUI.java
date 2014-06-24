@@ -182,13 +182,7 @@ public class MenuUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ImportacaoDadosUI ie = new ImportacaoDadosUI(m_empresa);
-                try {
                     ie.run(1);
-                } catch (ParserConfigurationException ex) {
-                    Logger.getLogger(MenuUI.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SAXException ex) {
-                    Logger.getLogger(MenuUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
             }
         }
         );
@@ -205,13 +199,8 @@ public class MenuUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ImportacaoDadosUI ia = new ImportacaoDadosUI(m_empresa);
-                try {
+                
                     ia.run(2);
-                } catch (ParserConfigurationException ex) {
-                    Logger.getLogger(MenuUI.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SAXException ex) {
-                    Logger.getLogger(MenuUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
             }
         }
         );
@@ -228,13 +217,7 @@ public class MenuUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ImportacaoDadosUI ir = new ImportacaoDadosUI(m_empresa);
-                try {
-                    ir.run(3);
-                } catch (ParserConfigurationException ex) {
-                    Logger.getLogger(MenuUI.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SAXException ex) {
-                    Logger.getLogger(MenuUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                ir.run(3);
             }
         }
         );

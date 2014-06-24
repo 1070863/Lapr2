@@ -11,6 +11,7 @@ import eventoscientificos.Utilizador;
 import excecoes.EventoExistenteException;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,6 +21,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 import states.EventoCriadoFicheiroState;
 import utils.Data;
+import excecoes.RegistoEventoException;
 import static utils.Data.String2Data;
 
 /**
@@ -35,7 +37,8 @@ public class ImportarFicheiroEventoCSV {
      * @throws java.lang.Exception caso não encontre ficheiro
      */
 
-    public void LerFicheiro(String fichEvento, Empresa empresa) throws ParserConfigurationException, SAXException, IOException, EventoExistenteException {
+    public void lerFicheiro(String fichEvento, Empresa empresa) throws ParserConfigurationException, 
+            SAXException, IOException, EventoExistenteException, RegistoEventoException {
 
         List<String[]> temp = new ArrayList<>();
         Scanner fIn = new Scanner(new File(fichEvento), "ISO-8859-1");
@@ -99,16 +102,18 @@ public class ImportarFicheiroEventoCSV {
                     }
                     coluna++;
                 }
-
+                boolean regista;
                 if (!existeEvento(e, empresa)) {
                     e.setState(new EventoCriadoFicheiroState(e));
-                    boolean regista = empresa.getM_registoEventos().registaEvento(e);
+                    regista = empresa.getM_registoEventos().registaEvento(e);
                 } else {
                     throw new EventoExistenteException("O evento com " + e.getID() + " e título " + e.getM_strTitulo()
                             + " já existe!");
                 }
-                //if(regista)
-                //{
+                if(!regista)
+                {
+                    throw new RegistoEventoException();
+                }
                 i++;
                 linha++;
                 coluna = 0;
